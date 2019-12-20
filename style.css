@@ -1,0 +1,9 @@
+.container-fluid {
+  height: 100vh;
+  width: auto;
+  background-color: #015668;
+}
+.searchbox {
+  position: absolute;
+  padding: 25% 25%;
+}
