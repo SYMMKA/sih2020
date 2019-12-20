@@ -3,7 +3,11 @@
   width: auto;
   background-color: #015668;
 }
-.searchbox {
-  position: absolute;
-  padding: 25% 25%;
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
+.buttonInside{
+    position:relative;
+    margin-bottom:10px;
