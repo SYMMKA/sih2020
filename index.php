@@ -41,6 +41,7 @@
                     <li>Title</li>
                     <li>Author</li>
                     <li>ISBN</li>
+                    <li>Genre</li>
                 </ul>
             </div>
               
@@ -79,6 +80,16 @@
             </div>
           </div>
         </form>
+        <?php
+        if(!empty($_POST)){
+            ?>
+            <h3 style="color: red;">Result</h3>
+            <div id="result">
+                <?php echo '<font style="color:blue;">You searched for: '.$_POST['voice-search'];'</font>' ?>
+            </div>
+            <?php
+    }
+    ?>
       </div>
     </section>
 
