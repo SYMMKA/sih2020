@@ -81,15 +81,29 @@
           </div>
         </form>
         <?php
-        if(!empty($_POST)){
-            ?>
-            <h3 style="color: red;">Result</h3>
-            <div id="result">
-                <?php echo '<font style="color:blue;">You searched for: '.$_POST['voice-search'];'</font>' ?>
-            </div>
-            <?php
-    }
-    ?>
+            if(!empty($_POST)){
+            
+                $search = $_POST['voice-search'];
+                echo '<font style="color:red;">Result: </font>';
+                echo '<font style="color:blue;">You searched for: '.$search.'</font>';
+
+                // json -https://www.googleapis.com/books/v1/volumes?q=$search
+            }
+        ?>
+        <?php
+
+            // API key, future ref
+            $API_KEY = '';
+
+            // donot delete
+            require_once 'vendor/autoload.php';
+
+            
+            $page = file_get_contents("https://www.googleapis.com/books/v1/volumes?q=".$search);
+            $data = json_decode($page, true);
+            echo "Title = " . $data['items'][0]['volumeInfo']['title'];
+            echo "<br/>Authors = " . @implode(",", $data['items'][0]['volumeInfo']['authors']); 
+        ?>
       </div>
     </section>
 
