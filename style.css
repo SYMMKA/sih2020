@@ -8,6 +8,35 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.buttonInside{
-    position:relative;
-    margin-bottom:10px;
+.buttonInside {
+  background-color: transparent;
+}
+#voice-trigger {
+  position: absolute;
+  right: 0;
+  top: 14px;
+  margin-inline-end: 15px;
+}
+
+#voice-trigger svg {
+  fill: #626262;
+}
+
+#voice-trigger.active svg {
+  -webkit-animation: pulsate 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(1, 1);
+    fill: 1;
+  }
+  50% {
+    -webkit-transform: scale(1, 1);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+    opacity: 1;
+  }
+}
