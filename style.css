@@ -1,7 +1,7 @@
 .container-fluid {
   height: 100vh;
   width: auto;
-  background-color: #015668;
+  background-color: #222831;
 }
 .form-control:focus {
   border-color: inherit;
@@ -14,12 +14,22 @@
 #voice-trigger {
   position: absolute;
   right: 0;
-  top: 14px;
-  margin-inline-end: 15px;
+  top: 7.5px;
+  margin-inline-end: 13px;
+}
+
+#voice-trigger :hover {
+  cursor: pointer;
+  border-style: solid;
+  border-radius: 50px;
+  border-color: #46b3e6;
+  background-color: #46b3e6;
+  fill: antiquewhite;
 }
 
 #voice-trigger svg {
-  fill: #626262;
+  fill: #46b3e6;
+  padding: 2px;
 }
 
 #voice-trigger.active svg {
@@ -40,3 +50,34 @@
     opacity: 1;
   }
 }
+
+.form-control {
+  background-color: #393e46 !important;
+  color: white !important;
+  border-color: #000000 !important;
+
+}
+
+div {
+  font-family: "Roboto Mono", monospace;
+}
+
+.btn-group {
+  width: 100%;
+  
+}
+.dropdown-menu {
+  width: 100%;
+  background-color: #393e46;
+  
+}
+.dropdown-menu :hover {
+  background-color: #46b3e6;
+}
+.dropdown-menu > li {
+  padding: 7px;
+  color: white;
+  text-align: center;
+  font-size: medium;
+
+

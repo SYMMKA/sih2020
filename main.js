@@ -61,3 +61,8 @@ function _transcriptHandler(e) {
     window.SpeechRecognition.stop();
   }
 }
+
+//for dropdown menu
+$(".dropdown-menu li").on("click", function() {
+  $(".dropdown-toggle").html($(this).html() + '<span class="caret"></span>');
+});
