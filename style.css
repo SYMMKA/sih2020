@@ -55,7 +55,6 @@
   background-color: #393e46 !important;
   color: white !important;
   border-color: #000000 !important;
-
 }
 
 div {
@@ -64,12 +63,10 @@ div {
 
 .btn-group {
   width: 100%;
-  
 }
 .dropdown-menu {
   width: 100%;
   background-color: #393e46;
-  
 }
 .dropdown-menu :hover {
   background-color: #46b3e6;
@@ -79,5 +76,4 @@ div {
   color: white;
   text-align: center;
   font-size: medium;
-
-
+}
