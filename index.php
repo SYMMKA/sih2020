@@ -73,7 +73,7 @@
 
   </section>
   <section>
-    <div class="container-fluid search">
+    <div class="container-fluid search" style="background-color:powderblue;">
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
           <!--<div class="col-auto">
@@ -117,25 +117,57 @@
       if (!empty($_POST)) {
 
         $search = $_POST['voice-search'];
-        echo '<font style="color:red;">Result: </font>';
-        echo '<font style="color:blue;">You searched for: ' . $search . '</font>';
-
-        // json -https://www.googleapis.com/books/v1/volumes?q=$search
+        
       }
       ?>
       <?php
 
-      // API key, future ref
-      $API_KEY = '';
+        // API key, future ref
+        $API_KEY = '';
 
-      // donot delete
-      require_once 'vendor/autoload.php';
+        // donot delete
+        require_once 'vendor/autoload.php';
 
 
-      $page = file_get_contents("https://www.googleapis.com/books/v1/volumes?q=" . urlencode($search)); //urlencode($search) converts Harry Potter to Harry+Potter
-      $data = json_decode($page, true);
-      echo "Title = " . $data['items'][0]['volumeInfo']['title'];
-      echo "<br/>Authors = " . @implode(",", $data['items'][0]['volumeInfo']['authors']);
+        $client = new Google_Client();
+        $client->setApplicationName("Client_Library_Examples");
+
+        $service = new Google_Service_Books($client);
+        //$optParams = array('filter' => 'free-ebooks');
+        $results = $service->volumes->listVolumes($search);
+      ?>
+
+<h3>Results Of Call:</h3>
+      <?php foreach ($results as $item) :
+        echo "Title: ".$item['volumeInfo']['title'];
+        echo "\t";
+        echo "Author: ".@implode(",", $item['volumeInfo']['authors']);
+        echo "\t";
+        $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
+        echo $imgLink;
+      
+
+        echo "\t";
+        echo "Publisher: ".$item['volumeInfo']['publisher'];
+        echo "\t";
+        echo "Published Date: ".$item['volumeInfo']['publishedDate']."<br>";
+        echo "Description: ".$item['volumeInfo']['description']."<br>";
+        echo "Page Count: ".$item['volumeInfo']['pageCount'];
+        echo "\t";
+        echo "Country: ".$item['saleInfo']['country'];
+        echo "\t";
+
+        //Displays amount if available
+        if($item['saleInfo']['listPrice']['currencyCode'] || $item['saleInfo']['listPrice']['amount'])
+        {
+          echo "Amount: ".$item['saleInfo']['listPrice']['currencyCode'];
+          echo "\t";
+          echo $item['saleInfo']['listPrice']['amount'];
+        }
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        endforeach
       ?>
 
     </div>
