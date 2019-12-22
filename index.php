@@ -114,13 +114,15 @@
       </form>
 
       <?php
-      if (!empty($_POST)) {
+        $search = '';
+        if (!empty($_POST)) {
 
-        $search = $_POST['voice-search'];
-        
-      }
+          $search = $_POST['voice-search'];
+          
+        }
       ?>
       <?php
+        if($search){
 
         // API key, future ref
         $API_KEY = '';
@@ -138,7 +140,8 @@
       ?>
 
 <h3>Results Of Call:</h3>
-      <?php foreach ($results as $item) :
+      <?php
+        foreach ($results as $item) {
         echo "Title: ".$item['volumeInfo']['title'];
         echo "\t";
         echo "Author: ".@implode(",", $item['volumeInfo']['authors']);
@@ -167,7 +170,8 @@
         echo "<br>";
         echo "<br>";
         echo "<br>";
-        endforeach
+      }
+    }
       ?>
 
     </div>
