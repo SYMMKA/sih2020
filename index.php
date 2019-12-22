@@ -167,6 +167,9 @@
           echo "\t";
           echo $item['saleInfo']['listPrice']['amount'];
         }
+      ?>
+      <button type="submit" class="btn btn-info btn-lg">Auto Fill</button>
+      <?php
         echo "<br>";
         echo "<br>";
         echo "<br>";
