@@ -25,12 +25,65 @@
     <title>Document</title>
   </head>
   <body>
+
+
     <section>
-      <div class="container-fluid" >
+      <div class="container-fluid form ">
+        <h1 style=" color:#46b5d1;">ADD BOOK</h1>
+        <form>
+          <div class="form-group row align-items-center justify-content-center ">
+            <label for="" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="" placeholder="Example input">
+            </div>
+          </div>
+          <div class="form-group row align-items-center justify-content-center ">
+            <label for="" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="" placeholder="Example input">
+            </div>
+          </div>
+          <div class="form-group row align-items-center justify-content-center ">
+            <label for="" class="col-sm-2 col-form-label">ISBN</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="" placeholder="Example input">
+            </div>
+          </div>
+          <div class="form-group row align-items-center justify-content-center ">
+            <label for="" class="col-sm-2 col-form-label" >Description</label>
+            <div class="col-sm-6">
+              <textarea class="form-control" id="" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group form-row align-items-center justify-content-center ">
+            <label for="" class="col-sm-2 col-form-label">Image</label>
+            <div class="col-sm-6">
+              <input type="file" class="form-control-file" id="">
+            </div>
+          </div>
+          <div class="form-group form-row align-items-center justify-content-center ">
+            
+            <label for="" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="" placeholder="Example input">
+            </div>
+          </div>
+          <div class="form-group form-row align-items-center justify-content-center ">
+            <div class="col-sm-1 addbook" >
+              <button type="submit" class="btn btn-info btn-lg">Add Book</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+    </section>
+    <section>
+      <div class="container-fluid search" >
         <form id="search-form" method="post">
           <div
             class="form-row align-items-center justify-content-center "
-            style="padding-top: 15rem;"
+            style="padding-top: 5rem;"
           >
             <div class="col-auto">
              
@@ -55,7 +108,7 @@
                 placeholder="Book Name"
                 name="voice-search"
                 autocomplete="off"
-                autofocus
+                
               />
               <span id="voice-trigger">
                 <svg width="32px" height="32px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">
@@ -80,6 +133,7 @@
             </div>
           </div>
         </form>
+        
         <?php
             if(!empty($_POST)){
             
@@ -104,6 +158,7 @@
             echo "Title = " . $data['items'][0]['volumeInfo']['title'];
             echo "<br/>Authors = " . @implode(",", $data['items'][0]['volumeInfo']['authors']); 
         ?>
+        
       </div>
     </section>
 
