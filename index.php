@@ -146,11 +146,6 @@
         echo "\t";
         echo "Author: ".@implode(",", $item['volumeInfo']['authors']);
         echo "\t";
-        $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
-        echo $imgLink;
-      
-
-        echo "\t";
         echo "Publisher: ".$item['volumeInfo']['publisher'];
         echo "\t";
         echo "Published Date: ".$item['volumeInfo']['publishedDate']."<br>";
@@ -168,6 +163,11 @@
           echo $item['saleInfo']['listPrice']['amount'];
         }
       ?>
+      <?php
+        $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
+        echo $imgLink;
+      ?>
+      <img src="<?= $imgLink ?>">
       <button type="submit" class="btn btn-info btn-lg">Auto Fill</button>
       <?php
         echo "<br>";
