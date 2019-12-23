@@ -28,38 +28,38 @@
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Title</label>
           <div class="col-md-6">
-            <input type="text" class="form-control" id="" placeholder="Example input">
+            <input type="text" class="form-control" id="title" placeholder="Example input">
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Author</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="" placeholder="Example input">
+            <input type="text" class="form-control" id="author" placeholder="Example input">
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">ISBN</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="" placeholder="Example input">
+            <input type="text" class="form-control" id="isbn" placeholder="Example input">
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Description</label>
           <div class="col-sm-6">
-            <textarea class="form-control" id="" rows="3"></textarea>
+            <textarea class="form-control" id="description" rows="3"></textarea>
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
           <div class="col-sm-6">
-            <input type="file" class="form-control-file" id="">
+            <input type="file" class="form-control-file" id="image">
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
 
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
           <div class="col-sm-6">
-            <input type="number" class="form-control" id="" placeholder="Example input">
+            <input type="number" class="form-control" id="quantity" placeholder="Example input">
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
@@ -145,6 +145,7 @@
 
         <h3>Results Of Call:</h3>
         <?php
+        $i = 0;
         foreach ($results as $item) {
           $title = $item['volumeInfo']['title'];
           echo "Title: " . $title;
@@ -179,14 +180,34 @@
           $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
           ?>
           <img src="<?= $imgLink ?>">
-          <button type="submit" class="btn btn-info btn-lg" onclick="autoFill()">Auto Fill</button>
+          <p id="demo"></p>
+          <script> var i = "<?= $i; ?>"; 
+          document.getElementById("demo").innerHTML = i; </script>
+          <button type="submit" class="btn btn-info btn-lg" onclick="autoFill(this.name)">Auto Fill</button>
+          <script>
+            var title = new Array();
+            var author = new Array();
+            title = "<?= $title; ?>";
+            author = "<?= $author; ?>";
+            var description = "<?= $description; ?>";
+            function autoFill(i) {
+              
+              document.getElementById('title').value = title;
+              
+              document.getElementById('author').value = author;
+              
+              document.getElementById('description').value = description;
+            }
+          </script>
+
+
+
       <?php
-          function autoFill()
-          {
-          }
           echo "<br>";
           echo "<br>";
           echo "<br>";
+          $i++;
+          echo "ID".$i;
         }
       }
       ?>
