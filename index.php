@@ -64,11 +64,16 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
-            <button type="submit" class="btn btn-info btn-lg">Add Book</button>
+            <button type="submit" class="btn btn-info btn-lg" onclick="addBook()">Add Book</button>
           </div>
         </div>
       </form>
     </div>
+    <?php
+    function addBook()
+    {
+    }
+    ?>
 
 
   </section>
@@ -90,7 +95,7 @@
             </div>
 
           </div>
-          drop-down menu for search type i.e. "Title", "Author"--> 
+          drop-down menu for search type i.e. "Title", "Author"-->
           <div class="col-md-4">
             <label class="sr-only " for="inlineFormInput">Name</label>
             <input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" autocomplete="on" />
@@ -114,15 +119,14 @@
       </form>
 
       <?php
-        $search = '';
-        if (!empty($_POST)) {
+      $search = '';
+      if (!empty($_POST)) {
 
-          $search = $_POST['voice-search'];
-          
-        }
+        $search = $_POST['voice-search'];
+      }
       ?>
       <?php
-        if($search){
+      if ($search) {
 
         // API key, future ref
         $API_KEY = '';
@@ -139,42 +143,52 @@
         $results = $service->volumes->listVolumes($search);
       ?>
 
-<h3>Results Of Call:</h3>
-      <?php
+        <h3>Results Of Call:</h3>
+        <?php
         foreach ($results as $item) {
-        echo "Title: ".$item['volumeInfo']['title'];
-        echo "\t";
-        echo "Author: ".@implode(",", $item['volumeInfo']['authors']);
-        echo "\t";
-        echo "Publisher: ".$item['volumeInfo']['publisher'];
-        echo "\t";
-        echo "Published Date: ".$item['volumeInfo']['publishedDate']."<br>";
-        echo "Description: ".$item['volumeInfo']['description']."<br>";
-        echo "Page Count: ".$item['volumeInfo']['pageCount'];
-        echo "\t";
-        echo "Country: ".$item['saleInfo']['country'];
-        echo "\t";
-
-        //Displays amount if available
-        if($item['saleInfo']['listPrice']['currencyCode'] || $item['saleInfo']['listPrice']['amount'])
-        {
-          echo "Amount: ".$item['saleInfo']['listPrice']['currencyCode'];
+          $title = $item['volumeInfo']['title'];
+          echo "Title: " . $title;
           echo "\t";
-          echo $item['saleInfo']['listPrice']['amount'];
+          $author = @implode(",", $item['volumeInfo']['authors']);
+          echo "Author: " . $author;
+          echo "\t";
+          $publisher = $item['volumeInfo']['publisher'];
+          echo "Publisher: " . $publisher;
+          echo "\t";
+          $publishedDate = $item['volumeInfo']['publishedDate'];
+          echo "Published Date: " . $publishedDate . "<br>";
+          $description = $item['volumeInfo']['description'];
+          echo "Description: " . $description . "<br>";
+          $pageCount = $item['volumeInfo']['pageCount'];
+          echo "Page Count: " . $pageCount;
+          echo "\t";
+          $country = $item['saleInfo']['country'];
+          echo "Country: " . $country;
+          echo "\t";
+          $currencyCode = $item['saleInfo']['listPrice']['currencyCode'];
+          $amount = $item['saleInfo']['listPrice']['amount'];
+
+          //Displays amount if available
+          if ($currencyCode || $amount) {
+            echo "Amount: " . $currencyCode;
+            echo "\t";
+            echo $amount;
+          }
+        ?>
+          <?php
+          $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
+          ?>
+          <img src="<?= $imgLink ?>">
+          <button type="submit" class="btn btn-info btn-lg" onclick="autoFill()">Auto Fill</button>
+      <?php
+          function autoFill()
+          {
+          }
+          echo "<br>";
+          echo "<br>";
+          echo "<br>";
         }
-      ?>
-      <?php
-        $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
-        echo $imgLink;
-      ?>
-      <img src="<?= $imgLink ?>">
-      <button type="submit" class="btn btn-info btn-lg">Auto Fill</button>
-      <?php
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
       }
-    }
       ?>
 
     </div>
