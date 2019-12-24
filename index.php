@@ -26,6 +26,8 @@
         <a class="startPage" href="issue.php" id="adminIssueBook">Issue Book</a> 
         <br>
         <a class="startPage" href="return.php" id="adminReturnBook" >Return Book</a>
+        <br>
+        <a class="startPage" href="searchBooks.php" id="adminReturnBook" >Search Book</a>
     </div>
 
 
