@@ -52,7 +52,8 @@
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
           <div class="col-sm-6">
-            <input type="file" class="form-control-file" id="image">
+            <!---<input type="file" class="form-control-file" id="image">-->
+            <img src=imgLink id="imgLink">
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
@@ -197,15 +198,16 @@
           <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
           <script>
             function autoFill(i) {
+              // donot remove the comments in this method if the id isnt predefined in html form
 
               document.getElementById('title').value = title[i];
               document.getElementById('author').value = author[i];
-              document.getElementById('publisher').value = publisher[i];
-              document.getElementById('publishedDate').value = publishedDate[i];
+              //document.getElementById('publisher').value = publisher[i];
+              //document.getElementById('publishedDate').value = publishedDate[i];
               document.getElementById('description').value = description[i];
-              document.getElementById('pageCount').value = pageCount[i];
-              document.getElementById('currencyCode').value = currencyCode[i];
-              document.getElementById('amount').value = amount[i];
+              //document.getElementById('pageCount').value = pageCount[i];
+              //document.getElementById('currencyCode').value = currencyCode[i];
+              //document.getElementById('amount').value = amount[i];
               document.getElementById('imgLink').value = imgLink[i];
             }
           </script>
