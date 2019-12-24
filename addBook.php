@@ -185,15 +185,17 @@
           ?>
           <img src="<?= $imgLink[$i] ?>">
           <script>
-            var title = <?php echo json_encode($title); ?>;
-            var author = <?php echo json_encode($author); ?>;
-            var publisher = <?php echo json_encode($publisher); ?>;
-            var publishedDate = <?php echo json_encode($publishedDate); ?>;
-            var description = <?php echo json_encode($description); ?>;
-            var pageCount = <?php echo json_encode($pageCount); ?>;
-            var currencyCode = <?php echo json_encode($currencyCode); ?>;
-            var amount = <?php echo json_encode($amount); ?>;
-            var imgLink = <?php echo json_encode($imgLink); ?>;
+            /* variables declared without var prefix mean that they are global
+            I removed var because of warnings*/
+            title = <?php echo json_encode($title); ?>
+            author = <?php echo json_encode($author); ?>
+            publisher = <?php echo json_encode($publisher); ?>
+            publishedDate = <?php echo json_encode($publishedDate); ?>
+            description = <?php echo json_encode($description); ?>
+            pageCount = <?php echo json_encode($pageCount); ?>
+            currencyCode = <?php echo json_encode($currencyCode); ?>
+            amount = <?php echo json_encode($amount); ?>
+            imgLink = <?php echo json_encode($imgLink); ?>
           </script>
           <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
           <script>

@@ -29,7 +29,7 @@
     </div>
 
 
-    <script src="add.php"></script>
+    <script src="addBook.php"></script>
     <script src="issue.php"></script>
     <script src="return.php"></script> 
     
