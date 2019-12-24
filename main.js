@@ -1,7 +1,4 @@
 /* setup vars for our trigger, form, text input and result elements */
-
-
-
 var $voiceTrigger = $("#voice-trigger");
 var $searchForm = $("#search-form");
 var $searchInput = $("#search-input");
