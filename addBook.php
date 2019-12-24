@@ -21,8 +21,8 @@
 <body>
 
 
-  <section>
-    <div class="container-fluid form ">
+  <section >
+    <div class="container-fluid form " style="height:auto" >
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
       <form>
         <div class="form-group row align-items-center justify-content-center ">
@@ -49,6 +49,30 @@
             <textarea class="form-control" id="description" rows="3"></textarea>
           </div>
         </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Publisher</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="publisher" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Published Date</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="publishedDate" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Page count</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="pageCount" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Price</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="money" placeholder="Example input">
+          </div>
+        </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
           <div class="col-sm-6">
@@ -65,21 +89,17 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
-            <button type="submit" class="btn btn-info btn-lg" onclick="addBook()">Add Book</button>
+            <button type="submit" class="btn btn-info btn-lg" onclick="">Add Book</button>
           </div>
         </div>
       </form>
     </div>
-    <?php
-    function addBook()
-    {
-    }
-    ?>
+    
 
 
   </section>
-  <section>
-    <div class="container-fluid search" style="background-color:powderblue;">
+  <section >
+    <div class="container-fluid search" style="height:auto; color:powderblue; " >
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
           <!--<div class="col-auto">
@@ -169,6 +189,13 @@
           echo "\t";
           $publishedDate[$i] = $item['volumeInfo']['publishedDate'];
           echo "Published Date: " . $publishedDate[$i] . "<br>";
+          //volumeInfo.industryIdentifiers[].type
+          $isbn[$i] = "";
+          for ($n=0;  $n<count($item['volumeInfo']['industryIdentifiers']); $n++)
+          {
+            $isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
+          }
+          echo "ISBN: " . $isbn[$i] . "<br>";          
           $description[$i] = $item['volumeInfo']['description'];
           echo "Description: " . $description[$i] . "<br>";
           $pageCount[$i] = $item['volumeInfo']['pageCount'];
@@ -179,12 +206,11 @@
           echo "\t";
           $currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
           $amount[$i] = $item['saleInfo']['listPrice']['amount'];
+          $money[$i] = $currencyCode[$i] . " " . $amount[$i];
 
           //Displays amount if available
-          if ($currencyCode[$i] || $amount[$i]) {
-            echo "Amount: " . $currencyCode[$i];
-            echo "\t";
-            echo $amount[$i];
+          if ($money[$i]) {
+            echo "Amount: " . $money[$i];
           }
         ?>
           <?php
@@ -198,10 +224,10 @@
           <script> author = <?php echo json_encode($author); ?></script>
           <script> publisher = <?php echo json_encode($publisher); ?></script>
           <script> publishedDate = <?php echo json_encode($publishedDate); ?></script>
+          <script> isbn = <?php echo json_encode($isbn); ?></script>
           <script> description = <?php echo json_encode($description); ?></script>
           <script> pageCount = <?php echo json_encode($pageCount); ?></script>
-          <script> currencyCode = <?php echo json_encode($currencyCode); ?></script>
-          <script> amount = <?php echo json_encode($amount); ?></script>
+          <script> money = <?php echo json_encode($money); ?></script>
           <script> imgLink = <?php echo json_encode($imgLink); ?></script>
 
           <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
@@ -212,12 +238,12 @@
 
               document.getElementById('title').value = title[i];
               document.getElementById('author').value = author[i];
-              //document.getElementById('publisher').value = publisher[i];
-              //document.getElementById('publishedDate').value = publishedDate[i];
+              document.getElementById('publisher').value = publisher[i];
+              document.getElementById('publishedDate').value = publishedDate[i];
+              document.getElementById('isbn').value = isbn[i];
               document.getElementById('description').value = description[i];
-              //document.getElementById('pageCount').value = pageCount[i];
-              //document.getElementById('currencyCode').value = currencyCode[i];
-              //document.getElementById('amount').value = amount[i];
+              document.getElementById('pageCount').value = pageCount[i];
+              document.getElementById('money').value = money[i];
               document.getElementById('imgLink').value = imgLink[i];
             }
           </script>
