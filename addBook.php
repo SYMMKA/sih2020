@@ -21,8 +21,8 @@
 <body>
 
 
-  <section >
-    <div class="container-fluid form " style="height:auto" >
+  <section>
+    <div class="container-fluid form " style="height:auto">
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
       <form>
         <div class="form-group row align-items-center justify-content-center ">
@@ -75,10 +75,8 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
-          <div class="col-sm-6">
-            <!---<input type="file" class="form-control-file" id="image">-->
-            <img src=imgLink id="imgLink">
-          </div>
+          <img id="imgLink" alt="your image" width="100" height="100" />
+          <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
 
@@ -94,12 +92,13 @@
         </div>
       </form>
     </div>
-    
+
+
 
 
   </section>
-  <section >
-    <div class="container-fluid search" style="height:auto; color:powderblue; " >
+  <section>
+    <div class="container-fluid search" style="height:auto; color:powderblue; ">
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
           <!--<div class="col-auto">
@@ -191,11 +190,10 @@
           echo "Published Date: " . $publishedDate[$i] . "<br>";
           //volumeInfo.industryIdentifiers[].type
           $isbn[$i] = "";
-          for ($n=0;  $n<count($item['volumeInfo']['industryIdentifiers']); $n++)
-          {
+          for ($n = 0; $n < count($item['volumeInfo']['industryIdentifiers']); $n++) {
             $isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
           }
-          echo "ISBN: " . $isbn[$i] . "<br>";          
+          echo "ISBN: " . $isbn[$i] . "<br>";
           $description[$i] = $item['volumeInfo']['description'];
           echo "Description: " . $description[$i] . "<br>";
           $pageCount[$i] = $item['volumeInfo']['pageCount'];
@@ -217,21 +215,39 @@
           $imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
           ?>
           <img src="<?= $imgLink[$i] ?>">
-          
+
           <!-- variables declared without var prefix mean that they are global
           I removed var because of warnings-->
-          <script> title = <?php echo json_encode($title); ?></script>
-          <script> author = <?php echo json_encode($author); ?></script>
-          <script> publisher = <?php echo json_encode($publisher); ?></script>
-          <script> publishedDate = <?php echo json_encode($publishedDate); ?></script>
-          <script> isbn = <?php echo json_encode($isbn); ?></script>
-          <script> description = <?php echo json_encode($description); ?></script>
-          <script> pageCount = <?php echo json_encode($pageCount); ?></script>
-          <script> money = <?php echo json_encode($money); ?></script>
-          <script> imgLink = <?php echo json_encode($imgLink); ?></script>
+          <script>
+            title = <?php echo json_encode($title); ?>
+          </script>
+          <script>
+            author = <?php echo json_encode($author); ?>
+          </script>
+          <script>
+            publisher = <?php echo json_encode($publisher); ?>
+          </script>
+          <script>
+            publishedDate = <?php echo json_encode($publishedDate); ?>
+          </script>
+          <script>
+            isbn = <?php echo json_encode($isbn); ?>
+          </script>
+          <script>
+            description = <?php echo json_encode($description); ?>
+          </script>
+          <script>
+            pageCount = <?php echo json_encode($pageCount); ?>
+          </script>
+          <script>
+            money = <?php echo json_encode($money); ?>
+          </script>
+          <script>
+            imgLink = <?php echo json_encode($imgLink); ?>
+          </script>
 
           <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
-          
+
           <script>
             function autoFill(i) {
               // donot remove the comments in this method if the id isnt predefined in html form
@@ -244,7 +260,7 @@
               document.getElementById('description').value = description[i];
               document.getElementById('pageCount').value = pageCount[i];
               document.getElementById('money').value = money[i];
-              document.getElementById('imgLink').value = imgLink[i];
+              document.getElementById('imgLink').src = imgLink[i];
             }
           </script>
 
@@ -268,6 +284,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="main.js"></script>
+  <!--<script src="http://code.jquery.com/jquery-1.9.1.js" >
+        var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+  </script>-->
 
 </body>
 
