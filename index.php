@@ -185,11 +185,12 @@
           document.getElementById("demo").innerHTML = i; </script>
           <button type="submit" class="btn btn-info btn-lg" onclick="autoFill(this.name)">Auto Fill</button>
           <script>
-            var title = new Array();
-            var author = new Array();
+            var title = [];
+            var author = [];
             title = "<?= $title; ?>";
             author = "<?= $author; ?>";
             var description = "<?= $description; ?>";
+          
             function autoFill(i) {
               
               document.getElementById('title').value = title;
