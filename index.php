@@ -117,6 +117,9 @@
           </div>
         </div>
       </form>
+      <script>
+        var i;
+      </script>
 
       <?php
       $search = '';
@@ -147,57 +150,63 @@
         <?php
         $i = 0;
         foreach ($results as $item) {
-          $title = $item['volumeInfo']['title'];
-          echo "Title: " . $title;
+          $title[$i] = $item['volumeInfo']['title'];
+          echo "Title: " . $title[$i];
           echo "\t";
-          $author = @implode(",", $item['volumeInfo']['authors']);
-          echo "Author: " . $author;
+          $author[$i] = @implode(",", $item['volumeInfo']['authors']);
+          echo "Author: " . $author[$i];
           echo "\t";
-          $publisher = $item['volumeInfo']['publisher'];
-          echo "Publisher: " . $publisher;
+          $publisher[$i] = $item['volumeInfo']['publisher'];
+          echo "Publisher: " . $publisher[$i];
           echo "\t";
-          $publishedDate = $item['volumeInfo']['publishedDate'];
-          echo "Published Date: " . $publishedDate . "<br>";
-          $description = $item['volumeInfo']['description'];
-          echo "Description: " . $description . "<br>";
-          $pageCount = $item['volumeInfo']['pageCount'];
-          echo "Page Count: " . $pageCount;
+          $publishedDate[$i] = $item['volumeInfo']['publishedDate'];
+          echo "Published Date: " . $publishedDate[$i] . "<br>";
+          $description[$i] = $item['volumeInfo']['description'];
+          echo "Description: " . $description[$i] . "<br>";
+          $pageCount[$i] = $item['volumeInfo']['pageCount'];
+          echo "Page Count: " . $pageCount[$i];
           echo "\t";
-          $country = $item['saleInfo']['country'];
-          echo "Country: " . $country;
+          $country[$i] = $item['saleInfo']['country'];
+          echo "Country: " . $country[$i];
           echo "\t";
-          $currencyCode = $item['saleInfo']['listPrice']['currencyCode'];
-          $amount = $item['saleInfo']['listPrice']['amount'];
+          $currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
+          $amount[$i] = $item['saleInfo']['listPrice']['amount'];
 
           //Displays amount if available
-          if ($currencyCode || $amount) {
-            echo "Amount: " . $currencyCode;
+          if ($currencyCode[$i] || $amount[$i]) {
+            echo "Amount: " . $currencyCode[$i];
             echo "\t";
-            echo $amount;
+            echo $amount[$i];
           }
         ?>
           <?php
-          $imgLink = $item['volumeInfo']['imageLinks']['thumbnail'];
+          $imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
           ?>
-          <img src="<?= $imgLink ?>">
-          <p id="demo"></p>
-          <script> var i = "<?= $i; ?>"; 
-          document.getElementById("demo").innerHTML = i; </script>
-          <button type="submit" class="btn btn-info btn-lg" onclick="autoFill(this.name)">Auto Fill</button>
+          <img src="<?= $imgLink[$i] ?>">
           <script>
-            var title = [];
-            var author = [];
-            title = "<?= $title; ?>";
-            author = "<?= $author; ?>";
-            var description = "<?= $description; ?>";
-          
+            var title = <?php echo json_encode($title); ?>;
+            var author = <?php echo json_encode($author); ?>;
+            var publisher = <?php echo json_encode($publisher); ?>;
+            var publishedDate = <?php echo json_encode($publishedDate); ?>;
+            var description = <?php echo json_encode($description); ?>;
+            var pageCount = <?php echo json_encode($pageCount); ?>;
+            var currencyCode = <?php echo json_encode($currencyCode); ?>;
+            var amount = <?php echo json_encode($amount); ?>;
+            var imgLink = <?php echo json_encode($imgLink); ?>;
+          </script>
+          <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
+          <script>
             function autoFill(i) {
-              
-              document.getElementById('title').value = title;
-              
-              document.getElementById('author').value = author;
-              
-              document.getElementById('description').value = description;
+
+              document.getElementById('title').value = title[i];
+              document.getElementById('author').value = author[i];
+              document.getElementById('publisher').value = publisher[i];
+              document.getElementById('publishedDate').value = publishedDate[i];
+              document.getElementById('description').value = description[i];
+              document.getElementById('pageCount').value = pageCount[i];
+              document.getElementById('currencyCode').value = currencyCode[i];
+              document.getElementById('amount').value = amount[i];
+              document.getElementById('imgLink').value = imgLink[i];
             }
           </script>
 
@@ -208,7 +217,6 @@
           echo "<br>";
           echo "<br>";
           $i++;
-          echo "ID".$i;
         }
       }
       ?>
