@@ -130,6 +130,13 @@
       }
       ?>
       <?php
+      $search = '';
+      if (!empty($_POST)) {
+
+        $search = $_POST['voice-search'];
+      }
+      ?>
+      <?php
       if ($search) {
 
         // API key, future ref
@@ -184,20 +191,21 @@
           $imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
           ?>
           <img src="<?= $imgLink[$i] ?>">
-          <script>
-            /* variables declared without var prefix mean that they are global
-            I removed var because of warnings*/
-            title = <?php echo json_encode($title); ?>
-            author = <?php echo json_encode($author); ?>
-            publisher = <?php echo json_encode($publisher); ?>
-            publishedDate = <?php echo json_encode($publishedDate); ?>
-            description = <?php echo json_encode($description); ?>
-            pageCount = <?php echo json_encode($pageCount); ?>
-            currencyCode = <?php echo json_encode($currencyCode); ?>
-            amount = <?php echo json_encode($amount); ?>
-            imgLink = <?php echo json_encode($imgLink); ?>
-          </script>
+          
+          <!-- variables declared without var prefix mean that they are global
+          I removed var because of warnings-->
+          <script> title = <?php echo json_encode($title); ?></script>
+          <script> author = <?php echo json_encode($author); ?></script>
+          <script> publisher = <?php echo json_encode($publisher); ?></script>
+          <script> publishedDate = <?php echo json_encode($publishedDate); ?></script>
+          <script> description = <?php echo json_encode($description); ?></script>
+          <script> pageCount = <?php echo json_encode($pageCount); ?></script>
+          <script> currencyCode = <?php echo json_encode($currencyCode); ?></script>
+          <script> amount = <?php echo json_encode($amount); ?></script>
+          <script> imgLink = <?php echo json_encode($imgLink); ?></script>
+
           <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
+          
           <script>
             function autoFill(i) {
               // donot remove the comments in this method if the id isnt predefined in html form

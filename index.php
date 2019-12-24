@@ -21,17 +21,17 @@
 <body>
 
     <div id="testclick" class="options" > 
-        <a class="startPage" href="#" id="adminAddBook" >Add Book </a> 
+        <a class="startPage" href="addBook.php" id="adminAddBook" >Add Book </a> 
         <br>
-        <a class="startPage" href="#" id="adminIssueBook">Issue Book</a> 
+        <a class="startPage" href="issue.php" id="adminIssueBook">Issue Book</a> 
         <br>
-        <a class="startPage" href="#" id="adminReturnBook" >Return Book</a>
+        <a class="startPage" href="return.php" id="adminReturnBook" >Return Book</a>
     </div>
 
 
-    <script src="addBook.php"></script>
+    <!--<script src="addBook.php"></script>
     <script src="issue.php"></script>
-    <script src="return.php"></script> 
+    <script src="return.php"></script>-->
     
     
     
