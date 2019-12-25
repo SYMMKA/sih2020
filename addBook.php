@@ -87,7 +87,7 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Category</label>
-          <select class="col-sm-2 col-form-label" id="category" onchange="autoBookId(this.value)">
+          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
             <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="technology">Technology</option>
@@ -98,7 +98,7 @@
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Book ID</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="bookId" placeholder="Example input">
+            <input type="text" class="form-control" id="bookId" placeholder="Example input" value="MAT">
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
