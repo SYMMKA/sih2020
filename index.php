@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="style.css" />
 
-
+  <link rel="stylesheet" href="index_css.css" />
 
   <title>Start Page</title>
 </head>
