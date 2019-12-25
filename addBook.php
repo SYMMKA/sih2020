@@ -16,15 +16,16 @@
 
 
   <title>Document</title>
+  
 </head>
 
-<body>
+<body >
 
 
   <section>
-    <div class="container-fluid form " style="height:auto; " >
+    <div class="container-fluid form " style="height:auto; ">
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
-      <form >
+      <form>
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Title</label>
           <div class="col-md-6">
@@ -284,12 +285,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="main.js"></script>
-  <!--<script src="http://code.jquery.com/jquery-1.9.1.js" >
-        var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  };
-  </script>-->
+
 
 </body>
 
