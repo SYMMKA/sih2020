@@ -22,9 +22,9 @@
 
 
   <section>
-    <div class="container-fluid form " style="height:auto">
+    <div class="container-fluid form " style="height:auto; " >
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
-      <form>
+      <form >
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Title</label>
           <div class="col-md-6">
@@ -98,7 +98,7 @@
 
   </section>
   <section>
-    <div class="container-fluid search" style="height:auto; color:powderblue; ">
+    <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
           <!--<div class="col-auto">
