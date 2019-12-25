@@ -86,14 +86,20 @@
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Book ID</label>
-          <select class="col-sm-2 col-form-label" id="bookId">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <select class="col-sm-2 col-form-label" id="category" onchange="autoBookId(this.value)">
             <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="technology">Technology</option>
             <option value="art">Art</option>
           </select>
           <br><br>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Book ID</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="bookId" placeholder="Example input">
+          </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
@@ -103,6 +109,25 @@
       </form>
     </div>
 
+    <script>
+      function autoBookId(category) {
+        switch (category) {
+          case "maths":
+            document.getElementById('bookId').value = "MAT";
+            break;
+          case "science":
+            document.getElementById('bookId').value = "SCI";
+            break;
+          case "technology":
+            document.getElementById('bookId').value = "TECH";
+            break;
+          case "art":
+            document.getElementById('bookId').value = "ART";
+            break;
+        }
+      }
+    </script>
+
 
 
 
@@ -111,21 +136,6 @@
     <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-          <!--<div class="col-auto">
-
-            <div class="btn-group">
-              <button type="button " class="form-control btn btn-default btn-lg dropdown-toggle mb-2" data-toggle="dropdown">Search Type<span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu " role="menu">
-                <li>Title</li>
-                <li>Author</li>
-                <li>ISBN</li>
-                <li>Genre</li>
-              </ul>
-            </div>
-
-          </div>
-          drop-down menu for search type i.e. "Title", "Author"-->
           <div class="col-md-4">
             <label class="sr-only " for="inlineFormInput">Name</label>
             <input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" autocomplete="on" />
