@@ -16,10 +16,10 @@
 
 
   <title>Document</title>
-  
+
 </head>
 
-<body >
+<body>
 
 
   <section>
@@ -80,11 +80,20 @@
           <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
           <div class="col-sm-6">
             <input type="number" class="form-control" id="quantity" placeholder="Example input">
           </div>
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Book ID</label>
+          <select class="col-sm-2 col-form-label" id="bookId">
+            <option value="maths">Maths</option>
+            <option value="science">Science</option>
+            <option value="technology">Technology</option>
+            <option value="art">Art</option>
+          </select>
+          <br><br>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
