@@ -16,13 +16,14 @@
 
 
   <title>Document</title>
+
 </head>
 
 <body>
 
 
   <section>
-    <div class="container-fluid form " style="height:auto">
+    <div class="container-fluid form " style="height:auto; ">
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
       <form>
         <div class="form-group row align-items-center justify-content-center ">
@@ -79,10 +80,25 @@
           <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
           <div class="col-sm-6">
             <input type="number" class="form-control" id="quantity" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
+            <option value="maths">Maths</option>
+            <option value="science">Science</option>
+            <option value="technology">Technology</option>
+            <option value="art">Art</option>
+          </select>
+          <br><br>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Book ID</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="bookId" placeholder="Example input" value="MAT">
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
@@ -93,29 +109,33 @@
       </form>
     </div>
 
+    <script>
+      function autoBookId(category) {
+        switch (category) {
+          case "maths":
+            document.getElementById('bookId').value = "MAT";
+            break;
+          case "science":
+            document.getElementById('bookId').value = "SCI";
+            break;
+          case "technology":
+            document.getElementById('bookId').value = "TECH";
+            break;
+          case "art":
+            document.getElementById('bookId').value = "ART";
+            break;
+        }
+      }
+    </script>
+
 
 
 
   </section>
   <section>
-    <div class="container-fluid search" style="height:auto; color:powderblue; ">
+    <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
         <div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-          <!--<div class="col-auto">
-
-            <div class="btn-group">
-              <button type="button " class="form-control btn btn-default btn-lg dropdown-toggle mb-2" data-toggle="dropdown">Search Type<span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu " role="menu">
-                <li>Title</li>
-                <li>Author</li>
-                <li>ISBN</li>
-                <li>Genre</li>
-              </ul>
-            </div>
-
-          </div>
-          drop-down menu for search type i.e. "Title", "Author"-->
           <div class="col-md-4">
             <label class="sr-only " for="inlineFormInput">Name</label>
             <input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" autocomplete="on" />
@@ -284,12 +304,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="main.js"></script>
-  <!--<script src="http://code.jquery.com/jquery-1.9.1.js" >
-        var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  };
-  </script>-->
+
 
 </body>
 

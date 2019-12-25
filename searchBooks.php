@@ -79,7 +79,7 @@
             </div>
           </div>
         </form>
-        <div class="card-deck" style="padding:100px;">
+        <div class="card-deck" style="padding:100px; background-color: #222831;">
        
  
   
@@ -103,58 +103,54 @@
        $searchField = $_POST['voice-search'];
        $query = "SELECT * FROM books Where title LIKE '%$searchField%'";
        $returnD = mysqli_query($con, $query);
-       
+      
        while($result = mysqli_fetch_assoc($returnD)) {
+    
          foreach($result as $k => $v) {
            if($k == 'imgLink'){
              $imgLink = $v;
             
            }
            if($k == 'title'){
-             $title = $v;
-             echo ' <div class="card text-white bg-info mb-3">
-             <div class="card-body"><h5 class="card-title">'.$title.'</h5>';
-           }if($k == 'author'){
+            $title = $v;
+           
+          }if($k == 'isbn'){
+            $isbn = $v;
+           
+          }if($k == 'author'){
              $author = $v;
             
            }if($k == 'description'){
              $description = $v;
          
-             echo '<p class="card-text">'.$description.'</p> </div>
-             </div>
-             ';
            }
-           
-           
-
-          
+          }
+        
+      
+           echo ' <div class="card text-center" style="border:none;">
+           <img class="card-img-top" src="'.$imgLink.'" alt="Card image cap" style="height:300px; width:auto" >
+           <div class="card-body text-white"  style="background-color: #393e46">
+             <h5 class="card-title">'.$title.'</h5>
+             <h6 class="card-subtitle mb-2 text-muted">'.$author.'</h6>
+             <p class="card-text">'.$isbn.'</p>
+             <p class="card-text" style="font-size:0.8em;">'.$description.'</p>
+             
             
-            
-          
-          
-
-           
-
-         }
-       }
+           </div>
+           <div class="card-footer" style="border:none; background-color: #393e46 ">
+           <a href="#" class="btn btn-info" >Issue Book</a>
+    </div>
+         </div>';
        
      
      }
-     
+    }
      ?>
     
 </div>
       </div>
     </section>
-    <section>
-      
-        <div class="container">
-       
-        </div>
- 
-      
- 
-    </section>
+
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
