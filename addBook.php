@@ -152,7 +152,7 @@
 
           <div class="col-auto">
             <button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" value="submit">
-              Search
+              Search 
             </button>
           </div>
         </div>
