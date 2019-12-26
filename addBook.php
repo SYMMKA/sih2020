@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,12 +104,29 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
-            <button type="submit" class="btn btn-info btn-lg" onclick="">Add Book</button>
+            <button type="submit" class="btn btn-info btn-lg" onclick=addBook()>Add Book</button>
           </div>
         </div>
       </form>
     </div>
 
+<script>
+  function addBook()
+  {
+    $.ajax({
+      url:'addQuery.php',
+      complete: function (response) {
+          //$('#output').html(response.responseText);
+          alert("reached add query ");
+      },
+      error: function () {
+          //$('#output').html('Bummer: there was an error!');
+          alert("did not reached add query ");
+      }
+  });
+  return false;
+  }
+</script>
     <script>
       function autoBookId(category) {
         switch (category) {
@@ -127,9 +145,6 @@
         }
       }
     </script>
-
-
-
 
   </section>
   <section>
@@ -230,6 +245,7 @@
           if ($money[$i]) {
             echo "Amount: " . $money[$i];
           }
+
         ?>
           <?php
           $imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
@@ -295,6 +311,7 @@
       }
       ?>
 
+      
     </div>
   </section>
 
