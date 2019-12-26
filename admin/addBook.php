@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +25,128 @@
 
  
 
+  <section>
+    <div class="container-fluid form " style="height:auto; ">
+      <h1 style=" color:#46b5d1;">ADD BOOK</h1>
+      <form>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="title" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Author</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="author" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">ISBN</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="isbn" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Description</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" id="description" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Publisher</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="publisher" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Published Date</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="publishedDate" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Page count</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="pageCount" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Price</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="money" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Image</label>
+          <img id="imgLink" alt="your image" width="100" height="100" />
+          <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Quantity</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" id="quantity" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
+            <option value="maths">Maths</option>
+            <option value="science">Science</option>
+            <option value="technology">Technology</option>
+            <option value="art">Art</option>
+          </select>
+          <br><br>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Book ID</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="bookId" placeholder="Example input" value="MAT">
+          </div>
+        </div>
+        <div class="form-group form-row align-items-center justify-content-center ">
+          <div class="col-sm-1 addbook">
+            <button type="submit" class="btn btn-info btn-lg" onclick=addBook()>Add Book</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+<script>
+  function addBook()
+  {
+    $.ajax({
+      url:'addQuery.php',
+      complete: function (response) {
+          //$('#output').html(response.responseText);
+          alert("reached add query ");
+      },
+      error: function () {
+          //$('#output').html('Bummer: there was an error!');
+          alert("did not reached add query ");
+      }
+  });
+  return false;
+  }
+</script>
+    <script>
+      function autoBookId(category) {
+        switch (category) {
+          case "maths":
+            document.getElementById('bookId').value = "MAT";
+            break;
+          case "science":
+            document.getElementById('bookId').value = "SCI";
+            break;
+          case "technology":
+            document.getElementById('bookId').value = "TECH";
+            break;
+          case "art":
+            document.getElementById('bookId').value = "ART";
+            break;
+        }
+      }
+    </script>
 
   </section>
   <section>
@@ -124,6 +247,7 @@
           if ($money[$i]) {
             echo "Amount: " . $money[$i];
           }
+
         ?>
           <?php
           $imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
@@ -189,6 +313,7 @@
       }
       ?>
 
+      
     </div>
   </section>
 
