@@ -21,7 +21,7 @@
 <body>
 
     <div id="testclick" class="options" > 
-        <a class="startPage" href="addBook.php" id="adminAddBook" >Add Book </a> 
+        <a class="startPage" href="admin/addBook.php" id="adminAddBook" >Add Book </a> 
         <br>
         <a class="startPage" href="issue.php" id="adminIssueBook">Issue Book</a> 
         <br>
