@@ -64,7 +64,7 @@
 										<img src="images/bgbooks.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a class="startPage" href="addBook.php" id="adminAddBook" >Add Book </a></h3>
+										<h3><a class="startPage" href="admin\addBook.php" id="adminAddBook" >Add Book </a></h3>
 										<p>Add a new book to the library</p>
 									</header>
 								</article>

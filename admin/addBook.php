@@ -23,101 +23,6 @@
 <body>
 
 
- 
-
-  <section>
-    <div class="container-fluid form " style="height:auto; ">
-      <h1 style=" color:#46b5d1;">ADD BOOK</h1>
-      <form>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Title</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control" id="title" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Author</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="author" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Category</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="category" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">ISBN</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="isbn" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Description</label>
-          <div class="col-sm-6">
-            <textarea class="form-control" id="description" rows="3"></textarea>
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Publisher</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="publisher" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Published Date</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="publishedDate" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Page count</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="pageCount" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Price</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="money" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Image</label>
-          <img id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-          <input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
-        </div>
-        <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Quantity</label>
-          <div class="col-sm-6">
-            <input type="number" class="form-control" id="quantity" placeholder="Example input">
-          </div>
-        </div>
-        <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Category1</label>
-          <select class="col-sm-2 col-form-label" id="category1" onclick="autoBookId(this.value)">
-            <option value="maths">Maths</option>
-            <option value="science">Science</option>
-            <option value="technology">Technology</option>
-            <option value="art">Art</option>
-          </select>
-          <br><br>
-        </div>
-        <div class="form-group row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Book ID</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" id="bookId" placeholder="Example input" value="MAT">
-          </div>
-        </div>
-        <div class="form-group form-row align-items-center justify-content-center ">
-          <div class="col-sm-1 addbook">
-            <button type="submit" class="btn btn-info btn-lg" onclick=addBook()>Add Book</button>
-          </div>
-        </div>
-      </form>
-    </div>
-
 <script>
   function addBook()
   {
@@ -327,6 +232,8 @@
     </div>
   </section>
 
+
+
   <section>
     <div class="container-fluid form " style="height:auto; ">
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
@@ -341,6 +248,12 @@
           <label for="" class="col-sm-2 col-form-label">Author</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="author" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="category" placeholder="Example input">
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
@@ -381,8 +294,8 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
-          <img id="imgLink" alt="your image" width="100" height="100" />
-          <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
+          <img id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+          <input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
@@ -391,8 +304,8 @@
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Category</label>
-          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
+          <label for="" class="col-sm-2 col-form-label">Category1</label>
+          <select class="col-sm-2 col-form-label" id="category1" onclick="autoBookId(this.value)">
             <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="technology">Technology</option>
@@ -408,39 +321,11 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1 addbook">
-            <button type="submit" class="btn btn-info btn-lg" onclick="">Add Book</button>
+            <button type="submit" class="btn btn-info btn-lg" onclick=addBook()>Add Book</button>
           </div>
         </div>
       </form>
     </div>
-
-    <script>
-      function autoBookId(category) {
-        switch (category) {
-          case "maths":
-            document.getElementById('bookId').value = "MAT";
-            break;
-          case "science":
-            document.getElementById('bookId').value = "SCI";
-            break;
-          case "technology":
-            document.getElementById('bookId').value = "TECH";
-            break;
-          case "art":
-            document.getElementById('bookId').value = "ART";
-            break;
-        }
-      }
-    </script>
-
-
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="main.js"></script>
 
 
 </body>
