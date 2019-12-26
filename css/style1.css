@@ -1,0 +1,142 @@
+.container-fluid {
+  height: 1000vh;
+  width: auto;
+}
+.form {
+  background-color: #515585;
+  padding: 5rem;
+  padding-top: 0;
+}
+body {
+  background-color: #222831 !important;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.buttonInside {
+  background-color: transparent;
+}
+#voice-trigger {
+  position: absolute;
+  right: 0;
+  top: 7.5px;
+  margin-inline-end: 13px;
+}
+
+#voice-trigger :hover {
+  cursor: pointer;
+  border-style: solid;
+  border-radius: 50px;
+  border-color: #46b3e6;
+  background-color: #46b3e6;
+  fill: antiquewhite;
+}
+
+#voice-trigger svg {
+  fill: #46b3e6;
+  padding: 2px;
+}
+
+#voice-trigger.active svg {
+  -webkit-animation: pulsate 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(1, 1);
+    fill: 1;
+  }
+  50% {
+    -webkit-transform: scale(1, 1);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+.form-control {
+  background-color: #393e46 !important;
+  color: white !important;
+  border-color: #000000 !important;
+}
+
+div {
+  font-family: "Roboto Mono", monospace;
+}
+
+.btn-group {
+  width: 100%;
+}
+.dropdown-menu {
+  width: 100%;
+  background-color: #393e46;
+}
+.dropdown-menu :hover {
+  background-color: #46b3e6;
+}
+.dropdown-menu > li {
+  padding: 7px;
+  color: white;
+  text-align: center;
+  font-size: medium;
+}
+.form-control-file::-webkit-file-upload-button {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.addbook {
+  padding-top: 50px;
+}
+.col-form-label {
+  color: #17a2b8;
+  box-shadow: black !important;
+}
+
+h1 {
+  color: #17a2b8;
+  box-shadow: black !important;
+  text-align: center;
+  padding: 3rem;
+}
+@media (max-width: 575.98px) {
+  .container-fluid {
+    height: 130vh;
+    width: auto;
+  }
+  .form {
+    background-color: #515585;
+    padding: 1rem;
+  }
+  h1 {
+    padding: 0px;
+    font-size: 4vh;
+  }
+  .addbook {
+    padding-top: 4vh;
+  }
+}
