@@ -39,6 +39,12 @@
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="category" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">ISBN</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="isbn" placeholder="Example input">
@@ -203,6 +209,9 @@
           $author[$i] = @implode(",", $item['volumeInfo']['authors']);
           echo "Author: " . $author[$i];
           echo "\t";
+          $category[$i] = @implode(",", $item['volumeInfo']['categories']);
+          echo "Category: " . $category[$i];
+          echo "\t";
           $publisher[$i] = $item['volumeInfo']['publisher'];
           echo "Publisher: " . $publisher[$i];
           echo "\t";
@@ -245,6 +254,9 @@
             author = <?php echo json_encode($author); ?>
           </script>
           <script>
+            category = <?php echo json_encode($category); ?>
+          </script>
+          <script>
             publisher = <?php echo json_encode($publisher); ?>
           </script>
           <script>
@@ -274,6 +286,8 @@
 
               document.getElementById('title').value = title[i];
               document.getElementById('author').value = author[i];
+              document.getElementById('category').value = category[i];
+              console.log(category[i]);
               document.getElementById('publisher').value = publisher[i];
               document.getElementById('publishedDate').value = publishedDate[i];
               document.getElementById('isbn').value = isbn[i];
