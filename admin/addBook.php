@@ -83,8 +83,8 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
-          <img id="imgLink" alt="your image" width="100" height="100" />
-          <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
+          <img id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+          <input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
@@ -93,8 +93,8 @@
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Category</label>
-          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
+          <label for="" class="col-sm-2 col-form-label">Category1</label>
+          <select class="col-sm-2 col-form-label" id="category1" onclick="autoBookId(this.value)">
             <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="technology">Technology</option>
@@ -182,13 +182,6 @@
         var i;
       </script>
 
-      <?php
-      $search = '';
-      if (!empty($_POST)) {
-
-        $search = $_POST['voice-search'];
-      }
-      ?>
       <?php
       $search = '';
       if (!empty($_POST)) {
@@ -303,14 +296,17 @@
               document.getElementById('title').value = title[i];
               document.getElementById('author').value = author[i];
               document.getElementById('category').value = category[i];
-              console.log(category[i]);
               document.getElementById('publisher').value = publisher[i];
               document.getElementById('publishedDate').value = publishedDate[i];
               document.getElementById('isbn').value = isbn[i];
               document.getElementById('description').value = description[i];
               document.getElementById('pageCount').value = pageCount[i];
               document.getElementById('money').value = money[i];
-              document.getElementById('imgLink').src = imgLink[i];
+              if(imgLink[i])
+              {
+                document.getElementById('imgLink').src = imgLink[i];
+                document.getElementById('imgLink').hidden = false;
+              }
             }
           </script>
 
