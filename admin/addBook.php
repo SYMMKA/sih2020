@@ -42,6 +42,12 @@
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
+          <label for="" class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="category" placeholder="Example input">
+          </div>
+        </div>
+        <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">ISBN</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="isbn" placeholder="Example input">
@@ -79,8 +85,8 @@
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Image</label>
-          <img id="imgLink" alt="your image" width="100" height="100" />
-          <input type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0])">
+          <img id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+          <input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Quantity</label>
@@ -89,8 +95,8 @@
           </div>
         </div>
         <div class="form-group form-row align-items-center justify-content-center ">
-          <label for="" class="col-sm-2 col-form-label">Category</label>
-          <select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
+          <label for="" class="col-sm-2 col-form-label">Category1</label>
+          <select class="col-sm-2 col-form-label" id="category1" onclick="autoBookId(this.value)">
             <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="technology">Technology</option>
@@ -186,13 +192,6 @@
       }
       ?>
       <?php
-      $search = '';
-      if (!empty($_POST)) {
-
-        $search = $_POST['voice-search'];
-      }
-      ?>
-      <?php
       if ($search) {
 
         // API key, future ref
@@ -219,6 +218,9 @@
           echo "\t";
           $author[$i] = @implode(",", $item['volumeInfo']['authors']);
           echo "Author: " . $author[$i];
+          echo "\t";
+          $category[$i] = @implode(",", $item['volumeInfo']['categories']);
+          echo "Category: " . $category[$i];
           echo "\t";
           $publisher[$i] = $item['volumeInfo']['publisher'];
           echo "Publisher: " . $publisher[$i];
@@ -263,6 +265,9 @@
             author = <?php echo json_encode($author); ?>
           </script>
           <script>
+            category = <?php echo json_encode($category); ?>
+          </script>
+          <script>
             publisher = <?php echo json_encode($publisher); ?>
           </script>
           <script>
@@ -292,13 +297,18 @@
 
               document.getElementById('title').value = title[i];
               document.getElementById('author').value = author[i];
+              document.getElementById('category').value = category[i];
               document.getElementById('publisher').value = publisher[i];
               document.getElementById('publishedDate').value = publishedDate[i];
               document.getElementById('isbn').value = isbn[i];
               document.getElementById('description').value = description[i];
               document.getElementById('pageCount').value = pageCount[i];
               document.getElementById('money').value = money[i];
-              document.getElementById('imgLink').src = imgLink[i];
+              if(imgLink[i])
+              {
+                document.getElementById('imgLink').src = imgLink[i];
+                document.getElementById('imgLink').hidden = false;
+              }
             }
           </script>
 
