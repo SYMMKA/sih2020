@@ -259,7 +259,7 @@
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">ISBN</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="isbn" placeholder="Example input">
+            <input type="number" class="form-control" id="isbn" placeholder="Example input">
           </div>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
