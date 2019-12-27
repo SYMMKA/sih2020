@@ -3940,6 +3940,7 @@ input, select, textarea {
 		pointer-events: auto;
 		opacity: 1;
 		visibility: visible;
+		
 	}
 
 		body.is-menu-visible #menu .inner {
@@ -3950,3 +3951,25 @@ input, select, textarea {
 			opacity: 1;
 			visibility: visible;
 		}
+
+
+		#voice-trigger {
+			position: absolute;
+			right: 0;
+			margin-top: -34px;
+			
+			margin-inline-end: 13px;
+		  }
+		  
+		  #voice-trigger :hover {
+			cursor: pointer;
+			
+		  }
+		  
+		  #voice-trigger svg {
+			fill: white;
+			box-shadow: black;
+			
+		  }
+		  
+	
