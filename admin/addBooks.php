@@ -187,9 +187,6 @@
 											</div>
 										  </div>
 										</form>
-										<script>
-										  var i;
-										</script>
 								  
 										<?php
 										$search = '';
