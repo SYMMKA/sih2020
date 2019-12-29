@@ -1,53 +1,30 @@
 <?php
-        //DB CONNECTION====================================
-        $servername = "localhost";
-        $username = "yousha";
-        $password = "youshayousha";
-        $dbname = "test1";
-  
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+//DB CONNECTION====================================
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
 
-        if ( ! empty($_POST['title'])){
-          $title = $_POST['title'];
-        }
-        if ( ! empty($_POST['author'])){
-          $author = $_POST['author'];
-        }
-        if ( ! empty($_POST['category'])){
-          $category = $_POST['category'];
-        }
-        if ( ! empty($_POST['publisher'])){
-          $publisher = $_POST['publisher'];
-        }
-        if ( ! empty($_POST['publishedDate'])){
-          $date_of_publication = $_POST['publishedDate'];
-        }
-        if ( ! empty($_POST['isbn'])){
-          $isbn = $_POST['isbn'];
-        }
-        if ( ! empty($_POST['description'])){
-          $description = $_POST['description'];
-        }
-        if ( ! empty($_POST['pageCount'])){
-          $pageCount = $_POST['pageCount'];
-        }
-        if ( ! empty($_POST['money'])){
-          $money = $_POST['money'];
-        }
-        if ( ! empty($_POST['name'])){
-          $name = $_POST['name'];
-        }
-        if ( ! empty($_POST['imgLink'])){
-          $imgLink = $_POST['imgLink'];
-        }
-        if ( ! empty($_POST['quantity'])){
-          $quantity = $_POST['quantity'];
-        }
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$title = $_POST['title'];
+$author = $_POST['author'];
+$category = $_POST['category'];
+$publisher = $_POST['publisher'];
+$date_of_publication = $_POST['publishedDate'];
+$isbn = $_POST['isbn'];
+$description = $_POST['description'];
+$pageCount = $_POST['pageCount'];
+$money = $_POST['money'];
+$name = $_POST['name'];
+$imgLink = $_POST['imgLink'];
+$quantity = $_POST['quantity'];
+
         /*$title=document.getElementById('title').value;
         $author=document.getElementById('author').value;
         $author=document.getElementById('category').value;
@@ -59,20 +36,19 @@
         $price=document.getElementById('money').value ;
         $imgLink=document.getElementById('imgLink').src ;
         $quantity=document.getElementById('quantity').value ; */
-  
-        $sql = "INSERT INTO books (title, author, category, isbn, description, imgLink, publisher, date_of_publication, pages, price, quantity) VALUES ($title, $author, $category $isbn, $description, $imgLink, $publisher, $date_of_publication, $pages, $price, $quantity)";
-  
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-        
 
-        $conn->close();
-      
-        //================================================================
-      ?>
+$sql = "INSERT INTO `books` (`title`, `author`, `isbn`, `description`, `publisher`, `date_of_publication`, `pages`, `price`, `quantity`) VALUES ($title, $author, $isbn, $description, $publisher, $publishedDate, $pageCount, $money, $quantity)";
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+$conn->close();
+
+//================================================================
+?>
 
 
 <!--<script>
