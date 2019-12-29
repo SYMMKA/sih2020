@@ -190,75 +190,76 @@
                 <td><?= $money[$i] ?></td>
               </tr>
               <tr>
-                <th>Image</th>
-                <td><img src="<?= $imgLink[$i] ?>"></td>
+                <td colspan="2"><img src="<?= $imgLink[$i] ?>"></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
               </tr>
 
             </thead>
           </table>
-    <button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
-<?php
+      <?php
           echo "<br>";
           echo "<br>";
           echo "<br>";
           $i++;
         }
       }
-?>
-</div>
+      ?>
+    </div>
 
-<!-- variables declared without var prefix mean that they are global
+    <!-- variables declared without var prefix mean that they are global
           I removed var because of warnings-->
-<script>
-  title = <?php echo json_encode($title); ?>
-</script>
-<script>
-  author = <?php echo json_encode($author); ?>
-</script>
-<script>
-  category = <?php echo json_encode($category); ?>
-</script>
-<script>
-  publisher = <?php echo json_encode($publisher); ?>
-</script>
-<script>
-  publishedDate = <?php echo json_encode($publishedDate); ?>
-</script>
-<script>
-  isbn = <?php echo json_encode($isbn); ?>
-</script>
-<script>
-  description = <?php echo json_encode($description); ?>
-</script>
-<script>
-  pageCount = <?php echo json_encode($pageCount); ?>
-</script>
-<script>
-  money = <?php echo json_encode($money); ?>
-</script>
-<script>
-  imgLink = <?php echo json_encode($imgLink); ?>
-</script>
-<script>
-  function autoFill(i) {
-    // donot remove the comments in this method if the id isnt predefined in html form
+    <script>
+      title = <?php echo json_encode($title); ?>
+    </script>
+    <script>
+      author = <?php echo json_encode($author); ?>
+    </script>
+    <script>
+      category = <?php echo json_encode($category); ?>
+    </script>
+    <script>
+      publisher = <?php echo json_encode($publisher); ?>
+    </script>
+    <script>
+      publishedDate = <?php echo json_encode($publishedDate); ?>
+    </script>
+    <script>
+      isbn = <?php echo json_encode($isbn); ?>
+    </script>
+    <script>
+      description = <?php echo json_encode($description); ?>
+    </script>
+    <script>
+      pageCount = <?php echo json_encode($pageCount); ?>
+    </script>
+    <script>
+      money = <?php echo json_encode($money); ?>
+    </script>
+    <script>
+      imgLink = <?php echo json_encode($imgLink); ?>
+    </script>
+    <script>
+      function autoFill(i) {
+        // donot remove the comments in this method if the id isnt predefined in html form
 
-    document.getElementById('title').value = title[i];
-    document.getElementById('author').value = author[i];
-    document.getElementById('category').value = category[i];
-    document.getElementById('publisher').value = publisher[i];
-    document.getElementById('publishedDate').value = publishedDate[i];
-    document.getElementById('isbn').value = isbn[i];
-    document.getElementById('description').value = description[i];
-    document.getElementById('pageCount').value = pageCount[i];
-    document.getElementById('money').value = money[i];
-    if (imgLink[i]) {
-      document.getElementById('imgLink').src = imgLink[i];
-      document.getElementById('imgLink').hidden = false;
-    }
-  }
-</script>
-</div>
+        document.getElementById('title').value = title[i];
+        document.getElementById('author').value = author[i];
+        document.getElementById('category').value = category[i];
+        document.getElementById('publisher').value = publisher[i];
+        document.getElementById('publishedDate').value = publishedDate[i];
+        document.getElementById('isbn').value = isbn[i];
+        document.getElementById('description').value = description[i];
+        document.getElementById('pageCount').value = pageCount[i];
+        document.getElementById('money').value = money[i];
+        if (imgLink[i]) {
+          document.getElementById('imgLink').src = imgLink[i];
+          document.getElementById('imgLink').hidden = false;
+        }
+      }
+    </script>
+    </div>
   </section>
 
 

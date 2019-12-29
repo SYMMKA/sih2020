@@ -300,17 +300,15 @@
 												<td><?= $money[$i] ?></td>
 											</tr>
 											<tr>
-												<th>Image</th>
-												<td><img src="<?= $imgLink[$i] ?>"></td>
+												<td colspan="2"><img src="<?= $imgLink[$i] ?>"></td>
+											</tr>
+											<tr>
+												<td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
 											</tr>
 
 										</thead>
 									</table>
-									<button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button>
 							<?php
-									echo "<br>";
-									echo "<br>";
-									echo "<br>";
 									$i++;
 								}
 							}
