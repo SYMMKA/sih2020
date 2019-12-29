@@ -234,12 +234,10 @@
 									$country[$i] = $item['saleInfo']['country'];
 									$currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
 									$amount[$i] = $item['saleInfo']['listPrice']['amount'];
-									$money[$i] = $currencyCode[$i] . " " . $amount[$i];
-
-									//Displays amount if available
-									/*if ($money[$i]) {
-										echo "Amount: " . $money[$i];
-									}*/
+									if ($currencyCode[$i] || $amount[$i])
+										$money[$i] = $currencyCode[$i] . " " . $amount[$i];
+									else
+										$money[$i] = NULL;
 									$imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
 								?>
 
@@ -247,61 +245,77 @@
 
 									<table id="settings" class="table table-bordered table-hover">
 										<thead>
-											<tr>
-												<th>Title</th>
-												<td><?= $title[$i] ?></td>
-											</tr>
-
-											<tr>
-												<th>Author</th>
-												<td><?= $author[$i] ?></td>
-
-											</tr>
-
-											<tr>
-												<th>Category</th>
-												<td><?= $category[$i] ?></td>
-											</tr>
-
-											<tr>
-												<th>Publisher</th>
-												<td><?= $publisher[$i] ?></td>
-											</tr>
-											<tr>
-												<th>Published Date</th>
-												<td><?= $publishedDate[$i] ?></td>
-											</tr>
-											<tr>
-												<th>ISBN</th>
-												<td><?= $isbn[$i] ?></td>
-											</tr>
-
-											<tr>
-												<th style="vertical-align: top;">Description</th>
-												<td>
-													<div class="style-2" style="
+											<?php if ($title[$i]) { ?>
+												<tr>
+													<th>Title</th>
+													<td><?= $title[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($author[$i]) { ?>
+												<tr>
+													<th>Author</th>
+													<td><?= $author[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($category[$i]) { ?>
+												<tr>
+													<th>Category</th>
+													<td><?= $category[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($publisher[$i]) { ?>
+												<tr>
+													<th>Publisher</th>
+													<td><?= $publisher[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($publishedDate[$i]) { ?>
+												<tr>
+													<th>Published Date</th>
+													<td><?= $publishedDate[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($isbn[$i]) { ?>
+												<tr>
+													<th>ISBN</th>
+													<td><?= $isbn[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($description[$i]) { ?>
+												<tr>
+													<th style="vertical-align: top;">Description</th>
+													<td>
+														<div class="style-2" style="
                                                           overflow-y: auto;
                                                           min-height:20px;
 														  max-height: 200px;">
-														<?= $description[$i] ?></div>
-												</td>
-											</tr>
-
-											<tr>
-												<th>Page Count</th>
-												<td><?= $pageCount[$i] ?></td>
-											</tr>
-											<tr>
-												<th>Country</th>
-												<td><?= $country[$i] ?></td>
-											</tr>
-											<tr>
-												<th>Amount</th>
-												<td><?= $money[$i] ?></td>
-											</tr>
-											<tr>
-												<td colspan="2"><img src="<?= $imgLink[$i] ?>"></td>
-											</tr>
+															<?= $description[$i] ?></div>
+													</td>
+												</tr>
+											<?php } ?>
+											<?php if ($pageCount[$i]) { ?>
+												<tr>
+													<th>Page Count</th>
+													<td><?= $pageCount[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($country[$i]) { ?>
+												<tr>
+													<th>Country</th>
+													<td><?= $country[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($money[$i]) { ?>
+												<tr>
+													<th>Amount</th>
+													<td><?= $money[$i] ?></td>
+												</tr>
+											<?php } ?>
+											<?php if ($imgLink[$i]) { ?>
+												<tr>
+													<td colspan="2"><img src="<?= $imgLink[$i] ?>"></td>
+												</tr>
+											<?php } ?>
 											<tr>
 												<td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
 											</tr>
@@ -335,6 +349,57 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<!-- variables declared without var prefix mean that they are global
+          I removed var because of warnings-->
+	<script>
+		title = <?php echo json_encode($title); ?>
+	</script>
+	<script>
+		author = <?php echo json_encode($author); ?>
+	</script>
+	<script>
+		category = <?php echo json_encode($category); ?>
+	</script>
+	<script>
+		publisher = <?php echo json_encode($publisher); ?>
+	</script>
+	<script>
+		publishedDate = <?php echo json_encode($publishedDate); ?>
+	</script>
+	<script>
+		isbn = <?php echo json_encode($isbn); ?>
+	</script>
+	<script>
+		description = <?php echo json_encode($description); ?>
+	</script>
+	<script>
+		pageCount = <?php echo json_encode($pageCount); ?>
+	</script>
+	<script>
+		money = <?php echo json_encode($money); ?>
+	</script>
+	<script>
+		imgLink = <?php echo json_encode($imgLink); ?>
+	</script>
+	<script>
+		function autoFill(i) {
+			// donot remove the comments in this method if the id isnt predefined in html form
+
+			document.getElementById('title').value = title[i];
+			document.getElementById('author').value = author[i];
+			document.getElementById('category').value = category[i];
+			document.getElementById('publisher').value = publisher[i];
+			document.getElementById('publishedDate').value = publishedDate[i];
+			document.getElementById('isbn').value = isbn[i];
+			document.getElementById('description').value = description[i];
+			document.getElementById('pageCount').value = pageCount[i];
+			document.getElementById('money').value = money[i];
+			if (imgLink[i]) {
+				document.getElementById('imgLink').src = imgLink[i];
+				document.getElementById('imgLink').hidden = false;
+			}
+		}
+	</script>
 
 </body>
 
