@@ -23,10 +23,29 @@
 
   <script>
     function addBook() {
-      var data = form.serialize();
-      $.post('addQuery.php', data, function(response) {
-        alert(response);
-      });
+
+      var formData = new FormData();
+      formData.append('title1', document.getElementById('title').value);
+      formData.append('author1', document.getElementById('author').value);
+      formData.append('category1', document.getElementById('category').value);
+      formData.append('publisher1', document.getElementById('publisher').value);
+      formData.append('publishedDate1', document.getElementById('publishedDate').value);
+      formData.append('isbn1', document.getElementById('isbn').value);
+      formData.append('description1', document.getElementById('description').value);
+      formData.append('pageCount1', document.getElementById('pageCount').value);
+      formData.append('money1', document.getElementById('money').value);
+      formData.append('imgLink1', document.getElementById('imgLink').src);
+      formData.append('quantity1', document.getElementById('quantity').value);
+
+      $.ajax({
+        type: "POST",
+        url: "addQuery.php",
+        data: formData,
+    type: 'POST',
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    //Other options
+});
       return false;
     }
   </script>
@@ -211,7 +230,7 @@
       ?>
     </div>
 
-    
+
   </section>
 
 
@@ -316,55 +335,55 @@
   <script src="main.js"></script>
   <!-- variables declared without var prefix mean that they are global
           I removed var because of warnings-->
-          <script>
-      title = <?php echo json_encode($title); ?>
-    </script>
-    <script>
-      author = <?php echo json_encode($author); ?>
-    </script>
-    <script>
-      category = <?php echo json_encode($category); ?>
-    </script>
-    <script>
-      publisher = <?php echo json_encode($publisher); ?>
-    </script>
-    <script>
-      publishedDate = <?php echo json_encode($publishedDate); ?>
-    </script>
-    <script>
-      isbn = <?php echo json_encode($isbn); ?>
-    </script>
-    <script>
-      description = <?php echo json_encode($description); ?>
-    </script>
-    <script>
-      pageCount = <?php echo json_encode($pageCount); ?>
-    </script>
-    <script>
-      money = <?php echo json_encode($money); ?>
-    </script>
-    <script>
-      imgLink = <?php echo json_encode($imgLink); ?>
-    </script>
-    <script>
-      function autoFill(i) {
-        // donot remove the comments in this method if the id isnt predefined in html form
+  <script>
+    title = <?php echo json_encode($title); ?>
+  </script>
+  <script>
+    author = <?php echo json_encode($author); ?>
+  </script>
+  <script>
+    category = <?php echo json_encode($category); ?>
+  </script>
+  <script>
+    publisher = <?php echo json_encode($publisher); ?>
+  </script>
+  <script>
+    publishedDate = <?php echo json_encode($publishedDate); ?>
+  </script>
+  <script>
+    isbn = <?php echo json_encode($isbn); ?>
+  </script>
+  <script>
+    description = <?php echo json_encode($description); ?>
+  </script>
+  <script>
+    pageCount = <?php echo json_encode($pageCount); ?>
+  </script>
+  <script>
+    money = <?php echo json_encode($money); ?>
+  </script>
+  <script>
+    imgLink = <?php echo json_encode($imgLink); ?>
+  </script>
+  <script>
+    function autoFill(i) {
+      // donot remove the comments in this method if the id isnt predefined in html form
 
-        document.getElementById('title').value = title[i];
-        document.getElementById('author').value = author[i];
-        document.getElementById('category').value = category[i];
-        document.getElementById('publisher').value = publisher[i];
-        document.getElementById('publishedDate').value = publishedDate[i];
-        document.getElementById('isbn').value = isbn[i];
-        document.getElementById('description').value = description[i];
-        document.getElementById('pageCount').value = pageCount[i];
-        document.getElementById('money').value = money[i];
-        if (imgLink[i]) {
-          document.getElementById('imgLink').src = imgLink[i];
-          document.getElementById('imgLink').hidden = false;
-        }
+      document.getElementById('title').value = title[i];
+      document.getElementById('author').value = author[i];
+      document.getElementById('category').value = category[i];
+      document.getElementById('publisher').value = publisher[i];
+      document.getElementById('publishedDate').value = publishedDate[i];
+      document.getElementById('isbn').value = isbn[i];
+      document.getElementById('description').value = description[i];
+      document.getElementById('pageCount').value = pageCount[i];
+      document.getElementById('money').value = money[i];
+      if (imgLink[i]) {
+        document.getElementById('imgLink').src = imgLink[i];
+        document.getElementById('imgLink').hidden = false;
       }
-    </script>
+    }
+  </script>
 
 </body>
 

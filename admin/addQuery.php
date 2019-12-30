@@ -12,32 +12,44 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$title = $_POST['title'];
-$author = $_POST['author'];
-$category = $_POST['category'];
-$publisher = $_POST['publisher'];
-$date_of_publication = $_POST['publishedDate'];
-$isbn = $_POST['isbn'];
-$description = $_POST['description'];
-$pageCount = $_POST['pageCount'];
-$money = $_POST['money'];
-$name = $_POST['name'];
-$imgLink = $_POST['imgLink'];
-$quantity = $_POST['quantity'];
+$title2 = $_POST['title1'];
+$author2 = $_POST['author1'];
+$category2 = $_POST['category1'];
+$publisher2 = $_POST['publisher1'];
+$date_of_publication2 = $_POST['publishedDate1'];
+$isbn2 = $_POST['isbn1'];
+$description2 = $_POST['description1'];
+$pageCount2 = $_POST['pageCount1'];
+$money2 = $_POST['money1'];
+$quantity2 = $_POST['quantity1'];
+$imgLink2 = $_POST['imgLink1']."&printsec=frontcover&img=1&zoom=1&source=gbs_api";
 
-        /*$title=document.getElementById('title').value;
-        $author=document.getElementById('author').value;
-        $author=document.getElementById('category').value;
-        $publisher=document.getElementById('publisher').value; 
-        $date_of_publication=document.getElementById('publishedDate').value; 
-        $isbn=document.getElementById('isbn').value ;
-        $description= document.getElementById('description').value;
-        $pages=document.getElementById('pageCount').value;
-        $price=document.getElementById('money').value ;
-        $imgLink=document.getElementById('imgLink').src ;
-        $quantity=document.getElementById('quantity').value ; */
+if(!$_POST['title1'])
+  $title2 = NULL;
+if(!$_POST['author1'])
+  $author2 = NULL;
+if(!$_POST['category1'])
+  $category2 = NULL;
+if(!$_POST['publisher1'])
+  $publisher2 = NULL;
+if(!$_POST['publishedDate1'])
+  $date_of_publication2 = '1900-01-01';
+if(!$_POST['isbn1'])
+  $isbn2 = NULL;
+if(!$_POST['description1'])
+  $description2 = NULL;
+if(!$_POST['pageCount1'])
+  $pageCount2 = NULL;
+if(!$_POST['money1'])
+  $money2 = NULL;
+if(!$_POST['quantity1'])
+  $quantity2 = '1';
+if(!$_POST['imgLink1'])
+  $imgLink2 = NULL;
 
-$sql = "INSERT INTO `books` (`title`, `author`, `isbn`, `description`, `publisher`, `date_of_publication`, `pages`, `price`, `quantity`) VALUES ($title, $author, $isbn, $description, $publisher, $publishedDate, $pageCount, $money, $quantity)";
+//Dont add `id` column
+$sql = "INSERT INTO `books` (`title`, `author`, `category`, `publisher`, `date_of_publication`, `isbn`, `description`, `pages`, `price`, `imgLink`, `quantity`) VALUES ('$title2', '$author2', '$category2', '$publisher2', '$date_of_publication2', '$isbn2', '$description2', '$pageCount2', '$money2', '$imgLink2', '$quantity2')";
+
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
 } else {
@@ -49,37 +61,3 @@ $conn->close();
 
 //================================================================
 ?>
-
-
-<!--<script>
-function addBook(){
-var mysql = require('mysql');
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "yousha",
-  password: "youshayousha",
-  database: "test1"
-});
-
-    con.connect(function(err) {
-      if (err) throw err;
-      var title=document.getElementById('title').value;
-      var author=document.getElementById('author').value;
-      var author=document.getElementById('category').value;
-      var publisher=document.getElementById('publisher').value; 
-      var date_of_publication=document.getElementById('publishedDate').value; 
-      var isbn=document.getElementById('isbn').value ;
-      var description= document.getElementById('description').value;
-      var pages=document.getElementById('pageCount').value;
-      var price=document.getElementById('money').value ;
-      var imgLink=document.getElementById('imgLink').src ;
-      var quantity=document.getElementById('quantity').value ;
-      var sql = "INSERT INTO books (title, author, isbn, description, imgLink, publisher, date_of_publication, pages, price, quantity) VALUES (title, author, isbn, description, imgLink, publisher, date_of_publication, pages, price, quantity)"
-        con.query(sql, function (err, result) {
-          if (err) throw err;
-    //console.log("1 record inserted, ID: " + result.insertId);
-      });
-  });
-}
-</script>-->

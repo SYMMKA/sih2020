@@ -17,41 +17,6 @@
 
 <body class="is-preload">
 
-	<script>
-		function addBook() {
-			$.ajax({
-				url: 'addQuery.php',
-				complete: function(response) {
-					//$('#output').html(response.responseText);
-					alert("reached add query ");
-				},
-				error: function() {
-					//$('#output').html('Bummer: there was an error!');
-					alert("did not reached add query ");
-				}
-			});
-			return false;
-		}
-	</script>
-
-	<script>
-		function autoBookId(category) {
-			switch (category) {
-				case "maths":
-					document.getElementById('bookId').value = "MAT";
-					break;
-				case "science":
-					document.getElementById('bookId').value = "SCI";
-					break;
-				case "technology":
-					document.getElementById('bookId').value = "TECH";
-					break;
-				case "art":
-					document.getElementById('bookId').value = "ART";
-					break;
-			}
-		}
-	</script>
 
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -158,7 +123,7 @@
 							</div>
 						</div>
 						<ul class="actions">
-							<li><input type="submit" value="Add Book" class="primary" /></li>
+							<li><input type="submit" value="Add Book" class="primary"/></li>
 							<li><input type="reset" value="Clear" /></li>
 						</ul>
 					</form>
@@ -345,6 +310,7 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
@@ -397,6 +363,53 @@
 			if (imgLink[i]) {
 				document.getElementById('imgLink').src = imgLink[i];
 				document.getElementById('imgLink').hidden = false;
+			}
+		}
+	</script>
+	<script>
+    function addBook() {
+
+      var formData = new FormData();
+      formData.append('title1', document.getElementById('title').value);
+      formData.append('author1', document.getElementById('author').value);
+      formData.append('category1', document.getElementById('category').value);
+      formData.append('publisher1', document.getElementById('publisher').value);
+      formData.append('publishedDate1', document.getElementById('publishedDate').value);
+      formData.append('isbn1', document.getElementById('isbn').value);
+      formData.append('description1', document.getElementById('description').value);
+      formData.append('pageCount1', document.getElementById('pageCount').value);
+      formData.append('money1', document.getElementById('money').value);
+      formData.append('imgLink1', document.getElementById('imgLink').src);
+      formData.append('quantity1', document.getElementById('quantity').value);
+
+      $.ajax({
+        type: "POST",
+        url: "addQuery.php",
+        data: formData,
+    type: 'POST',
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    //Other options
+});
+      return false;
+    }
+  </script>
+
+	<script>
+		function autoBookId(category) {
+			switch (category) {
+				case "maths":
+					document.getElementById('bookId').value = "MAT";
+					break;
+				case "science":
+					document.getElementById('bookId').value = "SCI";
+					break;
+				case "technology":
+					document.getElementById('bookId').value = "TECH";
+					break;
+				case "art":
+					document.getElementById('bookId').value = "ART";
+					break;
 			}
 		}
 	</script>
