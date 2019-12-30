@@ -105,34 +105,35 @@
             $query = "SELECT * FROM books Where title LIKE '%$searchField%'";
             $returnD = mysqli_query($conn, $query);
 
+            $i=0;
+            
             while ($result = mysqli_fetch_assoc($returnD)) {
-
               foreach ($result as $k => $v) {
                 if ($k == 'imgLink') {
-                  $imgLink = $v;
+                  $imgLink[$i] = $v;
                 }
                 if ($k == 'title') {
-                  $title = $v;
+                  $title[$i] = $v;
                 }
                 if ($k == 'isbn') {
-                  $isbn = $v;
+                  $isbn[$i] = $v;
                 }
                 if ($k == 'author') {
-                  $author = $v;
+                  $author[$i] = $v;
                 }
                 if ($k == 'description') {
-                  $description = $v;
+                  $description[$i] = $v;
                 }
               }
 
 
               echo ' <div class="card text-center" style="border:none;">
-           <img class="card-img-top" src="' . $imgLink . '" alt="Card image cap" style="height:300px; width:auto" >
+           <img class="card-img-top" src="' . $imgLink[$i] . '" alt="No Image" style="height:300px; width:auto" >
            <div class="card-body text-white"  style="background-color: #393e46">
-             <h5 class="card-title">' . $title . '</h5>
-             <h6 class="card-subtitle mb-2 text-muted">' . $author . '</h6>
-             <p class="card-text">' . $isbn . '</p>
-             <p class="card-text" style="font-size:0.8em;">' . $description . '</p>
+             <h5 class="card-title">' . $title[$i] . '</h5>
+             <h6 class="card-subtitle mb-2 text-muted">' . $author[$i] . '</h6>
+             <p class="card-text">' . $isbn[$i] . '</p>
+             <p class="card-text" style="font-size:0.8em;">' . $description[$i] . '</p>
              
             
            </div>
@@ -141,6 +142,7 @@
     </div>
          </div>';
             }
+            $i++;
           }
           ?>
 
