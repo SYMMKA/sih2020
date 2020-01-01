@@ -1,3 +1,79 @@
+<?php
+//DB CONNECTION====================================
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST['addBook'])) {
+
+	if ($_POST['title'])
+		$title2 = $_POST['title'];
+	else
+		$title2 = NULL;
+	if ($_POST['author'])
+		$author2 = $_POST['author'];
+	else
+		$author2 = NULL;
+	if ($_POST['category'])
+		$category2 = $_POST['category'];
+	else
+		$category2 = NULL;
+	if ($_POST['publisher'])
+		$publisher2 = $_POST['publisher'];
+	else
+		$publisher2 = NULL;
+	if ($_POST['publishedDate'])
+		$date_of_publication2 = $_POST['publishedDate'];
+	else
+		$date_of_publication2 = NULL;
+	if ($_POST['isbn'])
+		$isbn2 = $_POST['isbn'];
+	else
+		$isbn2 = NULL;
+	if ($_POST['description'])
+		$description2 = $_POST['description'];
+	else
+		$description2 = NULL;
+	if ($_POST['pageCount'])
+		$pageCount2 = $_POST['pageCount'];
+	else
+		$pageCount2 = NULL;
+	if ($_POST['money'])
+		$money2 = $_POST['money'];
+	else
+		$money2 = NULL;
+	if ($_POST['quantity'])
+		$quantity2 = $_POST['quantity'];
+	else
+		$quantity2 = '1';
+	if ($_POST['imgValue'])
+		$imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+	else
+		$imgValue2 = NULL;
+
+	//Dont add `id` column
+	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `publisher`, `date_of_publication`, `isbn`, `description`, `pages`, `price`, `imgLink`, `quantity`) VALUES ('$title2', '$author2', '$category2', '$publisher2', '$date_of_publication2', '$isbn2', '$description2', '$pageCount2', '$money2', '$imgValue2', '$quantity2')";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+
+	$conn->close();
+}
+
+//================================================================
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -64,7 +140,7 @@
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form method="post" action="#">
+					<form method="post" action="addBooks.php">
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>
@@ -80,7 +156,7 @@
 							</div>
 							<div class="field half">
 								<label for="isbn">ISBN</label>
-								<input type="number" name="isbn" id="isbn" />
+								<input type="text" name="isbn" id="isbn" />
 							</div>
 							<div class="field half">
 								<label for="publisher">Publisher</label>
@@ -92,11 +168,11 @@
 							</div>
 							<div class="field half">
 								<label for="publishedDate">Published Date</label>
-								<input type="date" name="publishedDate" id="publishedDate" />
+								<input type="text" name="publishedDate" id="publishedDate" />
 							</div>
 							<div class="field half">
 								<label for="money">Price</label>
-								<input type="number" name="money" id="money" />
+								<input type="text" name="money" id="money" />
 							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
@@ -118,12 +194,19 @@
 							</div>
 
 							<div class="field">
+								<label for="image">Image</label>
+								<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+								<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = document.getElementById('imgValue').value = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
+								<input type="hidden" name="imgValue" id="imgValue" value="" />
+							</div>
+
+							<div class="field">
 								<label for="description">Description</label>
 								<textarea name="description" id="description" rows="6"></textarea>
 							</div>
 						</div>
 						<ul class="actions">
-							<li><input type="submit" value="Add Book" class="primary"/></li>
+							<li><input type="submit" value="Add Book" name="addBook" class="primary" /></li>
 							<li><input type="reset" value="Clear" /></li>
 						</ul>
 					</form>
@@ -137,7 +220,7 @@
 										<label class="sr-only " for="inlineFormInput">Name</label>
 										<input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" autocomplete="on" />
 										<span id="voice-trigger">
-											<svg width="32px" height="32px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10px" y="10px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">
+											<svg width="32px" height="32px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10px" y="10px" viewBox="0 10 58 58" style=" overflow: visible;" xml:space="preserve">
 												<g>
 													<path d="M44,28c-0.552,0-1,0.447-1,1v6c0,7.72-6.28,14-14,14s-14-6.28-14-14v-6c0-0.553-0.448-1-1-1s-1,0.447-1,1v6   c0,8.485,6.644,15.429,15,15.949V56h-5c-0.552,0-1,0.447-1,1s0.448,1,1,1h12c0.552,0,1-0.447,1-1s-0.448-1-1-1h-5v-5.051   c8.356-0.52,15-7.465,15-15.949v-6C45,28.447,44.552,28,44,28z" />
 													<path d="M29,46c6.065,0,11-4.935,11-11V11c0-6.065-4.935-11-11-11S18,4.935,18,11v24C18,41.065,22.935,46,29,46z M20,11   c0-4.963,4.038-9,9-9s9,4.037,9,9v24c0,4.963-4.038,9-9,9s-9-4.037-9-9V11z" />
@@ -157,7 +240,7 @@
 
 							<?php
 							$search = '';
-							if (!empty($_POST)) {
+							if (isset($_POST['voice-search'])) {
 
 								$search = $_POST['voice-search'];
 							}
@@ -314,8 +397,9 @@
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<!-- variables declared without var prefix mean that they are global
+	<script src="main.js"></script>
+	
+  <!-- variables declared without var are global
           I removed var because of warnings-->
 	<script>
 		title = <?php echo json_encode($title); ?>
@@ -362,38 +446,27 @@
 			document.getElementById('money').value = money[i];
 			if (imgLink[i]) {
 				document.getElementById('imgLink').src = imgLink[i];
+				document.getElementById('imgValue').value = imgLink[i];
 				document.getElementById('imgLink').hidden = false;
 			}
 		}
 	</script>
 	<script>
-    function addBook() {
+		function addBook() {
 
-      var formData = new FormData();
-      formData.append('title1', document.getElementById('title').value);
-      formData.append('author1', document.getElementById('author').value);
-      formData.append('category1', document.getElementById('category').value);
-      formData.append('publisher1', document.getElementById('publisher').value);
-      formData.append('publishedDate1', document.getElementById('publishedDate').value);
-      formData.append('isbn1', document.getElementById('isbn').value);
-      formData.append('description1', document.getElementById('description').value);
-      formData.append('pageCount1', document.getElementById('pageCount').value);
-      formData.append('money1', document.getElementById('money').value);
-      formData.append('imgLink1', document.getElementById('imgLink').src);
-      formData.append('quantity1', document.getElementById('quantity').value);
-
-      $.ajax({
-        type: "POST",
-        url: "addQuery.php",
-        data: formData,
-    type: 'POST',
-    contentType: false, // Dont delete this (jQuery 1.6+)
-    processData: false, // Dont delete this
-    //Other options
-});
-      return false;
-    }
-  </script>
+			var formData = new FormData();
+			formData.append('title1', document.getElementById('title').value);
+			formData.append('author1', document.getElementById('author').value);
+			formData.append('category1', document.getElementById('category').value);
+			formData.append('publisher1', document.getElementById('publisher').value);
+			formData.append('publishedDate1', document.getElementById('publishedDate').value);
+			formData.append('isbn1', document.getElementById('isbn').value);
+			formData.append('description1', document.getElementById('description').value);
+			formData.append('pageCount1', document.getElementById('pageCount').value);
+			formData.append('money1', document.getElementById('money').value);
+			formData.append('imgLink1', document.getElementById('imgLink').src);
+			formData.append('quantity1', document.getElementById('quantity').value);
+	</script>
 
 	<script>
 		function autoBookId(category) {

@@ -33,7 +33,7 @@ if(!$_POST['category1'])
 if(!$_POST['publisher1'])
   $publisher2 = NULL;
 if(!$_POST['publishedDate1'])
-  $date_of_publication2 = '1900-01-01';
+  $date_of_publication2 = NULL;
 if(!$_POST['isbn1'])
   $isbn2 = NULL;
 if(!$_POST['description1'])
