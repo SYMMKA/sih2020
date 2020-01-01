@@ -452,9 +452,6 @@ if (isset($_POST['addBook'])) {
 		}
 	</script>
 	<script>
-		function addBook() {
-
-			var formData = new FormData();
 			formData.append('title1', document.getElementById('title').value);
 			formData.append('author1', document.getElementById('author').value);
 			formData.append('category1', document.getElementById('category').value);
