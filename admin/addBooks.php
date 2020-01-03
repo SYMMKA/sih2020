@@ -1,79 +1,3 @@
-<?php
-//DB CONNECTION====================================
-$servername = "remotemysql.com";
-$username = "2qTzr9mwEz";
-$password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-
-if (isset($_POST['addBook'])) {
-
-	if ($_POST['title'])
-		$title2 = $_POST['title'];
-	else
-		$title2 = NULL;
-	if ($_POST['author'])
-		$author2 = $_POST['author'];
-	else
-		$author2 = NULL;
-	if ($_POST['category'])
-		$category2 = $_POST['category'];
-	else
-		$category2 = NULL;
-	if ($_POST['publisher'])
-		$publisher2 = $_POST['publisher'];
-	else
-		$publisher2 = NULL;
-	if ($_POST['publishedDate'])
-		$date_of_publication2 = $_POST['publishedDate'];
-	else
-		$date_of_publication2 = NULL;
-	if ($_POST['isbn'])
-		$isbn2 = $_POST['isbn'];
-	else
-		$isbn2 = NULL;
-	if ($_POST['description'])
-		$description2 = $_POST['description'];
-	else
-		$description2 = NULL;
-	if ($_POST['pageCount'])
-		$pageCount2 = $_POST['pageCount'];
-	else
-		$pageCount2 = NULL;
-	if ($_POST['money'])
-		$money2 = $_POST['money'];
-	else
-		$money2 = NULL;
-	if ($_POST['quantity'])
-		$quantity2 = $_POST['quantity'];
-	else
-		$quantity2 = '1';
-	if ($_POST['imgValue'])
-		$imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-	else
-		$imgValue2 = NULL;
-
-	//Dont add `id` column
-	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `publisher`, `date_of_publication`, `isbn`, `description`, `pages`, `price`, `imgLink`, `quantity`) VALUES ('$title2', '$author2', '$category2', '$publisher2', '$date_of_publication2', '$isbn2', '$description2', '$pageCount2', '$money2', '$imgValue2', '$quantity2')";
-
-	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
-	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-
-	$conn->close();
-}
-
-//================================================================
-?>
-
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -140,7 +64,7 @@ if (isset($_POST['addBook'])) {
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form method="post" action="addBooks.php">
+					<form id="addBookForm">
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>
@@ -179,12 +103,21 @@ if (isset($_POST['addBook'])) {
 								<input type="number" name="quantity" id="quantity" />
 							</div>
 							<div class="field half">
-								<label for="category" class="col-sm-2 col-form-label">Category</label>
-								<select class="col-sm-2 col-form-label" id="category" onclick="autoBookId(this.value)">
-									<option value="maths">Maths</option>
-									<option value="science">Science</option>
-									<option value="technology">Technology</option>
-									<option value="art">Art</option>
+								<label for="category" class="field half">Category</label>
+								<select class="field half" name="category1" id="category1" onclick="autoBookId(this.value)" required>
+									<option value=""> </option>
+									<option value="tech"> Tech </option>
+									<option value="nonTech"> Non-Tech </option>
+								</select>
+								<select class="field half" name="technology" id="technology" hidden="true" onclick="autoTechId(this.value)">
+									<option value=""> </option>
+									<option value="Artificial Intelligence"> Artificial Intelligence </option>
+									<option value="Database Design"> Database Design </option>
+									<option value="Electronics and Applications"> Electronics and Applications </option>
+									<option value="Network"> Network </option>
+									<option value="Programming"> Programming </option>
+									<option value="Software Engineering"> Software Engineering </option>
+									<option value="System Programming"> System Programming </option>
 								</select>
 								<br><br>
 							</div>
@@ -199,10 +132,8 @@ if (isset($_POST['addBook'])) {
 								<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = document.getElementById('imgValue').value = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
 								<input type="hidden" name="imgValue" id="imgValue" value="" />
 							</div>
-
-							<div class="field">
-								<label for="description">Description</label>
-								<textarea name="description" id="description" rows="6"></textarea>
+							<div class="alert">
+								<label>The book has been added</label>
 							</div>
 						</div>
 						<ul class="actions">
@@ -277,7 +208,6 @@ if (isset($_POST['addBook'])) {
 									for ($n = 0; $n < count($item['volumeInfo']['industryIdentifiers']); $n++) {
 										$isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
 									}
-									$description[$i] = $item['volumeInfo']['description'];
 									$pageCount[$i] = $item['volumeInfo']['pageCount'];
 									$country[$i] = $item['saleInfo']['country'];
 									$currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
@@ -327,18 +257,6 @@ if (isset($_POST['addBook'])) {
 												<tr>
 													<th>ISBN</th>
 													<td><?= $isbn[$i] ?></td>
-												</tr>
-											<?php } ?>
-											<?php if ($description[$i]) { ?>
-												<tr>
-													<th style="vertical-align: top;">Description</th>
-													<td>
-														<div class="style-2" style="
-                                                          overflow-y: auto;
-                                                          min-height:20px;
-														  max-height: 200px;">
-															<?= $description[$i] ?></div>
-													</td>
 												</tr>
 											<?php } ?>
 											<?php if ($pageCount[$i]) { ?>
@@ -397,9 +315,18 @@ if (isset($_POST['addBook'])) {
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+	<script src="fireDb.js"></script>
 	<script src="main.js"></script>
-	
-  <!-- variables declared without var are global
+
+	<!-- variables declared without var are global
           I removed var because of warnings-->
 	<script>
 		title = <?php echo json_encode($title); ?>
@@ -420,9 +347,6 @@ if (isset($_POST['addBook'])) {
 		isbn = <?php echo json_encode($isbn); ?>
 	</script>
 	<script>
-		description = <?php echo json_encode($description); ?>
-	</script>
-	<script>
 		pageCount = <?php echo json_encode($pageCount); ?>
 	</script>
 	<script>
@@ -441,7 +365,6 @@ if (isset($_POST['addBook'])) {
 			document.getElementById('publisher').value = publisher[i];
 			document.getElementById('publishedDate').value = publishedDate[i];
 			document.getElementById('isbn').value = isbn[i];
-			document.getElementById('description').value = description[i];
 			document.getElementById('pageCount').value = pageCount[i];
 			document.getElementById('money').value = money[i];
 			if (imgLink[i]) {
@@ -451,36 +374,49 @@ if (isset($_POST['addBook'])) {
 			}
 		}
 	</script>
-	<script>
-			formData.append('title1', document.getElementById('title').value);
-			formData.append('author1', document.getElementById('author').value);
-			formData.append('category1', document.getElementById('category').value);
-			formData.append('publisher1', document.getElementById('publisher').value);
-			formData.append('publishedDate1', document.getElementById('publishedDate').value);
-			formData.append('isbn1', document.getElementById('isbn').value);
-			formData.append('description1', document.getElementById('description').value);
-			formData.append('pageCount1', document.getElementById('pageCount').value);
-			formData.append('money1', document.getElementById('money').value);
-			formData.append('imgLink1', document.getElementById('imgLink').src);
-			formData.append('quantity1', document.getElementById('quantity').value);
-	</script>
 
 	<script>
 		function autoBookId(category) {
 			switch (category) {
-				case "maths":
-					document.getElementById('bookId').value = "MAT";
+				case "tech":
+					document.getElementById('technology').hidden = false;
+					document.getElementById('technology').value = "";
 					break;
-				case "science":
-					document.getElementById('bookId').value = "SCI";
-					break;
-				case "technology":
-					document.getElementById('bookId').value = "TECH";
-					break;
-				case "art":
-					document.getElementById('bookId').value = "ART";
+				case "nonTech":
+					document.getElementById('technology').hidden = true;
+					document.getElementById('technology').value = "";
+					document.getElementById('bookId').value = "NON_TECH";
 					break;
 			}
+		}
+
+
+		function autoTechId(category) {
+			var techId;
+			switch (category) {
+				case "Artificial Intelligence":
+					techId = "TECH-AI";
+					break;
+				case "Database Design":
+					techId = "TECH-DD";
+					break;
+				case "Electronics and Applications":
+					techId = "TECH-EA";
+					break;
+				case "Network":
+					techId = "TECH-NT";
+					break;
+				case "Programming":
+					techId = "TECH-PG";
+					break;
+				case "Software Engineering":
+					techId = "TECH-SE";
+					break;
+				case "System Programming":
+					techId = "TECH-SP";
+					break;
+			}
+			document.getElementById('bookId').value = techId;
 		}
 	</script>
 
