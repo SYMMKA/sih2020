@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 // Listen for form submit
-document.getElementById('addBookForm').addEventListener('submit', addBook);
+document.getElementById('addBook').addEventListener('submit', addBook);
 
 // Submit form
 function addBook(e) {
@@ -32,7 +32,6 @@ function addBook(e) {
     var imgValue = getInputVal('imgValue');
     var quantity = getInputVal('quantity');
     var issued = 0;
-    var quantity = getInputVal('quantity');
     var subCategory = getInputVal('technology');
 
 
@@ -48,7 +47,7 @@ function addBook(e) {
     }, 1500);
 
     // Clear form
-    document.getElementById('addBookForm').reset();
+    document.getElementById('addBook').reset();
 }
 
 

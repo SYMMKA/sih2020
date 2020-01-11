@@ -1,3 +1,76 @@
+<?php
+//DB CONNECTION====================================
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+if (isset($_POST['addBook'])) {
+  if ($_POST['title'])
+    $title2 = $_POST['title'];
+  else
+    $title2 = NULL;
+  if ($_POST['author'])
+    $author2 = $_POST['author'];
+  else
+    $author2 = NULL;
+  if ($_POST['category'])
+    $category2 = $_POST['category'];
+  else
+    $category2 = NULL;
+  if ($_POST['publisher'])
+    $publisher2 = $_POST['publisher'];
+  else
+    $publisher2 = NULL;
+  if ($_POST['publishedDate'])
+  $date_of_publication2 = $_POST['publishedDate'];
+  else
+    $date_of_publication2 = NULL;
+  if ($_POST['isbn'])
+    $isbn2 = $_POST['isbn'];
+  else
+    $isbn2 = NULL;
+  if ($_POST['pageCount'])
+    $pageCount2 = $_POST['pageCount'];
+  else
+    $pageCount2 = NULL;
+  if ($_POST['money'])
+    $money2 = $_POST['money'];
+  else
+    $money2 = NULL;
+  if ($_POST['quantity'])
+    $quantity2 = $_POST['quantity'];
+  else
+    $quantity2 = '1';
+  if ($_POST['imgValue'])
+    $imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+  else
+    $imgValue2 = NULL;
+  $issued = 0;
+  if ($_POST['technology'])
+    $subCategory = $_POST['technology'];
+  else
+    $subCategory = NULL;
+  //Dont add `id` column
+  $sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
+  if ($conn->query($sql) === TRUE) {} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $conn->close();
+  ?>
+  <script>
+  </script>
+  <?php
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +93,26 @@
 
 <body>
 
+
+  
+  <script>
+    function autoBookId(category) {
+      switch (category) {
+        case "maths":
+          document.getElementById('bookId').value = "MAT";
+          break;
+        case "science":
+          document.getElementById('bookId').value = "SCI";
+          break;
+        case "technology":
+          document.getElementById('bookId').value = "TECH";
+          break;
+        case "art":
+          document.getElementById('bookId').value = "ART";
+          break;
+      }
+    }
+  </script>
   <section>
     <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
@@ -49,23 +142,17 @@
       <?php
       $search = '';
       if (isset($_POST['voice-search'])) {
-
         $search = $_POST['voice-search'];
       }
       ?>
       <?php
       if ($search) {
-
         // API key, future ref
         $API_KEY = '';
-
         // donot delete
         require_once 'vendor/autoload.php';
-
-
         $client = new Google_Client();
         $client->setApplicationName("Client_Library_Examples");
-
         $service = new Google_Service_Books($client);
         //$optParams = array('filter' => 'free-ebooks');
         $results = $service->volumes->listVolumes($search);
@@ -174,7 +261,8 @@
   </section>
 
 
-  <form id="addBookForm">
+
+  <form method="post" action="addBook.php">
     <div class="container-fluid form " style="height:auto; ">
       <h1 style=" color:#46b5d1;">ADD BOOK</h1>
       <form>
@@ -262,14 +350,13 @@
         <div class="alert">The book has been added</div>
         <div class="form-group form-row align-items-center justify-content-center ">
           <div class="col-sm-1">
-            <button type="submit" class="btn btn-info btn-lg" id="addBook" name="addBook">Add Book</button>
+            <button type="submit" class="btn btn-info btn-lg" id="addBook" name="addBook" onclick="display()">Add Book</button>
           </div>
         </div>
       </form>
     </div>
   </form>
-
-
+  
   <!-- variables declared without var are global
           I removed var because of warnings-->
   <script>
@@ -302,7 +389,6 @@
   <script>
     function autoFill(i) {
       // donot remove the comments in this method if the id isnt predefined in html form
-
       document.getElementById('title').value = title[i];
       document.getElementById('author').value = author[i];
       document.getElementById('category').value = category[i];
@@ -317,9 +403,8 @@
         document.getElementById('imgLink').hidden = false;
       }
     }
-  </script>
+    </script>
   <script>
-
     function autoBookId(category) {
       switch(category){
         case "tech":  document.getElementById('technology').hidden = false;
@@ -331,8 +416,6 @@
         break;
       }
     }
-
-
     function autoTechId(category) {
       var techId;
       switch (category) {
@@ -360,20 +443,26 @@
       }
       document.getElementById('bookId').value = techId;
     }
+
+    function display()
+    {
+    // Show alert
+    document.querySelector('.alert').style.display = 'block';
+
+    // Hide alert after 1.5 seconds
+    setTimeout(function () {
+        document.querySelector('.alert').style.display = 'none';
+    }, 1500);
+
+    // Clear form
+    document.getElementById('addBook').reset();
+
+    }
   </script>
 
   <script src="https://kit.fontawesome.com/97f3c2998d.js" crossorigin="anonymous"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-
-  <script src="fireDb.js"></script>
   <script src="main.js"></script>
 
 </body>

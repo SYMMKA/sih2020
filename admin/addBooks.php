@@ -1,3 +1,77 @@
+<?php
+//DB CONNECTION====================================
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+if (isset($_POST['addBook'])) {
+	if ($_POST['title'])
+		$title2 = $_POST['title'];
+	else
+		$title2 = NULL;
+	if ($_POST['author'])
+		$author2 = $_POST['author'];
+	else
+		$author2 = NULL;
+	if ($_POST['category'])
+		$category2 = $_POST['category'];
+	else
+		$category2 = NULL;
+	if ($_POST['publisher'])
+		$publisher2 = $_POST['publisher'];
+	else
+		$publisher2 = NULL;
+	if ($_POST['publishedDate'])
+		$date_of_publication2 = $_POST['publishedDate'];
+	else
+		$date_of_publication2 = NULL;
+	if ($_POST['isbn'])
+		$isbn2 = $_POST['isbn'];
+	else
+		$isbn2 = NULL;
+	if ($_POST['pageCount'])
+		$pageCount2 = $_POST['pageCount'];
+	else
+		$pageCount2 = NULL;
+	if ($_POST['money'])
+		$money2 = $_POST['money'];
+	else
+		$money2 = NULL;
+	if ($_POST['quantity'])
+		$quantity2 = $_POST['quantity'];
+	else
+		$quantity2 = '1';
+	if ($_POST['imgValue'])
+		$imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+	else
+		$imgValue2 = NULL;
+	$issued = 0;
+	if ($_POST['technology'])
+		$subCategory = $_POST['technology'];
+	else
+		$subCategory = NULL;
+	//Dont add `id` column
+	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
+	if ($conn->query($sql) === TRUE) {
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+	$conn->close();
+?>
+	<script>
+	</script>
+<?php
+
+}
+?>
+
+
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -64,7 +138,7 @@
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form id="addBookForm">
+					<form method="post" action="addBooks.php">
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>
@@ -162,7 +236,7 @@
 									</div>
 
 									<div class="col-auto">
-										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" value="submit">
+										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" onclick="display()" value="submit">
 											Search
 										</button>
 									</div>
@@ -315,15 +389,6 @@
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
-
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-
-	<script src="fireDb.js"></script>
 	<script src="main.js"></script>
 
 	<!-- variables declared without var are global
@@ -417,6 +482,20 @@
 					break;
 			}
 			document.getElementById('bookId').value = techId;
+		}
+
+		function display() {
+			// Show alert
+			document.querySelector('.alert').style.display = 'block';
+
+			// Hide alert after 1.5 seconds
+			setTimeout(function() {
+				document.querySelector('.alert').style.display = 'none';
+			}, 1500);
+
+			// Clear form
+			document.getElementById('addBook').reset();
+
 		}
 	</script>
 
