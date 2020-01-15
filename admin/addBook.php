@@ -87,7 +87,7 @@ if (isset($_POST['addBook'])) {
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
-  <script src="fireDb.js"></script>
+  <script src="categoryFirebase.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
 
@@ -102,8 +102,6 @@ if (isset($_POST['addBook'])) {
 
 <body>
 
-
-  </script>
   <section>
     <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
@@ -392,19 +390,6 @@ if (isset($_POST['addBook'])) {
     }
   </script>
   <script>
-    function autoBookId(category) {
-      switch (category) {
-        case "tech":
-          document.getElementById('mainCategorySelect').hidden = false;
-          document.getElementById('mainCategorySelect').value = "";
-          break;
-        case "nonTech":
-          document.getElementById('mainCategorySelect').hidden = true;
-          document.getElementById('mainCategorySelect').value = "";
-          document.getElementById('bookId').value = "NON_TECH";
-          break;
-      }
-    }
 
     function display() {
       // Show alert

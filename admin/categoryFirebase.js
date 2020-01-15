@@ -51,17 +51,18 @@ function displayCat(categoryInfo, mainCategorySelect, subCategorySelect) {
     //Main Category Changed
     mainCategorySelect.onchange = function () {
 
+        document.getElementById('bookId').value = ""; //resets bookID
         subCategorySelect.length = 1; // remove all options bar first
 
-        if (this.selectedIndex < 1 || categoryInfo[this.value][0] == 0) //donot remove second condition
+        console.log(this.selectedIndex);
+        if (this.selectedIndex < 1)
         {
             document.getElementById('subCategorySelect').hidden = true;
-            document.getElementById('bookId').value = "";
             return; // done
         }
 
-        var subCategory = categoryInfo[this.value];
-        if (subCategory.length == 0) // hides sub category if not available
+        var check = categoryInfo[this.value];
+        if (check.length == 0) // hides sub category if not available
             document.getElementById('subCategorySelect').hidden = true;
         else
             document.getElementById('subCategorySelect').hidden = false;
@@ -72,8 +73,23 @@ function displayCat(categoryInfo, mainCategorySelect, subCategorySelect) {
 
     subCategorySelect.onchange = function () {
 
+        document.getElementById('bookId').value = ""; //resets bookID
+        if (this.selectedIndex < 1)
+            return; // done
         var categoryID = categoryInfo[mainCategorySelect.value][this.value];
-        document.getElementById('bookId').value = categoryID[0];
+        document.getElementById('bookId').value = categoryID;
 
     }
+}
+
+
+function editCategory() {
+
+    var category = docuement.getElementById('category').value;
+    var rootRef = firebase.database().ref('web-symmka');
+    var newMessageRef = rootRef.child(category);
+    newMessageRef.set({
+        author: category
+    });
+
 }
