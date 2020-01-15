@@ -12,84 +12,68 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+/*var categoryInfo = {
+  "Technology": {
+    "Artificial Intelligence": ["TECH-AI"],
+    "Database Design": ["TECH-DD"],
+    "Electronics and Applications": ["TECH-EA"],
+    "Network": ["TECH-NT"],
+    "Programming": ["TECH-PG"],
+    "Software Engineering": ["TECH-SE"],
+    "System Programming": ["TECH-SP"]
+  },
+  "General Science and Humanities": {
+    "Physics": ["GSH-PHY"],
+    "Chemistry": ["GSH-CHEM"],
+    "Maths": ["GSH-MAT"]
+  },
+  "Fiction": []
+}*/
 
-// Listen for form submit
-document.getElementById('addBook').addEventListener('submit', addBook);
+function category() {
 
-// Submit form
-function addBook(e) {
-    e.preventDefault();
+    var mainCategorySelect = document.getElementById("mainCategorySelect");
+    var subCategorySelect = document.getElementById("subCategorySelect");
 
-    // Get values
-    var title = getInputVal('title');
-    var author = getInputVal('author');
-    var mainCategory = getInputVal('category');
-    var publisher = getInputVal('publisher');
-    var publishedDate = getInputVal('publishedDate');
-    var isbn = getInputVal('isbn');
-    var pageCount = getInputVal('pageCount');
-    var money = getInputVal('money');
-    var imgValue = getInputVal('imgValue');
-    var quantity = getInputVal('quantity');
-    var issued = 0;
-    var subCategory = getInputVal('technology');
+    //Load main categories
+    firebase.database().ref().on('value', function (snapshot) {
+        categoryInfo = snapshot.val();
+        displayCat(categoryInfo, mainCategorySelect, subCategorySelect);
+    });;
 
-
-    // Save message
-    saveMessage(title, author, mainCategory, subCategory, publisher, publishedDate, isbn, pageCount, money, imgValue, quantity, issued);
-
-    // Show alert
-    document.querySelector('.alert').style.display = 'block';
-
-    // Hide alert after 1.5 seconds
-    setTimeout(function () {
-        document.querySelector('.alert').style.display = 'none';
-    }, 1500);
-
-    // Clear form
-    document.getElementById('addBook').reset();
 }
 
-
-// Function to get form values
-function getInputVal(id) {
-    return document.getElementById(id).value;
-}
-
-// Save message to firebase
-function saveMessage(title, author, mainCategory, subCategory, publisher, publishedDate, isbn, pageCount, money, imgValue, quantity, issued) {
-    // Reference messages collection
-    var rootRef = firebase.database().ref('Library');
-    var categoryRef = rootRef.child(mainCategory);
-    switch (subCategory) {
-        case "Artificial Intelligence": categoryRef = categoryRef.child('Artificial Intelligence');
-            break;
-        case "Database Design": categoryRef = categoryRef.child('Database Design');
-            break;
-        case "Electronics and Applications": categoryRef = categoryRef.child('Electronics and Applications');
-            break;
-        case "Network": categoryRef = categoryRef.child('Network');
-            break;
-        case "Programming": categoryRef = categoryRef.child('Programming');
-            break;
-        case "Software Engineering": categoryRef = categoryRef.child('Software Engineering');
-            break;
-        case "System Programming": categoryRef = categoryRef.child('System Programming');
-            break;
-        default:
-            break;
+function displayCat(categoryInfo, mainCategorySelect, subCategorySelect) {
+    for (var mainCategory in categoryInfo) {
+        mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
     }
-    var newMessageRef = categoryRef.child(title);
-    newMessageRef.set({
-        author: author,
-        category: mainCategory,
-        publisher: publisher,
-        publishedDate: publishedDate,
-        isbn: isbn,
-        pageCount: pageCount,
-        money: money,
-        imgValue: imgValue,
-        quantity: quantity,
-        issued: issued
-    });
+
+    //Main Category Changed
+    mainCategorySelect.onchange = function () {
+
+        subCategorySelect.length = 1; // remove all options bar first
+
+        if (this.selectedIndex < 1 || categoryInfo[this.value][0] == 0) //donot remove second condition
+        {
+            document.getElementById('subCategorySelect').hidden = true;
+            document.getElementById('bookId').value = "";
+            return; // done
+        }
+
+        var subCategory = categoryInfo[this.value];
+        if (subCategory.length == 0) // hides sub category if not available
+            document.getElementById('subCategorySelect').hidden = true;
+        else
+            document.getElementById('subCategorySelect').hidden = false;
+        for (var subCategory in categoryInfo[this.value]) {
+            subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
+        }
+    }
+
+    subCategorySelect.onchange = function () {
+
+        var categoryID = categoryInfo[mainCategorySelect.value][this.value];
+        document.getElementById('bookId').value = categoryID[0];
+
+    }
 }

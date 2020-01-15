@@ -28,7 +28,7 @@ if (isset($_POST['addBook'])) {
   else
     $publisher2 = NULL;
   if ($_POST['publishedDate'])
-  $date_of_publication2 = $_POST['publishedDate'];
+    $date_of_publication2 = $_POST['publishedDate'];
   else
     $date_of_publication2 = NULL;
   if ($_POST['isbn'])
@@ -52,20 +52,21 @@ if (isset($_POST['addBook'])) {
   else
     $imgValue2 = NULL;
   $issued = 0;
-  if ($_POST['technology'])
-    $subCategory = $_POST['technology'];
+  if ($_POST['mainCategorySelect'])
+    $subCategory = $_POST['mainCategorySelect'];
   else
     $subCategory = NULL;
   //Dont add `id` column
   $sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
-  if ($conn->query($sql) === TRUE) {} else {
+  if ($conn->query($sql) === TRUE) {
+  } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
   $conn->close();
-  ?>
+?>
   <script>
   </script>
-  <?php
+<?php
 
 }
 ?>
@@ -79,6 +80,14 @@ if (isset($_POST['addBook'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+  <script src="fireDb.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
 
@@ -94,24 +103,6 @@ if (isset($_POST['addBook'])) {
 <body>
 
 
-  
-  <script>
-    function autoBookId(category) {
-      switch (category) {
-        case "maths":
-          document.getElementById('bookId').value = "MAT";
-          break;
-        case "science":
-          document.getElementById('bookId').value = "SCI";
-          break;
-        case "technology":
-          document.getElementById('bookId').value = "TECH";
-          break;
-        case "art":
-          document.getElementById('bookId').value = "ART";
-          break;
-      }
-    }
   </script>
   <section>
     <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
@@ -283,21 +274,17 @@ if (isset($_POST['addBook'])) {
           <div class="col-sm-6">
             <input type="text" class="form-control" name="category" id="category" placeholder="Example input" required>
           </div>
-          <select class="col-sm-2 col-form-label" name="category1" id="category1" onclick="autoBookId(this.value)" required>
-            <option value=""> </option>
-            <option value="tech"> Tech </option>
-            <option value="nonTech"> Non-Tech </option>
-          </select>
-          <select class="col-sm-2 col-form-label" name="technology" id="technology" hidden="true" onclick="autoTechId(this.value)">
-            <option value=""> </option>
-            <option value="Artificial Intelligence"> Artificial Intelligence </option>
-            <option value="Database Design"> Database Design </option>
-            <option value="Electronics and Applications"> Electronics and Applications </option>
-            <option value="Network"> Network </option>
-            <option value="Programming"> Programming </option>
-            <option value="Software Engineering"> Software Engineering </option>
-            <option value="System Programming"> System Programming </option>
-          </select>
+          <form name="myform" id="myForm">
+            <select id="mainCategorySelect" size="1" required>
+              <option value="" selected="selected">-- Select Category --</option>
+            </select>
+            <br>
+            <br>
+
+            <select id="subCategorySelect" size="1" hidden="true" required>
+              <option value="" selected="selected">-- Select Sub-Category--</option>
+            </select>
+          </form>
         </div>
         <div class="form-group row align-items-center justify-content-center ">
           <label for="" class="col-sm-2 col-form-label">Book ID</label>
@@ -356,7 +343,7 @@ if (isset($_POST['addBook'])) {
       </form>
     </div>
   </form>
-  
+
   <!-- variables declared without var are global
           I removed var because of warnings-->
   <script>
@@ -403,66 +390,47 @@ if (isset($_POST['addBook'])) {
         document.getElementById('imgLink').hidden = false;
       }
     }
-    </script>
+  </script>
   <script>
     function autoBookId(category) {
-      switch(category){
-        case "tech":  document.getElementById('technology').hidden = false;
-        document.getElementById('technology').value = "";
-        break;
-        case "nonTech": document.getElementById('technology').hidden = true;
-        document.getElementById('technology').value = "";
-        document.getElementById('bookId').value = "NON_TECH";
-        break;
-      }
-    }
-    function autoTechId(category) {
-      var techId;
       switch (category) {
-        case "Artificial Intelligence":
-          techId = "TECH-AI";
+        case "tech":
+          document.getElementById('mainCategorySelect').hidden = false;
+          document.getElementById('mainCategorySelect').value = "";
           break;
-        case "Database Design":
-          techId = "TECH-DD";
-          break;
-        case "Electronics and Applications":
-          techId = "TECH-EA";
-          break;
-        case "Network":
-          techId = "TECH-NT";
-          break;
-        case "Programming":
-          techId = "TECH-PG";
-          break;
-        case "Software Engineering":
-          techId = "TECH-SE";
-          break;
-        case "System Programming":
-          techId = "TECH-SP";
+        case "nonTech":
+          document.getElementById('mainCategorySelect').hidden = true;
+          document.getElementById('mainCategorySelect').value = "";
+          document.getElementById('bookId').value = "NON_TECH";
           break;
       }
-      document.getElementById('bookId').value = techId;
     }
 
-    function display()
-    {
-    // Show alert
-    document.querySelector('.alert').style.display = 'block';
+    function display() {
+      // Show alert
+      document.querySelector('.alert').style.display = 'block';
 
-    // Hide alert after 1.5 seconds
-    setTimeout(function () {
+      // Hide alert after 1.5 seconds
+      setTimeout(function() {
         document.querySelector('.alert').style.display = 'none';
-    }, 1500);
+      }, 1500);
 
-    // Clear form
-    document.getElementById('addBook').reset();
+      // Clear form
+      document.getElementById('addBook').reset();
 
     }
+
+
+
+    window.onload = category(); // To select category
   </script>
 
   <script src="https://kit.fontawesome.com/97f3c2998d.js" crossorigin="anonymous"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
+
+
+
   <script src="main.js"></script>
 
 </body>
