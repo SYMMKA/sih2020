@@ -1,18 +1,4 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyDzMP7rnfFteMaw8xgUYTWgkmSfB-1l7a8",
-    authDomain: "web-symmka.firebaseapp.com",
-    databaseURL: "https://web-symmka.firebaseio.com",
-    projectId: "web-symmka",
-    storageBucket: "web-symmka.appspot.com",
-    messagingSenderId: "884666647520",
-    appId: "1:884666647520:web:633e06bcb53212a26e2185",
-    measurementId: "G-GKB1XQRXSF"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-/*var categoryInfo = {
+var categoryInfo = {
   "Technology": {
     "Artificial Intelligence": ["TECH-AI"],
     "Database Design": ["TECH-DD"],
@@ -28,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
     "Maths": ["GSH-MAT"]
   },
   "Fiction": []
-}*/
+}
 
 function category() {
 
@@ -36,14 +22,6 @@ function category() {
     var subCategorySelect = document.getElementById("subCategorySelect");
 
     //Load main categories
-    firebase.database().ref().on('value', function (snapshot) {
-        categoryInfo = snapshot.val();
-        displayCat(categoryInfo, mainCategorySelect, subCategorySelect);
-    });;
-
-}
-
-function displayCat(categoryInfo, mainCategorySelect, subCategorySelect) {
     for (var mainCategory in categoryInfo) {
         mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
     }
@@ -80,16 +58,4 @@ function displayCat(categoryInfo, mainCategorySelect, subCategorySelect) {
         document.getElementById('bookId').value = categoryID;
 
     }
-}
-
-
-function editCategory() {
-
-    var category = docuement.getElementById('category').value;
-    var rootRef = firebase.database().ref('web-symmka');
-    var newMessageRef = rootRef.child(category);
-    newMessageRef.set({
-        author: category
-    });
-
 }
