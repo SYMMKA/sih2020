@@ -148,10 +148,7 @@ if (isset($_POST['addBook'])) {
 								<label for="author">Author</label>
 								<input type="text" name="author" id="author" />
 							</div>
-							<div class="field half">
-								<label for="category">Category</label>
-								<input type="text" name="category" id="category" />
-							</div>
+							
 							<div class="field half">
 								<label for="isbn">ISBN</label>
 								<input type="text" name="isbn" id="isbn" />
@@ -172,10 +169,7 @@ if (isset($_POST['addBook'])) {
 								<label for="money">Price</label>
 								<input type="text" name="money" id="money" />
 							</div>
-							<div class="field half">
-								<label for="quantity">Quantity</label>
-								<input type="number" name="quantity" id="quantity" />
-							</div>
+							
 							<div class="field half">
 								<label for="category" class="field half">Category</label>
 								<select class="field half" name="category1" id="category1" onclick="autoBookId(this.value)" required>
@@ -183,6 +177,9 @@ if (isset($_POST['addBook'])) {
 									<option value="tech"> Tech </option>
 									<option value="nonTech"> Non-Tech </option>
 								</select>
+								</div>
+								<div class="field half">
+								<label for="category" class="field half">Sub-category</label>	
 								<select class="field half" name="technology" id="technology" hidden="true" onclick="autoTechId(this.value)">
 									<option value=""> </option>
 									<option value="Artificial Intelligence"> Artificial Intelligence </option>
@@ -195,9 +192,14 @@ if (isset($_POST['addBook'])) {
 								</select>
 								<br><br>
 							</div>
+							
 							<div class="field half">
 								<label for="bookId">Book ID</label>
 								<input type="text" name="bookId" id="bookId" />
+							</div>
+							<div class="field half">
+								<label for="quantity">Quantity</label>
+								<input type="number" name="quantity" id="quantity" />
 							</div>
 
 							<div class="field">
