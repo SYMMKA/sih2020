@@ -234,6 +234,7 @@ if (isset($_POST['addBook'])) {
 										</span>
 										</fieldset>
 									</div>
+									</br>
 
 									<div class="col-auto">
 										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" onclick="display()" value="submit">
@@ -369,13 +370,7 @@ if (isset($_POST['addBook'])) {
 							?>
 						</div>
 					</section>
-					<section>
-						<div class="contact-method">
-							<span class="icon solid alt fa-phone"></span>
-							<h3>Just another section</h3>
-							<span>blah!</span>
-						</div>
-					</section>
+
 				</section>
 			</div>
 		</section>
