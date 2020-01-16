@@ -19,10 +19,10 @@ if (isset($_POST['addBook'])) {
     $author2 = $_POST['author'];
   else
     $author2 = NULL;
-  if ($_POST['category'])
-    $category2 = $_POST['category'];
-  else
-    $category2 = NULL;
+  //if ($_POST['mainCategorySelect'])
+  //$category2 = $_POST['mainCategorySelect'];
+  //else
+  $category2 = NULL;
   if ($_POST['publisher'])
     $publisher2 = $_POST['publisher'];
   else
@@ -52,10 +52,10 @@ if (isset($_POST['addBook'])) {
   else
     $imgValue2 = NULL;
   $issued = 0;
-  if ($_POST['mainCategorySelect'])
-    $subCategory = $_POST['mainCategorySelect'];
-  else
-    $subCategory = NULL;
+  //if ($_POST['subCategorySelect'])
+  //$subCategory = $_POST['subCategorySelect'];
+  //else
+  $subCategory = NULL;
   //Dont add `id` column
   $sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
   if ($conn->query($sql) === TRUE) {
@@ -80,14 +80,7 @@ if (isset($_POST['addBook'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
-  <script src="categoryFirebase.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
 
@@ -101,7 +94,6 @@ if (isset($_POST['addBook'])) {
 </head>
 
 <body>
-
   <section>
     <div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
       <form id="search-form" method="post">
@@ -371,6 +363,8 @@ if (isset($_POST['addBook'])) {
   <script>
     imgLink = <?php echo json_encode($imgLink); ?>
   </script>
+
+
   <script>
     function autoFill(i) {
       // donot remove the comments in this method if the id isnt predefined in html form
@@ -388,8 +382,6 @@ if (isset($_POST['addBook'])) {
         document.getElementById('imgLink').hidden = false;
       }
     }
-  </script>
-  <script>
 
     function display() {
       // Show alert
@@ -405,16 +397,73 @@ if (isset($_POST['addBook'])) {
 
     }
 
+    var categoryInfo = {
+      "Technology": {
+        "Artificial Intelligence": ["TECH-AI"],
+        "Database Design": ["TECH-DD"],
+        "Electronics and Applications": ["TECH-EA"],
+        "Network": ["TECH-NT"],
+        "Programming": ["TECH-PG"],
+        "Software Engineering": ["TECH-SE"],
+        "System Programming": ["TECH-SP"]
+      },
+      "General Science and Humanities": {
+        "Physics": ["GSH-PHY"],
+        "Chemistry": ["GSH-CHEM"],
+        "Maths": ["GSH-MAT"]
+      },
+      "Fiction": []
+    }
 
+    // To select category
+    window.onload = function() {
 
-    window.onload = category(); // To select category
+      var mainCategorySelect = document.getElementById("mainCategorySelect");
+      var subCategorySelect = document.getElementById("subCategorySelect");
+      var mainCategory = "";
+      var subCategory = "";
+
+      //Load main categories
+      for (mainCategory in categoryInfo) {
+        mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
+      }
+
+      //Main Category Changed
+      mainCategorySelect.onchange = function() {
+
+        document.getElementById('bookId').value = ""; //resets bookID
+        subCategorySelect.length = 1; // remove all options bar first
+
+        if (this.selectedIndex < 1) {
+          document.getElementById('subCategorySelect').hidden = true;
+          return; // done
+        }
+
+        var check = categoryInfo[this.value];
+        if (check.length == 0) // hides sub category if not available
+          document.getElementById('subCategorySelect').hidden = true;
+        else
+          document.getElementById('subCategorySelect').hidden = false;
+        for (subCategory in categoryInfo[this.value]) {
+          subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
+        }
+      }
+
+      subCategorySelect.onchange = function() {
+
+        document.getElementById('bookId').value = ""; //resets bookID
+        if (this.selectedIndex < 1)
+          return; // done
+        var categoryID = categoryInfo[mainCategorySelect.value][this.value];
+        document.getElementById('bookId').value = categoryID;
+
+      }
+    }
   </script>
 
   <script src="https://kit.fontawesome.com/97f3c2998d.js" crossorigin="anonymous"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
-
-
 
   <script src="main.js"></script>
 
