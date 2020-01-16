@@ -19,10 +19,10 @@ if (isset($_POST['addBook'])) {
 		$author2 = $_POST['author'];
 	else
 		$author2 = NULL;
-	if ($_POST['category'])
-		$category2 = $_POST['category'];
-	else
-		$category2 = NULL;
+	//if ($_POST['mainCategorySelect'])
+	//$category2 = $_POST['mainCategorySelect'];
+	//else
+	$category2 = NULL;
 	if ($_POST['publisher'])
 		$publisher2 = $_POST['publisher'];
 	else
@@ -52,10 +52,10 @@ if (isset($_POST['addBook'])) {
 	else
 		$imgValue2 = NULL;
 	$issued = 0;
-	if ($_POST['technology'])
-		$subCategory = $_POST['technology'];
-	else
-		$subCategory = NULL;
+	//if ($_POST['subCategorySelect'])
+	//$subCategory = $_POST['subCategorySelect'];
+	//else
+	$subCategory = NULL;
 	//Dont add `id` column
 	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
 	if ($conn->query($sql) === TRUE) {
@@ -152,6 +152,18 @@ if (isset($_POST['addBook'])) {
 								<label for="category">Category</label>
 								<input type="text" name="category" id="category" />
 							</div>
+							<form name="myform" id="myForm">
+								<div class="field half">
+									<select size="1" name="mainCategorySelect" id="mainCategorySelect" required />
+									<option value="" selected="selected">-- Select Category--</option>
+									</select>
+								</div>
+								<div class="field half">
+									<select size="1" name="subCategorySelect" id="subCategorySelect" required />
+									<option value="" selected="selected">-- Select Sub-Category --</option>
+									</select>
+								</div>
+							</form>
 							<div class="field half">
 								<label for="isbn">ISBN</label>
 								<input type="text" name="isbn" id="isbn" />
@@ -177,25 +189,6 @@ if (isset($_POST['addBook'])) {
 								<input type="number" name="quantity" id="quantity" />
 							</div>
 							<div class="field half">
-								<label for="category" class="field half">Category</label>
-								<select class="field half" name="category1" id="category1" onclick="autoBookId(this.value)" required>
-									<option value=""> </option>
-									<option value="tech"> Tech </option>
-									<option value="nonTech"> Non-Tech </option>
-								</select>
-								<select class="field half" name="technology" id="technology" hidden="true" onclick="autoTechId(this.value)">
-									<option value=""> </option>
-									<option value="Artificial Intelligence"> Artificial Intelligence </option>
-									<option value="Database Design"> Database Design </option>
-									<option value="Electronics and Applications"> Electronics and Applications </option>
-									<option value="Network"> Network </option>
-									<option value="Programming"> Programming </option>
-									<option value="Software Engineering"> Software Engineering </option>
-									<option value="System Programming"> System Programming </option>
-								</select>
-								<br><br>
-							</div>
-							<div class="field half">
 								<label for="bookId">Book ID</label>
 								<input type="text" name="bookId" id="bookId" />
 							</div>
@@ -211,7 +204,7 @@ if (isset($_POST['addBook'])) {
 							</div>
 						</div>
 						<ul class="actions">
-							<li><input type="submit" value="Add Book" name="addBook" class="primary" /></li>
+							<li><input type="submit" value="Add Book" name="addBook" class="primary"/></li>
 							<li><input type="reset" value="Clear" /></li>
 						</ul>
 					</form>
@@ -236,7 +229,7 @@ if (isset($_POST['addBook'])) {
 									</div>
 
 									<div class="col-auto">
-										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" onclick="display()" value="submit">
+										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" value="submit">
 											Search
 										</button>
 									</div>
@@ -382,13 +375,13 @@ if (isset($_POST['addBook'])) {
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
 	<script src="main.js"></script>
 
 	<!-- variables declared without var are global
@@ -455,35 +448,6 @@ if (isset($_POST['addBook'])) {
 			}
 		}
 
-
-		function autoTechId(category) {
-			var techId;
-			switch (category) {
-				case "Artificial Intelligence":
-					techId = "TECH-AI";
-					break;
-				case "Database Design":
-					techId = "TECH-DD";
-					break;
-				case "Electronics and Applications":
-					techId = "TECH-EA";
-					break;
-				case "Network":
-					techId = "TECH-NT";
-					break;
-				case "Programming":
-					techId = "TECH-PG";
-					break;
-				case "Software Engineering":
-					techId = "TECH-SE";
-					break;
-				case "System Programming":
-					techId = "TECH-SP";
-					break;
-			}
-			document.getElementById('bookId').value = techId;
-		}
-
 		function display() {
 			// Show alert
 			document.querySelector('.alert').style.display = 'block';
@@ -497,6 +461,69 @@ if (isset($_POST['addBook'])) {
 			document.getElementById('addBook').reset();
 
 		}
+
+		var categoryInfo = {
+      "Technology": {
+        "Artificial Intelligence": ["TECH-AI"],
+        "Database Design": ["TECH-DD"],
+        "Electronics and Applications": ["TECH-EA"],
+        "Network": ["TECH-NT"],
+        "Programming": ["TECH-PG"],
+        "Software Engineering": ["TECH-SE"],
+        "System Programming": ["TECH-SP"]
+      },
+      "General Science and Humanities": {
+        "Physics": ["GSH-PHY"],
+        "Chemistry": ["GSH-CHEM"],
+        "Maths": ["GSH-MAT"]
+      },
+      "Fiction": []
+    }
+
+    // To select category
+    window.onload = function() {
+
+      var mainCategorySelect = document.getElementById("mainCategorySelect");
+      var subCategorySelect = document.getElementById("subCategorySelect");
+      var mainCategory = "";
+      var subCategory = "";
+
+      //Load main categories
+      for (mainCategory in categoryInfo) {
+        mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
+      }
+
+      //Main Category Changed
+      mainCategorySelect.onchange = function() {
+
+        document.getElementById('bookId').value = ""; //resets bookID
+        subCategorySelect.length = 1; // remove all options bar first
+
+        if (this.selectedIndex < 1) {
+          document.getElementById('subCategorySelect').hidden = true;
+          return; // done
+        }
+
+        var check = categoryInfo[this.value];
+        if (check.length == 0) // hides sub category if not available
+          document.getElementById('subCategorySelect').hidden = true;
+        else
+          document.getElementById('subCategorySelect').hidden = false;
+        for (subCategory in categoryInfo[this.value]) {
+          subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
+        }
+      }
+
+      subCategorySelect.onchange = function() {
+
+        document.getElementById('bookId').value = ""; //resets bookID
+        if (this.selectedIndex < 1)
+          return; // done
+        var categoryID = categoryInfo[mainCategorySelect.value][this.value];
+        document.getElementById('bookId').value = categoryID;
+
+      }
+    }
 	</script>
 
 </body>
