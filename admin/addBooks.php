@@ -148,6 +148,7 @@ if (isset($_POST['addBook'])) {
 								<label for="author">Author</label>
 								<input type="text" name="author" id="author" />
 							</div>
+<<<<<<< HEAD
 							<div class="field half">
 								<label for="category">Category</label>
 								<input type="text" name="category" id="category" />
@@ -164,6 +165,9 @@ if (isset($_POST['addBook'])) {
 									</select>
 								</div>
 							</form>
+=======
+							
+>>>>>>> 028d496288a51c34910376030aa9de62461e1b95
 							<div class="field half">
 								<label for="isbn">ISBN</label>
 								<input type="text" name="isbn" id="isbn" />
@@ -184,13 +188,40 @@ if (isset($_POST['addBook'])) {
 								<label for="money">Price</label>
 								<input type="text" name="money" id="money" />
 							</div>
+							
+							<div class="field half">
+<<<<<<< HEAD
+=======
+								<label for="category" class="field half">Category</label>
+								<select class="field half" name="category1" id="category1" onclick="autoBookId(this.value)" required>
+									<option value=""> </option>
+									<option value="tech"> Tech </option>
+									<option value="nonTech"> Non-Tech </option>
+								</select>
+								</div>
+								<div class="field half">
+								<label for="category" class="field half">Sub-category</label>	
+								<select class="field half" name="technology" id="technology" hidden="true" onclick="autoTechId(this.value)">
+									<option value=""> </option>
+									<option value="Artificial Intelligence"> Artificial Intelligence </option>
+									<option value="Database Design"> Database Design </option>
+									<option value="Electronics and Applications"> Electronics and Applications </option>
+									<option value="Network"> Network </option>
+									<option value="Programming"> Programming </option>
+									<option value="Software Engineering"> Software Engineering </option>
+									<option value="System Programming"> System Programming </option>
+								</select>
+								<br><br>
+							</div>
+							
+							<div class="field half">
+>>>>>>> 028d496288a51c34910376030aa9de62461e1b95
+								<label for="bookId">Book ID</label>
+								<input type="text" name="bookId" id="bookId" />
+							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
 								<input type="number" name="quantity" id="quantity" />
-							</div>
-							<div class="field half">
-								<label for="bookId">Book ID</label>
-								<input type="text" name="bookId" id="bookId" />
 							</div>
 
 							<div class="field">
@@ -227,6 +258,7 @@ if (isset($_POST['addBook'])) {
 										</span>
 										</fieldset>
 									</div>
+									</br>
 
 									<div class="col-auto">
 										<button type="submit" class="btn btn-info mb-2 btn-lg" style="width: 130px;" value="submit">
@@ -362,13 +394,7 @@ if (isset($_POST['addBook'])) {
 							?>
 						</div>
 					</section>
-					<section>
-						<div class="contact-method">
-							<span class="icon solid alt fa-phone"></span>
-							<h3>Just another section</h3>
-							<span>blah!</span>
-						</div>
-					</section>
+
 				</section>
 			</div>
 		</section>
