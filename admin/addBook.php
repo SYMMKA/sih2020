@@ -422,8 +422,6 @@ if (isset($_POST['addBook'])) {
 
       var mainCategorySelect = document.getElementById("mainCategorySelect");
       var subCategorySelect = document.getElementById("subCategorySelect");
-      var mainCategory = "";
-      var subCategory = "";
 
       //Load main categories
       for (mainCategory in categoryInfo) {
