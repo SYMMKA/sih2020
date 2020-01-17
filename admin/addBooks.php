@@ -1,9 +1,9 @@
 <?php
 //DB CONNECTION====================================
-$servername = "remotemysql.com";
-$username = "2qTzr9mwEz";
-$password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "books";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
@@ -432,19 +432,6 @@ if (isset($_POST['addBook'])) {
 	</script>
 
 	<script>
-		function autoBookId(category) {
-			switch (category) {
-				case "tech":
-					document.getElementById('technology').hidden = false;
-					document.getElementById('technology').value = "";
-					break;
-				case "nonTech":
-					document.getElementById('technology').hidden = true;
-					document.getElementById('technology').value = "";
-					document.getElementById('bookId').value = "NON_TECH";
-					break;
-			}
-		}
 
 		function display() {
 			// Show alert
@@ -483,8 +470,6 @@ if (isset($_POST['addBook'])) {
 
       var mainCategorySelect = document.getElementById("mainCategorySelect");
       var subCategorySelect = document.getElementById("subCategorySelect");
-      var mainCategory = "";
-      var subCategory = "";
 
       //Load main categories
       for (mainCategory in categoryInfo) {

@@ -64,10 +64,10 @@
           <?php
           if (isset($_POST['voice-search'])) {
             //DB CONNECTION====================================
-            $servername = "remotemysql.com";
-            $username = "2qTzr9mwEz";
-            $password = "u931TbHEs5";
-            $database = "2qTzr9mwEz";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "books";
 
             //mysql_connect($serverName, $userName, $password) or die(mysql_error());
             //mysql_select_db($databaseName) or die(mysql_error());
