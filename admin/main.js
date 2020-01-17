@@ -55,10 +55,10 @@ function _parseTranscript(e) {
 function _transcriptHandler(e) {
   var speechOutput = _parseTranscript(e);
   $searchInput.val(speechOutput);
+  window.SpeechRecognition.stop();
 
   //$result.html(speechOutput);
   if (e.results[0].isFinal) {
-    window.SpeechRecognition.stop();
   }
 }
 
