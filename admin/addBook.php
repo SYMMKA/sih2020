@@ -1,9 +1,13 @@
 <?php
 //DB CONNECTION====================================
-$servername = "remotemysql.com";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "books";
+/*$servername = "remotemysql.com";
 $username = "2qTzr9mwEz";
 $password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
+$database = "2qTzr9mwEz";*/
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
@@ -64,8 +68,6 @@ if (isset($_POST['addBook'])) {
   }
   $conn->close();
 ?>
-  <script>
-  </script>
 <?php
 
 }
@@ -271,7 +273,7 @@ if (isset($_POST['addBook'])) {
             <br>
             <br>
 
-            <select id="subCategorySelect" size="1" hidden="true" required>
+            <select id="subCategorySelect" size="1" disabled="true" required>
               <option value="" selected="selected">-- Select Sub-Category--</option>
             </select>
           </form>
@@ -433,15 +435,15 @@ if (isset($_POST['addBook'])) {
         subCategorySelect.length = 1; // remove all options bar first
 
         if (this.selectedIndex < 1) {
-          document.getElementById('subCategorySelect').hidden = true;
+          document.getElementById('subCategorySelect').disabled = true;
           return; // done
         }
 
         var check = categoryInfo[this.value];
         if (check.length == 0) // hides sub category if not available
-          document.getElementById('subCategorySelect').hidden = true;
+          document.getElementById('subCategorySelect').disabled = true;
         else
-          document.getElementById('subCategorySelect').hidden = false;
+          document.getElementById('subCategorySelect').disabled = false;
         for (subCategory in categoryInfo[this.value]) {
           subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
         }
