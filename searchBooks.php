@@ -56,7 +56,8 @@
             </div>
           </div>
         </form>
-        <div class="card-deck" style="padding:100px; background-color: #222831;">
+        <div class="row" style="padding:100px; background-color: #222831;">
+			
 
 
 
@@ -103,7 +104,7 @@
               }
 
 
-              echo ' <div class="card text-center" style="border:none;">
+              echo '<div class="col-sm-3"> <div class="card text-center" style="border:none;">
            <img class="card-img-top" src="' . $imgLink[$i] . '" alt="No Image" style="height:300px; width:auto" >
            <div class="card-body text-white"  style="background-color: #393e46">
              <h5 class="card-title">' . $title[$i] . '</h5>
@@ -115,13 +116,13 @@
            <div class="card-footer" style="border:none; background-color: #393e46 ">
            <a href="#" class="btn btn-info" >Issue Book</a>
     </div>
-         </div>';
+         </div></div>';
             }
             $i++;
           }
           ?>
 
-        </div>
+        
       </div>
     </section>
 
