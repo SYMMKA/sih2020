@@ -161,15 +161,22 @@ $i++;}
 	</div>
 
 	<div class="inner">
-						<div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
-							<form id="search-form" method="post">
+						
+	<div class="col-auto">
+	<label for="email">email</label>	
+									</div>						
+	
+	<form id="issue-form" method="post">
 								<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-				
+								<div class="field">
+								<label for="email">email</label>
+								<input type="text" name="email" id="email" />
+							
 									</br>
 
 									<div class="col-auto">
 										<button type="submit"  style="width: 130px;" value="submit">
-											Search
+											Issue Book
 										</button>
 									</div>
 								</div>

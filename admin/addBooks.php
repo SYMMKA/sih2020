@@ -270,8 +270,8 @@ if (isset($_POST['addBook'])) {
 								$i = 0;
 								foreach ($results as $item) {
 									$title[$i] = $item['volumeInfo']['title'];
-									$author[$i] = @implode(",", $item['volumeInfo']['authors']);
-									$category[$i] = @implode(",", $item['volumeInfo']['categories']);
+									$author[$i] = @implode(",", $item['volumeInfo']['authors']); //implode for array of strings
+									$category[$i] = @implode(",", $item['volumeInfo']['categories']); //implode for array of strings
 									$publisher[$i] = $item['volumeInfo']['publisher'];
 									$publishedDate[$i] = $item['volumeInfo']['publishedDate'];
 									//volumeInfo.industryIdentifiers[].type
