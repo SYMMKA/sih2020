@@ -19,9 +19,11 @@ if (isset($_POST['addBook'])) {
 		$author2 = $_POST['author'];
 	else
 		$author2 = NULL;
-	//if ($_POST['mainCategorySelect'])
-	//$category2 = $_POST['mainCategorySelect'];
-	//else
+	if ($_POST['mainCategorySelect']){
+	$category2 = $_POST['mainCategorySelect'];
+	echo $category2;
+	}
+	else
 	$category2 = NULL;
 	if ($_POST['publisher'])
 		$publisher2 = $_POST['publisher'];
@@ -52,9 +54,9 @@ if (isset($_POST['addBook'])) {
 	else
 		$imgValue2 = NULL;
 	$issued = 0;
-	//if ($_POST['subCategorySelect'])
-	//$subCategory = $_POST['subCategorySelect'];
-	//else
+	if ($_POST['subCategorySelect'])
+	$subCategory = $_POST['subCategorySelect'];
+	else
 	$subCategory = NULL;
 	//Dont add `id` column
 	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
@@ -84,7 +86,7 @@ if (isset($_POST['addBook'])) {
 	<title>Add Books</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="../assets/css/main.css" />
+	<link rel="stylesheet" href="../assets/css/maicn.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 </head>
@@ -152,18 +154,18 @@ if (isset($_POST['addBook'])) {
 								<label for="category">Category</label>
 								<input type="text" name="category" id="category" />
 							</div>
-							<form name="myform" id="myForm">
-								<div class="field half">
-									<select size="1" name="mainCategorySelect" id="mainCategorySelect" required />
-									<option value="" selected="selected">-- Select Category--</option>
+						
+								<div class="field half" id="mainCat">
+									<select size="1" name="mainCategorySelect" id="mainCategorySelect" class="mainCategorySelect" required />
+									<option value=""  >-- Select Category--</option>
 									</select>
 								</div>
-								<div class="field half">
-									<select size="1" name="subCategorySelect" id="subCategorySelect" required />
-									<option value="" selected="selected">-- Select Sub-Category --</option>
+								<div class="field half" id="subCat" >
+									<select size="1" name="subCategorySelect" id="subCategorySelect" class="subCategorySelect" required />
+									<option value=""  >-- Select Sub-Category --</option>
 									</select>
 								</div>
-							</form>
+							
 							<div class="field half">
 								<label for="isbn">ISBN</label>
 								<input type="text" name="isbn" id="isbn" />
@@ -494,17 +496,27 @@ if (isset($_POST['addBook'])) {
 
         document.getElementById('bookId').value = ""; //resets bookID
         subCategorySelect.length = 1; // remove all options bar first
-
+	
         if (this.selectedIndex < 1) {
           document.getElementById('subCategorySelect').hidden = true;
+		  
           return; // done
         }
 
-        var check = categoryInfo[this.value];
-        if (check.length == 0) // hides sub category if not available
-          document.getElementById('subCategorySelect').hidden = true;
-        else
-          document.getElementById('subCategorySelect').hidden = false;
+		var check = categoryInfo[this.value];
+		
+		
+		if (check.length == 0) 
+		{// hides sub category if not available
+		
+		  document.getElementById('subCategorySelect').disabled = true;
+		}
+		else{
+			
+		  document.getElementById('subCategorySelect').disabled = false;
+		}
+		
+		  
         for (subCategory in categoryInfo[this.value]) {
           subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
         }
@@ -517,9 +529,10 @@ if (isset($_POST['addBook'])) {
           return; // done
         var categoryID = categoryInfo[mainCategorySelect.value][this.value];
         document.getElementById('bookId').value = categoryID;
-
+		
       }
-    }
+	}
+	
 	</script>
 
 </body>
