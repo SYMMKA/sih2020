@@ -61,42 +61,42 @@
 
 			</div>
 
-				<div class="inner">
-						<div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
-							<form id="search-form" method="post">
-								<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-									<div class="col-md-4">
-										<label class="sr-only " for="inlineFormInput">Name</label>
-										<input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" />
-										<span id="voice-trigger">
-											<svg width="32px" height="32px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10px" y="10px" viewBox="0 25 58 58" style=" overflow: visible;" xml:space="preserve">
-												<g>
-													<path d="M44,28c-0.552,0-1,0.447-1,1v6c0,7.72-6.28,14-14,14s-14-6.28-14-14v-6c0-0.553-0.448-1-1-1s-1,0.447-1,1v6   c0,8.485,6.644,15.429,15,15.949V56h-5c-0.552,0-1,0.447-1,1s0.448,1,1,1h12c0.552,0,1-0.447,1-1s-0.448-1-1-1h-5v-5.051   c8.356-0.52,15-7.465,15-15.949v-6C45,28.447,44.552,28,44,28z" />
-													<path d="M29,46c6.065,0,11-4.935,11-11V11c0-6.065-4.935-11-11-11S18,4.935,18,11v24C18,41.065,22.935,46,29,46z M20,11   c0-4.963,4.038-9,9-9s9,4.037,9,9v24c0,4.963-4.038,9-9,9s-9-4.037-9-9V11z" />
-												</g>
-											</svg>
-										</span>
-										</fieldset>
-									</div>
-									</br>
+			<div class="inner">
+				<div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
+					<form id="search-form" method="post">
+						<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
+							<div class="col-md-4">
+								<label class="sr-only " for="inlineFormInput">Name</label>
+								<input type="text" class="form-control mb-2 form-control form-control-lg" id="search-input" placeholder="Book Name" name="voice-search" />
+								<span id="voice-trigger">
+									<svg width="32px" height="32px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="10px" y="10px" viewBox="0 35 58 58" style=" overflow: visible;" xml:space="preserve">
+										<g>
+											<path d="M44,28c-0.552,0-1,0.447-1,1v6c0,7.72-6.28,14-14,14s-14-6.28-14-14v-6c0-0.553-0.448-1-1-1s-1,0.447-1,1v6   c0,8.485,6.644,15.429,15,15.949V56h-5c-0.552,0-1,0.447-1,1s0.448,1,1,1h12c0.552,0,1-0.447,1-1s-0.448-1-1-1h-5v-5.051   c8.356-0.52,15-7.465,15-15.949v-6C45,28.447,44.552,28,44,28z" />
+											<path d="M29,46c6.065,0,11-4.935,11-11V11c0-6.065-4.935-11-11-11S18,4.935,18,11v24C18,41.065,22.935,46,29,46z M20,11   c0-4.963,4.038-9,9-9s9,4.037,9,9v24c0,4.963-4.038,9-9,9s-9-4.037-9-9V11z" />
+										</g>
+									</svg>
+								</span>
+								</fieldset>
+							</div>
+							</br>
 
-									<div class="col-auto">
-										<button type="submit"  style="width: 130px;" value="submit">
-											Search
-										</button>
-									</div>
-								</div>
-							</form>
+							<div class="col-auto">
+								<button type="submit" style="width: 130px;" value="submit">
+									Search
+								</button>
+							</div>
 						</div>
+					</form>
 				</div>
-
-			<div class="card-deck" style="padding:100px; background-color: #222831;">
-
+			</div>
 
 
+			<?php
+			if (isset($_POST['voice-search'])) {
+			?>
+				<div class="card-deck" style="padding:100px; background-color: #222831;">
+					<?php
 
-				<?php
-				if (isset($_POST['voice-search'])) {
 					//DB CONNECTION====================================
 					$servername = "localhost";
 					$username = "root";
@@ -131,14 +131,11 @@
 							if ($k == 'author') {
 								$author[$i] = $v;
 							}
-							if ($k == 'description') {
-								$description[$i] = $v;
-							}
 						}
 
 
-						echo ' <div class="card text-center" style="border:none;">
- <img class="card-img-top" src="' . $imgLink[$i] . '" alt="No Image" style="height:300px; width:auto" >
+						echo ' <div class="card text-center" style="border:none; width:500px">
+ <img class="card-img-top" src="' . $imgLink[$i] . '" alt="No Image" style="height:300px;" >
  <div class="card-body text-white"  style="background-color: #393e46">
    <h5 class="card-title">' . $title[$i] . '</h5>
    <h6 class="card-subtitle mb-2 text-muted">' . $author[$i] . '</h6>
@@ -147,48 +144,71 @@
   
  </div>
  <div class="card-footer" style="border:none; background-color: #393e46 ">
- <a href="#" class="btn btn-info" id="'.$i.'" onclick="issue(this.id)" >Issue Book</a>
+ <a href="#" class="btn btn-info" id="' . $i . '" onclick="issue(this.id)" >Issue Book</a>
 </div>
 </div>';
-					
-$i++;}
-				}
-				?>
 
-			</div>
+						$i++;
+					}
+					?>
+				</div>
+			<?php
+			}
+
+			?>
 
 	</section>
 	</div>
 
 	<div class="inner">
-						
-	<div class="col-auto">
-	<label for="email">email</label>	
-									</div>						
-	
-	<form id="issue-form" method="post">
-								<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-								<div class="field">
-								<label for="email">email</label>
-								<input type="text" name="email" id="email" />
-							
-									</br>
+		</br>
+		</br>
 
-									<div class="col-auto">
-										<button type="submit"  style="width: 130px;" value="submit">
-											Issue Book
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
+		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
+			<label>Issue Book</label>
+		</div>
+
+		<form id="issue-form" method="post">
+			<div class="fields">
+				<div class="field half" style="text-align: center;">
+					<label>Title: </label>
+					<label id="title"><?= $title[2] ?></label>
 				</div>
+				<br />
+				<div class="field half" style="text-align: center;">
+					<label>AUthor: </label>
+					<label id="author"><?= $author[2] ?></label>
+				</div>
+				<div class="field half" style="text-align: center;">
+					<label>ISBN: </label>
+					<label id="isbn"><?= $isbn[2] ?></label>
+				</div>
+				<div class="field half" style="text-align: center;">
+					<img src="<?= $imgLink[2] ?>">
+				</div>
+				<div class="field">
+					<label for="email">email</label>
+					<input type="text" name="email" id="email" placeholder="Email address" />
+				</div>
+
+				</br>
+
+			</div>
+			<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
+
+				<div class="col-auto">
+					<button type="submit" style="width: auto;" value="submit">
+						Issue Book
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
 
 
 	<script>
-		function issue(i)
-		{
+		function issue(i) {
 			console.log(i);
 		}
 	</script>
@@ -206,8 +226,8 @@ $i++;}
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="main.js"></script>
 

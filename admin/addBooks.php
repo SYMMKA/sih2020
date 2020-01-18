@@ -462,7 +462,7 @@ if (isset($_POST['addBook'])) {
         "Chemistry": ["GSH-CHEM"],
         "Maths": ["GSH-MAT"]
       },
-      "Fiction": []
+      "Fiction": ["FIC"]
     }
 
     // To select category
