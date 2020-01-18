@@ -81,7 +81,7 @@
 							</br>
 
 							<div class="col-auto">
-								<button type="submit" style="width: 130px;" value="submit">
+								<button type="submit" style="width: 130px; margin-top:-10px;" value="submit">
 									Search
 								</button>
 							</div>
@@ -94,7 +94,7 @@
 			<?php
 			if (isset($_POST['voice-search'])) {
 			?>
-				<div class="card-deck" style="padding:100px; background-color: #222831;">
+				<div class="row">
 					<?php
 
 					//DB CONNECTION====================================
@@ -132,22 +132,22 @@
 								$author[$i] = $v;
 							}
 						}
+					?>
+						<div class="col-sm-3">
+							<div class="card text-center" style="border:none;">
+								<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="No Image" style="height:300px;">
+								<div class="card-body text-white" style="background-color: #393e46">
+									<h5 class="card-title"><?= $title[$i] ?></h5>
+									<h6 class="card-subtitle mb-2 text-muted"><?= $author[$i] ?></h6>
+									<p class="card-text"><?= $isbn[$i] ?></p>
+								</div>
+								<div class="card-footer" style="border:none; background-color: #393e46 ">
+									<a href="#" class="btn btn-info" id="<?= $i ?>" onclick="issue(this.id)">Issue Book</a>
+								</div>
+							</div>
+						</div>
 
-
-						echo ' <div class="card text-center" style="border:none; width:500px">
- <img class="card-img-top" src="' . $imgLink[$i] . '" alt="No Image" style="height:300px;" >
- <div class="card-body text-white"  style="background-color: #393e46">
-   <h5 class="card-title">' . $title[$i] . '</h5>
-   <h6 class="card-subtitle mb-2 text-muted">' . $author[$i] . '</h6>
-   <p class="card-text">' . $isbn[$i] . '</p>
-   
-  
- </div>
- <div class="card-footer" style="border:none; background-color: #393e46 ">
- <a href="#" class="btn btn-info" id="' . $i . '" onclick="issue(this.id)" >Issue Book</a>
-</div>
-</div>';
-
+					<?php
 						$i++;
 					}
 					?>
@@ -159,51 +159,60 @@
 
 	</section>
 	</div>
+	<?php
+	if (isset($_POST['voice-search'])) {
 
-	<div class="inner">
-		</br>
-		</br>
+	?>
+		<div class="inner">
+			</br>
+			</br>
 
-		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-			<label>Issue Book</label>
+			<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
+				<label>Issue Book</label>
+			</div>
+
+			<form id="issue-form" method="post">
+				<div class="fields">
+					<div class="field half" style="text-align: center;">
+						<label>Title: </label>
+						<label id="title"><?= $title[2] ?></label>
+					</div>
+					<br />
+					<div class="field half" style="text-align: center;">
+						<label>AUthor: </label>
+						<label id="author"><?= $author[2] ?></label>
+					</div>
+					<div class="field half" style="text-align: center;">
+						<label>ISBN: </label>
+						<label id="isbn"><?= $isbn[2] ?></label>
+					</div>
+					<div class="field half" style="text-align: center;">
+						<img src="<?= $imgLink[2] ?>">
+					</div>
+					<div class="field">
+						<label for="email">email</label>
+						<input type="text" name="email" id="email" placeholder="Email address" />
+					</div>
+
+					</br>
+
+				</div>
+				<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
+
+					<div class="col-auto">
+						<button type="submit" style="width: auto;" value="submit">
+							Issue Book
+						</button>
+					</div>
+				</div>
+			</form>
 		</div>
+	<?php
 
-		<form id="issue-form" method="post">
-			<div class="fields">
-				<div class="field half" style="text-align: center;">
-					<label>Title: </label>
-					<label id="title"><?= $title[2] ?></label>
-				</div>
-				<br />
-				<div class="field half" style="text-align: center;">
-					<label>AUthor: </label>
-					<label id="author"><?= $author[2] ?></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>ISBN: </label>
-					<label id="isbn"><?= $isbn[2] ?></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<img src="<?= $imgLink[2] ?>">
-				</div>
-				<div class="field">
-					<label for="email">email</label>
-					<input type="text" name="email" id="email" placeholder="Email address" />
-				</div>
+	}
+	?>
 
-				</br>
 
-			</div>
-			<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-
-				<div class="col-auto">
-					<button type="submit" style="width: auto;" value="submit">
-						Issue Book
-					</button>
-				</div>
-			</div>
-		</form>
-	</div>
 
 
 
