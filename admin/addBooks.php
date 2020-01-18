@@ -98,7 +98,7 @@ if (isset($_POST['addBook'])) {
 
 		<!-- Header -->
 		<header id="header">
-			<a href="index.html" class="logo"><strong>Library Management System</strong> <span>by Neon Genesis</span></a>
+			<a href="../index.php" class="logo"><strong>Library Management System</strong> <span>by Neon Genesis</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
 			</nav>
@@ -107,17 +107,17 @@ if (isset($_POST['addBook'])) {
 		<!-- Menu -->
 		<nav id="menu">
 			<ul class="links">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="generic.html">Add Books</a></li>
-				<li><a href="issue.php">Issue Books</a></li>
-				<li><a href="elements.html">Return Books</a></li>
-				<li><a href="landing.html">Search Books</a></li>
+				<li><a href="../index.php">Home</a></li>
+				<li><a href="searchBooks.php">Search Books</a></li>
+				<li><a href="searchBooks.php">Issue Books</a></li>
+				<li><a href="return.php">Return Books</a></li>
 			</ul>
 			<ul class="actions stacked">
 				<li><a href="#" class="button primary fit">Get Started</a></li>
 				<li><a href="#" class="button fit">Log In</a></li>
 			</ul>
 		</nav>
+
 
 		<!-- Main -->
 		<div id="main" class="alt">
@@ -523,6 +523,14 @@ if (isset($_POST['addBook'])) {
 			}
 		}
 	</script>
+
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 </body>
 

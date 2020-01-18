@@ -1,3 +1,60 @@
+<?php
+//DB CONNECTION====================================
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "issued";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+if (isset($_POST['issueBook'])) {
+	if ($_POST['stud_name'])
+		$st_name = $_POST['stud_name'];
+	else
+		$st_name = NULL;
+	if ($_POST['stud_email'])
+		$st_email = $_POST['stud_email'];
+	else
+		$st_email = NULL;
+	if ($_POST['stud_id']) {
+		$st_id = $_POST['stud_id'];
+		echo $st_id;
+	} else
+		$st_id = NULL;
+	if ($_POST['title'])
+		$title2 = $_POST['title'];
+	else
+		$title2 = NULL;
+	if ($_POST['author'])
+		$author = $_POST['author'];
+	else
+		$author = NULL;
+	if ($_POST['id'])
+		$id = $_POST['id'];
+	else
+		$id = NULL;
+	if ($_POST['issue_date'])
+		$issue_date = $_POST['issue_date'];
+	else
+		$issue_date = NULL;
+
+	//Dont add `id` column
+	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `id`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
+	if ($conn->query($sql) === TRUE) {
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+	$conn->close();
+?>
+	<script>
+	</script>
+<?php
+
+}
+?>
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -24,20 +81,21 @@
 
 			<!-- Header -->
 			<header id="header">
-				<a href="index.html" class="logo"><strong>Library Management System</strong> <span>by Neon Genesis</span></a>
+				<a href="../index.php" class="logo"><strong>Library Management System</strong> <span>by Neon Genesis</span></a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
 			</header>
 
+
+
 			<!-- Menu -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="generic.html">Add Books</a></li>
+					<li><a href="../index.php">Home</a></li>
+					<li><a href="addBooks.php">Add Books</a></li>
 					<li><a href="issue.php">Issue Books</a></li>
-					<li><a href="elements.html">Return Books</a></li>
-					<li><a href="landing.html">Search Books</a></li>
+					<li><a href="return.php">Return Books</a></li>
 				</ul>
 				<ul class="actions stacked">
 					<li><a href="#" class="button primary fit">Get Started</a></li>
@@ -217,13 +275,7 @@
 	</script>
 
 	<!-- Scripts -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/jquery.scrolly.min.js"></script>
-	<script src="../assets/js/jquery.scrollex.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="../assets/js/browser.min.js"></script>
-	<script src="../assets/js/breakpoints.min.js"></script>
-	<script src="../assets/js/util.js"></script>
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
@@ -281,6 +333,13 @@
 			}
 		}
 	</script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 
 </body>
