@@ -353,9 +353,11 @@ if (isset($_POST['addBook'])) {
 													<td colspan="2"><img src="<?= $imgLink[$i] ?>"></td>
 												</tr>
 											<?php } ?>
-											<tr>
-												<td colspan="2"><button type="submit"><a href="<?= $preview[$i] ?>" target="_blank" class="btn btn-primary">Preview</a></button></td>
-											</tr>
+											<?php if ($imgLink[$i]) { ?>
+												<tr>
+													<td colspan="2"><button type="submit"><a href="<?= $preview[$i] ?>" target="_blank" class="btn btn-primary">Preview</a></button></td>
+												</tr>
+											<?php } ?>
 											<tr>
 												<td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
 											</tr>
