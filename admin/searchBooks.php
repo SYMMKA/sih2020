@@ -134,6 +134,7 @@
 						}
 					?>
 						<div class="col-sm-3">
+
 							<div class="card text-center" style="border:none;">
 								<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="No Image" style="height:300px;">
 								<div class="card-body text-white" style="background-color: #393e46">
@@ -142,9 +143,15 @@
 									<p class="card-text"><?= $isbn[$i] ?></p>
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
-									<a href="#" class="btn btn-info" id="<?= $i ?>" onclick="issue(this.id)">Issue Book</a>
+									<div class="col-auto">
+										<button type="submit" class="btn btn-info" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)">
+											Issue Book
+										</button>
+									</div>
+
 								</div>
 							</div>
+
 						</div>
 
 					<?php
@@ -159,58 +166,45 @@
 
 	</section>
 	</div>
-	<?php
-	if (isset($_POST['voice-search'])) {
 
-	?>
-		<div class="inner">
-			</br>
-			</br>
+	<div class="inner">
+		</br>
+		</br>
 
-			<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-				<label>Issue Book</label>
+		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
+			<label>Issue Book</label>
+		</div>
+
+
+		<div class="fields">
+			<div class="field half" style="text-align: center;">
+				<label>Title: </label>
+				<label id="booktitle"></label>
+			</div>
+			<br />
+			<div class="field half" style="text-align: center;">
+				<label>AUthor: </label>
+				<label id="bookauthor"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<label>ISBN: </label>
+				<label id="bookisbn"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<img src="" id="bookimgLink">
+			</div>
+			<div class="field">
+				<label for="email">email</label>
+				<input type="text" name="email" id="email" placeholder="Email address" />
 			</div>
 
-			<form id="issue-form" method="post">
-				<div class="fields">
-					<div class="field half" style="text-align: center;">
-						<label>Title: </label>
-						<label id="title"><?= $title[2] ?></label>
-					</div>
-					<br />
-					<div class="field half" style="text-align: center;">
-						<label>AUthor: </label>
-						<label id="author"><?= $author[2] ?></label>
-					</div>
-					<div class="field half" style="text-align: center;">
-						<label>ISBN: </label>
-						<label id="isbn"><?= $isbn[2] ?></label>
-					</div>
-					<div class="field half" style="text-align: center;">
-						<img src="<?= $imgLink[2] ?>">
-					</div>
-					<div class="field">
-						<label for="email">email</label>
-						<input type="text" name="email" id="email" placeholder="Email address" />
-					</div>
+			</br>
 
-					</br>
-
-				</div>
-				<div class="form-row align-items-center justify-content-center " style="padding-top: 5rem;">
-
-					<div class="col-auto">
-						<button type="submit" style="width: auto;" value="submit">
-							Issue Book
-						</button>
-					</div>
-				</div>
-			</form>
 		</div>
-	<?php
 
-	}
-	?>
+
+	</div>
+
 
 
 
@@ -239,6 +233,54 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="main.js"></script>
+	<script>
+		title = <?php echo json_encode($title); ?>
+	</script>
+	<script>
+		author = <?php echo json_encode($author); ?>
+	</script>
+	<script>
+		category = <?php echo json_encode($category); ?>
+	</script>
+	<script>
+		publisher = <?php echo json_encode($publisher); ?>
+	</script>
+	<script>
+		publishedDate = <?php echo json_encode($publishedDate); ?>
+	</script>
+	<script>
+		isbn = <?php echo json_encode($isbn); ?>
+	</script>
+	<script>
+		pageCount = <?php echo json_encode($pageCount); ?>
+	</script>
+	<script>
+		money = <?php echo json_encode($money); ?>
+	</script>
+	<script>
+		imgLink = <?php echo json_encode($imgLink); ?>
+	</script>
+	<script>
+		function autoFill(i) {
+			// donot remove the comments in this method if the id isnt predefined in html form
+
+			document.getElementById('booktitle').textContent = title[i];
+			console.log(title[i]);
+			document.getElementById('bookauthor').textContent = author[i];
+			document.getElementById('bookcategory').value = category[i];
+			document.getElementById('bookpublisher').value = publisher[i];
+			document.getElementById('bookpublishedDate').value = publishedDate[i];
+			document.getElementById('bookisbn').textContent = isbn[i];
+			document.getElementById('bookpageCount').value = pageCount[i];
+			document.getElementById('bookmoney').value = money[i];
+			if (imgLink[i]) {
+				document.getElementById('bookimgLink').src = imgLink[i];
+				console.log(imgLink[i]);
+				document.getElementById('bookimgValue').value = imgLink[i];
+				document.getElementById('bookimgLink').hidden = false;
+			}
+		}
+	</script>
 
 
 </body>

@@ -19,12 +19,11 @@ if (isset($_POST['addBook'])) {
 		$author2 = $_POST['author'];
 	else
 		$author2 = NULL;
-	if ($_POST['mainCategorySelect']){
-	$category2 = $_POST['mainCategorySelect'];
-	echo $category2;
-	}
-	else
-	$category2 = NULL;
+	if ($_POST['mainCategorySelect']) {
+		$category2 = $_POST['mainCategorySelect'];
+		echo $category2;
+	} else
+		$category2 = NULL;
 	if ($_POST['publisher'])
 		$publisher2 = $_POST['publisher'];
 	else
@@ -55,9 +54,9 @@ if (isset($_POST['addBook'])) {
 		$imgValue2 = NULL;
 	$issued = 0;
 	if ($_POST['subCategorySelect'])
-	$subCategory = $_POST['subCategorySelect'];
+		$subCategory = $_POST['subCategorySelect'];
 	else
-	$subCategory = NULL;
+		$subCategory = NULL;
 	//Dont add `id` column
 	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
 	if ($conn->query($sql) === TRUE) {
@@ -154,18 +153,18 @@ if (isset($_POST['addBook'])) {
 								<label for="category">Category</label>
 								<input type="text" name="category" id="category" />
 							</div>
-						
-								<div class="field half" id="mainCat">
-									<select size="1" name="mainCategorySelect" id="mainCategorySelect" class="mainCategorySelect" required />
-									<option value=""  >-- Select Category--</option>
-									</select>
-								</div>
-								<div class="field half" id="subCat" >
-									<select size="1" name="subCategorySelect" id="subCategorySelect" class="subCategorySelect" required />
-									<option value=""  >-- Select Sub-Category --</option>
-									</select>
-								</div>
-							
+
+							<div class="field half" id="mainCat">
+								<select size="1" name="mainCategorySelect" id="mainCategorySelect" class="mainCategorySelect" required />
+								<option value="">-- Select Category--</option>
+								</select>
+							</div>
+							<div class="field half" id="subCat">
+								<select size="1" name="subCategorySelect" id="subCategorySelect" class="subCategorySelect" required />
+								<option value="">-- Select Sub-Category --</option>
+								</select>
+							</div>
+
 							<div class="field half">
 								<label for="isbn">ISBN</label>
 								<input type="text" name="isbn" id="isbn" />
@@ -186,7 +185,7 @@ if (isset($_POST['addBook'])) {
 								<label for="money">Price</label>
 								<input type="text" name="money" id="money" />
 							</div>
-							
+
 							<div class="field half">
 								<label for="bookId">Book ID</label>
 								<input type="text" name="bookId" id="bookId" />
@@ -207,7 +206,7 @@ if (isset($_POST['addBook'])) {
 							</div>
 						</div>
 						<ul class="actions">
-							<li><input type="submit" value="Add Book" name="addBook" class="primary"/></li>
+							<li><input type="submit" value="Add Book" name="addBook" class="primary" /></li>
 							<li><input type="reset" value="Clear" /></li>
 						</ul>
 					</form>
@@ -288,6 +287,7 @@ if (isset($_POST['addBook'])) {
 									else
 										$money[$i] = NULL;
 									$imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
+									$preview[$i] = $item['accessInfo']['webReaderLink'];
 								?>
 
 
@@ -354,6 +354,9 @@ if (isset($_POST['addBook'])) {
 												</tr>
 											<?php } ?>
 											<tr>
+												<td colspan="2"><button type="submit"><a href="<?= $preview[$i] ?>" target="_blank" class="btn btn-primary">Preview</a></button></td>
+											</tr>
+											<tr>
 												<td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
 											</tr>
 
@@ -412,6 +415,9 @@ if (isset($_POST['addBook'])) {
 		imgLink = <?php echo json_encode($imgLink); ?>
 	</script>
 	<script>
+		preview = <?php echo json_encode($preview); ?>
+	</script>
+	<script>
 		function autoFill(i) {
 			// donot remove the comments in this method if the id isnt predefined in html form
 
@@ -432,7 +438,6 @@ if (isset($_POST['addBook'])) {
 	</script>
 
 	<script>
-
 		function display() {
 			// Show alert
 			document.querySelector('.alert').style.display = 'block';
@@ -448,76 +453,73 @@ if (isset($_POST['addBook'])) {
 		}
 
 		var categoryInfo = {
-      "Technology": {
-        "Artificial Intelligence": ["TECH-AI"],
-        "Database Design": ["TECH-DD"],
-        "Electronics and Applications": ["TECH-EA"],
-        "Network": ["TECH-NT"],
-        "Programming": ["TECH-PG"],
-        "Software Engineering": ["TECH-SE"],
-        "System Programming": ["TECH-SP"]
-      },
-      "General Science and Humanities": {
-        "Physics": ["GSH-PHY"],
-        "Chemistry": ["GSH-CHEM"],
-        "Maths": ["GSH-MAT"]
-      },
-      "Fiction": ["FIC"]
-    }
-
-    // To select category
-    window.onload = function() {
-
-      var mainCategorySelect = document.getElementById("mainCategorySelect");
-      var subCategorySelect = document.getElementById("subCategorySelect");
-
-      //Load main categories
-      for (mainCategory in categoryInfo) {
-        mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
-      }
-
-      //Main Category Changed
-      mainCategorySelect.onchange = function() {
-
-        document.getElementById('bookId').value = ""; //resets bookID
-        subCategorySelect.length = 1; // remove all options bar first
-	
-        if (this.selectedIndex < 1) {
-          document.getElementById('subCategorySelect').hidden = true;
-		  
-          return; // done
-        }
-
-		var check = categoryInfo[this.value];
-		
-		
-		if (check.length == 0) 
-		{// hides sub category if not available
-		
-		  document.getElementById('subCategorySelect').disabled = true;
+			"Technology": {
+				"Artificial Intelligence": ["TECH-AI"],
+				"Database Design": ["TECH-DD"],
+				"Electronics and Applications": ["TECH-EA"],
+				"Network": ["TECH-NT"],
+				"Programming": ["TECH-PG"],
+				"Software Engineering": ["TECH-SE"],
+				"System Programming": ["TECH-SP"]
+			},
+			"General Science and Humanities": {
+				"Physics": ["GSH-PHY"],
+				"Chemistry": ["GSH-CHEM"],
+				"Maths": ["GSH-MAT"]
+			},
+			"Fiction": ["FIC"]
 		}
-		else{
-			
-		  document.getElementById('subCategorySelect').disabled = false;
+
+		// To select category
+		window.onload = function() {
+
+			var mainCategorySelect = document.getElementById("mainCategorySelect");
+			var subCategorySelect = document.getElementById("subCategorySelect");
+
+			//Load main categories
+			for (mainCategory in categoryInfo) {
+				mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
+			}
+
+			//Main Category Changed
+			mainCategorySelect.onchange = function() {
+
+				document.getElementById('bookId').value = ""; //resets bookID
+				subCategorySelect.length = 1; // remove all options bar first
+
+				if (this.selectedIndex < 1) {
+					document.getElementById('subCategorySelect').hidden = true;
+
+					return; // done
+				}
+
+				var check = categoryInfo[this.value];
+
+
+				if (check.length == 0) { // hides sub category if not available
+
+					document.getElementById('subCategorySelect').disabled = true;
+				} else {
+
+					document.getElementById('subCategorySelect').disabled = false;
+				}
+
+
+				for (subCategory in categoryInfo[this.value]) {
+					subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
+				}
+			}
+
+			subCategorySelect.onchange = function() {
+
+				document.getElementById('bookId').value = ""; //resets bookID
+				if (this.selectedIndex < 1)
+					return; // done
+				var categoryID = categoryInfo[mainCategorySelect.value][this.value];
+				document.getElementById('bookId').value = categoryID;
+
+			}
 		}
-		
-		  
-        for (subCategory in categoryInfo[this.value]) {
-          subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
-        }
-      }
-
-      subCategorySelect.onchange = function() {
-
-        document.getElementById('bookId').value = ""; //resets bookID
-        if (this.selectedIndex < 1)
-          return; // done
-        var categoryID = categoryInfo[mainCategorySelect.value][this.value];
-        document.getElementById('bookId').value = categoryID;
-		
-      }
-	}
-	
 	</script>
 
 </body>
