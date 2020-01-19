@@ -66,7 +66,7 @@
 						<img src="images/bgbooks.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a class="startPage" href="admin\addBooks.php" id="adminAddBook">Add Book </a></h3>
+						<h3><a class="startPage" href="admin/addBooks.php" id="adminAddBook">Add Book </a></h3>
 						<p>Add a new book to the library</p>
 					</header>
 				</article>
@@ -75,7 +75,7 @@
 						<img src="images/ed-robertson-eeSdJfLfx1A-unsplash.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a class="startPage" href="issue.php" id="adminIssueBook">Issue Book</a></h3>
+						<h3><a class="startPage" href="admin/issue.php" id="adminIssueBook">Issue Book</a></h3>
 						<p>Issue a book of your choice</p>
 					</header>
 				</article>

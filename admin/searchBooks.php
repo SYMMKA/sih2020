@@ -1,9 +1,9 @@
 <?php
 //DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "issued";
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
@@ -42,7 +42,7 @@ if (isset($_POST['issueBook'])) {
 		$issue_date = NULL;
 
 	//Dont add `id` column
-	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `id`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
+	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `id`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$title2', '$author', '$id', '$issue_date')";
 	if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
@@ -154,21 +154,7 @@ if (isset($_POST['issueBook'])) {
 			?>
 				<div class="row">
 					<?php
-
-					//DB CONNECTION====================================
-					$servername = "localhost";
-					$username = "root";
-					$password = "";
-					$database = "books";
-
-					//mysql_connect($serverName, $userName, $password) or die(mysql_error());
-					//mysql_select_db($databaseName) or die(mysql_error());
-					// Create connection
-					$conn = new mysqli($servername, $username, $password, $database);
-					// Check connection
-					if ($conn->connect_error) {
-						die("Connection failed: " . $conn->connect_error);
-					}
+					
 					$searchField = $_POST['voice-search'];
 					$query = "SELECT * FROM books Where title LIKE '%$searchField%'";
 					$returnD = mysqli_query($conn, $query);
@@ -202,9 +188,9 @@ if (isset($_POST['issueBook'])) {
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
-										<button type="submit" class="btn btn-info" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)">
+										<a type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#issueBook">
 											Issue Book
-										</button>
+					</a>
 									</div>
 
 								</div>
@@ -225,7 +211,7 @@ if (isset($_POST['issueBook'])) {
 	</section>
 	</div>
 
-	<div class="inner">
+	<div class="inner" id="issueBook" hidden="true">
 		</br>
 		</br>
 
@@ -241,7 +227,7 @@ if (isset($_POST['issueBook'])) {
 			</div>
 			<br />
 			<div class="field half" style="text-align: center;">
-				<label>AUthor: </label>
+				<label>Author: </label>
 				<label id="bookauthor"></label>
 			</div>
 			<div class="field half" style="text-align: center;">
@@ -262,17 +248,6 @@ if (isset($_POST['issueBook'])) {
 
 
 	</div>
-
-
-
-
-
-
-	<script>
-		function issue(i) {
-			console.log(i);
-		}
-	</script>
 
 	<!-- Scripts -->
 
@@ -316,6 +291,7 @@ if (isset($_POST['issueBook'])) {
 		function autoFill(i) {
 			// donot remove the comments in this method if the id isnt predefined in html form
 
+			document.getElementById('issueBook').hidden = false; //shows issue book page
 			document.getElementById('booktitle').textContent = title[i];
 			console.log(title[i]);
 			document.getElementById('bookauthor').textContent = author[i];
