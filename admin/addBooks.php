@@ -1,9 +1,9 @@
 <?php
 //DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "books";
+$servername = "remotemysql.com";
+$username = "2qTzr9mwEz";
+$password = "u931TbHEs5";
+$database = "2qTzr9mwEz";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
@@ -143,7 +143,7 @@ if (isset($_POST['addBook'])) {
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>
-								<input type="text" name="title" id="title" />
+								<input type="text" name="title" id="title" required />
 							</div>
 							<div class="field half">
 								<label for="author">Author</label>
@@ -355,11 +355,11 @@ if (isset($_POST['addBook'])) {
 											<?php } ?>
 											<?php if ($imgLink[$i]) { ?>
 												<tr>
-													<td colspan="2"><button type="submit"><a href="<?= $preview[$i] ?>" target="_blank" class="btn btn-primary">Preview</a></button></td>
+													<td colspan="2"><button onclick="window.open('<?= $preview[$i] ?>', '_blank')" class="btn btn-primary">Preview</button></td>
 												</tr>
 											<?php } ?>
 											<tr>
-												<td colspan="2"><button type="submit" class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
+												<td colspan="2"><button class="btn btn-info btn-lg" id="<?= $i; ?>" onclick="autoFill(this.id)">Auto Fill</button></td>
 											</tr>
 
 										</thead>

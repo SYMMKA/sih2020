@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-if (isset($_POST['issueBook'])) {
+if (isset($_POST['issue'])) {
 	if ($_POST['stud_name'])
 		$st_name = $_POST['stud_name'];
 	else
@@ -24,25 +24,26 @@ if (isset($_POST['issueBook'])) {
 		echo $st_id;
 	} else
 		$st_id = NULL;
-	if ($_POST['title'])
-		$title2 = $_POST['title'];
+	if ($_POST['issueTitle'])
+		$title2 = $_POST['issueTitle'];
 	else
 		$title2 = NULL;
-	if ($_POST['author'])
-		$author = $_POST['author'];
+	if ($_POST['issueAuthor'])
+		$author = $_POST['issueAuthor'];
 	else
 		$author = NULL;
-	if ($_POST['id'])
-		$id = $_POST['id'];
-	else
-		$id = NULL;
+	// bookID will be assigned after we discuss DB management
+	/*if ($_POST['bookID'])
+		//$bookID = $_POST['bookID'];
+	else*/
+		$bookID = NULL;
 	if ($_POST['issue_date'])
 		$issue_date = $_POST['issue_date'];
 	else
 		$issue_date = NULL;
 
 	//Dont add `id` column
-	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `id`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$title2', '$author', '$id', '$issue_date')";
+	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `bookID`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$title2', '$author', '$bookID', '$issue_date')";
 	if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
@@ -154,7 +155,7 @@ if (isset($_POST['issueBook'])) {
 			?>
 				<div class="row">
 					<?php
-					
+
 					$searchField = $_POST['voice-search'];
 					$query = "SELECT * FROM books Where title LIKE '%$searchField%'";
 					$returnD = mysqli_query($conn, $query);
@@ -188,9 +189,9 @@ if (isset($_POST['issueBook'])) {
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
-										<a type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#issueBook">
+										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#issueBook">
 											Issue Book
-					</a>
+										</button>
 									</div>
 
 								</div>
@@ -211,7 +212,7 @@ if (isset($_POST['issueBook'])) {
 	</section>
 	</div>
 
-	<div class="inner" id="issueBook" hidden="true">
+	<div class="inner" name="issueBook" id="issueBook" hidden="true">
 		</br>
 		</br>
 
@@ -221,32 +222,50 @@ if (isset($_POST['issueBook'])) {
 
 
 		<div class="fields">
-			<div class="field half" style="text-align: center;">
-				<label>Title: </label>
-				<label id="booktitle"></label>
-			</div>
-			<br />
-			<div class="field half" style="text-align: center;">
-				<label>Author: </label>
-				<label id="bookauthor"></label>
-			</div>
-			<div class="field half" style="text-align: center;">
-				<label>ISBN: </label>
-				<label id="bookisbn"></label>
-			</div>
-			<div class="field half" style="text-align: center;">
-				<img src="" id="bookimgLink">
-			</div>
-			<div class="field">
-				<label for="email">email</label>
-				<input type="text" name="email" id="email" placeholder="Email address" />
-			</div>
+			<form method="post" action="searchBooks.php">
+				<div class="field half" style="text-align: center;">
+					<label>Title: </label>
+					<label id="booktitle"></label>
+					<input type="hidden" name="issueTitle" id="issueTitle">
+				</div>
+				<br />
+				<div class="field half" style="text-align: center;">
+					<label>Author: </label>
+					<label id="bookauthor"></label>
+					<input type="hidden" name="issueAuthor" id="issueAuthor">
+				</div>
+				<div class="field half" style="text-align: center;">
+					<label>ISBN: </label>
+					<label id="bookisbn"></label>
+					<input type="hidden" name="issueISBN" id="issueISBN">
+				</div>
+				<div class="field half" style="text-align: center;">
+					<img src="" id="bookimgLink">
+				</div>
+				<div class="field">
+					<label for="email">Student Name</label>
+					<input type="text" name="stud_name" id="stud_name" placeholder="Name" />
+				</div>
+				<div class="field">
+					<label for="email">Student Email</label>
+					<input type="text" name="stud_email" id="stud_email" placeholder="Email address" />
+				</div>
+				<div class="field">
+					<label for="email">Student ID</label>
+					<input type="text" name="stud_id" id="stud_id" placeholder="ID" />
+				</div>
+				<div class="field">
+					<label for="email">Issue Date</label>
+					<input type="text" name="issue_date" id="issue_date" placeholder="Date" />
+				</div>
+				<ul class="actions">
+					<li><input type="submit" value="Issue" name="issue" class="primary" /></li>
+					<li><input type="reset" value="Clear" /></li>
+				</ul>
 
-			</br>
-
+				</br>
+			</form>
 		</div>
-
-
 	</div>
 
 	<!-- Scripts -->
@@ -293,17 +312,18 @@ if (isset($_POST['issueBook'])) {
 
 			document.getElementById('issueBook').hidden = false; //shows issue book page
 			document.getElementById('booktitle').textContent = title[i];
-			console.log(title[i]);
+			document.getElementById('issueTitle').value = title[i];
 			document.getElementById('bookauthor').textContent = author[i];
+			document.getElementById('issueAuthor').value = author[i];
 			document.getElementById('bookcategory').value = category[i];
 			document.getElementById('bookpublisher').value = publisher[i];
 			document.getElementById('bookpublishedDate').value = publishedDate[i];
 			document.getElementById('bookisbn').textContent = isbn[i];
+			document.getElementById('issueISBN').value = isbn[i];
 			document.getElementById('bookpageCount').value = pageCount[i];
 			document.getElementById('bookmoney').value = money[i];
 			if (imgLink[i]) {
 				document.getElementById('bookimgLink').src = imgLink[i];
-				console.log(imgLink[i]);
 				document.getElementById('bookimgValue').value = imgLink[i];
 				document.getElementById('bookimgLink').hidden = false;
 			}

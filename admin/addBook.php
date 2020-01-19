@@ -1,13 +1,9 @@
 <?php
 //DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "books";
-/*$servername = "remotemysql.com";
+$servername = "remotemysql.com";
 $username = "2qTzr9mwEz";
 $password = "u931TbHEs5";
-$database = "2qTzr9mwEz";*/
+$database = "2qTzr9mwEz";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
