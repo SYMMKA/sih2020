@@ -19,6 +19,10 @@ if (isset($_POST['addBook'])) {
 		$author2 = $_POST['author'];
 	else
 		$author2 = NULL;
+	if ($_POST['bookID'])
+		$bookID = $_POST['bookID'];
+	else
+		$bookID = NULL;
 	if ($_POST['mainCategorySelect']) {
 		$category2 = $_POST['mainCategorySelect'];
 		echo $category2;
@@ -52,13 +56,12 @@ if (isset($_POST['addBook'])) {
 		$imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
 	else
 		$imgValue2 = NULL;
-	$issued = 0;
 	if ($_POST['subCategorySelect'])
 		$subCategory = $_POST['subCategorySelect'];
 	else
 		$subCategory = NULL;
 	//Dont add `id` column
-	$sql = "INSERT INTO `books` (`title`, `author`, `category`, `subCategory`, `publisher`, `pages`, `price`, `quantity`, `imgLink`, `date_of_publication`, `isbn`, `issued`) VALUES ('$title2', '$author2', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$quantity2', '$imgValue2', '$date_of_publication2', '$isbn2', '$issued')";
+	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `category`, `subCategory`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
 	if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
@@ -139,7 +142,7 @@ if (isset($_POST['addBook'])) {
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form method="post" action="addBooks.php">
+					<form method="post" id="addBookForm" action="addBooks.php">
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>
@@ -187,8 +190,8 @@ if (isset($_POST['addBook'])) {
 							</div>
 
 							<div class="field half">
-								<label for="bookId">Book ID</label>
-								<input type="text" name="bookId" id="bookId" />
+								<label for="bookID">Book ID</label>
+								<input type="text" name="bookID" id="bookID" />
 							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
@@ -440,20 +443,6 @@ if (isset($_POST['addBook'])) {
 	</script>
 
 	<script>
-		function display() {
-			// Show alert
-			document.querySelector('.alert').style.display = 'block';
-
-			// Hide alert after 1.5 seconds
-			setTimeout(function() {
-				document.querySelector('.alert').style.display = 'none';
-			}, 1500);
-
-			// Clear form
-			document.getElementById('addBook').reset();
-
-		}
-
 		var categoryInfo = {
 			"Technology": {
 				"Artificial Intelligence": ["TECH-AI"],
@@ -486,7 +475,7 @@ if (isset($_POST['addBook'])) {
 			//Main Category Changed
 			mainCategorySelect.onchange = function() {
 
-				document.getElementById('bookId').value = ""; //resets bookID
+				document.getElementById('bookID').value = ""; //resets bookID
 				subCategorySelect.length = 1; // remove all options bar first
 
 				if (this.selectedIndex < 1) {
@@ -514,11 +503,12 @@ if (isset($_POST['addBook'])) {
 
 			subCategorySelect.onchange = function() {
 
-				document.getElementById('bookId').value = ""; //resets bookID
+				document.getElementById('bookID').value = ""; //resets bookID
 				if (this.selectedIndex < 1)
 					return; // done
 				var categoryID = categoryInfo[mainCategorySelect.value][this.value];
-				document.getElementById('bookId').value = categoryID;
+				var test = document.getElementById('title').value;
+				document.getElementById('bookID').value = categoryID+'-'+test;
 
 			}
 		}
