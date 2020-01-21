@@ -51,12 +51,10 @@ function saveMessage(bookID, quantity) {
     // Reference messages collection
     var rootRef = firebase.database().ref('Library');
     var categoryRef = rootRef.child(bookID);
-    var newMessageRef = categoryRef.child(1);
-    newMessageRef.set({
-
-
-
-
-        issued: issued
-    });
+    for(var i=1; i<=quantity; i++){
+        var newMessageRef = categoryRef.child(i);
+        newMessageRef.set({
+            issued: 0
+        });
+    }
 }
