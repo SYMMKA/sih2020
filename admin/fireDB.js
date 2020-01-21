@@ -21,11 +21,12 @@ function addBook(e) {
     e.preventDefault();
 
     // Get values
-    var title = getInputVal('bookID');
+    var bookID = getInputVal('bookID');
+    var quantity = getInputVal('quantity');
 
 
     // Save message
-    saveMessage(title, author, mainCategory, subCategory, publisher, publishedDate, isbn, pageCount, money, imgValue, quantity, issued);
+    saveMessage(bookID, quantity);
 
     // Show alert
     document.querySelector('.alert').style.display = 'block';
@@ -46,21 +47,16 @@ function getInputVal(id) {
 }
 
 // Save message to firebase
-function saveMessage(title, author, mainCategory, subCategory, publisher, publishedDate, isbn, pageCount, money, imgValue, quantity, issued) {
+function saveMessage(bookID, quantity) {
     // Reference messages collection
     var rootRef = firebase.database().ref('Library');
-    var categoryRef = rootRef.child(mainCategory);
-    var newMessageRef = categoryRef.child(title);
+    var categoryRef = rootRef.child(bookID);
+    var newMessageRef = categoryRef.child(1);
     newMessageRef.set({
-        author: author,
-        category: mainCategory,
-        publisher: publisher,
-        publishedDate: publishedDate,
-        isbn: isbn,
-        pageCount: pageCount,
-        money: money,
-        imgValue: imgValue,
-        quantity: quantity,
+
+
+
+
         issued: issued
     });
 }
