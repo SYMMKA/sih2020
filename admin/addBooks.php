@@ -15,6 +15,7 @@ if (isset($_POST['addBook'])) {
 		$title2 = $_POST['title'];
 	else
 		$title2 = NULL;
+	echo $title2;
 	if ($_POST['author'])
 		$author2 = $_POST['author'];
 	else
@@ -67,11 +68,9 @@ if (isset($_POST['addBook'])) {
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 	$conn->close();
-?>
-	<script>
-	</script>
-<?php
 
+	header( "Location: addBooks.php" );
+exit ;
 }
 ?>
 

@@ -20,6 +20,7 @@ document.getElementById('addBookForm').addEventListener('submit', addBook);
 function addBook(e) {
     e.preventDefault();
 
+    console.log("hello");
     // Get values
     var bookID = getInputVal('bookID');
     var quantity = getInputVal('quantity');
