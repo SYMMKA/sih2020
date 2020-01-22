@@ -90,6 +90,13 @@ exit ;
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		 <!-- The core Firebase JS SDK is always required and must be listed first -->
+		 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
 </head>
 
 <body class="is-preload">
@@ -520,6 +527,8 @@ exit ;
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
 	<script src="../assets/js/main.js"></script>
+	
+	<script src="fireDB.js"></script>
 
 </body>
 
