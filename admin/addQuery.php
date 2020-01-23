@@ -1,7 +1,3 @@
-<script>
-  console.log("in addQuery.php");
-</script>
-
 <?php
 //DB CONNECTION====================================
 $servername = "remotemysql.com";
@@ -14,7 +10,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-if (isset($_POST['addBook'])) {
 	if ($_POST['title1'])
 		$title2 = $_POST['title1'];
 	else
@@ -75,7 +70,6 @@ if (isset($_POST['addBook'])) {
   
 	header( "Location: addBooks.php" );
 exit ;
-}
 /*
 if (isset($_POST['addBook'])) {
   if ($_POST['title'])
@@ -132,7 +126,3 @@ if (isset($_POST['addBook'])) {
   $conn->close();
 }*/
 //================================================================
-?>
-<script>
-  console.log("out addQuery.php");
-</script>

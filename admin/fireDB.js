@@ -20,7 +20,6 @@ document.getElementById('addBookForm').addEventListener('submit', addBook);
 function addBook(e) {
     e.preventDefault();
 
-    console.log("hello");
     // Get values
     var bookID = getInputVal('bookID');
     /*var title = getInputVal('title');
@@ -64,6 +63,7 @@ function addBook(e) {
     processData: false, // Dont delete this
     //Other options
     });
+    console.log("hello");
     
     // Show alert
     document.querySelector('.alert').style.display = 'block';
@@ -74,7 +74,7 @@ function addBook(e) {
     }, 1500);
 
     // Clear form
-    document.getElementById('addBookForm').reset();
+   document.getElementById('addBookForm').reset();
 }
 
 
