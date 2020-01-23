@@ -39,11 +39,13 @@ function addBook(e) {
     var formData = new FormData();
       formData.append('title1', document.getElementById('title').value);
       formData.append('author1', document.getElementById('author').value);
-      formData.append('mainCategorySelect1', document.getElementById('mainCategorySelect').value);
+      formData.append('mainCategorySelect1', document.getElementById('mainCategorySelect1').value);
+      formData.append('mainCategorySelect2', document.getElementById('mainCategorySelect2').value);
+      formData.append('mainCategorySelect3', document.getElementById('mainCategorySelect3').value);
+      formData.append('mainCategorySelect4', document.getElementById('mainCategorySelect4').value);
       formData.append('publisher1', document.getElementById('publisher').value);
       formData.append('publishedDate1', document.getElementById('publishedDate').value);
       formData.append('isbn1', document.getElementById('isbn').value);
-      formData.append('subCategorySelect1', document.getElementById('subCategorySelect').value);
       formData.append('pageCount1', document.getElementById('pageCount').value);
       formData.append('money1', document.getElementById('money').value);
       formData.append('imgLink1', document.getElementById('imgLink').src);

@@ -1,80 +1,3 @@
-<?php
-//DB CONNECTION====================================
-/*$servername = "remotemysql.com";
-$username = "2qTzr9mwEz";
-$password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-/*if (isset($_POST['addBook'])) {
-	if ($_POST['title1'])
-		$title2 = $_POST['title1'];
-	else
-		$title2 = NULL;
-	echo $title2;
-	if ($_POST['author1'])
-		$author2 = $_POST['author1'];
-	else
-		$author2 = NULL;
-	if ($_POST['bookID1'])
-		$bookID = $_POST['bookID1'];
-	else
-		$bookID = NULL;
-	if ($_POST['mainCategorySelect1']) {
-		$category2 = $_POST['mainCategorySelect1'];
-		echo $category2;
-	} else
-		$category2 = NULL;
-	if ($_POST['publisher1'])
-		$publisher2 = $_POST['publisher1'];
-	else
-		$publisher2 = NULL;
-	if ($_POST['publishedDate1'])
-		$date_of_publication2 = $_POST['publishedDate1'];
-	else
-		$date_of_publication2 = NULL;
-	if ($_POST['isbn1'])
-		$isbn2 = $_POST['isbn1'];
-	else
-		$isbn2 = NULL;
-	if ($_POST['pageCount1'])
-		$pageCount2 = $_POST['pageCount1'];
-	else
-		$pageCount2 = NULL;
-	if ($_POST['money1'])
-		$money2 = $_POST['money1'];
-	else
-		$money2 = NULL;
-	if ($_POST['quantity1'])
-		$quantity2 = $_POST['quantity1'];
-	else
-		$quantity2 = '1';
-	if ($_POST['imgValue1'])
-		$imgValue2 = $_POST['imgValue1'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-	else
-		$imgValue2 = NULL;
-	if ($_POST['subCategorySelect1'])
-		$subCategory = $_POST['subCategorySelect1'];
-	else
-		$subCategory = NULL;
-	//Dont add `id` column
-	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `category`, `subCategory`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
-	if ($conn->query($sql) === TRUE) {
-	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-	$conn->close();
-
-	header( "Location: addBooks.php" );
-exit ;
-}*/
-?>
-
-
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -90,12 +13,12 @@ exit ;
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		 <!-- The core Firebase JS SDK is always required and must be listed first -->
-		 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
 </head>
 
@@ -163,13 +86,23 @@ exit ;
 								<input type="text" name="category" id="category" />
 							</div>
 
-							<div class="field half" id="mainCat">
-								<select size="1" name="mainCategorySelect" id="mainCategorySelect" class="mainCategorySelect" required />
+							<div class="field half" id="mainCat1">
+								<select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
 								<option value="">-- Select Category--</option>
 								</select>
 							</div>
-							<div class="field half" id="subCat">
-								<select size="1" name="subCategorySelect" id="subCategorySelect" class="subCategorySelect" required />
+							<div class="field half" id="mainCat2">
+								<select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
+								<option value="">-- Select Category--</option>
+								</select>
+							</div>
+							<div class="field half" id="mainCat3">
+								<select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
+								<option value="">-- Select Category--</option>
+								</select>
+							</div>
+							<div class="field half" id="mainCat4">
+								<select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
 								<option value="">-- Select Sub-Category --</option>
 								</select>
 							</div>
@@ -449,8 +382,7 @@ exit ;
 	</script>
 
 	<script>
-		var categoryInfo = 
-		{
+		var categoryInfo = {
 			"Technology": {
 				"Artificial Intelligence": ["TECH-AI"],
 				"Database Design": ["TECH-DD"],
@@ -471,53 +403,122 @@ exit ;
 		// To select category
 		window.onload = function() {
 
-			var mainCategorySelect = document.getElementById("mainCategorySelect");
-			var subCategorySelect = document.getElementById("subCategorySelect");
-
+			var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
+			var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
+			var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
+			var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
 			//Load main categories
-			for (mainCategory in categoryInfo) {
-				mainCategorySelect.options[mainCategorySelect.options.length] = new Option(mainCategory, mainCategory);
+			for (var mainCategory = 0; mainCategory < test.length; mainCategory++) {
+				mainCategorySelect1.options[mainCategorySelect1.options.length] = new Option(test[mainCategory].description, mainCategory);
 			}
 
-			//Main Category Changed
-			mainCategorySelect.onchange = function() {
+			//Main Category1 Changed
+			mainCategorySelect1.onchange = function() {
 
 				document.getElementById('bookID').value = ""; //resets bookID
-				subCategorySelect.length = 1; // remove all options bar first
-
+				mainCategorySelect2.length = 1; // remove all options bar first
+				mainCategorySelect3.length = 1; // remove all options bar first
+				mainCategorySelect4.length = 1; // remove all options bar first
 				if (this.selectedIndex < 1) {
-					document.getElementById('subCategorySelect').hidden = true;
+					document.getElementById('mainCategorySelect2').hidden = true;
+					document.getElementById('mainCategorySelect3').hidden = true;
+					document.getElementById('mainCategorySelect4').hidden = true;
 
 					return; // done
 				}
 
-				var check = categoryInfo[this.value];
 
+				if (!test[this.value].subordinates) { // hides sub category if not available
 
-				if (check.length == 0) { // hides sub category if not available
-
-					document.getElementById('subCategorySelect').disabled = true;
+					document.getElementById('mainCategorySelect2').disabled = true;
+					document.getElementById('mainCategorySelect3').disabled = true;
+					document.getElementById('mainCategorySelect4').disabled = true;
+					var categoryID = test[mainCategorySelect1.value].number;
+					var test1 = document.getElementById('title').value;
+					document.getElementById('bookID').value = categoryID + '-' + test1;
 				} else {
 
-					document.getElementById('subCategorySelect').disabled = false;
-				}
+					document.getElementById('mainCategorySelect2').disabled = false;
+					document.getElementById('mainCategorySelect3').disabled = false;
+					document.getElementById('mainCategorySelect4').disabled = false;
 
 
-				for (subCategory in categoryInfo[this.value]) {
-					subCategorySelect.options[subCategorySelect.options.length] = new Option(subCategory, subCategory);
+
+					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates.length; mainCategory++) {
+						mainCategorySelect2.options[mainCategorySelect2.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategory].description, mainCategory);
+					}
 				}
 			}
+			//Main Category2 Changed
+			mainCategorySelect2.onchange = function() {
+				document.getElementById('bookID').value = ""; //resets bookID
+				mainCategorySelect3.length = 1; // remove all options bar first
+				mainCategorySelect4.length = 1; // remove all options bar first
+				if (this.selectedIndex < 1) {
+					document.getElementById('mainCategorySelect3').hidden = true;
+					document.getElementById('mainCategorySelect4').hidden = true;
 
-			subCategorySelect.onchange = function() {
+					return; // done
+				}
+
+
+				if (!test[mainCategorySelect1.value].subordinates[this.value].subordinates) { // hides sub category if not available
+
+					document.getElementById('mainCategorySelect3').disabled = true;
+					document.getElementById('mainCategorySelect4').disabled = true;
+					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].number;
+					var test1 = document.getElementById('title').value;
+					document.getElementById('bookID').value = categoryID + '-' + test1;
+				} else {
+
+					document.getElementById('mainCategorySelect3').disabled = false;
+					document.getElementById('mainCategorySelect4').disabled = false;
+
+
+
+					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates.length; mainCategory++) {
+						mainCategorySelect3.options[mainCategorySelect3.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].description, mainCategory);
+					}
+				}
+			}
+			//Main Category3 Changed
+			mainCategorySelect3.onchange = function() {
 
 				document.getElementById('bookID').value = ""; //resets bookID
-				if (this.selectedIndex < 1)
-					return; // done
-				var categoryID = categoryInfo[mainCategorySelect.value][this.value];
-				var test = document.getElementById('title').value;
-				document.getElementById('bookID').value = categoryID+'-'+test;
+				mainCategorySelect4.length = 1; // remove all options bar first
 
+				if (this.selectedIndex < 1) {
+					document.getElementById('mainCategorySelect4').hidden = true;
+
+					return; // done
+				}
+
+
+				if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[this.value].subordinates) { // hides sub category if not available
+
+					document.getElementById('mainCategorySelect4').disabled = true;
+					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].number;
+					var test1 = document.getElementById('title').value;
+					document.getElementById('bookID').value = categoryID + '-' + test1;
+				} else {
+
+					document.getElementById('mainCategorySelect4').disabled = false;
+
+
+					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates.length; mainCategory++) {
+						mainCategorySelect4.options[mainCategorySelect4.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].description, mainCategory);
+					}
+				}
 			}
+
+			mainCategorySelect4.onchange = function() {
+
+				document.getElementById('bookID').value = ""; //resets bookID
+				var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].number;
+				var test1 = document.getElementById('title').value;
+				document.getElementById('bookID').value = categoryID + '-' + test1;
+			}
+
 		}
 	</script>
 
@@ -527,9 +528,11 @@ exit ;
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
+	<script src="addBook/fireDB.js"></script>
 	<script src="../assets/js/main.js"></script>
-	
-	<script src="fireDB.js"></script>
+
+
+	<script src="addBook/category.js"></script>
 
 </body>
 
