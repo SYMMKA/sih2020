@@ -23,12 +23,48 @@ function addBook(e) {
     console.log("hello");
     // Get values
     var bookID = getInputVal('bookID');
+    /*var title = getInputVal('title');
+    var author = getInputVal('author');
+    var mainCategory = getInputVal('category');
+    var publisher = getInputVal('publisher');
+    var publishedDate = getInputVal('publishedDate');
+    var isbn = getInputVal('isbn');
+    var pageCount = getInputVal('pageCount');
+    var money = getInputVal('money');
+    var imgValue = getInputVal('imgValue');
+    var issued = 0;
+    var subCategory = getInputVal('technology');*/
     var quantity = getInputVal('quantity');
+    
 
+    var formData = new FormData();
+      formData.append('title1', document.getElementById('title').value);
+      formData.append('author1', document.getElementById('author').value);
+      formData.append('mainCategorySelect1', document.getElementById('mainCategorySelect').value);
+      formData.append('publisher1', document.getElementById('publisher').value);
+      formData.append('publishedDate1', document.getElementById('publishedDate').value);
+      formData.append('isbn1', document.getElementById('isbn').value);
+      formData.append('subCategorySelect1', document.getElementById('subCategorySelect').value);
+      formData.append('pageCount1', document.getElementById('pageCount').value);
+      formData.append('money1', document.getElementById('money').value);
+      formData.append('imgLink1', document.getElementById('imgLink').src);
+      formData.append('quantity1', document.getElementById('quantity').value);
+
+      
 
     // Save message
     saveMessage(bookID, quantity);
 
+    $.ajax({
+        type: "POST",
+        url: "addQuery.php",
+        data: formData,
+    type: 'POST',
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    //Other options
+    });
+    
     // Show alert
     document.querySelector('.alert').style.display = 'block';
 
@@ -59,3 +95,4 @@ function saveMessage(bookID, quantity) {
         });
     }
 }
+
