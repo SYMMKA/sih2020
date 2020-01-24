@@ -19,15 +19,26 @@ if ($conn->connect_error) {
 		$author2 = $_POST['author1'];
 	else
 		$author2 = NULL;
-	if ($_POST['bookID1'])
-		$bookID = $_POST['bookID1'];
+	if ($_POST['bookID'])
+		$bookID = $_POST['bookID'];
 	else
 		$bookID = NULL;
-	if ($_POST['mainCategorySelect1']) {
-		$category2 = $_POST['mainCategorySelect1'];
-		echo $category2;
-	} else
-		$category2 = NULL;
+	if ($_POST['mainCategorySelect1j'])
+		$mainCategorySelect1j = $_POST['mainCategorySelect1j'];
+	else
+		$mainCategorySelect1j = NULL;
+	if ($_POST['mainCategorySelect2j'])
+		$mainCategorySelect2j = $_POST['mainCategorySelect2j'];
+	else
+		$mainCategorySelect2j = NULL;
+	if ($_POST['mainCategorySelect3j'])
+		$mainCategorySelect3j = $_POST['mainCategorySelect3j'];
+	else
+		$mainCategorySelect3j = NULL;
+	if ($_POST['mainCategorySelect4j'])
+		$mainCategorySelect4j = $_POST['mainCategorySelect4j'];
+	else
+		$mainCategorySelect4j = NULL;
 	if ($_POST['publisher1'])
 		$publisher2 = $_POST['publisher1'];
 	else
@@ -61,68 +72,12 @@ if ($conn->connect_error) {
 	else
 		$subCategory = NULL;
 	//Dont add `id` column
-	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `category`, `subCategory`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$category2', '$subCategory', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
+	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$mainCategorySelect1j', '$mainCategorySelect2j', '$mainCategorySelect3j', '$mainCategorySelect4j', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
 	if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 	$conn->close();
   
-	header( "Location: addBooks.php" );
+	header( "Location: ../addBooks.php" );
 exit ;
-/*
-if (isset($_POST['addBook'])) {
-  if ($_POST['title'])
-    $title2 = $_POST['title'];
-  else
-    $title2 = NULL;
-  if ($_POST['author'])
-    $author2 = $_POST['author'];
-  else
-    $author2 = NULL;
-  if ($_POST['category'])
-    $category2 = $_POST['category'];
-  else
-    $category2 = NULL;
-  if ($_POST['publisher'])
-    $publisher2 = $_POST['publisher'];
-  else
-    $publisher2 = NULL;
-  if ($_POST['publishedDate'])
-  $date_of_publication2 = $_POST['publishedDate'];
-  else
-    $date_of_publication2 = NULL;
-  if ($_POST['isbn'])
-    $isbn2 = $_POST['isbn'];
-  else
-    $isbn2 = NULL;
-  if ($_POST['description'])
-    $description2 = $_POST['description'];
-  else
-    $description2 = NULL;
-  if ($_POST['pageCount'])
-    $pageCount2 = $_POST['pageCount'];
-  else
-    $pageCount2 = NULL;
-  if ($_POST['money'])
-    $money2 = $_POST['money'];
-  else
-    $money2 = NULL;
-  if ($_POST['quantity'])
-    $quantity2 = $_POST['quantity'];
-  else
-    $quantity2 = '1';
-  if ($_POST['imgValue'])
-    $imgValue2 = $_POST['imgValue'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-  else
-    $imgValue2 = NULL;
-  //Dont add `id` column
-  $sql = "INSERT INTO `books` (`title`, `author`, `category`, `publisher`, `date_of_publication`, `isbn`, `description`, `pages`, `price`, `imgLink`, `quantity`) VALUES ('$title2', '$author2', '$category2', '$publisher2', '$date_of_publication2', '$isbn2', '$description2', '$pageCount2', '$money2', '$imgValue2', '$quantity2')";
-  if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-  $conn->close();
-}*/
-//================================================================

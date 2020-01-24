@@ -22,43 +22,45 @@ function addBook(e) {
 
     // Get values
     var bookID = getInputVal('bookID');
-    /*var title = getInputVal('title');
+    var title = getInputVal('title');
     var author = getInputVal('author');
-    var mainCategory = getInputVal('category');
+    var mainCategory1 = getInputVal('mainCategorySelect1');
+    var mainCategory2 = getInputVal('mainCategorySelect2');
+    var mainCategory3 = getInputVal('mainCategorySelect3');
+    var mainCategory4 = getInputVal('mainCategorySelect4');
+    var encodedcatID = getInputVal('encodedcatID');
     var publisher = getInputVal('publisher');
     var publishedDate = getInputVal('publishedDate');
     var isbn = getInputVal('isbn');
     var pageCount = getInputVal('pageCount');
     var money = getInputVal('money');
-    var imgValue = getInputVal('imgValue');
-    var issued = 0;
-    var subCategory = getInputVal('technology');*/
     var quantity = getInputVal('quantity');
     
 
     var formData = new FormData();
-      formData.append('title1', document.getElementById('title').value);
-      formData.append('author1', document.getElementById('author').value);
-      formData.append('mainCategorySelect1', document.getElementById('mainCategorySelect1').value);
-      formData.append('mainCategorySelect2', document.getElementById('mainCategorySelect2').value);
-      formData.append('mainCategorySelect3', document.getElementById('mainCategorySelect3').value);
-      formData.append('mainCategorySelect4', document.getElementById('mainCategorySelect4').value);
-      formData.append('publisher1', document.getElementById('publisher').value);
-      formData.append('publishedDate1', document.getElementById('publishedDate').value);
-      formData.append('isbn1', document.getElementById('isbn').value);
-      formData.append('pageCount1', document.getElementById('pageCount').value);
-      formData.append('money1', document.getElementById('money').value);
+      formData.append('title1', title);
+      formData.append('author1', author);
+      formData.append('mainCategorySelect1j', mainCategory1);
+      formData.append('mainCategorySelect2j', mainCategory2);
+      formData.append('mainCategorySelect3j', mainCategory3);
+      formData.append('mainCategorySelect4j', mainCategory4);
+      formData.append('bookID', bookID);
+      formData.append('publisher1', publisher);
+      formData.append('publishedDate1', publishedDate);
+      formData.append('isbn1', isbn);
+      formData.append('pageCount1', pageCount);
+      formData.append('money1', money);
       formData.append('imgLink1', document.getElementById('imgLink').src);
-      formData.append('quantity1', document.getElementById('quantity').value);
+      formData.append('quantity1', quantity);
 
       
 
     // Save message
-    saveMessage(bookID, quantity);
+    saveMessage(encodedcatID, quantity);
 
     $.ajax({
         type: "POST",
-        url: "addQuery.php",
+        url: "addBook/addQuery.php",
         data: formData,
     type: 'POST',
     contentType: false, // Dont delete this (jQuery 1.6+)
@@ -86,10 +88,10 @@ function getInputVal(id) {
 }
 
 // Save message to firebase
-function saveMessage(bookID, quantity) {
+function saveMessage(encodedcatID, quantity) {
     // Reference messages collection
     var rootRef = firebase.database().ref('Library');
-    var categoryRef = rootRef.child(bookID);
+    var categoryRef = rootRef.child(encodedcatID);
     for(var i=1; i<=quantity; i++){
         var newMessageRef = categoryRef.child(i);
         newMessageRef.set({

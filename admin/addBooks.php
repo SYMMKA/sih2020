@@ -131,6 +131,7 @@
 							<div class="field half">
 								<label for="bookID">Book ID</label>
 								<input type="text" name="bookID" id="bookID" />
+								<input type="hidden" name="encodedcatID" id="encodedcatID" value=""/>
 							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
@@ -436,6 +437,8 @@
 					var categoryID = test[mainCategorySelect1.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
+					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect2').disabled = false;
@@ -469,6 +472,8 @@
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
+					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect3').disabled = false;
@@ -500,6 +505,8 @@
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
+					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect4').disabled = false;
@@ -517,6 +524,9 @@
 				var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].number;
 				var test1 = document.getElementById('title').value;
 				document.getElementById('bookID').value = categoryID + '-' + test1;
+				var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+				console.log(encodedcatID);
+				document.getElementById('encodedcatID').value = encodedcatID;
 			}
 
 		}
