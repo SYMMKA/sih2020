@@ -71,7 +71,7 @@
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form method="post" id="addBookForm" action="addBooks.php">
+					<form id="addBookForm">
 						<div class="fields">
 							<div class="field">
 								<label for="title">Title</label>

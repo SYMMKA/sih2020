@@ -77,3 +77,4 @@ if ($conn->connect_error) {
   
 	header( "Location: ../addBooks.php" );
 exit ;
+?>

@@ -1,61 +1,3 @@
-<?php
-//DB CONNECTION====================================
-$servername = "remotemysql.com";
-$username = "2qTzr9mwEz";
-$password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-if (isset($_POST['issue'])) {
-	if ($_POST['stud_name'])
-		$st_name = $_POST['stud_name'];
-	else
-		$st_name = NULL;
-	if ($_POST['stud_email'])
-		$st_email = $_POST['stud_email'];
-	else
-		$st_email = NULL;
-	if ($_POST['stud_id']) {
-		$st_id = $_POST['stud_id'];
-		echo $st_id;
-	} else
-		$st_id = NULL;
-	if ($_POST['issueTitle'])
-		$title2 = $_POST['issueTitle'];
-	else
-		$title2 = NULL;
-	if ($_POST['issueAuthor'])
-		$author = $_POST['issueAuthor'];
-	else
-		$author = NULL;
-	// bookID will be assigned after we discuss DB management
-	/*if ($_POST['bookID'])
-		//$bookID = $_POST['bookID'];
-	else*/
-		$bookID = NULL;
-	if ($_POST['issue_date'])
-		$issue_date = $_POST['issue_date'];
-	else
-		$issue_date = NULL;
-
-	//Dont add `id` column
-	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `bookID`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$title2', '$author', '$bookID', '$issue_date')";
-	if ($conn->query($sql) === TRUE) {
-	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-	$conn->close();
-?>
-	<script>
-	</script>
-<?php
-
-}
-?>
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -72,6 +14,12 @@ if (isset($_POST['issue'])) {
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
 
 <body class="is-preload">
@@ -155,6 +103,13 @@ if (isset($_POST['issue'])) {
 			?>
 				<div class="row">
 					<?php
+					//DB CONNECTION====================================
+					$servername = "remotemysql.com";
+					$username = "2qTzr9mwEz";
+					$password = "u931TbHEs5";
+					$database = "2qTzr9mwEz";
+					// Create connection
+					$conn = new mysqli($servername, $username, $password, $database);
 
 					$searchField = $_POST['voice-search'];
 					$query = "SELECT * FROM books Where title LIKE '%$searchField%'";
@@ -176,6 +131,9 @@ if (isset($_POST['issue'])) {
 							if ($k == 'author') {
 								$author[$i] = $v;
 							}
+							if ($k == 'bookID') {
+								$bookID[$i] = $v;
+							}
 						}
 					?>
 						<div class="col-sm-3">
@@ -186,6 +144,7 @@ if (isset($_POST['issue'])) {
 									<h5 class="card-title"><?= $title[$i] ?></h5>
 									<h6 class="card-subtitle mb-2 text-muted"><?= $author[$i] ?></h6>
 									<p class="card-text"><?= $isbn[$i] ?></p>
+									<p class="card-text"><?= $bookID[$i] ?></p>
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
@@ -193,10 +152,8 @@ if (isset($_POST['issue'])) {
 											Issue Book
 										</button>
 									</div>
-
 								</div>
 							</div>
-
 						</div>
 
 					<?php
@@ -222,7 +179,7 @@ if (isset($_POST['issue'])) {
 
 
 		<div class="fields">
-			<form method="post" action="searchBooks.php">
+			<form id="searchBookForm">
 				<div class="field half" style="text-align: center;">
 					<label>Title: </label>
 					<label id="booktitle"></label>
@@ -240,22 +197,27 @@ if (isset($_POST['issue'])) {
 					<input type="hidden" name="issueISBN" id="issueISBN">
 				</div>
 				<div class="field half" style="text-align: center;">
+					<label>BookID: </label>
+					<label id="bookID"></label>
+					<input type="hidden" name="issueID" id="issueID">
+				</div>
+				<div class="field half" style="text-align: center;">
 					<img src="" id="bookimgLink">
 				</div>
 				<div class="field">
-					<label for="email">Student Name</label>
+					<label>Student Name</label>
 					<input type="text" name="stud_name" id="stud_name" placeholder="Name" />
 				</div>
 				<div class="field">
-					<label for="email">Student Email</label>
+					<label>Student Email</label>
 					<input type="text" name="stud_email" id="stud_email" placeholder="Email address" />
 				</div>
 				<div class="field">
-					<label for="email">Student ID</label>
+					<label>Student ID</label>
 					<input type="text" name="stud_id" id="stud_id" placeholder="ID" />
 				</div>
 				<div class="field">
-					<label for="email">Issue Date</label>
+					<label>Issue Date</label>
 					<input type="text" name="issue_date" id="issue_date" placeholder="Date" />
 				</div>
 				<ul class="actions">
@@ -286,22 +248,10 @@ if (isset($_POST['issue'])) {
 		author = <?php echo json_encode($author); ?>
 	</script>
 	<script>
-		category = <?php echo json_encode($category); ?>
-	</script>
-	<script>
-		publisher = <?php echo json_encode($publisher); ?>
-	</script>
-	<script>
-		publishedDate = <?php echo json_encode($publishedDate); ?>
-	</script>
-	<script>
 		isbn = <?php echo json_encode($isbn); ?>
 	</script>
 	<script>
-		pageCount = <?php echo json_encode($pageCount); ?>
-	</script>
-	<script>
-		money = <?php echo json_encode($money); ?>
+		bookID = <?php echo json_encode($bookID); ?>
 	</script>
 	<script>
 		imgLink = <?php echo json_encode($imgLink); ?>
@@ -315,16 +265,12 @@ if (isset($_POST['issue'])) {
 			document.getElementById('issueTitle').value = title[i];
 			document.getElementById('bookauthor').textContent = author[i];
 			document.getElementById('issueAuthor').value = author[i];
-			document.getElementById('bookcategory').value = category[i];
-			document.getElementById('bookpublisher').value = publisher[i];
-			document.getElementById('bookpublishedDate').value = publishedDate[i];
 			document.getElementById('bookisbn').textContent = isbn[i];
 			document.getElementById('issueISBN').value = isbn[i];
-			document.getElementById('bookpageCount').value = pageCount[i];
-			document.getElementById('bookmoney').value = money[i];
+			document.getElementById('bookID').textContent = bookID[i];
+			document.getElementById('issueID').value = bookID[i];
 			if (imgLink[i]) {
 				document.getElementById('bookimgLink').src = imgLink[i];
-				document.getElementById('bookimgValue').value = imgLink[i];
 				document.getElementById('bookimgLink').hidden = false;
 			}
 		}
@@ -335,6 +281,7 @@ if (isset($_POST['issue'])) {
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
+	<script src="searchBook/fireDB.js"></script>
 	<script src="../assets/js/main.js"></script>
 
 
