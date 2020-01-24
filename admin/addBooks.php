@@ -131,11 +131,11 @@
 							<div class="field half">
 								<label for="bookID">Book ID</label>
 								<input type="text" name="bookID" id="bookID" />
-								<input type="hidden" name="encodedcatID" id="encodedcatID" value=""/>
+								<input type="hidden" name="encodedcatID" id="encodedcatID" value="" />
 							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
-								<input type="number" name="quantity" id="quantity" />
+								<input type="number" name="quantity" id="quantity" required />
 							</div>
 
 							<div class="field">
@@ -383,24 +383,6 @@
 	</script>
 
 	<script>
-		var categoryInfo = {
-			"Technology": {
-				"Artificial Intelligence": ["TECH-AI"],
-				"Database Design": ["TECH-DD"],
-				"Electronics and Applications": ["TECH-EA"],
-				"Network": ["TECH-NT"],
-				"Programming": ["TECH-PG"],
-				"Software Engineering": ["TECH-SE"],
-				"System Programming": ["TECH-SP"]
-			},
-			"General Science and Humanities": {
-				"Physics": ["GSH-PHY"],
-				"Chemistry": ["GSH-CHEM"],
-				"Maths": ["GSH-MAT"]
-			},
-			"Fiction": ["FIC"]
-		}
-
 		// To select category
 		window.onload = function() {
 
@@ -437,7 +419,7 @@
 					var categoryID = test[mainCategorySelect1.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
 					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
@@ -472,7 +454,7 @@
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
 					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
@@ -505,7 +487,7 @@
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].number;
 					var test1 = document.getElementById('title').value;
 					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
+					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
 					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
@@ -524,11 +506,9 @@
 				var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].number;
 				var test1 = document.getElementById('title').value;
 				document.getElementById('bookID').value = categoryID + '-' + test1;
-				var encodedcatID = encodeURIComponent(categoryID).replace(/\./g, '%2E');
-				console.log(encodedcatID);
+				var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
 				document.getElementById('encodedcatID').value = encodedcatID;
 			}
-
 		}
 	</script>
 

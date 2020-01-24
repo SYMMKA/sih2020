@@ -23,22 +23,22 @@ if ($conn->connect_error) {
 		$bookID = $_POST['bookID'];
 	else
 		$bookID = NULL;
-	if ($_POST['mainCategorySelect1j'])
-		$mainCategorySelect1j = $_POST['mainCategorySelect1j'];
+	if ($_POST['mainCategorySelect1'])
+		$mainCategorySelect1 = $_POST['mainCategorySelect1'];
 	else
-		$mainCategorySelect1j = NULL;
-	if ($_POST['mainCategorySelect2j'])
-		$mainCategorySelect2j = $_POST['mainCategorySelect2j'];
+		$mainCategorySelect1 = NULL;
+	if ($_POST['mainCategorySelect2'])
+		$mainCategorySelect2 = $_POST['mainCategorySelect2'];
 	else
-		$mainCategorySelect2j = NULL;
-	if ($_POST['mainCategorySelect3j'])
-		$mainCategorySelect3j = $_POST['mainCategorySelect3j'];
+		$mainCategorySelect2 = NULL;
+	if ($_POST['mainCategorySelect3'])
+		$mainCategorySelect3 = $_POST['mainCategorySelect3'];
 	else
-		$mainCategorySelect3j = NULL;
-	if ($_POST['mainCategorySelect4j'])
-		$mainCategorySelect4j = $_POST['mainCategorySelect4j'];
+		$mainCategorySelect3 = NULL;
+	if ($_POST['mainCategorySelect4'])
+		$mainCategorySelect4 = $_POST['mainCategorySelect4'];
 	else
-		$mainCategorySelect4j = NULL;
+		$mainCategorySelect4 = NULL;
 	if ($_POST['publisher1'])
 		$publisher2 = $_POST['publisher1'];
 	else
@@ -67,12 +67,8 @@ if ($conn->connect_error) {
 		$imgValue2 = $_POST['imgValue1'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
 	else
 		$imgValue2 = NULL;
-	if ($_POST['subCategorySelect1'])
-		$subCategory = $_POST['subCategorySelect1'];
-	else
-		$subCategory = NULL;
 	//Dont add `id` column
-	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$mainCategorySelect1j', '$mainCategorySelect2j', '$mainCategorySelect3j', '$mainCategorySelect4j', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
+	$sql = "INSERT INTO `books` (`title`, `author`, `bookID`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$bookID', '$mainCategorySelect1', '$mainCategorySelect2', '$mainCategorySelect3', '$mainCategorySelect4', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
 	if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;

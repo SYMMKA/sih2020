@@ -24,10 +24,7 @@ function addBook(e) {
     var bookID = getInputVal('bookID');
     var title = getInputVal('title');
     var author = getInputVal('author');
-    var mainCategory1 = getInputVal('mainCategorySelect1');
-    var mainCategory2 = getInputVal('mainCategorySelect2');
-    var mainCategory3 = getInputVal('mainCategorySelect3');
-    var mainCategory4 = getInputVal('mainCategorySelect4');
+    var mainCategory1 = test[mainCategorySelect1.value].description;
     var encodedcatID = getInputVal('encodedcatID');
     var publisher = getInputVal('publisher');
     var publishedDate = getInputVal('publishedDate');
@@ -35,22 +32,43 @@ function addBook(e) {
     var pageCount = getInputVal('pageCount');
     var money = getInputVal('money');
     var quantity = getInputVal('quantity');
+    if (!test[mainCategorySelect1.value].subordinates) {
+        var mainCategory2 = '';
+        var mainCategory3 = '';
+        var mainCategory4 = '';
+    }
+    else {
+        var mainCategory2 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].description;
+        if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates) {
+            var mainCategory3 = '';
+            var mainCategory4 = '';
+        }
+        else {
+            var mainCategory3 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].description;
+            if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates)
+                var mainCategory4 = '';
+            else
+                var mainCategory4 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].description;
+
+        }
+    }
+
     
 
     var formData = new FormData();
       formData.append('title1', title);
       formData.append('author1', author);
-      formData.append('mainCategorySelect1j', mainCategory1);
-      formData.append('mainCategorySelect2j', mainCategory2);
-      formData.append('mainCategorySelect3j', mainCategory3);
-      formData.append('mainCategorySelect4j', mainCategory4);
+      formData.append('mainCategorySelect1', mainCategory1);
+      formData.append('mainCategorySelect2', mainCategory2);
+      formData.append('mainCategorySelect3', mainCategory3);
+      formData.append('mainCategorySelect4', mainCategory4);
       formData.append('bookID', bookID);
       formData.append('publisher1', publisher);
       formData.append('publishedDate1', publishedDate);
       formData.append('isbn1', isbn);
       formData.append('pageCount1', pageCount);
       formData.append('money1', money);
-      formData.append('imgLink1', document.getElementById('imgLink').src);
+      formData.append('imgValue1', document.getElementById('imgLink').src);
       formData.append('quantity1', quantity);
 
       
@@ -67,7 +85,6 @@ function addBook(e) {
     processData: false, // Dont delete this
     //Other options
     });
-    console.log("hello");
     
     // Show alert
     document.querySelector('.alert').style.display = 'block';
