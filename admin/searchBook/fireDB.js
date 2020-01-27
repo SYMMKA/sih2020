@@ -24,40 +24,41 @@ function issueBook(e) {
     var title = getInputVal('issueTitle');
     var author = getInputVal('issueAuthor');
     var isbn = getInputVal('issueISBN');
-    var catID = getInputVal('issueID');
     var stud_name = getInputVal('stud_name');
     var stud_email = getInputVal('stud_email');
     var stud_id = getInputVal('stud_id');
     var issue_date = getInputVal('issue_date');
+    var issueID = getInputVal('issueID');
+    var encodedcatID = encodeURIComponent(issueID).replace(/\./g, '%2E');
 
-    
+
 
     var formData = new FormData();
-      formData.append('title', title);
-      formData.append('author', author);
-      formData.append('bookID', catID);
-      formData.append('stud_name', stud_name);
-      formData.append('stud_email', stud_email);
-      formData.append('stud_id', stud_id);
-      formData.append('isbn', isbn);
-      formData.append('issue_date', issue_date);
-      
+    formData.append('title', title);
+    formData.append('author', author);
+    formData.append('bookID', issueID);
+    formData.append('stud_name', stud_name);
+    formData.append('stud_email', stud_email);
+    formData.append('stud_id', stud_id);
+    formData.append('isbn', isbn);
+    formData.append('issue_date', issue_date);
 
     // Save message
-    //saveMessage(encodedcatID, quantity);
+    saveMessage(encodedcatID);
 
     $.ajax({
         type: "POST",
         url: "searchBook/issueQuery.php",
         data: formData,
-    type: 'POST',
-    contentType: false, // Dont delete this (jQuery 1.6+)
-    processData: false, // Dont delete this
-    //Other options
+        type: 'POST',
+        contentType: false, // Dont delete this (jQuery 1.6+)
+        processData: false, // Dont delete this
+        //Other options
     });
 
     // Clear form
-   document.getElementById('searchBookForm').reset();
+    document.getElementById('searchBookForm').reset();
+
 }
 
 
@@ -67,15 +68,20 @@ function getInputVal(id) {
 }
 
 // Save message to firebase
-function saveMessage(encodedcatID, quantity) {
-    // Reference messages collection
+function saveMessage(encodedcatID) {
+
     var rootRef = firebase.database().ref('Library');
     var categoryRef = rootRef.child(encodedcatID);
-    for(var i=1; i<=quantity; i++){
-        var newMessageRef = categoryRef.child(i);
-        newMessageRef.set({
-            issued: 0
+    categoryRef.once("value").then(function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            if (!childSnapshot.val().issued) {
+                childSnapshot.ref.update({
+                    "issued": 1
+                }).then(function () {
+                    console.log("Success");
+                });
+                return true;
+            }
         });
-    }
+    });
 }
-

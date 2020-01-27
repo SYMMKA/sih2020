@@ -108,12 +108,17 @@ function getInputVal(id) {
 function saveMessage(encodedcatID, quantity) {
     // Reference messages collection
     var rootRef = firebase.database().ref('Library');
-    var categoryRef = rootRef.child(encodedcatID);
-    for(var i=1; i<=quantity; i++){
-        var newMessageRef = categoryRef.child(i);
-        newMessageRef.set({
-            issued: 0
+    rootRef.once("value") //checks whether the book exists in firebase
+        .then(function (snapshot) {
+            if (!snapshot.child(encodedcatID).exists()) {
+                var categoryRef = rootRef.child(encodedcatID);
+                for (var i = 1; i <= quantity; i++) {
+                    var newMessageRef = categoryRef.child(i);
+                    newMessageRef.set({
+                        issued: 0
+                    });
+                }
+            }
         });
-    }
 }
 
