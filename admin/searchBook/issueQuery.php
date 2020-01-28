@@ -30,8 +30,8 @@ if ($conn->connect_error) {
 		$author = $_POST['author'];
 	else
 		$author = NULL;
-	if ($_POST['bookID'])
-		$bookID = $_POST['bookID'];
+	if ($_POST['finalID'])
+		$bookID = $_POST['finalID'];
 	else
 		$bookID = NULL;
 	if ($_POST['isbn'])

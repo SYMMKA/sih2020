@@ -200,6 +200,8 @@
 					<label>BookID: </label>
 					<label id="bookID"></label>
 					<input type="hidden" name="issueID" id="issueID">
+					<label>CopyID: </label>
+					<input type="number" name="copyID" id="copyID" required>
 				</div>
 				<div class="field half" style="text-align: center;">
 					<img src="" id="bookimgLink">
@@ -214,11 +216,11 @@
 				</div>
 				<div class="field">
 					<label>Student ID</label>
-					<input type="text" name="stud_id" id="stud_id" placeholder="ID" />
+					<input type="text" name="stud_id" id="stud_id" placeholder="ID" required/>
 				</div>
 				<div class="field">
 					<label>Issue Date</label>
-					<input type="text" name="issue_date" id="issue_date" placeholder="Date" />
+					<input name="issue_date" id="issue_date" placeholder="Date" />
 				</div>
 				<ul class="actions">
 					<li><input type="submit" value="Issue" name="issue" class="primary" /></li>
@@ -273,6 +275,14 @@
 				document.getElementById('bookimgLink').src = imgLink[i];
 				document.getElementById('bookimgLink').hidden = false;
 			}
+			// current date
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+
+			today = mm + '/' + dd + '/' + yyyy;
+			document.getElementById('issue_date').value = today;
 		}
 	</script>
 	<script src="../assets/js/jquery.min.js"></script>

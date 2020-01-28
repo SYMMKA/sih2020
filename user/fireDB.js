@@ -29,16 +29,13 @@ function issueBook(e) {
     var stud_id = getInputVal('stud_id');
     var issue_date = getInputVal('issue_date');
     var issueID = getInputVal('issueID');
-    var copyID = getInputVal('copyID');
-    var finalID = issueID + '-' + copyID;
-
 
 
 
     var formData = new FormData();
     formData.append('title', title);
     formData.append('author', author);
-    formData.append('finalID', finalID);
+    formData.append('bookID', issueID);
     formData.append('stud_name', stud_name);
     formData.append('stud_email', stud_email);
     formData.append('stud_id', stud_id);
@@ -46,7 +43,7 @@ function issueBook(e) {
     formData.append('issue_date', issue_date);
 
     // Save message
-    saveMessage(issueID, copyID, stud_id, issue_date);
+    saveMessage(issueID, stud_id);
 
     $.ajax({
         type: "POST",
@@ -70,36 +67,21 @@ function getInputVal(id) {
 }
 
 // Save message to firebase
-function saveMessage(issueID, copyID, stud_id, title, issue_date) {
+function saveMessage(issueID, stud_id) {
 
     var encodedcatID = encodeURIComponent(issueID).replace(/\./g, '%2E');
-
     var rootRef = firebase.database().ref('Library');
     var categoryRef = rootRef.child(encodedcatID);
-    var copyRef = categoryRef.child(copyID);
-    copyRef.once("value").then(function (snapshot) {
-        if (snapshot.val().reserved == stud_id || (!snapshot.val().issued && !snapshot.val().reserved)) {
-            snapshot.ref.update({
-                "issued": 1,
-                "reserved": ""
-            }).then(function () {
-                console.log("Success");
-            });
-        }
-    });
-
-    /*var userRef = firebase.database().ref('Users');
-    userRef.once("value") //checks whether the book exists in firebase
-        .then(function (snapshot) {
-            console.log("test");
-            //if (!snapshot.child(stud_id).exists()) {
-                var userIDRef = userRef.child(stud_id);
-                var bookNumRef = userIDRef.child(1);
-                bookNumRef.set({
-                    BookID: encodedcatID+copyID,
-                    Title: title,
-                    IssueDate: issue_date
+    categoryRef.once("value").then(function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            if (!childSnapshot.val().issued && !snapshot.val().reserved) {
+                childSnapshot.ref.update({
+                    "reserved": stud_id
+                }).then(function () {
+                    console.log("Success");
                 });
-            //}
+                return true;
+            }
         });
-}*/
+    });
+}
