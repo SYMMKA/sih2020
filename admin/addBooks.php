@@ -137,7 +137,10 @@
 								<label for="quantity">Quantity</label>
 								<input type="number" name="quantity" id="quantity" required />
 							</div>
-
+							<div class="field half">
+								<label for="testDDC">testDDC</label>
+								<input type="text" name="testDDC" id="testDDC" />
+							</div>
 							<div class="field">
 								<label for="image">Image</label>
 								<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
@@ -328,6 +331,8 @@
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
+	<script src="addBook/category.js"></script>
+	<script src="addBook/catName.js"></script>
 	<script src="main.js"></script>
 
 	<!-- variables declared without var are global
@@ -427,11 +432,7 @@
 					document.getElementById('mainCategorySelect3').disabled = false;
 					document.getElementById('mainCategorySelect4').disabled = false;
 
-
-
-					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates.length; mainCategory++) {
-						mainCategorySelect2.options[mainCategorySelect2.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategory].description, mainCategory);
-					}
+					c1();
 				}
 			}
 			//Main Category2 Changed
@@ -461,11 +462,7 @@
 					document.getElementById('mainCategorySelect3').disabled = false;
 					document.getElementById('mainCategorySelect4').disabled = false;
 
-
-
-					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates.length; mainCategory++) {
-						mainCategorySelect3.options[mainCategorySelect3.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].description, mainCategory);
-					}
+					c2();
 				}
 			}
 			//Main Category3 Changed
@@ -493,10 +490,7 @@
 
 					document.getElementById('mainCategorySelect4').disabled = false;
 
-
-					for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates.length; mainCategory++) {
-						mainCategorySelect4.options[mainCategorySelect4.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].description, mainCategory);
-					}
+					c3();
 				}
 			}
 
@@ -509,6 +503,34 @@
 				var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
 				document.getElementById('encodedcatID').value = encodedcatID;
 			}
+
+			//testDDC
+		var testDDC1 = document.getElementById('testDDC');
+		testDDC1.onchange = function() {
+
+			var testDDC = document.getElementById('testDDC').value;
+
+			var d1 = Math.floor(testDDC/100);
+			document.getElementById("mainCategorySelect1").value= d1;
+			mainCategorySelect2.length = 1; // remove all options bar first
+			mainCategorySelect3.length = 1; // remove all options bar first
+			mainCategorySelect4.length = 1; // remove all options bar first
+			c1();
+
+			var d2 = Math.floor((testDDC % 100) / 10);
+			document.getElementById("mainCategorySelect2").value= d2;
+			mainCategorySelect3.length = 1; // remove all options bar first
+			mainCategorySelect4.length = 1; // remove all options bar first
+			c2();
+
+			var d3 = Math.floor(testDDC % 10);
+			document.getElementById("mainCategorySelect3").value= d3;
+			mainCategorySelect4.length = 1; // remove all options bar first
+			c3();
+
+			var d4 = Math.floor(((testDDC % 1) / .1)+0.5);
+			document.getElementById("mainCategorySelect4").value= d4;
+		}
 		}
 	</script>
 
@@ -520,9 +542,6 @@
 	<script src="../assets/js/util.js"></script>
 	<script src="addBook/fireDB.js"></script>
 	<script src="../assets/js/main.js"></script>
-
-
-	<script src="addBook/category.js"></script>
 
 </body>
 
