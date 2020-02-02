@@ -32,9 +32,6 @@ function issueBook(e) {
     var copyID = getInputVal('copyID');
     var finalID = issueID + '-' + copyID;
 
-
-
-
     var formData = new FormData();
     formData.append('title', title);
     formData.append('author', author);
@@ -46,17 +43,7 @@ function issueBook(e) {
     formData.append('issue_date', issue_date);
 
     // Save message
-    saveMessage(issueID, copyID, stud_id, issue_date);
-
-    $.ajax({
-        type: "POST",
-        url: "searchBook/issueQuery.php",
-        data: formData,
-        type: 'POST',
-        contentType: false, // Dont delete this (jQuery 1.6+)
-        processData: false, // Dont delete this
-        //Other options
-    });
+    saveMessage(issueID, copyID, stud_id, formData);
 
     // Clear form
     document.getElementById('searchBookForm').reset();
@@ -70,7 +57,7 @@ function getInputVal(id) {
 }
 
 // Save message to firebase
-function saveMessage(issueID, copyID, stud_id, title, issue_date) {
+function saveMessage(issueID, copyID, stud_id, formData) {
 
     var encodedcatID = encodeURIComponent(issueID).replace(/\./g, '%2E');
 
@@ -84,22 +71,17 @@ function saveMessage(issueID, copyID, stud_id, title, issue_date) {
                 "reserved": ""
             }).then(function () {
                 console.log("Success");
+            }).then(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "issueBook/issueQuery.php",
+                    data: formData,
+                    type: 'POST',
+                    contentType: false, // Dont delete this (jQuery 1.6+)
+                    processData: false, // Dont delete this
+                    //Other options
+                });
             });
         }
     });
-
-    /*var userRef = firebase.database().ref('Users');
-    userRef.once("value") //checks whether the book exists in firebase
-        .then(function (snapshot) {
-            console.log("test");
-            //if (!snapshot.child(stud_id).exists()) {
-                var userIDRef = userRef.child(stud_id);
-                var bookNumRef = userIDRef.child(1);
-                bookNumRef.set({
-                    BookID: encodedcatID+copyID,
-                    Title: title,
-                    IssueDate: issue_date
-                });
-            //}
-        });*/
 }
