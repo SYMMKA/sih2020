@@ -148,8 +148,11 @@
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
-										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#issueBook">
+										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFillIssue(this.id)" href="#issueBook">
 											Issue Book
+										</button>
+										<button type="submit" class="button scrolly" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdate(this.id)" href="#updateBook">
+											Update Book
 										</button>
 									</div>
 								</div>
@@ -169,6 +172,7 @@
 	</section>
 	</div>
 
+	<!-- issue book -->
 	<div class="inner" name="issueBook" id="issueBook" hidden="true">
 		</br>
 		</br>
@@ -179,32 +183,32 @@
 
 
 		<div class="fields">
-			<form id="searchBookForm">
+			<form id="issueBookForm">
 				<div class="field half" style="text-align: center;">
 					<label>Title: </label>
-					<label id="booktitle"></label>
+					<label id="booktitleIssue"></label>
 					<input type="hidden" name="issueTitle" id="issueTitle">
 				</div>
 				<br />
 				<div class="field half" style="text-align: center;">
 					<label>Author: </label>
-					<label id="bookauthor"></label>
+					<label id="bookauthorIssue"></label>
 					<input type="hidden" name="issueAuthor" id="issueAuthor">
 				</div>
 				<div class="field half" style="text-align: center;">
 					<label>ISBN: </label>
-					<label id="bookisbn"></label>
+					<label id="bookisbnIssue"></label>
 					<input type="hidden" name="issueISBN" id="issueISBN">
 				</div>
 				<div class="field half" style="text-align: center;">
 					<label>BookID: </label>
-					<label id="bookID"></label>
+					<label id="bookIDIssue"></label>
 					<input type="hidden" name="issueID" id="issueID">
 					<label>CopyID: </label>
 					<input type="number" name="copyID" id="copyID" required>
 				</div>
 				<div class="field half" style="text-align: center;">
-					<img src="" id="bookimgLink">
+					<img src="" id="bookimgLinkIssue">
 				</div>
 				<div class="field">
 					<label>Student Name</label>
@@ -224,6 +228,67 @@
 				</div>
 				<ul class="actions">
 					<li><input type="submit" value="Issue" name="issue" class="primary" /></li>
+					<li><input type="reset" value="Clear" /></li>
+				</ul>
+
+				</br>
+			</form>
+		</div>
+	</div>
+
+	<!-- update book -->
+	<div class="inner" name="updateBook" id="updateBook" hidden="true">
+		</br>
+		</br>
+
+		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
+			<label>Update Book</label>
+		</div>
+
+
+		<div class="fields">
+			<form id="updateBookForm">
+				<div class="field half" style="text-align: center;">
+					<label>Title: </label>
+					<label id="booktitleUpdate"></label>
+				</div>
+				<br />
+				<div class="field half" style="text-align: center;">
+					<label>Author: </label>
+					<label id="bookauthorUpdate"></label>
+				</div>
+				<div class="field half" style="text-align: center;">
+					<label>ISBN: </label>
+					<label id="bookisbnUpdate"></label>
+				</div>
+				<div class="field half" style="text-align: center;">
+					<label>BookID: </label>
+					<label id="bookIDUpdate"></label>	
+					<input type="hidden" name="orgupdateID" id="orgupdateID">
+				</div>
+				<div class="field half" style="text-align: center;">
+					<img src="" id="bookimgLinkUpdate">
+				</div>
+
+				<div class="field">
+					<label>Change Title</label>
+					<input type="text" name="updateTitle" id="updateTitle" placeholder="Name" />
+				</div>
+				<div class="field">
+					<label>Change Author</label>
+					<input type="text" name="updateAuthor" id="updateAuthor" placeholder="Email address" />
+				</div>
+				<div class="field">
+					<label>Add copies</label>
+					<input type="text" name="addcopies" id="addcopies" placeholder="ID" >
+				</div>
+				<div class="field">
+					<label>Remove Copy</label>
+					<label>CopyID: </label>
+					<input type="number" name="removecopyID" id="removecopyID" >
+				</div>
+				<ul class="actions">
+					<li><input type="submit" value="update" name="update" class="primary" /></li>
 					<li><input type="reset" value="Clear" /></li>
 				</ul>
 
@@ -259,21 +324,22 @@
 		imgLink = <?php echo json_encode($imgLink); ?>
 	</script>
 	<script>
-		function autoFill(i) {
+		function autoFillIssue(i) {
 			// donot remove the comments in this method if the id isnt predefined in html form
 
+			document.getElementById('updateBook').hidden = true; //hide update book page
 			document.getElementById('issueBook').hidden = false; //shows issue book page
-			document.getElementById('booktitle').textContent = title[i];
+			document.getElementById('booktitleIssue').textContent = title[i];
 			document.getElementById('issueTitle').value = title[i];
-			document.getElementById('bookauthor').textContent = author[i];
+			document.getElementById('bookauthorIssue').textContent = author[i];
 			document.getElementById('issueAuthor').value = author[i];
-			document.getElementById('bookisbn').textContent = isbn[i];
+			document.getElementById('bookisbnIssue').textContent = isbn[i];
 			document.getElementById('issueISBN').value = isbn[i];
-			document.getElementById('bookID').textContent = bookID[i];
+			document.getElementById('bookIDIssue').textContent = bookID[i];
 			document.getElementById('issueID').value = bookID[i];
 			if (imgLink[i]) {
-				document.getElementById('bookimgLink').src = imgLink[i];
-				document.getElementById('bookimgLink').hidden = false;
+				document.getElementById('bookimgLinkIssue').src = imgLink[i];
+				document.getElementById('bookimgLinkIssue').hidden = false;
 			}
 			// current date
 			var today = new Date();
@@ -283,6 +349,23 @@
 
 			today = mm + '/' + dd + '/' + yyyy;
 			document.getElementById('issue_date').value = today;
+		}
+
+		function autoFillUpdate(i) {
+			// donot remove the comments in this method if the id isnt predefined in html form
+
+			document.getElementById('issueBook').hidden = true; //hide issue book page
+			document.getElementById('updateBook').hidden = false; //shows update book page
+			document.getElementById('booktitleUpdate').textContent = title[i];
+			console.log(title[i]);
+			document.getElementById('bookauthorUpdate').textContent = author[i];
+			document.getElementById('bookisbnUpdate').textContent = isbn[i];
+			document.getElementById('bookIDUpdate').textContent = bookID[i];
+			document.getElementById('orgupdateID').value = bookID[i];
+			if (imgLink[i]) {
+				document.getElementById('bookimgLinkUpdate').src = imgLink[i];
+				document.getElementById('bookimgLinkUpdate').hidden = false;
+			}
 		}
 	</script>
 	<script src="../assets/js/jquery.min.js"></script>

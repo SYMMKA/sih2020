@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 // Listen for form submit
-document.getElementById('searchBookForm').addEventListener('submit', issueBook);
+document.getElementById('issueBookForm').addEventListener('submit', issueBook);
 
 // Submit form
 function issueBook(e) {
@@ -46,7 +46,7 @@ function issueBook(e) {
     saveMessage(issueID, copyID, stud_id, formData);
 
     // Clear form
-    document.getElementById('searchBookForm').reset();
+    document.getElementById('issueBookForm').reset();
 
 }
 
