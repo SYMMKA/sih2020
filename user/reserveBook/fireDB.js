@@ -46,9 +46,12 @@ function saveMessage(bookID, stud_id) {
     var categoryRef = rootRef.child(encodedcatID);
     categoryRef.once("value").then(function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
-            if (!childSnapshot.val().issued && !childSnapshot.val().reserved) {
+            var curTime = Date.now();
+            var timer = (3660*0 + 60*0 + 20)*1000; // Time in miliseconds hour, minute, second
+            if (!childSnapshot.val().issued && (!childSnapshot.val().reserved || childSnapshot.val().reservedAt<=curTime-timer)) {
                 childSnapshot.ref.update({
-                    "reserved": stud_id
+                    "reserved": stud_id,
+                    "reservedAt": curTime
                 }).then(function () {
                     console.log("Success");
                 });

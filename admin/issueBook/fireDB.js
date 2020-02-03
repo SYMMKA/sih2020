@@ -65,11 +65,15 @@ function saveMessage(issueID, copyID, stud_id, formData) {
     var categoryRef = rootRef.child(encodedcatID);
     var copyRef = categoryRef.child(copyID);
     copyRef.once("value").then(function (snapshot) {
-        if (snapshot.val().reserved == stud_id || (!snapshot.val().issued && !snapshot.val().reserved)) {
+        var curTime = Date.now();
+        console.log(curTime);
+        var timer = (3660*0 + 60*0 + 20)*1000; // Time in miliseconds hour, minute, second
+        if (snapshot.val().reserved == stud_id || snapshot.val().reservedAt<=curTime-timer || (!snapshot.val().issued && !snapshot.val().reserved)) {
             snapshot.ref.update({
                 "issued": 1,
                 "reserved": ""
             }).then(function () {
+                copyRef.child('reservedAt').remove();
                 console.log("Success");
             }).then(function () {
                 $.ajax({
