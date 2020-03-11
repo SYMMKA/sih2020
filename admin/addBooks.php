@@ -13,12 +13,6 @@
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
 </head>
 
@@ -129,9 +123,8 @@
 							</div>
 
 							<div class="field half">
-								<label for="bookID">Book ID</label>
-								<input type="text" name="bookID" id="bookID" />
-								<input type="hidden" name="encodedcatID" id="encodedcatID" value="" />
+								<label for="oldID">Old ID</label>
+								<input type="text" name="oldID" id="oldID" />
 							</div>
 							<div class="field half">
 								<label for="quantity">Quantity</label>
@@ -403,7 +396,6 @@
 			//Main Category1 Changed
 			mainCategorySelect1.onchange = function() {
 
-				document.getElementById('bookID').value = ""; //resets bookID
 				mainCategorySelect2.length = 1; // remove all options bar first
 				mainCategorySelect3.length = 1; // remove all options bar first
 				mainCategorySelect4.length = 1; // remove all options bar first
@@ -423,9 +415,6 @@
 					document.getElementById('mainCategorySelect4').disabled = true;
 					var categoryID = test[mainCategorySelect1.value].number;
 					var test1 = document.getElementById('title').value;
-					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
-					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect2').disabled = false;
@@ -437,7 +426,6 @@
 			}
 			//Main Category2 Changed
 			mainCategorySelect2.onchange = function() {
-				document.getElementById('bookID').value = ""; //resets bookID
 				mainCategorySelect3.length = 1; // remove all options bar first
 				mainCategorySelect4.length = 1; // remove all options bar first
 				if (this.selectedIndex < 1) {
@@ -454,9 +442,6 @@
 					document.getElementById('mainCategorySelect4').disabled = true;
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].number;
 					var test1 = document.getElementById('title').value;
-					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
-					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect3').disabled = false;
@@ -468,7 +453,7 @@
 			//Main Category3 Changed
 			mainCategorySelect3.onchange = function() {
 
-				document.getElementById('bookID').value = ""; //resets bookID
+				
 				mainCategorySelect4.length = 1; // remove all options bar first
 
 				if (this.selectedIndex < 1) {
@@ -483,9 +468,6 @@
 					document.getElementById('mainCategorySelect4').disabled = true;
 					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].number;
 					var test1 = document.getElementById('title').value;
-					document.getElementById('bookID').value = categoryID + '-' + test1;
-					var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
-					document.getElementById('encodedcatID').value = encodedcatID;
 				} else {
 
 					document.getElementById('mainCategorySelect4').disabled = false;
@@ -496,12 +478,8 @@
 
 			mainCategorySelect4.onchange = function() {
 
-				document.getElementById('bookID').value = ""; //resets bookID
 				var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].number;
 				var test1 = document.getElementById('title').value;
-				document.getElementById('bookID').value = categoryID + '-' + test1;
-				var encodedcatID = encodeURIComponent(document.getElementById('bookID').value).replace(/\./g, '%2E');
-				document.getElementById('encodedcatID').value = encodedcatID;
 			}
 
 			//testDDC
