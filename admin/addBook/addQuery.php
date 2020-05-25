@@ -14,7 +14,6 @@ if ($_POST['title1'])
 	$title2 = $_POST['title1'];
 else
 	$title2 = NULL;
-echo $title2;
 if ($_POST['author1'])
 	$author2 = $_POST['author1'];
 else
@@ -68,19 +67,18 @@ if ($_POST['oldID'])
 else
 	$oldID = NULL;
 //Dont add `id` column
-$sql = "INSERT INTO `main` (`title`, `author`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$mainCategorySelect1', '$mainCategorySelect2', '$mainCategorySelect3', '$mainCategorySelect4', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
+$sql = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`) VALUES ('$title2', '$author2', '$quantity2', '$mainCategorySelect1', '$mainCategorySelect2', '$mainCategorySelect3', '$mainCategorySelect4', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2')";
 if ($conn->query($sql) === TRUE) {
+	for ($i = 1; $i <= $quantity2; $i++) {
+		$copyID = $isbn2.'-'.$i;
+		$sql1 = "INSERT INTO `copies` (`isbn`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`) VALUES ('$isbn2', '$i', '$oldID', '$copyID', '', NULL, '', NULL)";
+		if ($conn->query($sql1) === TRUE) {
+		} else {
+		   echo "Error: " . $sql1 . "<br>" . $conn->error;
+		}
+	 }
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-for ($i = 1; $i <= $quantity2; $i++) {
-   $copyID = $isbn2.'-'.$i;
-   $sql = "INSERT INTO `copies` (`isbn`, `copyno`, `oldID`, `copyID`, `reserved`, `reservedTime`) VALUES ('$isbn2', '$i', '', '$copyID', '', current_timestamp())";
-   if ($conn->query($sql) === TRUE) {
-   } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-   }
 }
 
 
@@ -88,3 +86,5 @@ $conn->close();
 
 header("Location: ../addBooks.php");
 exit;
+
+?>

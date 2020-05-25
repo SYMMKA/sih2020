@@ -324,8 +324,8 @@
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<script src="addBook/category.js"></script>
-	<script src="addBook/catName.js"></script>
+	<script src="category.js"></script>
+	<script src="catName.js"></script>
 	<script src="main.js"></script>
 
 	<!-- variables declared without var are global
@@ -384,131 +384,35 @@
 		// To select category
 		window.onload = function() {
 
-			var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
-			var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
-			var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
-			var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
-			//Load main categories
-			for (var mainCategory = 0; mainCategory < test.length; mainCategory++) {
-				mainCategorySelect1.options[mainCategorySelect1.options.length] = new Option(test[mainCategory].description, mainCategory);
-			}
+			loadCategory();
 
-			//Main Category1 Changed
-			mainCategorySelect1.onchange = function() {
+			//testDDC
+			var testDDC1 = document.getElementById('testDDC');
+			testDDC1.onchange = function() {
 
+				var testDDC = document.getElementById('testDDC').value;
+
+				var d1 = Math.floor(testDDC / 100);
+				document.getElementById("mainCategorySelect1").value = d1;
 				mainCategorySelect2.length = 1; // remove all options bar first
 				mainCategorySelect3.length = 1; // remove all options bar first
 				mainCategorySelect4.length = 1; // remove all options bar first
-				if (this.selectedIndex < 1) {
-					document.getElementById('mainCategorySelect2').hidden = true;
-					document.getElementById('mainCategorySelect3').hidden = true;
-					document.getElementById('mainCategorySelect4').hidden = true;
+				c1();
 
-					return; // done
-				}
-
-
-				if (!test[this.value].subordinates) { // hides sub category if not available
-
-					document.getElementById('mainCategorySelect2').disabled = true;
-					document.getElementById('mainCategorySelect3').disabled = true;
-					document.getElementById('mainCategorySelect4').disabled = true;
-					var categoryID = test[mainCategorySelect1.value].number;
-					var test1 = document.getElementById('title').value;
-				} else {
-
-					document.getElementById('mainCategorySelect2').disabled = false;
-					document.getElementById('mainCategorySelect3').disabled = false;
-					document.getElementById('mainCategorySelect4').disabled = false;
-
-					c1();
-				}
-			}
-			//Main Category2 Changed
-			mainCategorySelect2.onchange = function() {
+				var d2 = Math.floor((testDDC % 100) / 10);
+				document.getElementById("mainCategorySelect2").value = d2;
 				mainCategorySelect3.length = 1; // remove all options bar first
 				mainCategorySelect4.length = 1; // remove all options bar first
-				if (this.selectedIndex < 1) {
-					document.getElementById('mainCategorySelect3').hidden = true;
-					document.getElementById('mainCategorySelect4').hidden = true;
+				c2();
 
-					return; // done
-				}
-
-
-				if (!test[mainCategorySelect1.value].subordinates[this.value].subordinates) { // hides sub category if not available
-
-					document.getElementById('mainCategorySelect3').disabled = true;
-					document.getElementById('mainCategorySelect4').disabled = true;
-					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].number;
-					var test1 = document.getElementById('title').value;
-				} else {
-
-					document.getElementById('mainCategorySelect3').disabled = false;
-					document.getElementById('mainCategorySelect4').disabled = false;
-
-					c2();
-				}
-			}
-			//Main Category3 Changed
-			mainCategorySelect3.onchange = function() {
-
-				
+				var d3 = Math.floor(testDDC % 10);
+				document.getElementById("mainCategorySelect3").value = d3;
 				mainCategorySelect4.length = 1; // remove all options bar first
+				c3();
 
-				if (this.selectedIndex < 1) {
-					document.getElementById('mainCategorySelect4').hidden = true;
-
-					return; // done
-				}
-
-
-				if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[this.value].subordinates) { // hides sub category if not available
-
-					document.getElementById('mainCategorySelect4').disabled = true;
-					var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].number;
-					var test1 = document.getElementById('title').value;
-				} else {
-
-					document.getElementById('mainCategorySelect4').disabled = false;
-
-					c3();
-				}
+				var d4 = Math.floor(((testDDC % 1) / .1) + 0.5);
+				document.getElementById("mainCategorySelect4").value = d4;
 			}
-
-			mainCategorySelect4.onchange = function() {
-
-				var categoryID = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].number;
-				var test1 = document.getElementById('title').value;
-			}
-
-			//testDDC
-		var testDDC1 = document.getElementById('testDDC');
-		testDDC1.onchange = function() {
-
-			var testDDC = document.getElementById('testDDC').value;
-
-			var d1 = Math.floor(testDDC/100);
-			document.getElementById("mainCategorySelect1").value= d1;
-			mainCategorySelect2.length = 1; // remove all options bar first
-			mainCategorySelect3.length = 1; // remove all options bar first
-			mainCategorySelect4.length = 1; // remove all options bar first
-			c1();
-
-			var d2 = Math.floor((testDDC % 100) / 10);
-			document.getElementById("mainCategorySelect2").value= d2;
-			mainCategorySelect3.length = 1; // remove all options bar first
-			mainCategorySelect4.length = 1; // remove all options bar first
-			c2();
-
-			var d3 = Math.floor(testDDC % 10);
-			document.getElementById("mainCategorySelect3").value= d3;
-			mainCategorySelect4.length = 1; // remove all options bar first
-			c3();
-
-			var d4 = Math.floor(((testDDC % 1) / .1)+0.5);
-			document.getElementById("mainCategorySelect4").value= d4;
-		}
 		}
 	</script>
 
@@ -518,7 +422,7 @@
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<script src="addBook/fireDB.js"></script>
+	<script src="addBook/uploadDB.js"></script>
 	<script src="../assets/js/main.js"></script>
 
 </body>

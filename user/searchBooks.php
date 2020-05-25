@@ -1,9 +1,3 @@
-<!DOCTYPE HTML>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -14,12 +8,6 @@
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
 
 <body class="is-preload">
@@ -104,15 +92,15 @@
 				<div class="row">
 					<?php
 					//DB CONNECTION====================================
-					$servername = "remotemysql.com";
-					$username = "2qTzr9mwEz";
-					$password = "u931TbHEs5";
-					$database = "2qTzr9mwEz";
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "library";
 					// Create connection
 					$conn = new mysqli($servername, $username, $password, $database);
 
 					$searchField = $_POST['voice-search'];
-					$query = "SELECT * FROM books Where title LIKE '%$searchField%'";
+					$query = "SELECT * FROM main Where title LIKE '%$searchField%'";
 					$returnD = mysqli_query($conn, $query);
 
 					$i = 0;
@@ -137,19 +125,17 @@
 						}
 					?>
 						<div class="col-sm-3">
-
-							<div class="card text-center" style="border:none;">
+						<div class="card text-center" style="border:none;">
 								<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="No Image" style="height:300px;">
 								<div class="card-body text-white" style="background-color: #393e46">
 									<h5 class="card-title"><?= $title[$i] ?></h5>
 									<h6 class="card-subtitle mb-2 text-muted"><?= $author[$i] ?></h6>
 									<p class="card-text"><?= $isbn[$i] ?></p>
-									<p class="card-text"><?= $bookID[$i] ?></p>
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
-										<button type="submit" class="button scrolly" name="reserve-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#reserveBook">
-											reserve Book
+										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFill(this.id)" href="#reserveBook">
+											Reserve Book
 										</button>
 									</div>
 								</div>
@@ -165,8 +151,7 @@
 			}
 
 			?>
-
-		</section>
+	</section>
 	</div>
 
 	<div class="inner" name="reserveBook" id="reserveBook" hidden="true">
@@ -183,42 +168,28 @@
 				<div class="field half" style="text-align: center;">
 					<label>Title: </label>
 					<label id="booktitle"></label>
-					<input type="hidden" name="reserveTitle" id="reserveTitle">
 				</div>
-				<br />
 				<div class="field half" style="text-align: center;">
 					<label>Author: </label>
 					<label id="bookauthor"></label>
-					<input type="hidden" name="reserveAuthor" id="reserveAuthor">
 				</div>
 				<div class="field half" style="text-align: center;">
 					<label>ISBN: </label>
 					<label id="bookisbn"></label>
-					<input type="hidden" name="reserveISBN" id="reserveISBN">
 				</div>
 				<div class="field half" style="text-align: center;">
-					<label>BookID: </label>
-					<label id="bookID"></label>
-					<input type="hidden" name="reserveID" id="reserveID">
+					<label>Old ID: </label>
+					<label id="oldID"></label>
+					<label>CopyID: </label>
+					<label id="copyID"></label>
 				</div>
-				<!-- <div class="field half" style="text-align: center;">
+				<div class="field half" style="text-align: center;">
 					<img src="" id="bookimgLink">
-				</div> -->
-				<div class="field">
-					<label>Student Name</label>
-					<input type="text" name="stud_name" id="stud_name" placeholder="Name" />
 				</div>
+				<div class="row" id="copies"></div>
 				<div class="field">
-					<label>Student Email</label>
-					<input type="text" name="stud_email" id="stud_email" placeholder="Email address" />
-				</div>
-				<div class="field">
-					<label>Student ID</label>
-					<input type="text" name="stud_id" id="stud_id" placeholder="ID" required/>
-				</div>
-				<div class="field">
-					<label>reserve Date</label>
-					<input name="reserve_date" id="reserve_date" placeholder="Date" />
+					<label>Student ID //No need to ask when student logs in</label>
+					<input type="text" name="stud_ID" id="stud_ID" placeholder="ID" required />
 				</div>
 				<ul class="actions">
 					<li><input type="submit" value="reserve" name="reserve" class="primary" /></li>
@@ -253,17 +224,17 @@
 	<script>
 		bookID = <?php echo json_encode($bookID); ?>
 	</script>
-	<!-- <script>
-		imgLink = <?php //echo json_encode($imgLink); ?>
-  </script> -->
-  <script>
+	<script>
+		imgLink = <?php echo json_encode($imgLink); ?>
+	</script>
+	<script>
 		stud_name = <?php echo json_encode($stud_name); ?>
 	</script>
 	<script>
 		stud_email = <?php echo json_encode($stud_email); ?>
 	</script>
 	<script>
-		stud_id = <?php echo json_encode($stud_id); ?>
+		stud_ID = <?php echo json_encode($stud_ID); ?>
 	</script>
 	<script>
 		issue_date = <?php echo json_encode($issue_date); ?>
@@ -274,26 +245,68 @@
 
 			document.getElementById('reserveBook').hidden = false; //shows reserve book page
 			document.getElementById('booktitle').textContent = title[i];
-			document.getElementById('reserveTitle').value = title[i];
 			document.getElementById('bookauthor').textContent = author[i];
-			document.getElementById('reserveAuthor').value = author[i];
 			document.getElementById('bookisbn').textContent = isbn[i];
-			document.getElementById('reserveISBN').value = isbn[i];
-			document.getElementById('bookID').textContent = bookID[i];
-			document.getElementById('reserveID').value = bookID[i];
-			// if (imgLink[i]) {
-			// 	document.getElementById('bookimgLink').src = imgLink[i];
-			// 	document.getElementById('bookimgLink').hidden = false;
-			// }
-			// current date
-			var today = new Date();
-			var dd = String(today.getDate()).padStart(2, '0');
-			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-			var yyyy = today.getFullYear();
-
-			today = mm + '/' + dd + '/' + yyyy;
-			document.getElementById('reserve_date').value = today;
+			if (imgLink[i]) {
+			document.getElementById('bookimgLink').src = imgLink[i];
+			document.getElementById('bookimgLink').hidden = false;
+			}
+			var formData = new FormData();
+			formData.append('isbn', isbn[i]);
+			$.ajax({
+				type: "POST",
+				url: "reserveBook/copies.php",
+				data: formData,
+				contentType: false, // Dont delete this (jQuery 1.6+)
+				processData: false, // Dont delete this
+				success: function(data) {
+					var data = JSON.parse(data);
+					var html = '';
+					data.forEach(function(item, index){
+					html += `<div class="col-sm-3">
+						<div class="card text-center" style="border:none;">
+							<div class="card-body text-white" style="background-color: #393e46">
+								<h5 class="card-title">`+item.copyno +`</h5>
+								<h6 class="card-subtitle mb-2 text-muted">ISBN: `+item.copyID +`</h6>
+								<h6 class="card-subtitle mb-2 text-muted">`+item.oldID +`</h6>`;
+								if(item.status=='reserved' && item.returnTime > item.currentTime){
+									html+=`<p class="card-text">Reserved by: `+item.stud_ID +`</p>
+									<p class="card-text">Reserved at: `+item.time +`</p>`;
+									
+								}
+								else if(item.status=='issued'){
+									html+=`<p class="card-text">Issued by: `+item.stud_ID +`</p>
+									<p class="card-text">Issued at: `+item.time +`</p>`;
+								}
+								else{
+									html+=`<p class="card-text">Available`;
+								}
+							html+=`</div>
+							<div class="card-footer" style="border:none; background-color: #393e46 ">
+								<div class="col-auto">
+									<button type="submit" class="button scrolly" name="issue-bookCopy" id="`+index+`" onclick="autoFillReserveCopy('`+ item.copyID +`','`+ item.oldID +`')"`;
+									if(item.status=='issued' || (item.status=='reserved' && item.returnTime > item.currentTime)){
+										html+=`disabled`;
+								}
+								html+=`>
+										Reserve Copy
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>`;
+					document.getElementById("copies").innerHTML = html;
+					})
+    			}
+				//Other options
+			});
 		}
+
+		function autoFillReserveCopy(copyID, oldID) {
+			document.getElementById('copyID').textContent = copyID;
+			document.getElementById('oldID').textContent = oldID;
+		}
+
 	</script>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.scrolly.min.js"></script>

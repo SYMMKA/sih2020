@@ -102,7 +102,7 @@
                     $servername = "localhost";
                     $username = "root";
                     $password = "";
-                    $database = "books";
+                    $database = "library";
 
                     //mysql_connect($serverName, $userName, $password) or die(mysql_error());
                     //mysql_select_db($databaseName) or die(mysql_error());
@@ -113,7 +113,7 @@
                         die("Connection failed: " . $conn->connect_error);
                     }
                     $searchField = $_POST['voice-search'];
-                    $query = "SELECT * FROM books Where title LIKE '%$searchField%'";
+                    $query = "SELECT * FROM main Where title LIKE '%$searchField%'";
                     $returnD = mysqli_query($conn, $query);
 
                     $i = 0;

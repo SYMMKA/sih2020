@@ -1,56 +1,45 @@
 <?php
 //DB CONNECTION====================================
-$servername = "remotemysql.com";
-$username = "2qTzr9mwEz";
-$password = "u931TbHEs5";
-$database = "2qTzr9mwEz";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "library";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-	if ($_POST['stud_name'])
-		$st_name = $_POST['stud_name'];
-	else
-		$st_name = NULL;
-	if ($_POST['stud_email'])
-		$st_email = $_POST['stud_email'];
-	else
-		$st_email = NULL;
-	if ($_POST['stud_id']) {
-		$st_id = $_POST['stud_id'];
-	} else
-		$st_id = NULL;
-	if ($_POST['title'])
-		$title2 = $_POST['title'];
-	else
-		$title2 = NULL;
-	if ($_POST['author'])
-		$author = $_POST['author'];
-	else
-		$author = NULL;
-	if ($_POST['finalID'])
-		$bookID = $_POST['finalID'];
-	else
-		$bookID = NULL;
-	if ($_POST['isbn'])
-		$isbn = $_POST['isbn'];
-	else
-		$isbn = NULL;
-	if ($_POST['issue_date'])
-		$issue_date = $_POST['issue_date'];
-	else
-		$issue_date = NULL;
+if ($_POST['isbn']) {
+	$isbn = $_POST['isbn'];
+} else
+	$isbn = NULL;
+if ($_POST['stud_ID']) {
+	$st_ID = $_POST['stud_ID'];
+} else
+	$st_ID = NULL;
+if ($_POST['oldID'])
+	$oldID = $_POST['oldID'];
+else
+	$oldID = NULL;
+if ($_POST['copyID'])
+	$copyID = $_POST['copyID'];
+else
+	$copyID = NULL;
 
-	//Dont add `id` column
-	$sql = "INSERT INTO `issued` (`stud_name`, `stud_email`, `stud_id`, `title`, `author`, `bookID`, `isbn`, `issue_date`) VALUES ('$st_name', '$st_email', '$st_id', '$title2', '$author', '$bookID', '$isbn', '$issue_date')";
-	if ($conn->query($sql) === TRUE) {
+$timePeriod = 20; //reserve time period
+//Dont add `id` column
+$sql = "UPDATE `copies` SET `stud_ID` = '$st_ID', `status` = 'issued', `time` = UNIX_TIMESTAMP(), `returntime` = UNIX_TIMESTAMP()+$timePeriod WHERE `copies`.`copyID` = '$copyID' AND (`copies`.`status` = '' OR (`copies`.`status` = 'reserved' AND (`copies`.`stud_ID` = '$st_ID' OR `copies`.`returnTime` < UNIX_TIMESTAMP())))";
+if ($conn->query($sql) === TRUE) {
+	$sql1 = "INSERT INTO `issued` (`isbn`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`) VALUES ('$isbn', '$oldID', '$copyID', '$st_ID', UNIX_TIMESTAMP(), NULL)";
+	if ($conn->query($sql1) === TRUE) {
 	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
+		echo "Error: " . $sql1 . "<br>" . $conn->error;
 	}
-	$conn->close();
-  
-	header( "Location: ../searchBooks.php" );
-exit ;
-?>
+} else {
+	echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$conn->close();
+
+//header( "Location: ../searchBooks.php" );
+exit;
