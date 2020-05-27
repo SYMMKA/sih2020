@@ -331,90 +331,20 @@
 	<!-- variables declared without var are global
           I removed var because of warnings-->
 	<script>
-		title = <?php echo json_encode($title); ?>
+		title = <?php echo json_encode($title); ?>;
+		author = <?php echo json_encode($author); ?>;
+		category = <?php echo json_encode($category); ?>;
+		publisher = <?php echo json_encode($publisher); ?>;
+		publishedDate = <?php echo json_encode($publishedDate); ?>;
+		isbn = <?php echo json_encode($isbn); ?>;
+		pageCount = <?php echo json_encode($pageCount); ?>;
+		money = <?php echo json_encode($money); ?>;
+		imgLink = <?php echo json_encode($imgLink); ?>;
+		preview = <?php echo json_encode($preview); ?>;
 	</script>
-	<script>
-		author = <?php echo json_encode($author); ?>
-	</script>
-	<script>
-		category = <?php echo json_encode($category); ?>
-	</script>
-	<script>
-		publisher = <?php echo json_encode($publisher); ?>
-	</script>
-	<script>
-		publishedDate = <?php echo json_encode($publishedDate); ?>
-	</script>
-	<script>
-		isbn = <?php echo json_encode($isbn); ?>
-	</script>
-	<script>
-		pageCount = <?php echo json_encode($pageCount); ?>
-	</script>
-	<script>
-		money = <?php echo json_encode($money); ?>
-	</script>
-	<script>
-		imgLink = <?php echo json_encode($imgLink); ?>
-	</script>
-	<script>
-		preview = <?php echo json_encode($preview); ?>
-	</script>
-	<script>
-		function autoFill(i) {
-			// donot remove the comments in this method if the id isnt predefined in html form
+	<script src="addBook/autoFill.js"></script>
 
-			document.getElementById('title').value = title[i];
-			document.getElementById('author').value = author[i];
-			document.getElementById('category').value = category[i];
-			document.getElementById('publisher').value = publisher[i];
-			document.getElementById('publishedDate').value = publishedDate[i];
-			document.getElementById('isbn').value = isbn[i];
-			document.getElementById('pageCount').value = pageCount[i];
-			document.getElementById('money').value = money[i];
-			if (imgLink[i]) {
-				document.getElementById('imgLink').src = imgLink[i];
-				document.getElementById('imgValue').value = imgLink[i];
-				document.getElementById('imgLink').hidden = false;
-			}
-		}
-	</script>
-
-	<script>
-		// To select category
-		window.onload = function() {
-
-			loadCategory();
-
-			//testDDC
-			var testDDC1 = document.getElementById('testDDC');
-			testDDC1.onchange = function() {
-
-				var testDDC = document.getElementById('testDDC').value;
-
-				var d1 = Math.floor(testDDC / 100);
-				document.getElementById("mainCategorySelect1").value = d1;
-				mainCategorySelect2.length = 1; // remove all options bar first
-				mainCategorySelect3.length = 1; // remove all options bar first
-				mainCategorySelect4.length = 1; // remove all options bar first
-				c1();
-
-				var d2 = Math.floor((testDDC % 100) / 10);
-				document.getElementById("mainCategorySelect2").value = d2;
-				mainCategorySelect3.length = 1; // remove all options bar first
-				mainCategorySelect4.length = 1; // remove all options bar first
-				c2();
-
-				var d3 = Math.floor(testDDC % 10);
-				document.getElementById("mainCategorySelect3").value = d3;
-				mainCategorySelect4.length = 1; // remove all options bar first
-				c3();
-
-				var d4 = Math.floor(((testDDC % 1) / .1) + 0.5);
-				document.getElementById("mainCategorySelect4").value = d4;
-			}
-		}
-	</script>
+	<script src="addBook/autoDDC.js"></script>
 
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.scrolly.min.js"></script>

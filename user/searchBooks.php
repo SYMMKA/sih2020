@@ -119,9 +119,6 @@
 							if ($k == 'author') {
 								$author[$i] = $v;
 							}
-							if ($k == 'bookID') {
-								$bookID[$i] = $v;
-							}
 						}
 					?>
 						<div class="col-sm-3">
@@ -213,108 +210,19 @@
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="../admin/main.js"></script>
 	<script>
-		title = <?php echo json_encode($title); ?>
-	</script>
-	<script>
-		author = <?php echo json_encode($author); ?>
-	</script>
-	<script>
-		isbn = <?php echo json_encode($isbn); ?>
-	</script>
-	<script>
-		bookID = <?php echo json_encode($bookID); ?>
-	</script>
-	<script>
+		title = <?php echo json_encode($title); ?>;
+		author = <?php echo json_encode($author); ?>;
+		isbn = <?php echo json_encode($isbn); ?>;
 		imgLink = <?php echo json_encode($imgLink); ?>
 	</script>
-	<script>
-		stud_name = <?php echo json_encode($stud_name); ?>
-	</script>
-	<script>
-		stud_email = <?php echo json_encode($stud_email); ?>
-	</script>
-	<script>
-		stud_ID = <?php echo json_encode($stud_ID); ?>
-	</script>
-	<script>
-		issue_date = <?php echo json_encode($issue_date); ?>
-	</script>
-	<script>
-		function autoFill(i) {
-			// donot remove the comments in this method if the id isnt predefined in html form
-
-			document.getElementById('reserveBook').hidden = false; //shows reserve book page
-			document.getElementById('booktitle').textContent = title[i];
-			document.getElementById('bookauthor').textContent = author[i];
-			document.getElementById('bookisbn').textContent = isbn[i];
-			if (imgLink[i]) {
-			document.getElementById('bookimgLink').src = imgLink[i];
-			document.getElementById('bookimgLink').hidden = false;
-			}
-			var formData = new FormData();
-			formData.append('isbn', isbn[i]);
-			$.ajax({
-				type: "POST",
-				url: "reserveBook/copies.php",
-				data: formData,
-				contentType: false, // Dont delete this (jQuery 1.6+)
-				processData: false, // Dont delete this
-				success: function(data) {
-					var data = JSON.parse(data);
-					var html = '';
-					data.forEach(function(item, index){
-					html += `<div class="col-sm-3">
-						<div class="card text-center" style="border:none;">
-							<div class="card-body text-white" style="background-color: #393e46">
-								<h5 class="card-title">`+item.copyno +`</h5>
-								<h6 class="card-subtitle mb-2 text-muted">ISBN: `+item.copyID +`</h6>
-								<h6 class="card-subtitle mb-2 text-muted">`+item.oldID +`</h6>`;
-								if(item.status=='reserved' && item.returnTime > item.currentTime){
-									html+=`<p class="card-text">Reserved by: `+item.stud_ID +`</p>
-									<p class="card-text">Reserved at: `+item.time +`</p>`;
-									
-								}
-								else if(item.status=='issued'){
-									html+=`<p class="card-text">Issued by: `+item.stud_ID +`</p>
-									<p class="card-text">Issued at: `+item.time +`</p>`;
-								}
-								else{
-									html+=`<p class="card-text">Available`;
-								}
-							html+=`</div>
-							<div class="card-footer" style="border:none; background-color: #393e46 ">
-								<div class="col-auto">
-									<button type="submit" class="button scrolly" name="issue-bookCopy" id="`+index+`" onclick="autoFillReserveCopy('`+ item.copyID +`','`+ item.oldID +`')"`;
-									if(item.status=='issued' || (item.status=='reserved' && item.returnTime > item.currentTime)){
-										html+=`disabled`;
-								}
-								html+=`>
-										Reserve Copy
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>`;
-					document.getElementById("copies").innerHTML = html;
-					})
-    			}
-				//Other options
-			});
-		}
-
-		function autoFillReserveCopy(copyID, oldID) {
-			document.getElementById('copyID').textContent = copyID;
-			document.getElementById('oldID').textContent = oldID;
-		}
-
-	</script>
+	<script src="reserveBook/autoFill.js"></script>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.scrolly.min.js"></script>
 	<script src="../assets/js/jquery.scrollex.min.js"></script>
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<script src="reserveBook/fireDB.js"></script>
+	<script src="reserveBook/uploadDB.js"></script>
 	<script src="../assets/js/main.js"></script>
 
 
