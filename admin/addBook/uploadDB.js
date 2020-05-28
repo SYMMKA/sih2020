@@ -16,7 +16,8 @@ function addBook(e) {
     var money = getInputVal('money');
     var quantity = getInputVal('quantity');
     var oldID = getInputVal('oldID');
-    var imgValue = document.getElementById('imgLink').src;
+    var imgValue = document.getElementById('imgValue').value;
+    var files = $('#imgFile')[0].files[0];
 
     if (!test[mainCategorySelect1.value].subordinates) {
         var mainCategory2 = '';
@@ -50,6 +51,7 @@ function addBook(e) {
     formData.append('pageCount1', pageCount);
     formData.append('money1', money);
     formData.append('imgValue1', imgValue);
+    formData.append('imgFile', files);
     formData.append('quantity1', quantity);
     formData.append('oldID', oldID);
 

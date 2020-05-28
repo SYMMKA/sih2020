@@ -137,7 +137,7 @@
 							<div class="field">
 								<label for="image">Image</label>
 								<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-								<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = document.getElementById('imgValue').value = window.URL.createObjectURL(this.files[0]), document.getElementById('imgLink').hidden= false">
+								<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false">
 								<input type="hidden" name="imgValue" id="imgValue" value="" />
 							</div>
 							<div class="alert">

@@ -105,21 +105,16 @@
 
 					$i = 0;
 
-					while ($result = mysqli_fetch_assoc($returnD)) {
-						foreach ($result as $k => $v) {
-							if ($k == 'imgLink') {
-								$imgLink[$i] = $v;
-							}
-							if ($k == 'title') {
-								$title[$i] = $v;
-							}
-							if ($k == 'isbn') {
-								$isbn[$i] = $v;
-							}
-							if ($k == 'author') {
-								$author[$i] = $v;
-							}
-						}
+					while ($result = mysqli_fetch_array($returnD)) {
+						$imgLink[$i] = $result["imgLink"];
+						$title[$i] = $result["title"];
+						$isbn[$i] = $result["isbn"];
+						$author[$i] = $result["author"];
+
+						$query1 = "SELECT AVG(star) FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`isbn` = '$isbn[$i]'";
+						$returnD1 = mysqli_query($conn, $query1);
+						$result1 = mysqli_fetch_array($returnD1);
+						$star[$i] = $result1["AVG(star)"];
 					?>
 						<div class="col-sm-3">
 						<div class="card text-center" style="border:none;">
@@ -128,6 +123,7 @@
 									<h5 class="card-title"><?= $title[$i] ?></h5>
 									<h6 class="card-subtitle mb-2 text-muted"><?= $author[$i] ?></h6>
 									<p class="card-text"><?= $isbn[$i] ?></p>
+									<p class="card-text">Star: <?= $star[$i] ?></p>
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">

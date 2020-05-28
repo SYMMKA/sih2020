@@ -14,8 +14,8 @@ function updateBook(e) {
     var pageCount = getInputVal('updatepageCount');
     var money = getInputVal('updatemoney');
     var oldID = getInputVal('updateOldID');
-    var imgValue = document.getElementById('updateimgValue').value;
     var addQuan = getInputVal('updateaddcopies');
+    var files = $('#updateimgFile')[0].files[0];
 
     if (!getInputVal('catDisplay')) {
         var mainCategory1 = '';
@@ -57,7 +57,7 @@ function updateBook(e) {
     formData.append('pageCount', pageCount);
     formData.append('money', money);
     formData.append('oldID', oldID);
-    formData.append('imgValue', imgValue);
+    formData.append('imgFile', files);
     formData.append('addQuan', addQuan);
 
     console.log(title);
@@ -72,7 +72,6 @@ function updateBook(e) {
     console.log(pageCount);
     console.log(money);
     console.log(oldID);
-    console.log(imgValue);
     console.log(addQuan);
 
     $.ajax({
