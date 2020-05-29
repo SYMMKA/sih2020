@@ -1,20 +1,21 @@
-function autoFillIssueBook(i) {
+function autoFillBook(i) {
     document.getElementById('updateBook').hidden = true; //hides update book page
-    document.getElementById('returnBook').hidden = true; //hides return book page
-    document.getElementById('deleteCopy').hidden = true; //hides delete book page
-    document.getElementById('issueBook').hidden = false; //shows issue book page
-    document.getElementById('booktitleIssue').textContent = title[i];
-    document.getElementById('bookauthorIssue').textContent = author[i];
-    document.getElementById('bookisbnIssue').textContent = isbn[i];
+    document.getElementById('issueBookFormDiv').innerHTML = '';
+    document.getElementById('returnBookFormDiv').innerHTML = '';
+    document.getElementById('deleteCopyFormDiv').innerHTML = '';
+    document.getElementById('displayCopy').hidden = false; //shows display Copy page 
+    document.getElementById('displayCopyTitle').textContent = title[i];
+    document.getElementById('displayCopyAuthor').textContent = author[i];
+    document.getElementById('displayCopyIsbn').textContent = isbn[i];
     if (imgLink[i]) {
-        document.getElementById('bookimgLinkIssue').src = imgLink[i];
-        document.getElementById('bookimgLinkIssue').hidden = false;
+        document.getElementById('bookimgLinkdisplay').src = imgLink[i];
+        document.getElementById('bookimgLinkdisplay').hidden = false;
     }
     var formData = new FormData();
     formData.append('isbn', isbn[i]);
     $.ajax({
         type: "POST",
-        url: "issueBook/copies.php",
+        url: "searchBook/copies.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
@@ -43,19 +44,21 @@ function autoFillIssueBook(i) {
                     }
                     html += `</div>
                     <div class="card-footer" style="border:none; background-color: #393e46 ">
-                        <div class="col-auto">
-                            <button type="submit" class="button scrolly" name="issueBookCopy" onclick="autoFillIssueCopy('` + item.copyID + `','` + item.oldID + `','` + reservedBy + `')"`;
+                        <div class="col-auto">`;
                     if (item.status == 'issued') {
-                        html += `disabled`;
+                        html += `<button type="submit" form="returnBookForm" class="button scrolly" name="issueReturnCopy" onclick="autoFillReturnBook('` + item.copyID + `','` + item.oldID + `')">Return Copy`;
+                    } else {
+                        html += `<button type="button" class="button scrolly" name="issueBookCopy" id="issueBookCopy" onclick="autoFillIssueBook('` + item.copyID + `','` + item.oldID + `','` + reservedBy + `')">Issue Copy`;
                     }
-                    html += `>
-                                Issue Copy
-                            </button>
+                    html += `</button>
+                    <button type="submit" form="deleteCopyForm" class="button scrolly" name="deleteCopyCopy" onclick="autoFillDeleteCopy('` + item.copyID + `')">
+                        Delete Copy
+                    </button>
                         </div>
                     </div>
                 </div>
             </div>`;
-                    document.getElementById("issueBookCopies").innerHTML = html;
+                    document.getElementById("displayBookCopies").innerHTML = html;
                 })
             }
             //Other options

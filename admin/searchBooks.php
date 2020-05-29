@@ -122,7 +122,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 						$returnD1 = mysqli_query($conn, $query1);
 						$result1 = mysqli_fetch_array($returnD1);
 						$star[$i] = $result1["AVG(star)"];
-						
+
 					?>
 						<div class="col-sm-3">
 							<div class="card text-center" style="border:none;">
@@ -135,17 +135,11 @@ $conn = new mysqli($servername, $username, $password, $database);
 								</div>
 								<div class="card-footer" style="border:none; background-color: #393e46 ">
 									<div class="col-auto">
-										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFillIssueBook(this.id)" href="#issueBook">
-											Issue Book
-										</button>
-										<button type="submit" class="button scrolly" name="return-book" id="<?= $i; ?>" onclick="autoFillReturnBook(this.id)" href="#returnBook">
-											Return Book
+										<button type="submit" class="button scrolly" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" href="#displayCopy">
+											Issue/Return Delete Copy
 										</button>
 										<button type="submit" class="button scrolly" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" href="#updateBook">
 											Update Book
-										</button>
-										<button type="submit" class="button scrolly" name="delete-copy" id="<?= $i; ?>" onclick="autoFillDeleteCopy(this.id)" href="#deleteCopy">
-											Delete Copy
 										</button>
 									</div>
 								</div>
@@ -165,96 +159,46 @@ $conn = new mysqli($servername, $username, $password, $database);
 	</section>
 	</div>
 
-	<!-- issue book -->
-	<div class="inner" name="issueBook" id="issueBook" hidden="true">
+	<!-- display Copy -->
+	<div class="inner" name="displayCopy" id="displayCopy" hidden="true">
 		</br>
 		</br>
-
-		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-			<label>Issue Book</label>
-		</div>
-
 
 		<div class="fields">
-			<form id="issueBookForm">
-				<div class="field half" style="text-align: center;">
-					<label>Title: </label>
-					<label id="booktitleIssue"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>Author: </label>
-					<label id="bookauthorIssue"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>ISBN: </label>
-					<label id="bookisbnIssue"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>Old ID: </label>
-					<label id="issueOldID"></label>
-					<label>CopyID: </label>
-					<label id="issueCopyID"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<img src="" id="bookimgLinkIssue">
-				</div>
-
-				<div class="row" id="issueBookCopies"></div>
-
-				<div name="studentDetailsIssue" id="studentDetailsIssue" hidden="true">
-					<div class="field">
-						<label>Student ID</label>
-						<input type="text" name="stud_IDIssue" id="stud_IDIssue" placeholder="ID" required />
-					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Issue" name="issue" class="primary" /></li>
-						<li><input type="reset" value="Clear" /></li>
-					</ul>
-				</div>
-
-				</br>
-			</form>
+			<div class="field half" style="text-align: center;">
+				<label>Title: </label>
+				<label id="displayCopyTitle"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<label>Author: </label>
+				<label id="displayCopyAuthor"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<label>ISBN: </label>
+				<label id="displayCopyIsbn"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<label>Old ID: </label>
+				<label id="displayCopyTitleOldID"></label>
+				<label>CopyID: </label>
+				<label id="displayCopyTitleCopyID"></label>
+			</div>
+			<div class="field half" style="text-align: center;">
+				<img src="" id="bookimgLinkdisplay">
+			</div>
+			<input type="hidden" id="reservedBy">
+			</br>
 		</div>
-	</div>
-
-	<!-- return book -->
-	<div class="inner" name="returnBook" id="returnBook" hidden="true">
-		</br>
-		</br>
-
-		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-			<label>Return Book</label>
-		</div>
-
-		<div class="fields">
-			<form id="returnBookForm">
-				<div class="field half" style="text-align: center;">
-					<label>Title: </label>
-					<label id="booktitleReturn"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>Author: </label>
-					<label id="bookauthorReturn"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>ISBN: </label>
-					<label id="bookisbnReturn"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<label>Old ID: </label>
-					<label id="returnOldID"></label>
-					<label>CopyID: </label>
-					<label id="returnCopyID"></label>
-				</div>
-				<div class="field half" style="text-align: center;">
-					<img src="" id="bookimgLinkReturn">
-				</div>
-
-				<div class="row" id="returnBookCopies"></div>
-
-				</br>
-			</form>
-		</div>
+		<div class="row" id='displayBookCopies'></div>
+		<form id="issueBookForm">
+			<div id='issueBookFormDiv'></div>
+		</form>
+		<form id="returnBookForm">
+			<div id='returnBookFormDiv'></div>
+		</form>
+		<form id="deleteCopyForm">
+			<div id='deleteCopyFormDiv'></div>
+		</form>
 	</div>
 
 	<!-- update book -->
@@ -348,26 +292,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 		</div>
 	</div>
 
-	<!-- delete copy -->
-	<div class="inner" name="deleteCopy" id="deleteCopy" hidden="true">
-		</br>
-		</br>
-
-		<div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-			<label>Delete Book</label>
-		</div>
-
-		<div class="fields">
-			<form id="deleteCopyForm">
-				<input type="hidden" id="deleteCopyID"></label>
-
-				<div class="row" id="deleteCopyCopies"></div>
-
-				</br>
-			</form>
-		</div>
-	</div>
-
 	<!-- Scripts -->
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -387,13 +311,16 @@ $conn = new mysqli($servername, $username, $password, $database);
 		isbn = <?php echo json_encode($isbn); ?>;
 		imgLink = <?php echo json_encode($imgLink); ?>
 	</script>
-	<script src="issueBook/autoFill.js"></script>
-
-	<script src="returnBook/autoFill.js"></script>
-
-	<script src="updateBook/autoFill.js"></script>
-
-	<script src="deleteCopy/autoFill.js"></script>
+	<script src="searchBook/autoFill.js"></script>
+	<script src="searchBook/issueBook/autoFill.js"></script>
+	<script src="searchBook/returnBook/autoFill.js"></script>
+	<script src="searchBook/updateBook/autoFill.js"></script>
+	<script src="searchBook/deleteCopy/autoFill.js"></script>
+	
+	<script src="searchBook/issueBook/uploadDB.js"></script>
+	<script src="searchBook/returnBook/uploadDB.js"></script>
+	<script src="searchBook/updateBook/uploadDB.js"></script>
+	<script src="searchBook/deleteCopy/uploadDB.js"></script>
 
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/jquery.scrolly.min.js"></script>
@@ -401,10 +328,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<script src="issueBook/uploadDB.js"></script>
-	<script src="returnBook/uploadDB.js"></script>
-	<script src="updateBook/uploadDB.js"></script>
-	<script src="deleteCopy/uploadDB.js"></script>
 	<script src="../assets/js/main.js"></script>
 
 

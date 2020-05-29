@@ -7,10 +7,10 @@ function issueBook(e) {
 
     // Get values
     var reservedBy = document.getElementById('reservedBy').value;
-    var isbn = document.getElementById('bookisbnIssue').textContent;
+    var isbn = document.getElementById('displayCopyIsbn').textContent;
     var stud_ID = document.getElementById('stud_IDIssue').value;
-    var copyID = document.getElementById('issueCopyID').textContent;
-    var oldID = document.getElementById('issueOldID').textContent;
+    var copyID = document.getElementById('displayCopyTitleCopyID').textContent;
+    var oldID = document.getElementById('displayCopyTitleOldID').textContent;
 
     var formData = new FormData();
     formData.append('isbn', isbn);
@@ -21,7 +21,7 @@ function issueBook(e) {
     if ((reservedBy == '') || (reservedBy == stud_ID)) {
         $.ajax({
                 type: "POST",
-                url: "issueBook/issueQuery.php",
+                url: "searchBook/issueBook/issueQuery.php",
                 data: formData,
                 contentType: false, // Dont delete this (jQuery 1.6+)
                 processData: false, // Dont delete this

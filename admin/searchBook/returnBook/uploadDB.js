@@ -6,8 +6,8 @@ function returnBook(e) {
     e.preventDefault();
 
     // Get values
-    var isbn = document.getElementById('bookisbnReturn').textContent;
-    var copyID = document.getElementById('returnCopyID').textContent;
+    var isbn = document.getElementById('displayCopyIsbn').textContent;
+    var copyID = document.getElementById('displayCopyTitleCopyID').textContent;
 
     var formData = new FormData();
     formData.append('isbn', isbn);
@@ -15,7 +15,7 @@ function returnBook(e) {
 
     $.ajax({
             type: "POST",
-            url: "returnBook/returnQuery.php",
+            url: "searchBook/returnBook/returnQuery.php",
             data: formData,
             contentType: false, // Dont delete this (jQuery 1.6+)
             processData: false, // Dont delete this

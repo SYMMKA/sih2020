@@ -76,7 +76,7 @@ function updateBook(e) {
 
     $.ajax({
         type: "POST",
-        url: "updateBook/updateBookQuery.php",
+        url: "searchBook/updateBook/updateBookQuery.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this

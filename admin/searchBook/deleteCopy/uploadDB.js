@@ -15,7 +15,7 @@ function removeCopy(e) {
 
     $.ajax({
         type: "POST",
-        url: "deleteCopy/deleteCopyQuery.php",
+        url: "searchBook/deleteCopy/deleteCopyQuery.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
@@ -25,9 +25,4 @@ function removeCopy(e) {
     // Clear form
     window.location.reload();
 
-}
-
-// Function to get form values
-function getInputVal(id) {
-    return document.getElementById(id).value;
 }
