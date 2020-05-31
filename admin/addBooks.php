@@ -11,6 +11,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="../assets/css/main.css" />
+	<link rel="stylesheet"
+			  type="text/css"
+			  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		      />
+
 	<noscript>
 		<link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 
@@ -21,135 +26,35 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-
-		<!-- Header -->
-		<header id="header">
-			<a href="../index.php" class="logo"><strong>Library Management System</strong> <span>by Neon Genesis</span></a>
-			<nav>
-				<a href="#menu">Menu</a>
-			</nav>
-		</header>
-
 		<!-- Menu -->
 		<nav id="menu">
-			<ul class="links">
-				<li><a href="../index.php">Home</a></li>
-				<li><a href="searchBooks.php">Search Books</a></li>
-				<li><a href="searchBooks.php">Issue Books</a></li>
-				<li><a href="return.php">Return Books</a></li>
-			</ul>
-			<ul class="actions stacked">
-				<li><a href="#" class="button primary fit">Get Started</a></li>
-				<li><a href="#" class="button fit">Log In</a></li>
-			</ul>
-		</nav>
-
-
-		<!-- Main -->
-		<div id="main" class="alt">
-
-			<!-- One -->
-			<section id="one">
-				<div class="inner">
-					<header class="major">
-						<h1>Add Books</h1>
-					</header>
-
-
-				</div>
-			</section>
-
-		</div>
-
-		<!-- Contact -->
-		<section id="contact">
-			<div class="inner">
-				<section>
-					<form id="addBookForm">
-						<div class="fields">
-							<div class="field">
-								<label for="title">Title</label>
-								<input type="text" name="title" id="title" required />
-							</div>
-							<div class="field half">
-								<label for="author">Author</label>
-								<input type="text" name="author" id="author" />
-							</div>
-							<div class="field half">
-								<label for="category">Category</label>
-								<input type="text" name="category" id="category" />
-							</div>
-
-							<div class="field half" id="mainCat1">
-								<select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
-								<option value="">-- Select Category--</option>
-								</select>
-							</div>
-							<div class="field half" id="mainCat2">
-								<select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
-								<option value="">-- Select Category--</option>
-								</select>
-							</div>
-							<div class="field half" id="mainCat3">
-								<select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
-								<option value="">-- Select Category--</option>
-								</select>
-							</div>
-							<div class="field half" id="mainCat4">
-								<select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
-								<option value="">-- Select Sub-Category --</option>
-								</select>
-							</div>
-
-							<div class="field half">
-								<label for="isbn">ISBN</label>
-								<input type="text" name="isbn" id="isbn" />
-							</div>
-							<div class="field half">
-								<label for="publisher">Publisher</label>
-								<input type="text" name="publisher" id="publisher" />
-							</div>
-							<div class="field half">
-								<label for="pageCount">Page Count</label>
-								<input type="number" name="pageCount" id="pageCount" />
-							</div>
-							<div class="field half">
-								<label for="publishedDate">Published Date</label>
-								<input type="text" name="publishedDate" id="publishedDate" />
-							</div>
-							<div class="field half">
-								<label for="money">Price</label>
-								<input type="text" name="money" id="money" />
-							</div>
-
-							<div class="field half">
-								<label for="oldID">Old ID</label>
-								<input type="text" name="oldID" id="oldID" />
-							</div>
-							<div class="field half">
-								<label for="quantity">Quantity</label>
-								<input type="number" name="quantity" id="quantity" required />
-							</div>
-							<div class="field half">
-								<label for="testDDC">testDDC</label>
-								<input type="text" name="testDDC" id="testDDC" />
-							</div>
-							<div class="field">
-								<label for="image">Image</label>
-								<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-								<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false">
-								<input type="hidden" name="imgValue" id="imgValue" value="" />
-							</div>
-							<div class="alert">
-								<label>The book has been added</label>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Add Book" name="addBook" class="primary" /></li>
-							<li><input type="reset" value="Clear" /></li>
+			<div class="row"> 
+				<div class="col-md-3" >
+					<div class="position-fixed">
+					<style>
+ 						#header {color:blue},{padding-left:205px};
+					</style>
+						<header id="header">
+							<br>
+							<h5  class="logo"><strong>Rajesh Kumar</strong></h5>
+							<h6> Logged in as </h6>
+							<nav>
+								<a href="#menu">Menu</a>
+							</nav>
+						</header>
+						<ul class="links">
+							<li><a href="../index.php">Home</a></li>
+							<li><a href="searchBooks.php">Search Books</a></li>
+							<li><a href="searchBooks.php">Issue Books</a></li>
+							<li><a href="return.php">Return Books</a></li>
 						</ul>
-					</form>
-				</section>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">Get Started</a></li>
+							<li><a href="#" class="button fit">Log In</a></li>
+						</ul>
+					</div>
+				</div>
+			<div class="col-md-9">
 				<section class="split">
 					<section>
 						<div class="container-fluid search" style="height:auto; color:powderblue; padding-bottom: 5rem; ">
@@ -310,10 +215,120 @@
 							?>
 						</div>
 					</section>
-
 				</section>
+				<!-- Main -->
+		<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>Add Books</h1>
+		</header>
+
+
+	</div>
+</section>
+
+</div>
+
+<!-- Contact -->
+<section id="contact">
+<div class="inner">
+	<section>
+		<form id="addBookForm">
+			<div class="fields">
+				<div class="field">
+					<label for="title">Title</label>
+					<input type="text" name="title" id="title" required />
+				</div>
+				<div class="field half">
+					<label for="author">Author</label>
+					<input type="text" name="author" id="author" />
+				</div>
+				<div class="field half">
+					<label for="category">Category</label>
+					<input type="text" name="category" id="category" />
+				</div>
+
+				<div class="field half" id="mainCat1">
+					<select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
+					<option value="">-- Select Category--</option>
+					</select>
+				</div>
+				<div class="field half" id="mainCat2">
+					<select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
+					<option value="">-- Select Category--</option>
+					</select>
+				</div>
+				<div class="field half" id="mainCat3">
+					<select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
+					<option value="">-- Select Category--</option>
+					</select>
+				</div>
+				<div class="field half" id="mainCat4">
+					<select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
+					<option value="">-- Select Sub-Category --</option>
+					</select>
+				</div>
+
+				<div class="field half">
+					<label for="isbn">ISBN</label>
+					<input type="text" name="isbn" id="isbn" />
+				</div>
+				<div class="field half">
+					<label for="publisher">Publisher</label>
+					<input type="text" name="publisher" id="publisher" />
+				</div>
+				<div class="field half">
+					<label for="pageCount">Page Count</label>
+					<input type="number" name="pageCount" id="pageCount" />
+				</div>
+				<div class="field half">
+					<label for="publishedDate">Published Date</label>
+					<input type="text" name="publishedDate" id="publishedDate" />
+				</div>
+				<div class="field half">
+					<label for="money">Price</label>
+					<input type="text" name="money" id="money" />
+				</div>
+
+				<div class="field half">
+					<label for="oldID">Old ID</label>
+					<input type="text" name="oldID" id="oldID" />
+				</div>
+				<div class="field half">
+					<label for="quantity">Quantity</label>
+					<input type="number" name="quantity" id="quantity" required />
+				</div>
+				<div class="field half">
+					<label for="testDDC">testDDC</label>
+					<input type="text" name="testDDC" id="testDDC" />
+				</div>
+				<div class="field">
+					<label for="image">Image</label>
+					<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+					<input id="imgFile" type="file" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false">
+					<input type="hidden" name="imgValue" id="imgValue" value="" />
+				</div>
+				<div class="alert">
+					<label>The book has been added</label>
+				</div>
 			</div>
-		</section>
+			<ul class="actions">
+				<li><input type="submit" value="Add Book" name="addBook" class="primary" /></li>
+				<li><input type="reset" value="Clear" /></li>
+			</ul>
+		</form>
+	</section>
+	
+</div>
+</section>
+			</div>
+		</nav>
+
+
+		
 	</div>
 
 	<!-- Scripts -->
