@@ -10,6 +10,11 @@ var test = [
         description: "Generalities and computer science",
         subordinates: [
           {
+            id: "000",
+            number: "000",
+            description: "Generalities and computer science",
+          },
+          {
             id: "001",
             number: "001",
             description: "Knowledge",
