@@ -32,7 +32,7 @@
 				<div class="col-md-3" >
 					<div class="position-fixed">
 					<style>
- 						#header {color:blue},{padding-left:205px};
+ 						#header {color:blue; padding-left:205px};
 					</style>
 						<header id="header">
 							<br>
