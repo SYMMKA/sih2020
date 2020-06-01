@@ -129,7 +129,14 @@ function hideCategory() {
 
 function c1() {
     for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates.length; mainCategory++) {
-        mainCategorySelect2.options[mainCategorySelect2.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategory].description, mainCategory);
+        var description = test[mainCategorySelect1.value].subordinates[mainCategory].description;
+
+        var number = test[mainCategorySelect1.value].subordinates[mainCategory].number;
+        number = number[number.length - 2];
+
+        if (description != '') {
+            mainCategorySelect2.options[mainCategorySelect2.options.length] = new Option(description, number);
+        }
     }
 }
 
@@ -137,8 +144,14 @@ function c2() {
     for (var mainCategory = 0; mainCategory < test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates.length; mainCategory++) {
         //var index = parseFloat(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].number);
         //index = Math.floor(index % 10);
+        var description = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].description;
 
-        mainCategorySelect3.options[mainCategorySelect3.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].description, mainCategory);
+        var number = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].number;
+        number = number[number.length - 1];
+
+        if (description != '') {
+            mainCategorySelect3.options[mainCategorySelect3.options.length] = new Option(description, number);
+        }
     }
 }
 
@@ -147,7 +160,13 @@ function c3() {
         //var index = parseFloat(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].number);
         //index = Math.floor((index % 1) / .1);
 
+        var description = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].description;
 
-        mainCategorySelect4.options[mainCategorySelect4.options.length] = new Option(test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].description, mainCategory);
+        var number = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].number;
+        number = number[number.length - 1];
+
+        if (description != '') {
+            mainCategorySelect4.options[mainCategorySelect4.options.length] = new Option(description, number);
+        }
     }
 }
