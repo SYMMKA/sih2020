@@ -13,9 +13,11 @@
 }
 
 .bg-image {
-  background-image: url("https://images.unsplash.com/photo-1573867271156-03aeef1d83b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
-  background-size: cover;
+  background-image: url("https://static-2.gumroad.com/res/gumroad/1211634803146/asset_previews/9af3b0e81825adb7e5475199b224c409/retina/unlock-colour-thumbnail.png");
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
+  max-height: 700px;
 }
 
 .login-heading {
