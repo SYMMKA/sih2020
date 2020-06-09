@@ -1,0 +1,17 @@
+.search-form {
+  position: relative;
+}
+
+.search-form input {
+}
+
+.search-form .mic-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 2rem;
+}
