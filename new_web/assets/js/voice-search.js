@@ -1,5 +1,5 @@
 const searchForm = document.querySelector(".search-form");
-const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
+const searchFormInput = document.querySelector(".search-box"); // <=> document.querySelector("#search-form input");
 
 // The speech recognition interface lives on the browser’s window object
 const SpeechRecognition =
@@ -11,7 +11,7 @@ if (SpeechRecognition) {
   const recognition = new SpeechRecognition();
   // recognition.lang = "en-US";
 
-  searchForm.insertAdjacentHTML(
+  searchFormInput.insertAdjacentHTML(
     "beforeend",
     '<button type="button" class="mic-button"><i i class= "fa fa-microphone " aria-hidden="true" ></i></button >'
   );

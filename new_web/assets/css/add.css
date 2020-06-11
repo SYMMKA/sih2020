@@ -5,10 +5,10 @@
 .search-form input {
 }
 
-.search-form .mic-button {
+.mic-button {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 16px;
   bottom: 0;
   background-color: transparent;
   outline: none;
