@@ -14,3 +14,21 @@ body {
   box-shadow: 0px 1px 10px #999;
   transition: 0.3s ease-in-out;
 }
+
+.search-form {
+  position: relative;
+}
+
+.search-form input {
+}
+
+.mic-button {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  bottom: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 2rem;
+}
