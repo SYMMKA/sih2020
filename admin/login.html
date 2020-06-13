@@ -23,6 +23,31 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./assets/css/login.css" />
+
+    <!--Validation-->
+    <script type="text/javascript">
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            var form = document.getElementById("needs-validation");
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          },
+          false
+        );
+      })();
+    </script>
   </head>
   <body>
     <div class="container-fluid">
@@ -34,28 +59,40 @@
               <div class="row">
                 <div class="col-md-9 col-lg-8 mx-auto">
                   <h3 class="login-heading mb-4">Library Management System</h3>
-                  <form>
+                  <form id="needs-validation" novalidate>
                     <div class="form-label-group">
                       <input
                         type="email"
                         id="inputEmail"
                         class="form-control"
                         placeholder="Email address"
+                        aria-describedby="inputGroupPrepend"
+                        required
                         required
                         autofocus
                       />
                       <label for="inputEmail">Email address</label>
+                      <div class="invalid-feedback">
+                        Please provide a valid email.
+                      </div>
                     </div>
 
                     <div class="form-label-group">
                       <input
                         type="password"
                         id="inputPassword"
+                        name="inputPassword"
                         class="form-control"
                         placeholder="Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                         required
                       />
                       <label for="inputPassword">Password</label>
+                      <div class="invalid-feedback">
+                        Must contain at least one number and one uppercase and
+                        lowercase letter, and at least 8 or more characters
+                      </div>
                     </div>
 
                     <div class="custom-control custom-checkbox mb-3">
