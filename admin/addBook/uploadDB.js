@@ -8,7 +8,6 @@ function addBook(e) {
     // Get values
     var title = getInputVal('title');
     var author = getInputVal('author');
-    var mainCategory1 = test[mainCategorySelect1.value].description;
     var publisher = getInputVal('publisher');
     var publishedDate = getInputVal('publishedDate');
     var isbn = getInputVal('isbn');
@@ -18,25 +17,19 @@ function addBook(e) {
     var oldID = getInputVal('oldID');
     var imgValue = document.getElementById('imgValue').value;
     var files = $('#imgFile')[0].files[0];
-
-    if (!test[mainCategorySelect1.value].subordinates) {
-        var mainCategory2 = '';
-        var mainCategory3 = '';
-        var mainCategory4 = '';
-    } else {
-        var mainCategory2 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].description;
-        if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates) {
-            var mainCategory3 = '';
-            var mainCategory4 = '';
-        } else {
-            var mainCategory3 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].description;
-            if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates)
-                var mainCategory4 = '';
-            else
-                var mainCategory4 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].description;
-
-        }
-    }
+    
+    var mainCategory1 = '';
+    var mainCategory2 = '';
+    var mainCategory3 = '';
+    var mainCategory4 = '';
+    if(mainCategorySelect1.value)
+        mainCategory1 = mainCategorySelect1.options[mainCategorySelect1.selectedIndex].text
+    if(mainCategorySelect2.value)
+        mainCategory2 = mainCategorySelect2.options[mainCategorySelect2.selectedIndex].text
+    if(mainCategorySelect3.value) 
+        mainCategory3 = mainCategorySelect3.options[mainCategorySelect3.selectedIndex].text
+    if(mainCategorySelect4.value) 
+        mainCategory4 = mainCategorySelect4.options[mainCategorySelect4.selectedIndex].text
 
     var formData = new FormData();
     formData.append('title1', title);
@@ -66,12 +59,12 @@ function addBook(e) {
     });
 
     // Show alert
-    document.querySelector('.alert').style.display = 'block';
+    //document.querySelector('.alert').style.display = 'block';
 
     // Hide alert after 1.5 seconds
-    setTimeout(function() {
+    /* setTimeout(function() {
         document.querySelector('.alert').style.display = 'none';
-    }, 1500);
+    }, 1500); */
 
     // Clear form
     document.getElementById('addBookForm').reset();

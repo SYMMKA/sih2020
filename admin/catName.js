@@ -1,34 +1,34 @@
 function showCategory() {
     var html = `<div class="field half" id="mainCat1">
-    <select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
-    <option value="">-- Select Category--</option>
-    </select>
-</div>
-<div class="field half" id="mainCat2">
-    <select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
-    <option value="">-- Select Category--</option>
-    </select>
-</div>
-<div class="field half" id="mainCat3">
-    <select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
-    <option value="">-- Select Category--</option>
-    </select>
-</div>
-<div class="field half" id="mainCat4">
-    <select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
-    <option value="">-- Select Sub-Category --</option>
-    </select>
-</div>
-<div class="field">
-    <button name="cancelCategory" id="cancelCategory" onclick="hideCategory()">Cancel</button>
-</div>`;
+                    <select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
+                    <option value="">-- Select Category--</option>
+                    </select>
+                </div>
+                <div class="field half" id="mainCat2">
+                    <select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
+                    <option value="">-- Select Category--</option>
+                    </select>
+                </div>
+                <div class="field half" id="mainCat3">
+                    <select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
+                    <option value="">-- Select Category--</option>
+                    </select>
+                </div>
+                <div class="field half" id="mainCat4">
+                    <select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
+                    <option value="">-- Select Sub-Category --</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <button name="cancelCategory" id="cancelCategory" onclick="hideCategory()">Cancel</button>
+                </div>`;
     document.getElementById('category').innerHTML = html;
     document.getElementById('catDisplay').value = "true";
+    document.getElementById('category').hidden = false;
     loadCategory();
 }
 
 function loadCategory() {
-    document.getElementById('category').hidden = false;
     var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
     var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
     var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
@@ -39,60 +39,60 @@ function loadCategory() {
     }
 
     //Main Category1 Changed
-    mainCategorySelect1.onchange = function() {
+    mainCategorySelect1.onchange = function () {
 
-            mainCategorySelect2.length = 1; // remove all options bar first
-            mainCategorySelect3.length = 1; // remove all options bar first
-            mainCategorySelect4.length = 1; // remove all options bar first
-            if (this.selectedIndex < 1) {
-                document.getElementById('mainCategorySelect2').hidden = true;
-                document.getElementById('mainCategorySelect3').hidden = true;
-                document.getElementById('mainCategorySelect4').hidden = true;
+        mainCategorySelect2.length = 1; // remove all options bar first
+        mainCategorySelect3.length = 1; // remove all options bar first
+        mainCategorySelect4.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) {
+            document.getElementById('mainCategorySelect2').hidden = true;
+            document.getElementById('mainCategorySelect3').hidden = true;
+            document.getElementById('mainCategorySelect4').hidden = true;
 
-                return; // done
-            }
-
-
-            if (!test[this.value].subordinates) { // hides sub category if not available
-
-                document.getElementById('mainCategorySelect2').disabled = true;
-                document.getElementById('mainCategorySelect3').disabled = true;
-                document.getElementById('mainCategorySelect4').disabled = true;
-            } else {
-
-                document.getElementById('mainCategorySelect2').disabled = false;
-                document.getElementById('mainCategorySelect3').disabled = false;
-                document.getElementById('mainCategorySelect4').disabled = false;
-
-                c1();
-            }
+            return; // done
         }
-        //Main Category2 Changed
-    mainCategorySelect2.onchange = function() {
-            mainCategorySelect3.length = 1; // remove all options bar first
-            mainCategorySelect4.length = 1; // remove all options bar first
-            if (this.selectedIndex < 1) {
-                document.getElementById('mainCategorySelect3').hidden = true;
-                document.getElementById('mainCategorySelect4').hidden = true;
-
-                return; // done
-            }
 
 
-            if (!test[mainCategorySelect1.value].subordinates[this.value].subordinates) { // hides sub category if not available
+        if (!test[this.value].subordinates) { // hides sub category if not available
 
-                document.getElementById('mainCategorySelect3').disabled = true;
-                document.getElementById('mainCategorySelect4').disabled = true;
-            } else {
+            document.getElementById('mainCategorySelect2').disabled = true;
+            document.getElementById('mainCategorySelect3').disabled = true;
+            document.getElementById('mainCategorySelect4').disabled = true;
+        } else {
 
-                document.getElementById('mainCategorySelect3').disabled = false;
-                document.getElementById('mainCategorySelect4').disabled = false;
+            document.getElementById('mainCategorySelect2').disabled = false;
+            document.getElementById('mainCategorySelect3').disabled = false;
+            document.getElementById('mainCategorySelect4').disabled = false;
 
-                c2();
-            }
+            c1();
         }
-        //Main Category3 Changed
-    mainCategorySelect3.onchange = function() {
+    }
+    //Main Category2 Changed
+    mainCategorySelect2.onchange = function () {
+        mainCategorySelect3.length = 1; // remove all options bar first
+        mainCategorySelect4.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) {
+            document.getElementById('mainCategorySelect3').hidden = true;
+            document.getElementById('mainCategorySelect4').hidden = true;
+
+            return; // done
+        }
+
+
+        if (!test[mainCategorySelect1.value].subordinates[this.value].subordinates) { // hides sub category if not available
+
+            document.getElementById('mainCategorySelect3').disabled = true;
+            document.getElementById('mainCategorySelect4').disabled = true;
+        } else {
+
+            document.getElementById('mainCategorySelect3').disabled = false;
+            document.getElementById('mainCategorySelect4').disabled = false;
+
+            c2();
+        }
+    }
+    //Main Category3 Changed
+    mainCategorySelect3.onchange = function () {
 
 
         mainCategorySelect4.length = 1; // remove all options bar first
@@ -115,7 +115,7 @@ function loadCategory() {
         }
     }
 
-    mainCategorySelect4.onchange = function() {
+    mainCategorySelect4.onchange = function () {
 
     }
 }

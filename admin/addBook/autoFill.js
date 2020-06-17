@@ -3,7 +3,6 @@ function autoFill(i) {
 
     document.getElementById('title').value = title[i];
     document.getElementById('author').value = author[i];
-    document.getElementById('category').value = category[i];
     document.getElementById('publisher').value = publisher[i];
     document.getElementById('publishedDate').value = publishedDate[i];
     document.getElementById('isbn').value = isbn[i];
