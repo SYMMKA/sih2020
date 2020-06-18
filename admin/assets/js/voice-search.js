@@ -1,5 +1,6 @@
 const searchForm = document.querySelector(".search-form");
-const searchFormInput = document.querySelector(".search-box"); // <=> document.querySelector("#search-form input");
+const searchFormInput = document.querySelector(".search-box");
+const input = searchFormInput.querySelector("input"); // <=> document.querySelector("#search-form input");
 
 // The speech recognition interface lives on the browser’s window object
 const SpeechRecognition =
@@ -33,7 +34,7 @@ if (SpeechRecognition) {
   function startSpeechRecognition() {
     micIcon.classList.remove("fa-microphone");
     micIcon.classList.add("fa-microphone-slash");
-    searchFormInput.focus();
+    input.focus();
     console.log("Voice activated, SPEAK");
   }
 
@@ -41,7 +42,7 @@ if (SpeechRecognition) {
   function endSpeechRecognition() {
     micIcon.classList.remove("fa-microphone-slash");
     micIcon.classList.add("fa-microphone");
-    searchFormInput.focus();
+    input.focus();
     console.log("Speech recognition service disconnected");
   }
 
@@ -49,8 +50,8 @@ if (SpeechRecognition) {
   function resultOfSpeechRecognition(event) {
     const transcript = event.results[0][0].transcript;
     console.log(transcript);
-    searchFormInput.value = transcript;
-    searchFormInput.focus();
+    input.value = transcript;
+    input.focus();
     // setTimeout(() => {
     //   searchForm.submit();
     // }, 500);
