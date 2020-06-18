@@ -1,9 +1,7 @@
 function autoFillBook(i) {
-    document.getElementById('updateBook').hidden = true; //hides update book page
     document.getElementById('issueBookFormDiv').innerHTML = '';
     document.getElementById('returnBookFormDiv').innerHTML = '';
     document.getElementById('deleteCopyFormDiv').innerHTML = '';
-    document.getElementById('displayCopy').hidden = false; //shows display Copy page 
     document.getElementById('displayCopyTitle').textContent = title[i];
     document.getElementById('displayCopyAuthor').textContent = author[i];
     document.getElementById('displayCopyIsbn').textContent = isbn[i];

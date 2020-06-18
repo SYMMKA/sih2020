@@ -30,11 +30,11 @@ else
 $timePeriod = 20; //reserve time period
 //Dont add `id` column
 $sql = "UPDATE `copies` SET `stud_ID` = '$st_ID', `status` = 'issued', `time` = UNIX_TIMESTAMP(), `returntime` = UNIX_TIMESTAMP()+$timePeriod WHERE `copies`.`copyID` = '$copyID' AND (`copies`.`status` = '' OR (`copies`.`status` = 'reserved' AND (`copies`.`stud_ID` = '$st_ID' OR `copies`.`returnTime` < UNIX_TIMESTAMP())))";
-if ($conn->query($sql) === TRUE) {
+if (($conn->query($sql) === TRUE) && ($conn->affected_rows)) {
 	$sql1 = "INSERT INTO `issued` (`isbn`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`, `star`) VALUES ('$isbn', '$oldID', '$copyID', '$st_ID', UNIX_TIMESTAMP(), NULL, NULL)";
-	if ($conn->query($sql1) === TRUE) {
+	if (($conn->query($sql1) === TRUE) && ($conn->affected_rows)) {
 		$sql2 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `isbn`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'issue', UNIX_TIMESTAMP(), '$isbn', '$oldID')";
-		if ($conn->query($sql2) === TRUE) {
+		if (($conn->query($sql2) === TRUE) && ($conn->affected_rows)) {
 		} else {
 			echo "Error: " . $sql2 . "<br>" . $conn->error;
 		}
