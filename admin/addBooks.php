@@ -156,7 +156,7 @@
 							<div class="row no-gutters">
 								<div class="col-md-4">
 									<?php if ($imgLink[$i]) { ?>
-										<img src="<?= $imgLink[$i] ?>" class="card-img" alt="..." />
+										<img src="<?= $imgLink[$i] ?>" class="card-img" alt="..." style="max-height: 300px; width: 100%" />
 									<?php } ?>
 
 								</div>
@@ -165,25 +165,15 @@
 										<?php if ($title[$i]) { ?>
 											<h5 class="card-title"><?= $title[$i] ?></h5>
 										<?php } ?>
-										<label for="">Author</label>
-										<P><?= $author[$i] ?></P>
-										<label for="">Category</label>
-										<P><?= $category[$i] ?></P>
-										<label for="">Publisher</label>
-										<P><?= $publisher[$i] ?></P>
-										<label for="">Published Date</label>
-										<P><?= $publishedDate[$i] ?></P>
-										<label for="">ISBN</label>
-										<P><?= $isbn[$i] ?></P>
-										<label for="">Page Count</label>
-										<P><?= $pageCount[$i] ?></P>
-										<label for="">Country</label>
-										<P><?= $country[$i] ?></P>
-										<label for="">Amount</label>
-										<P><?= $money[$i] ?></P>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
+										<P>Author:<?= $author[$i] ?></br>
+										Category<?= $category[$i] ?></br>
+										Publisher:<?= $publisher[$i] ?></br>
+										Published Date:<?= $publishedDate[$i] ?></br>
+										ISBN:<?= $isbn[$i] ?></br>
+										Page Count:<?= $pageCount[$i] ?></br>
+										Country:<?= $country[$i] ?></br>
+										Amount:<?= $money[$i] ?></P>
+										
 									</div>
 								</div>
 								<div class="col-md-2 align-self-center justify-content-center p-3">
