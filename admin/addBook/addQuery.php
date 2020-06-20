@@ -117,7 +117,7 @@ if ($_POST['oldID'])
 	$oldID = $_POST['oldID'];
 else
 	$oldID = NULL;
-$shelfID = "shelfID";
+$shelfID = "name";
 
 if ($uploadOk == 1) {
 	//Dont add `id` column

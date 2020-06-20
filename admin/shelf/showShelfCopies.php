@@ -7,11 +7,12 @@ $database = "library";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
-$searchField = $_POST['isbn'];
-$query = "SELECT * FROM copies Where `copies`.`isbn` = '$searchField'";
+$shelfID = $_POST['shelfID'];
+$query = "SELECT * FROM copies WHERE `copies`.`shelfID` = '$shelfID'";
 $returnD = mysqli_query($conn, $query);
 
 while ($result = mysqli_fetch_array($returnD)) {
+    $data["isbn"] = $result["isbn"];
     $data["copyno"] = $result["copyno"];
     $data["copyID"] = $result["copyID"];
     $data["oldID"] = $result["oldID"];
@@ -22,7 +23,6 @@ while ($result = mysqli_fetch_array($returnD)) {
     $data["currentTime"] = time();
     $return_arr[] = $data;
 }
-
 
 // Encoding array in JSON format
 if(!isset($return_arr))

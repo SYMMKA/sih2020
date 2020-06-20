@@ -1,23 +1,15 @@
-function autoFillBook(i) {
-    document.getElementById('issueBookFormDiv').innerHTML = '';
-    document.getElementById('returnBookFormDiv').innerHTML = '';
-    document.getElementById('deleteCopyFormDiv').innerHTML = '';
-    document.getElementById('displayCopyTitle').textContent = title[i];
-    document.getElementById('displayCopyAuthor').textContent = author[i];
-    document.getElementById('displayCopyIsbn').textContent = isbn[i];
-    if (imgLink[i]) {
-        document.getElementById('bookimgLinkdisplay').src = imgLink[i];
-        document.getElementById('bookimgLinkdisplay').hidden = false;
-    }
+function autoFillShelf(shelfID) {
+    document.getElementById('displayShelfCopies').innerHTML = '';
     var formData = new FormData();
-    formData.append('isbn', isbn[i]);
+    formData.append('shelfID', shelfID);
     $.ajax({
         type: "POST",
-        url: "searchBook/copies.php",
+        url: "shelf/showShelfCopies.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
+            var issued = reserved = available = 0;
             var html = '';
             if (data) {
                 var data = JSON.parse(data);
@@ -27,38 +19,62 @@ function autoFillBook(i) {
                     <div class="card-body text-white" style="background-color: #393e46">
                         <h5 class="card-title">` + item.copyno + `</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Copy ID: ` + item.copyID + `</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">ISBN: ` + item.isbn + `</h6>
                         <h6 class="card-subtitle mb-2 text-muted">` + item.oldID + `</h6>`;
                     var reservedBy = '';
                     if (item.status == 'reserved' && item.returnTime > item.currentTime) {
                         html += `<p class="card-text">Reserved by: ` + item.stud_ID + `</p>
                             <p class="card-text">Reserved at: ` + item.time + `</p>`;
                         reservedBy = item.stud_ID;
-
+                        reserved++;
                     } else if (item.status == 'issued') {
                         html += `<p class="card-text">Issued by: ` + item.stud_ID + `</p>
                             <p class="card-text">Issued at: ` + item.time + `</p>`;
+                        issued++;
                     } else {
                         html += `<p class="card-text">Available`;
+                        available++;
                     }
                     html += `</div>
                     <div class="card-footer" style="border:none; background-color: #393e46 ">
                         <div class="col-auto">`;
-                    if (item.status == 'issued') {
-                        html += `<button type="submit" form="returnBookForm" class="button scrolly" name="issueReturnCopy" onclick="autoFillReturnBook('` + item.copyID + `','` + item.oldID + `')">Return Copy`;
-                    } else {
-                        html += `<button type="button" class="button scrolly" name="issueBookCopy" id="issueBookCopy" onclick="autoFillIssueBook('` + item.copyID + `','` + item.oldID + `','` + reservedBy + `')">Issue Copy`;
-                    }
                     html += `</button>
-                    <button type="submit" form="deleteCopyForm" class="button scrolly" name="deleteCopyCopy" onclick="autoFillDeleteCopy('` + item.copyID + `')">
-                        Delete Copy
+                    <button type="submit" name="removeCopy" onclick="removeCopy('` + item.copyID + `','` + shelfID + `')">
+                        Remove Copy
                     </button>
                         </div>
                     </div>
                 </div>
             </div>`;
-                    document.getElementById("displayBookCopies").innerHTML = html;
                 });
             }
+            html += `<h5>Issued: ` + issued + `</h5>
+            <h5>Reserved: ` + reserved + `</h5>
+            <h5>Available: ` + available + `</h5>
+            <form id="addCopy" method="get" action="shelf/addCopy.php">
+                <input type="hidden" name="shelfID" value="` + shelfID + `" />
+                <button class="btn btn-primary">
+                    Add Copy
+                </button>
+            </form>
+            `;
+            document.getElementById("displayShelfCopies").innerHTML = html;
+        }
+        //Other options
+    });
+}
+
+function removeCopy(copyID, shelfID) {
+    var formData = new FormData();
+    formData.append('copyID', copyID);
+    $.ajax({
+        type: "POST",
+        url: "shelf/removeCopy.php",
+        data: formData,
+        contentType: false, // Dont delete this (jQuery 1.6+)
+        processData: false, // Dont delete this
+        success: function (data) {
+            autoFillShelf(shelfID);
         }
         //Other options
     });

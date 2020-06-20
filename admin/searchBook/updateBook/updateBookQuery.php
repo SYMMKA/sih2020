@@ -112,7 +112,7 @@ if ($conn->query($sql) === TRUE) {
 	if ($_POST['addQuan']) {
 		for ($i = $prevOrgQuan + 1; $i <= $orgQuan; $i++) {
 			$copyID = $isbn . '-' . $i;
-			$sql1 = "INSERT INTO `copies` (`isbn`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`) VALUES ('$isbn', '$i', 'oldID', '$copyID', '', NULL, '', NULL)";
+			$sql1 = "INSERT INTO `copies` (`isbn`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES ('$isbn', '$i', 'oldID', '$copyID', '', NULL, '', NULL, 'name')";
 			if ($conn->query($sql1) === TRUE) {
 				$sql2 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `isbn`, `oldID`) VALUES ('$copyID', 'admin', '-', 'add', UNIX_TIMESTAMP(), '$isbn', 'oldID')";
 				if ($conn->query($sql2) === TRUE) {
