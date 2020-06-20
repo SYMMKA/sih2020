@@ -15,7 +15,7 @@ function autoFillShelf(shelfID) {
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="location.reload()"aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -24,15 +24,14 @@ function autoFillShelf(shelfID) {
                     <div class="col-10">
                     <div class="row row-cols-1 row-cols-md-3" style="height: 500px; overflow-y: scroll;">`;
             if (data) {
-                console.log(data);
                 var data = JSON.parse(data);
                 data.forEach(function (item, index) {
                     html += `
                         <div class="col mb-4">
-                        <div class="card">
+                        <div class="card h-100">
                             <img class="card-img-top" src="` +
                         item.imgLink + `"
-                            alt="Card image cap" />
+                            alt="Card image cap" style="height:20vw;" />
                             <div class="card-body" style="padding: 1rem;">
                             <h4 class="card-title text-center">Book Name</h4>
                             <p class="card-text">                   
@@ -136,6 +135,8 @@ function autoFillShelf(shelfID) {
                     }
                     html += `
                             </p>
+                            </div>
+                            <div class="card-footer bg-white">
                             <div class="row text-center">
                             <div class="col-12">`;
                     html += `
@@ -183,6 +184,7 @@ function autoFillShelf(shelfID) {
                 type="button"
                 class="btn btn-secondary"
                 data-dismiss="modal"
+                onclick="location.reload()"
                 >
                 Close
                 </button>
