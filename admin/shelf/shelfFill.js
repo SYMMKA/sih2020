@@ -31,11 +31,11 @@ function autoFillShelf(shelfID) {
             `
             
               <div class="col mb-4">
-                <div class="card">
+                <div class="card h-100">
                   <img class="card-img-top" src="` +
             item.imgLink +
             `"
-                    alt="Card image cap" />
+                    alt="Card image cap" style="height:20vw;" />
                   <div class="card-body" style="padding: 1rem;">
                     <h4 class="card-title text-center">Book Name</h4>
                     <p class="card-text">                   
@@ -141,6 +141,8 @@ function autoFillShelf(shelfID) {
           }
           html += `
           </p>
+          </div>
+          <div class="card-footer bg-white">
           <div class="row text-center">
                           <div class="col-12">`;
           html +=

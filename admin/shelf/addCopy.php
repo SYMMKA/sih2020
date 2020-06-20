@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['shelfID'])){
+if (isset($_GET['shelfID'])) {
     $shelfID = $_GET['shelfID'];
 }
 ?>
@@ -30,7 +30,6 @@ $conn = new mysqli($servername, $username, $password, $database);
     ></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="./../assets/css/common.css" />
-    <link rel="stylesheet" href="./../assets/css/manage.css" />
 </head>
 
 <body>
@@ -64,7 +63,7 @@ $conn = new mysqli($servername, $username, $password, $database);
                 <div class="mb-4 text-center">
                     <h1 class="display-2">SEARCH FROM LIBRARY</h1>
                     <h4>
-                        Add books to <?=$shelfID?>
+                        Add books to <?= $shelfID ?>
                     </h4>
                 </div>
 
@@ -114,9 +113,9 @@ $conn = new mysqli($servername, $username, $password, $database);
                     $star[$i] = $result1["AVG(star)"];
                 ?>
                     <div class="col mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" />
-                            <div class="card-body">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" style="height: 20vw;" />
+                            <div class="card-body" style="padding: 1rem;">
                                 <div class="card-text">
                                     <div class="row no-gutters">
                                         <div class="col-4">Title:</div>
@@ -143,9 +142,11 @@ $conn = new mysqli($servername, $username, $password, $database);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="row text-center">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-info btn-block btn-sm" name="add-copy" id="<?= $i; ?>" onclick="addCopyFill(this.id)" data-toggle="modal" data-target="#addCopy">
+                                        <button type="button" class="btn btn-info" name="add-copy" id="<?= $i; ?>" onclick="addCopyFill(this.id)" data-toggle="modal" data-target="#addCopy">
                                             Add Copy
                                         </button>
                                     </div>
@@ -165,29 +166,29 @@ $conn = new mysqli($servername, $username, $password, $database);
 
     <!-- display Copy Modal-->
     <div name="addCopy" id="addCopy" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;" >
-    </div>
+        <div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;">
+        </div>
 
-    <script src="../category.js"></script>
-    <script src="../catName.js"></script>
-    <script>
-        title = <?php echo json_encode($title); ?>;
-        author = <?php echo json_encode($author); ?>;
-        isbn = <?php echo json_encode($isbn); ?>;
-        imgLink = <?php echo json_encode($imgLink); ?>;
-        shelfID = <?php echo $shelfID; ?>;
-    </script>
+        <script src="../category.js"></script>
+        <script src="../catName.js"></script>
+        <script>
+            title = <?php echo json_encode($title); ?>;
+            author = <?php echo json_encode($author); ?>;
+            isbn = <?php echo json_encode($isbn); ?>;
+            imgLink = <?php echo json_encode($imgLink); ?>;
+            shelfID = <?php echo $shelfID; ?>;
+        </script>
 
-    <script src="addCopy/addCopyFill.js"></script>
+        <script src="addCopy/addCopyFill.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="./../assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./../assets/node_modules/popper.js/dist/popper.min.js"></script>
-    <script src="./../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-    <script src="./../assets/js/common.js"></script>
-    <script src="./../assets/js/voice-search.js"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="./../assets/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./../assets/node_modules/popper.js/dist/popper.min.js"></script>
+        <script src="./../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+        <script src="./../assets/js/common.js"></script>
+        <script src="./../assets/js/voice-search.js"></script>
 </body>
 
 </html>

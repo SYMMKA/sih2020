@@ -112,14 +112,16 @@ $conn = new mysqli($servername, $username, $password, $database);
 					$star[$i] = $result1["AVG(star)"]; */
             ?>
                 <div class="col mb-4">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="card-body text-center">
                             <h4 class="card-title"><?= $shelfID[$i] ?></h4>
                             <p class="card-text">
                                 No. of books
                             </p>
+                        </div>
+                        <div class="card-footer bg-white">
                             <div class="row justify-content-center">
-                                <div class="col-6">
+                                <div class="col-8">
                                     <div class="row">
                                         <button type="button" class="btn btn-info btn-block btn-sm" onclick="autoFillShelf('<?= $shelfID[$i] ?>')" data-toggle="modal" data-target="#shelf">
                                             Open Shelf
@@ -168,7 +170,7 @@ $conn = new mysqli($servername, $username, $password, $database);
     <!-- Shelf Modal-->
     <div name="shelf" id="shelf" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" id="displayShelfCopies" style="max-height:100vh !important; max-width:90vw !important;" />
-        
+
     </div>
 
     <script src="shelf/shelfFill.js"></script>

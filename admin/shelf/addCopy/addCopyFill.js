@@ -17,34 +17,68 @@ function addCopyFill(i) {
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div class="row" id='displayBookCopies'>`;
+                  <div class="row row-cols-1 row-cols-md-3" id='displayBookCopies' style:"overflow-y:scroll;">`;
       if (data) {
+        console.log(data);
         var data = JSON.parse(data);
         data.forEach(function (item, index) {
           html +=
             `
-                    <div class="col-sm-3">
-                      <div class="card text-center" style="border:none;">
-                        <div class="card-body text-white" style="background-color: #393e46">
-                          <h5 class="card-title">` +
-            item.copyno +
-            `</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Copy ID: ` +
-            item.copyID +
-            `</h6>
-                          <h6 class="card-subtitle mb-2 text-muted">` +
-            item.oldID +
-            `</h6>
-                          <h6 class="card-subtitle mb-2 text-muted">Shelf ID: ` +
-            item.shelfID +
-            `</h6>
+            
+              <div class="col mb-4">
+                <div class="card h-100">
+                  <div class="card-body" style="padding: 1rem;">
+                    <h4 class="card-title text-center">Book Name</h4>
+                    <p class="card-text">                   
+                    <div class="row no-gutters">
+                        <div Class="col-4">
+                        <strong>Copy No:</strong>
                         </div>
-                        <div class="card-footer" style="border:none; background-color: #393e46 ">
-                          <div class="col-auto">`;
+                        <div Class="col-8">
+                        ` +
+            item.copyno +
+            `
+                        </div>
+                    </div>
+                   <div class="row no-gutters">
+                        <div Class="col-4">
+                        <strong>Copy ID: </strong>
+                        </div>
+                        <div Class="col-8">
+                        ` +
+            item.copyID +
+            `
+                        </div></br>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div Class="col-4">
+                        <strong>ISBN: </strong>
+                        </div>
+                        <div Class="col-8">
+                        ` +
+            item.oldID +
+            `
+                        </div></br>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div Class="col-4">
+                        <strong>Old ID: </strong>
+                        </div>
+                        <div Class="col-8">
+                        ` +
+            item.shelf +
+            `
+                        </div></br>
+                    </div></p></div>
+                         <div class="card-footer bg-white">
+          <div class="row text-center">
+                          <div class="col-12">`;
           if (item.shelfID == shelfID)
             html +=
               `
-                            <button type="submit" onclick="removeCopy('` +
+                            <button type="submit" class="btn btn-info" onclick="removeCopy('` +
               item.copyID +
               `','` +
               i +
@@ -52,7 +86,7 @@ function addCopyFill(i) {
                               Remove`;
           else {
             html +=
-              `             <button type="submit" onclick="addCopy('` +
+              `             <button type="submit" class="btn btn-info" onclick="addCopy('` +
               item.copyID +
               `','` +
               i +
@@ -61,6 +95,7 @@ function addCopyFill(i) {
             else html += `Change Shelf`;
           }
           html += `</button>
+                        </div>
                           </div>
                         </div>
                       </div>
@@ -68,8 +103,7 @@ function addCopyFill(i) {
         });
 
         html += `
-                          
-
+                   
                   </div>
                 </div>
                 <div class="modal-footer">
