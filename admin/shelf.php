@@ -106,17 +106,24 @@ $conn = new mysqli($servername, $username, $password, $database);
             while ($result = mysqli_fetch_array($returnD)) {
                 $shelfID[$i] = $result["shelfID"];
 
-                /* $query1 = "SELECT AVG(star) FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`isbn` = '$isbn[$i]'";
-					$returnD1 = mysqli_query($conn, $query1);
-					$result1 = mysqli_fetch_array($returnD1);
-					$star[$i] = $result1["AVG(star)"]; */
+                $query1 = "SELECT COUNT(*) FROM `copies` WHERE `copies`.`shelfID` = '$shelfID[$i]'";
+                $count[$i] = mysqli_fetch_array(mysqli_query($conn, $query1))['COUNT(*)'];
             ?>
                 <div class="col mb-4">
                     <div class="card">
                         <div class="card-body text-center">
                             <h4 class="card-title"><?= $shelfID[$i] ?></h4>
                             <p class="card-text">
-                                No. of books
+                                <?php
+                                if($count[$i]){
+                                    if($count[$i] == 1)
+                                        echo $count[$i]." book";
+                                    else
+                                        echo $count[$i]." books";
+                                }
+                                else
+                                    echo "Empty"
+                                ?>
                             </p>
                             <div class="row justify-content-center">
                                 <div class="col-6">
@@ -124,7 +131,7 @@ $conn = new mysqli($servername, $username, $password, $database);
                                         <button type="button" class="btn btn-info btn-block btn-sm" onclick="autoFillShelf('<?= $shelfID[$i] ?>')" data-toggle="modal" data-target="#shelf">
                                             Open Shelf
                                         </button>
-                                        <button type="button" class="btn btn-info btn-block btn-sm">
+                                        <button type="button" class="btn btn-info btn-block btn-sm" onclick="deleteShelf('<?= $shelfID[$i] ?>')">
                                             Delete Shelf
                                         </button>
                                     </div>
@@ -171,6 +178,22 @@ $conn = new mysqli($servername, $username, $password, $database);
         
     </div>
 
+    <script>
+        function deleteShelf(shelfID){
+            var formData = new FormData();
+            formData.append("shelfID", shelfID);
+            $.ajax({
+                type: "POST",
+                url: "shelf/deleteShelf.php",
+                data: formData,
+                contentType: false, // Dont delete this (jQuery 1.6+)
+                processData: false, // Dont delete this
+                success: function (data) {
+                    window.location.reload();
+                },
+            });
+        }
+    </script>
     <script src="shelf/shelfFill.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

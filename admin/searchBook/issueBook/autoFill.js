@@ -7,7 +7,6 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
         <label>Issue Book</label>
     </div>
 
-
     <div class="fields">
 
             <div name="studentDetailsIssue" id="studentDetailsIssue">
@@ -16,7 +15,7 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
                     <input type="text" name="stud_IDIssue" id="stud_IDIssue" placeholder="ID" required/>
                 </div>
                 <ul class="actions">
-                    <li><input type="submit" value="issue" name="issue" class="primary" /></li>
+                    <li><input type="submit" form="issueBookForm" value="issue" name="issue" class="primary" /></li>
                     <li><input type="reset" value="Clear" /></li>
                 </ul>
             </div>
@@ -24,7 +23,6 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
             </br>
     </div>`;
     document.getElementById("issueBookFormDiv").innerHTML = html;
-
     document.getElementById('displayCopyTitleCopyID').textContent = copyID;
     document.getElementById('displayCopyTitleOldID').textContent = oldID;
     document.getElementById('reservedBy').value = reservedBy;

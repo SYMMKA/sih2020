@@ -1,14 +1,5 @@
 function autoFillBook(i) {
-    document.getElementById('issueBookFormDiv').innerHTML = '';
-    document.getElementById('returnBookFormDiv').innerHTML = '';
-    document.getElementById('deleteCopyFormDiv').innerHTML = '';
-    document.getElementById('displayCopyTitle').textContent = title[i];
-    document.getElementById('displayCopyAuthor').textContent = author[i];
-    document.getElementById('displayCopyIsbn').textContent = isbn[i];
-    if (imgLink[i]) {
-        document.getElementById('bookimgLinkdisplay').src = imgLink[i];
-        document.getElementById('bookimgLinkdisplay').hidden = false;
-    }
+    document.getElementById('displayBookCopies').innerHTML = '';
     var formData = new FormData();
     formData.append('isbn', isbn[i]);
     $.ajax({
@@ -19,10 +10,47 @@ function autoFillBook(i) {
         processData: false, // Dont delete this
         success: function (data) {
             var html = '';
+            html += `<div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="fields">
+                    <div class="field half" style="text-align: center;">
+                        <label>Title: </label>
+                        <label id="displayCopyTitle">`+title[i]+`</label>
+                    </div>
+                    <div class="field half" style="text-align: center;">
+                        <label>Author: </label>
+                        <label id="displayCopyAuthor">`+author[i]+`</label>
+                    </div>
+                    <div class="field half" style="text-align: center;">
+                        <label>ISBN: </label>
+                        <label id="displayCopyIsbn">`+isbn[i]+`</label>
+                    </div>
+                    <div class="field half" style="text-align: center;">
+                        <label>Old ID: </label>
+                        <label id="displayCopyTitleOldID"></label>
+                        <label>CopyID: </label>
+                        <label id="displayCopyTitleCopyID"></label>
+                    </div>`;
+                    if (imgLink[i]) {
+                        html += `<div class="field half" style="text-align: center;">
+                        <img src="" id="bookimgLinkdisplay">
+                    </div>`;
+                    }
+                    html += `<input type="hidden" id="reservedBy">
+                    </br>
+                </div>
+                <div class="row">`;
             if (data) {
                 var data = JSON.parse(data);
                 data.forEach(function (item, index) {
-                    html += `<div class="col-sm-3">
+                    html += `
+                <div class="col-sm-3">
                 <div class="card text-center" style="border:none;">
                     <div class="card-body text-white" style="background-color: #393e46">
                         <h5 class="card-title">` + item.copyno + `</h5>
@@ -56,9 +84,19 @@ function autoFillBook(i) {
                     </div>
                 </div>
             </div>`;
-                    document.getElementById("displayBookCopies").innerHTML = html;
                 });
             }
+            html += `
+				<div id='issueBookFormDiv'></div>
+            </div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Understood</button>
+				</div>
+			</div>`;
+            document.getElementById("displayBookCopies").innerHTML = html;
         }
         //Other options
     });

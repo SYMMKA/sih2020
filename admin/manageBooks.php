@@ -63,6 +63,9 @@ $conn = new mysqli($servername, $username, $password, $database);
 				</div>
 
 				<form class="row search-form mb-2 align-self-center justify-content-center" method="post" novalidate>
+					<div class="col-sm-6 search-box mb-2">
+						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" />
+					</div>
 					<div class="col-sm-6 col-md-2">
 						<button class="btn btn-info btn-block ml-sm-2" type="submit">
 							Search
@@ -158,63 +161,22 @@ $conn = new mysqli($servername, $username, $password, $database);
 	?>
 
 	<!-- display Copy Modal-->
-	<div class="modal fade" name="displayCopy" id="displayCopy" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="fields">
-						<div class="field half" style="text-align: center;">
-							<label>Title: </label>
-							<label id="displayCopyTitle"></label>
-						</div>
-						<div class="field half" style="text-align: center;">
-							<label>Author: </label>
-							<label id="displayCopyAuthor"></label>
-						</div>
-						<div class="field half" style="text-align: center;">
-							<label>ISBN: </label>
-							<label id="displayCopyIsbn"></label>
-						</div>
-						<div class="field half" style="text-align: center;">
-							<label>Old ID: </label>
-							<label id="displayCopyTitleOldID"></label>
-							<label>CopyID: </label>
-							<label id="displayCopyTitleCopyID"></label>
-						</div>
-						<div class="field half" style="text-align: center;">
-							<img src="" id="bookimgLinkdisplay">
-						</div>
-						<input type="hidden" id="reservedBy">
-						</br>
-					</div>
-					<div class="row" id='displayBookCopies'></div>
-					<form id="issueBookForm">
-						<div id='issueBookFormDiv'></div>
-					</form>
-					<form id="returnBookForm">
-						<div id='returnBookFormDiv'></div>
-					</form>
-					<form id="deleteCopyForm">
-						<div id='deleteCopyFormDiv'></div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Understood</button>
-				</div>
-			</div>
+	<div name="displayCopy" id="displayCopy" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;">
 		</div>
+		<form id="issueBookForm">
+		</form>
+		<form id="returnBookForm">
+			<div id='returnBookFormDiv'></div>
+		</form>
+		<form id="deleteCopyForm">
+			<div id='deleteCopyFormDiv'></div>
+		</form>
 	</div>
 
 	<!-- update Modal-->
-	<div class="modal fade" name="updateBookForm" id="updateBookForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<div name="updateBookForm" id="updateBookForm" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;"">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">Update Book</h5>
