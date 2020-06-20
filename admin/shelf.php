@@ -11,7 +11,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Shelf</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -120,9 +120,14 @@ $conn = new mysqli($servername, $username, $password, $database);
                             </p>
                             <div class="row justify-content-center">
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-info btn-block btn-sm" onclick="autoFillShelf('<?= $shelfID[$i] ?>')" data-toggle="modal" data-target="#shelf">
-                                        Open Shelf
-                                    </button>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-info btn-block btn-sm" onclick="autoFillShelf('<?= $shelfID[$i] ?>')" data-toggle="modal" data-target="#shelf">
+                                            Open Shelf
+                                        </button>
+                                        <button type="button" class="btn btn-info btn-block btn-sm">
+                                            Delete Shelf
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -161,28 +166,12 @@ $conn = new mysqli($servername, $username, $password, $database);
     </section>
 
     <!-- Shelf Modal-->
-    <div class="modal fade" name="shelf" id="shelf" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row" id='displayShelfCopies'></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
+    <div name="shelf" id="shelf" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="displayShelfCopies" style="max-height:100vh !important; max-width:90vw !important;" />
+        
     </div>
 
     <script src="shelf/shelfFill.js"></script>
- -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>

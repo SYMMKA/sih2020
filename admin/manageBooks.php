@@ -25,30 +25,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="./assets/css/common.css" />
 	<link rel="stylesheet" href="./assets/css/manage.css" />
-	<!--Validation-->
-	<script type="text/javascript">
-		(function() {
-			"use strict";
-			window.addEventListener(
-				"load",
-				function() {
-					var form = document.getElementById("needs-validation");
-					form.addEventListener(
-						"submit",
-						function(event) {
-							if (form.checkValidity() === false) {
-								event.preventDefault();
-								event.stopPropagation();
-							}
-							form.classList.add("was-validated");
-						},
-						false
-					);
-				},
-				false
-			);
-		})();
-	</script>
 </head>
 
 <body>
@@ -86,13 +62,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 					</h4>
 				</div>
 
-				<form id="needs-validation" novalidate action="" class="row search-form mb-2 align-self-center justify-content-center" method="post">
-					<div class="col-sm-6 search-box mb-2">
-						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" />
-						<div class="invalid-feedback">
-							Required Field
-						</div>
-					</div>
+				<form class="row search-form mb-2 align-self-center justify-content-center" method="post" novalidate>
 					<div class="col-sm-6 col-md-2">
 						<button class="btn btn-info btn-block ml-sm-2" type="submit">
 							Search

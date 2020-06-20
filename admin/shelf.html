@@ -127,7 +127,12 @@
               </p>
               <div class="row justify-content-center">
                 <div class="col-6">
-                  <button type="button " class="btn btn-info btn-block btn-sm">
+                  <button
+                    type="button "
+                    class="btn btn-info btn-block btn-sm"
+                    data-toggle="modal"
+                    data-target=".bd-example-modal-lg"
+                  >
                     add
                   </button>
                 </div>
@@ -331,6 +336,147 @@
         </div>
       </div>
     </section>
+    <div
+      class="modal fade bd-example-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" style="max-height:100vh !important; max-width:90vw !important;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-10">
+                <div class="row row-cols-1 row-cols-md-4" style="height: 500px; overflow-y: scroll;">
+                  <div class="col mb-4">
+                    <div class="card">
+                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
+                        alt="Card image cap" />
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Book Name</h4>
+                        <p class="card-text">
+                         <strong>Copy ID:</strong>  987654321 </br>
+                        <strong>ISBN:</strong>  987654321 </br>
+                        <strong>Reserved by:</strong>  test </br>
+                        <strong>Reserved at:</strong>  123456789
+                        </p>
+                        <div class="row justify-content-center">
+                          <div class="col-12">
+                          <button type="button " class="btn btn-info btn-block btn-sm">
+                            remove
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col mb-4">
+                    <div class="card">
+                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
+                        alt="Card image cap" />
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Shelf Name</h4>
+                        <p class="card-text">
+                          No. of books
+                        </p>
+                        <div class="row justify-content-center">
+                          <div class="col-6">
+                            <button type="button " class="btn btn-info btn-block btn-sm">
+                              add
+                            </button>
+                          </div>
+                          <div class="col-6">
+                            <button type="button" class="btn btn-info btn-block btn-sm">
+                              remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col mb-4">
+                    <div class="card">
+                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
+                        alt="Card image cap" />
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Shelf Name</h4>
+                        <p class="card-text">
+                          No. of books
+                        </p>
+                        <div class="row justify-content-center">
+                          <div class="col-6">
+                            <button type="button " class="btn btn-info btn-block btn-sm">
+                              add
+                            </button>
+                          </div>
+                          <div class="col-6">
+                            <button type="button" class="btn btn-info btn-block btn-sm">
+                              remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col mb-4">
+                    <div class="card">
+                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
+                        alt="Card image cap" />
+                      <div class="card-body text-center">
+                        <h4 class="card-title">Shelf Name</h4>
+                        <p class="card-text">
+                          No. of books
+                        </p>
+                        <div class="row justify-content-center">
+                          <div class="col-6">
+                            <button type="button " class="btn btn-info btn-block btn-sm">
+                              add
+                            </button>
+                          </div>
+                          <div class="col-6">
+                            <button type="button" class="btn btn-info btn-block btn-sm">
+                              remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="row pt-5 pb-5 justify-content-center text-center h-100 align-items-center">
+                  <div class="col-12"><h4>Issued:</br></br>1</br></br>Available:</br></br>2</br></br>Reserved:</br></br>3</h4></br></div>
+                  <div class="vcol-12"><button type="button" class="btn btn-info">add</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <section>
       <div class="container mb-5 mt-5 pt-5 pb-5">
         <h1 class="text-center mb-5">Add a new shelf</h1>

@@ -8,10 +8,16 @@ $database = "library";
 $conn = new mysqli($servername, $username, $password, $database);
 
 $shelfID = $_POST['shelfID'];
-$query = "SELECT * FROM copies WHERE `copies`.`shelfID` = '$shelfID'";
-$returnD = mysqli_query($conn, $query);
+$sql1 = "SELECT * FROM copies WHERE `copies`.`shelfID` = '$shelfID'";
+$returnD = mysqli_query($conn, $sql1);
 
 while ($result = mysqli_fetch_array($returnD)) {
+    $isbn = $result["isbn"];
+    $sql2 = "SELECT `imgLink` FROM main WHERE `main`.`isbn` = '$isbn'";
+    $returnD2 = mysqli_query($conn, $sql2);
+    $result2 = mysqli_fetch_array($returnD2);
+    $data["imgLink"] = $result2["imgLink"];
+
     $data["isbn"] = $result["isbn"];
     $data["copyno"] = $result["copyno"];
     $data["copyID"] = $result["copyID"];
