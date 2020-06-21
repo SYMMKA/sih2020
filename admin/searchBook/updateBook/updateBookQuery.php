@@ -87,12 +87,58 @@ if ($_POST['money']){
 else
 	$price = $result["price"];
 
-if ($_POST['imgValue']){
-	$imgLink = $_POST['imgValue'];
-	$change = 1;
-}
-else
+if(!isset($_FILES["imgFile"]['tmp_name']))
 	$imgLink = $result["imgLink"];
+else {
+	//check image upload
+	if ($_FILES["imgFile"]["error"] == 0) {
+		/* Location */
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "/web/bookImage/";
+		$target_file = $target_dir . basename($_FILES["imgFile"]["name"]);
+		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+		// Check if image file is a actual image or fake image
+		
+			$check = getimagesize($_FILES["imgFile"]["tmp_name"]);
+			if ($check !== false) {
+				echo "<br>" . "File is an image - " . $check["mime"] . ".";
+				$uploadOk = 1;
+			} else {
+				echo "<br>" . "File is not an image.";
+				$uploadOk = 0;
+			}
+		// Check file size
+		/* if ($_FILES["imgFile"]["size"] > 500000) {
+	echo "Sorry, your file is too large.";
+	$uploadOk = 0;
+} */
+
+		/* Valid Extensions */
+		$valid_extensions = array("jpg", "jpeg", "png");
+		/* Check file extension */
+		if (!in_array(strtolower($imageFileType), $valid_extensions)) {
+			$uploadOk = 0;
+		}
+
+		if ($uploadOk == 0) {
+			echo "<br>" . "Sorry, your file was not uploaded.";
+			// if everything is ok, try to upload file
+		} else {
+			$temp = explode(".", $_FILES["imgFile"]["name"]);
+			$imageName = $isbn . '.' . end($temp);
+			$newName = $target_dir . $imageName;
+			if (move_uploaded_file($_FILES["imgFile"]["tmp_name"], $newName)) {
+				echo "<br>" . "The file " . basename($_FILES["imgFile"]["name"]) . " has been uploaded.";
+				$imgLink = "http://" . $_SERVER['SERVER_NAME'] . "/web/bookImage/" . $imageName;
+				$change = 1;
+			} else {
+				echo "<br>" . "Sorry, there was an error uploading your file.";
+				$uploadOk = 0;
+			}
+		}
+	}
+}
+
 
 if ($_POST['addQuan']) {
 	$addQuan = $_POST['addQuan'];

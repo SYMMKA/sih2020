@@ -15,7 +15,9 @@ function updateBook(e) {
     var money = getInputVal('updatemoney');
     var oldID = getInputVal('updateOldID');
     var addQuan = getInputVal('updateaddcopies');
-    var files = $('#updateimgFile')[0].files[0];
+	var files = $('#updateimgFile')[0].files[0];
+	if (!files)
+		files = null;
 
     if (!getInputVal('catDisplay')) {
         var mainCategory1 = '';
@@ -60,32 +62,18 @@ function updateBook(e) {
     formData.append('imgFile', files);
     formData.append('addQuan', addQuan);
 
-    console.log(title);
-    console.log(author);
-    console.log(mainCategory1);
-    console.log(mainCategory2);
-    console.log(mainCategory3);
-    console.log(mainCategory4);
-    console.log(publisher);
-    console.log(publishedDate);
-    console.log(isbn);
-    console.log(pageCount);
-    console.log(money);
-    console.log(oldID);
-    console.log(addQuan);
-
     $.ajax({
         type: "POST",
         url: "searchBook/updateBook/updateBookQuery.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
+		processData: false, // Dont delete this
+		success: function(){
+			window.location.reload();
+		}
         //Other options
     });
-
-    // Clear form
-    window.location.reload();
-
 }
 
 // Function to get form values
