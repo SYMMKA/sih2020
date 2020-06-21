@@ -343,7 +343,10 @@
       aria-labelledby="myLargeModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" style="max-height:100vh !important; max-width:90vw !important;">
+      <div
+        class="modal-dialog modal-lg"
+        style="max-height: 100vh !important; max-width: 90vw !important;"
+      >
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
@@ -358,109 +361,121 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-10">
-                <div class="row row-cols-1 row-cols-md-4" style="height: 500px; overflow-y: scroll;">
-                  <div class="col mb-4">
-                    <div class="card">
-                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
-                        alt="Card image cap" />
-                      <div class="card-body text-center">
-                        <h4 class="card-title">Book Name</h4>
-                        <p class="card-text">
-                         <strong>Copy ID:</strong>  987654321 </br>
-                        <strong>ISBN:</strong>  987654321 </br>
-                        <strong>Reserved by:</strong>  test </br>
-                        <strong>Reserved at:</strong>  123456789
-                        </p>
-                        <div class="row justify-content-center">
-                          <div class="col-12">
-                          <button type="button " class="btn btn-info btn-block btn-sm">
-                            remove
-                          </button>
-                          </div>
-                        </div>
+              <div class="col-4">
+                <div class="card">
+                  <img
+                    class="card-img-top"
+                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
+                    alt="Card image cap"
+                  />
+                  <div class="card-body text-center">
+                    <h4 class="card-title">Shelf Name</h4>
+                    <p class="card-text">
+                      No. of books
+                    </p>
+                    <div class="row justify-content-center">
+                      <div class="col-6">
+                        <button
+                          type="button "
+                          class="btn btn-info btn-block btn-sm"
+                        >
+                          add
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col mb-4">
-                    <div class="card">
-                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
-                        alt="Card image cap" />
-                      <div class="card-body text-center">
-                        <h4 class="card-title">Shelf Name</h4>
-                        <p class="card-text">
-                          No. of books
-                        </p>
-                        <div class="row justify-content-center">
-                          <div class="col-6">
-                            <button type="button " class="btn btn-info btn-block btn-sm">
-                              add
-                            </button>
-                          </div>
-                          <div class="col-6">
-                            <button type="button" class="btn btn-info btn-block btn-sm">
-                              remove
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col mb-4">
-                    <div class="card">
-                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
-                        alt="Card image cap" />
-                      <div class="card-body text-center">
-                        <h4 class="card-title">Shelf Name</h4>
-                        <p class="card-text">
-                          No. of books
-                        </p>
-                        <div class="row justify-content-center">
-                          <div class="col-6">
-                            <button type="button " class="btn btn-info btn-block btn-sm">
-                              add
-                            </button>
-                          </div>
-                          <div class="col-6">
-                            <button type="button" class="btn btn-info btn-block btn-sm">
-                              remove
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col mb-4">
-                    <div class="card">
-                      <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
-                        alt="Card image cap" />
-                      <div class="card-body text-center">
-                        <h4 class="card-title">Shelf Name</h4>
-                        <p class="card-text">
-                          No. of books
-                        </p>
-                        <div class="row justify-content-center">
-                          <div class="col-6">
-                            <button type="button " class="btn btn-info btn-block btn-sm">
-                              add
-                            </button>
-                          </div>
-                          <div class="col-6">
-                            <button type="button" class="btn btn-info btn-block btn-sm">
-                              remove
-                            </button>
-                          </div>
-                        </div>
+                      <div class="col-6">
+                        <button
+                          type="button"
+                          class="btn btn-info btn-block btn-sm"
+                        >
+                          remove
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="row pt-5 pb-5 justify-content-center text-center h-100 align-items-center">
-                  <div class="col-12"><h4>Issued:</br></br>1</br></br>Available:</br></br>2</br></br>Reserved:</br></br>3</h4></br></div>
-                  <div class="vcol-12"><button type="button" class="btn btn-info">add</button></div>
-                </div>
+              <div class="col-8">
+                <form>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Author</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label"
+                      >Change Category</label
+                    >
+                    <div class="col-sm-10">
+                      <button type="button" class="btn btn-info">
+                        click here
+                      </button>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label"
+                      >Publisher</label
+                    >
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label"
+                      >Publisher Date</label
+                    >
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Old ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control-file" id="" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label"
+                      >Add Copies</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id=""
+                        placeholder="Number of copies"
+                        min="0"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="row text-center">
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-secondary">
+                        clear
+                      </button>
+                      <button type="submit" class="btn btn-info">Update</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

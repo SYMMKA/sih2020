@@ -185,85 +185,113 @@ $conn = new mysqli($servername, $username, $password, $database);
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="fields">
-						<form id="updateBookForm">
-							<div class="field half" style="text-align: center;">
-								<label>Title: </label>
-								<label id="booktitleUpdate"></label>
+					<!-- <form id="updateBookForm">
+						<div class="row" style="height: 500px; overflow-y: scroll;">
+							<div class="col-sm-4">
+								<div class="card">
+									<img class="card-img-top" src="" type="hidden" id="bookimgLinkUpdate" style="height: 20vw;">
+									<div class="card-body ">
+										<h4 class="card-title text-center" id="booktitleUpdate"></h4>
+										<div class="card-text">
+											<div class="row">
+												<div class="col-4"><strong></strong></div>
+												<div class="col-8"></div>
+											</div>
+											<div class="row">
+												<div class="col-4"><strong>Author:</strong></div>
+												<div class="col-8" id="bookauthorUpdate"></div>
+											</div>
+											<div class="row">
+												<div class="col-4"><strong>ISBN:</strong></div>
+												<div class="col-8" id="bookisbnUpdate"></div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="field half" style="text-align: center;">
-								<label>Author: </label>
-								<label id="bookauthorUpdate"></label>
-							</div>
-							<div class="field half" style="text-align: center;">
-								<label>ISBN: </label>
-								<label id="bookisbnUpdate"></label>
-							</div>
-							<div class="field half" style="text-align: center;">
-								<img src="" type="hidden" id="bookimgLinkUpdate">
-							</div>
+							<div class="col-sm-8">
 
-							<div class="field">
-								<label>Change Title</label>
-								<input type="text" name="updateTitle" id="updateTitle" placeholder="Name" />
-							</div>
-							<br />
-							<div class="field">
-								<label>Change Author</label>
-								<input type="text" name="updateAuthor" id="updateAuthor" placeholder="Email address" />
-							</div>
-							<br />
-							<div class="field">
-								<button name="updateCategory" id="updateCategory" onclick="showCategory()">Change Category</button>
-							</div>
-							<div id="category"></div>
-							<input type="hidden" value="" id="catDisplay" />
-							<br />
-							<div class="field half">
-								<label for="publisher">Publisher</label>
-								<input type="text" name="updatepublisher" id="updatepublisher" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="pageCount">Page Count</label>
-								<input type="number" name="updatepageCount" id="updatepageCount" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="publishedDate">Published Date</label>
-								<input type="text" name="updatepublishedDate" id="updatepublishedDate" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="money">Price</label>
-								<input type="text" name="updatemoney" id="updatemoney" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="updateOldID">Old ID</label>
-								<input type="text" name="updateOldID" id="updateOldID" />
-							</div>
-							<br />
-							<div class="field">
-								<label for="updateimage">Image</label>
-								<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-								<input id="updateimgFile" type="file" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false">
-							</div>
-							<br />
-							<div class="field">
-								<label>Add copies</label>
-								<input type="number" name="updateaddcopies" id="updateaddcopies">
-							</div>
-							<br />
+								<div class="form-group row">
+									<label for="updateTitle" class="col-sm-2 col-form-label">Title</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updateTitle" id="updateTitle" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateAuthor" class="col-sm-2 col-form-label">Author</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updateAuthor" id="updateAuthor" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateCategory" class="col-sm-2 col-form-label">Category</label>
+									<div class="col-sm-10">
+										<button type="button" class="btn btn-info" name="updateCategory" id="updateCategory" onclick="showCategory()">
+											click here
+										</button>
+									</div>
+								</div>
+								<div class="form-group row" id="category">
+									<label for="catDisplay" class="col-sm-2 col-form-label"></label>
+									<div class="col-sm-10">
+										<input type="hidden" value="" id="catDisplay" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updatepublisher" class="col-sm-2 col-form-label">Publisher</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updatepublisher" id="updatepublisher" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updatepageCount" class="col-sm-2 col-form-label">Page Count</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" name="updatepageCount" id="updatepageCount" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updatepublishedDate" class="col-sm-2 col-form-label">Publisher Date</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" name="updatepublishedDate" id="updatepublishedDate" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updatemoney" class="col-sm-2 col-form-label">Price</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updatemoney" id="updatemoney" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateOldID" class="col-sm-2 col-form-label">Old ID</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updateOldID" id="updateOldID" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateimageFile" class="col-sm-2 col-form-label">Image</label>
+									<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100px" height="100px" />
+									<div class="col-sm-10">
+										<input type="file" class="form-control-file" id="updateimgFile" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateaddcopies" class="col-sm-2 col-form-label">Add Copies</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="updateaddcopies" name="updateaddcopies" placeholder="Number of copies" min="0" required />
+									</div>
+								</div>
+								<div class="row text-center">
+									<div class="col-12">
+										<button type="submit" class="btn btn-secondary" type="reset" value="Clear">
+											clear
+										</button>
+										<button type="submit" class="btn btn-info" value="update" name="update">Update</button>
+									</div>
+								</div>
 
-							<ul class="actions">
-								<li><input type="submit" value="update" name="update" class="primary" /></li>
-								<li><input type="reset" value="Clear" /></li>
-							</ul>
-
-							</br>
-						</form>
-					</div>
+							</div>
+						</div>
+					</form> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -302,3 +330,83 @@ $conn = new mysqli($servername, $username, $password, $database);
 </body>
 
 </html>
+
+<!-- <div class="fields">
+	<form id="updateBookForm">
+		<div class="field half" style="text-align: center;">
+			<label>Title: </label>
+			<label id="booktitleUpdate"></label>
+		</div>
+		<div class="field half" style="text-align: center;">
+			<label>Author: </label>
+			<label id="bookauthorUpdate"></label>
+		</div>
+		<div class="field half" style="text-align: center;">
+			<label>ISBN: </label>
+			<label id="bookisbnUpdate"></label>
+		</div>
+		<div class="field half" style="text-align: center;">
+			<img src="" type="hidden" id="bookimgLinkUpdate">
+		</div>
+
+		<div class="field">
+			<label>Change Title</label>
+			<input type="text" name="updateTitle" id="updateTitle" placeholder="Name" />
+		</div>
+		<br />
+		<div class="field">
+			<label>Change Author</label>
+			<input type="text" name="updateAuthor" id="updateAuthor" placeholder="Email address" />
+		</div>
+		<br />
+		<div class="field">
+			<button name="updateCategory" id="updateCategory" onclick="showCategory()">Change Category</button>
+		</div>
+		<div id="category"></div>
+		<input type="hidden" value="" id="catDisplay" />
+		<br />
+		<div class="field half">
+			<label for="publisher">Publisher</label>
+			<input type="text" name="updatepublisher" id="updatepublisher" />
+		</div>
+		<br />
+		<div class="field half">
+			<label for="pageCount">Page Count</label>
+			<input type="number" name="updatepageCount" id="updatepageCount" />
+		</div>
+		<br />
+		<div class="field half">
+			<label for="publishedDate">Published Date</label>
+			<input type="text" name="updatepublishedDate" id="updatepublishedDate" />
+		</div>
+		<br />
+		<div class="field half">
+			<label for="money">Price</label>
+			<input type="text" name="updatemoney" id="updatemoney" />
+		</div>
+		<br />
+		<div class="field half">
+			<label for="updateOldID">Old ID</label>
+			<input type="text" name="updateOldID" id="updateOldID" />
+		</div>
+		<br />
+		<div class="field">
+			<label for="updateimage">Image</label>
+			<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+			<input id="updateimgFile" type="file" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false">
+		</div>
+		<br />
+		<div class="field">
+			<label>Add copies</label>
+			<input type="number" name="updateaddcopies" id="updateaddcopies">
+		</div>
+		<br />
+
+		<ul class="actions">
+			<li><input type="submit" value="update" name="update" class="primary" /></li>
+			<li><input type="reset" value="Clear" /></li>
+		</ul>
+
+		</br>
+	</form>
+</div> -->

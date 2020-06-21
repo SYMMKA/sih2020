@@ -10,10 +10,11 @@ function autoFillBook(i) {
     processData: false, // Dont delete this
     success: function (data) {
       var html = "";
-      html += `<div class="modal-content">
+      html +=
+        `<div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" onclick="location.reload()"aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -23,7 +24,9 @@ function autoFillBook(i) {
                     <div class="row row-cols-1 row-cols-md-4" style="height:500px; overflow-y: scroll;">
                     <input type="hidden" id="elementID">
                     <input type="hidden" id="reservedBy">
-                    <input type="hidden" id="copyIsbn" value="`+isbn[i]+`">
+                    <input type="hidden" id="copyIsbn" value="` +
+        isbn[i] +
+        `">
                     <input type="hidden" id="copyID">`;
 
       if (data) {
@@ -145,8 +148,8 @@ function autoFillBook(i) {
             `</button>
                     <button type="submit" form="deleteCopyForm" class="btn btn-info btn-block btn-sm" name="deleteCopyCopy" onclick="autoFillDeleteCopy('` +
             item.copyID +
-			`','` +
-			i +
+            `','` +
+            i +
             `')">
                         Delete Copy
                     </button>

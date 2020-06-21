@@ -1,40 +1,40 @@
 function autoFillIssueBook(copyID, oldID, reservedBy, i) {
-    var html = '';
-    html += `</br>
-    </br>
+  var html = "";
+  html +=
+    `
 
-    <div class="form-row align-items-center justify-content-center" style="font-size: 50px;">
-        <label>Issue Book</label>
-    </div>
+ 
+        <h1 class="text-center mb-4">Issue Book</h1>
 
-    <div class="fields">
-        <div>
-            <div class="field">
-                <label>Copy ID:</label>
-                <label id="displayCopyTitleCopyID">`+copyID+`</label>
-                <label>Old ID:</label>
-                <label id="displayCopyTitleOldID">`+oldID+`</label>
-            </div>
-        </div>
-        </br>
-    </div>
 
-    <div class="fields">
+    <div class="text-center mb-4">
+                <h4 class="d-inline">Copy ID: </h4>
+                <h4 class="d-inline" id="displayCopyTitleCopyID">` +
+    copyID +
+    `</h4></br>
+                <h4 class="d-inline">Old ID: </h4>
+                <h4 class="d-inline" id="displayCopyTitleOldID">` +
+    oldID +
+    `</h4>
+     </div>      
 
-            <div name="studentDetailsIssue" id="studentDetailsIssue">
-                <div class="field">
-                    <label>Student ID</label>
-                    <input type="text" name="stud_IDIssue" id="stud_IDIssue" placeholder="ID" required/>
+   
+
+            <div name="studentDetailsIssue" id="studentDetailsIssue" >
+                <div class="form-group row justify-content-center" >
+                    <label class="col-sm-4 col-form-label  text-right">Student ID</label>
+                    <div class="col-sm-4"><input class="form-control" type="text" name="stud_IDIssue" id="stud_IDIssue" placeholder="ID" required/></div>
+                    <div class="col-sm-4">
+                      <button type="reset" value="Clear" class="btn btn-secondary">
+                        clear
+                      </button>
+                      <button type="submit" form="issueBookForm" value="issue" name="issue" class="btn btn-info">Issue</button>
+                    </div>
                 </div>
-                <ul class="actions">
-                    <li><input type="submit" form="issueBookForm" value="issue" name="issue" class="primary" /></li>
-                    <li><input type="reset" value="Clear" /></li>
-                </ul>
-            </div>
-
+    
             </br>
-    </div>`;
-    document.getElementById("issueBookFormDiv").innerHTML = html;
-    document.getElementById('reservedBy').value = reservedBy;
-    document.getElementById('elementID').value = i;
+`;
+  document.getElementById("issueBookFormDiv").innerHTML = html;
+  document.getElementById("reservedBy").value = reservedBy;
+  document.getElementById("elementID").value = i;
 }

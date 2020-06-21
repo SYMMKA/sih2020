@@ -1,21 +1,21 @@
 function autoFillShelf(shelfID) {
-    document.getElementById("displayShelfCopies").innerHTML = "";
-    var formData = new FormData();
-    formData.append("shelfID", shelfID);
-    $.ajax({
-        type: "POST",
-        url: "shelf/showShelfCopies.php",
-        data: formData,
-        contentType: false, // Dont delete this (jQuery 1.6+)
-        processData: false, // Dont delete this
-        success: function (data) {
-            var issued = (reserved = available = 0);
-            var html = "";
-            html += `
+  document.getElementById("displayShelfCopies").innerHTML = "";
+  var formData = new FormData();
+  formData.append("shelfID", shelfID);
+  $.ajax({
+    type: "POST",
+    url: "shelf/showShelfCopies.php",
+    data: formData,
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    success: function (data) {
+      var issued = (reserved = available = 0);
+      var html = "";
+      html += `
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" onclick="location.reload()"aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -23,14 +23,16 @@ function autoFillShelf(shelfID) {
                 <div class="row">
                     <div class="col-10">
                     <div class="row row-cols-1 row-cols-md-3" style="height: 500px; overflow-y: scroll;">`;
-            if (data) {
-                var data = JSON.parse(data);
-                data.forEach(function (item, index) {
-                    html += `
+      if (data) {
+        var data = JSON.parse(data);
+        data.forEach(function (item, index) {
+          html +=
+            `
                         <div class="col mb-4">
                         <div class="card h-100">
                             <img class="card-img-top" src="` +
-                        item.imgLink + `"
+            item.imgLink +
+            `"
                             alt="Card image cap" style="height:20vw;" />
                             <div class="card-body" style="padding: 1rem;">
                             <h4 class="card-title text-center">Book Name</h4>
@@ -41,8 +43,8 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                        item.copyno +
-                        `
+            item.copyno +
+            `
                                 </div>
                             </div>
 
@@ -52,8 +54,8 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                        item.copyID +
-                        `
+            item.copyID +
+            `
                                 </div></br>
                             </div>
 
@@ -63,8 +65,8 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                        item.isbn +
-                        `
+            item.isbn +
+            `
                                 </div></br>
                             </div>
 
@@ -74,20 +76,21 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                        item.oldID +
-                        `
+            item.oldID +
+            `
                                 </div></br>
                             </div>`;
-                    if (item.status == "reserved" && item.returnTime > item.currentTime) {
-                        html += `
+          if (item.status == "reserved" && item.returnTime > item.currentTime) {
+            html +=
+              `
                             <div class="row no-gutters">
                                 <div Class="col-4">
                                 <strong>Reserved by:</strong>
                                 </div>
                                 <div Class="col-8">
                             ` +
-                            item.stud_ID +
-                            `
+              item.stud_ID +
+              `
                                 </div></br>
                             </div>
                             <div class="row no-gutters">
@@ -96,21 +99,22 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                            item.time +
-                            `
+              item.time +
+              `
                                 </div></br>
                             </div>`;
-                        reserved++;
-                    } else if (item.status == "issued") {
-                        html += `
+            reserved++;
+          } else if (item.status == "issued") {
+            html +=
+              `
                             <div class="row no-gutters">
                                 <div Class="col-4">
                                     <strong>Issued by:</strong>
                                 </div>
                                 <div Class="col-8">
                             ` +
-                            item.stud_ID +
-                            `
+              item.stud_ID +
+              `
                                 </div></br>
                             </div>
                             <div class="row no-gutters">
@@ -119,26 +123,31 @@ function autoFillShelf(shelfID) {
                                 </div>
                                 <div Class="col-8">
                             ` +
-                            item.time +
-                            `
+              item.time +
+              `
                                 </div></br>
                             </div>`;
-                        issued++;
-                    } else {
-                        html += `</br>
+            issued++;
+          } else {
+            html += `</br>
                             <div class="text-center">
                                 <strong>Available</strong></br>
                             </div>`;
-                        available++;
-                    }
-                    html += `
+            available++;
+          }
+          html += `
                             </p>
                             </div>
                             <div class="card-footer bg-white">
                             <div class="row text-center">
                             <div class="col-12">`;
-                    html += `
-                                <button type="submit" class="btn btn-info" name="removeCopy" onclick="removeCopy('` + item.copyID + `','` + shelfID + `')">
+          html +=
+            `
+                                <button type="submit" class="btn btn-info" name="removeCopy" onclick="removeCopy('` +
+            item.copyID +
+            `','` +
+            shelfID +
+            `')">
                                 Remove Copy
                                 </button>
                             </div>
@@ -146,9 +155,10 @@ function autoFillShelf(shelfID) {
                         </div>
                         </div>
                     </div>`;
-                });
-            }
-            html += `
+        });
+      }
+      html +=
+        `
                     </div>
                 </div>
                 <div class="col-2">
@@ -156,17 +166,21 @@ function autoFillShelf(shelfID) {
                     <div class="col-12">
                         <h4>
                         Issued:</br></br>` +
-                issued + `
+        issued +
+        `
                         </br></br>Reserved:</br></br>` +
-                reserved + `
+        reserved +
+        `
                         </br></br>Available:</br></br>` +
-                available + `
+        available +
+        `
                         </h4></br>
                     </div>
                 
                     <form id="addCopy" method="get" action="shelf/addCopy.php">
                         <input type="hidden" name="shelfID" value="` +
-                shelfID + `" />
+        shelfID +
+        `" />
                         <div class="col-12">
                             <button class="btn btn-primary">
                             Add Copy
@@ -189,24 +203,24 @@ function autoFillShelf(shelfID) {
             <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>`;
-            document.getElementById("displayShelfCopies").innerHTML = html;
-        },
-        //Other options
-    });
+      document.getElementById("displayShelfCopies").innerHTML = html;
+    },
+    //Other options
+  });
 }
 
 function removeCopy(copyID, shelfID) {
-    var formData = new FormData();
-    formData.append("copyID", copyID);
-    $.ajax({
-        type: "POST",
-        url: "shelf/removeCopy.php",
-        data: formData,
-        contentType: false, // Dont delete this (jQuery 1.6+)
-        processData: false, // Dont delete this
-        success: function (data) {
-            autoFillShelf(shelfID);
-        },
-        //Other options
-    });
+  var formData = new FormData();
+  formData.append("copyID", copyID);
+  $.ajax({
+    type: "POST",
+    url: "shelf/removeCopy.php",
+    data: formData,
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    success: function (data) {
+      autoFillShelf(shelfID);
+    },
+    //Other options
+  });
 }
