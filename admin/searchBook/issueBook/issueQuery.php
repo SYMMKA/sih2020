@@ -1,11 +1,6 @@
 <?php
-//DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "library";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+include("../../db.php");
+
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);

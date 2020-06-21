@@ -1,11 +1,5 @@
 <?php
-//DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "library";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+include("../db.php");
 
 $shelfID = $_POST['shelfID'];
 $sql = "DELETE FROM `shelf` WHERE `shelf`.`shelfID` = '$shelfID'";

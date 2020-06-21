@@ -1,11 +1,5 @@
 <?php
-//DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "library";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+include("../db.php");
 
 $shelfID = $_POST['shelfID'];
 $sql1 = "SELECT * FROM copies WHERE `copies`.`shelfID` = '$shelfID'";

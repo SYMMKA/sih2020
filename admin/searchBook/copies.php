@@ -1,11 +1,5 @@
 <?php
-//DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "library";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+include("../db.php");
 
 $searchField = $_POST['isbn'];
 $query = "SELECT * FROM copies Where `copies`.`isbn` = '$searchField'";
