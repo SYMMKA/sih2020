@@ -107,35 +107,35 @@ $conn = new mysqli($servername, $username, $password, $database);
 					$star[$i] = $result1["AVG(star)"];
 				?>
 					<div class="col mb-4">
-						<div class="card">
-							<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" />
-							<div class="card-body">
-								<div class="card-text">
-									<div class="row no-gutters">
-										<div class="col-4">Title:</div>
-										<div class="col-8">
-											<?= $title[$i] ?>
-										</div>
-									</div>
-									<div class="row no-gutters">
-										<div class="col-4">Author:</div>
-										<div class="col-8">
-											<?= $author[$i] ?>
-										</div>
-									</div>
-									<div class="row no-gutters">
-										<div class="col-4">ISBN:</div>
-										<div class="col-8">
-											<?= $isbn[$i] ?>
-										</div>
-									</div>
-									<div class="row no-gutters">
-										<div class="col-4">Rating:</div>
-										<div class="col-8">
-											<?= $star[$i] ?>
-										</div>
+						<div class="card h-100">
+							<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" style="height:20vw;" />
+							<div class=" card-body">
+								<div class="row no-gutters">
+									<div class="col-4"><strong>Title:</strong></div>
+									<div class="col-8">
+										<?= $title[$i] ?>
 									</div>
 								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Author:</Strong></div>
+									<div class="col-8">
+										<?= $author[$i] ?>
+									</div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>ISBN:</Strong></div>
+									<div class="col-8">
+										<?= $isbn[$i] ?>
+									</div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Rating:</Strong></div>
+									<div class="col-8">
+										<?= $star[$i] ?>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer bg-white">
 								<div class="row justify-content-center">
 									<div class="col-12">
 										<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
@@ -146,6 +146,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 										</button>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -175,101 +176,101 @@ $conn = new mysqli($servername, $username, $password, $database);
 
 	<!-- update Modal-->
 	<div name="updateBookForm" id="updateBookForm" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;"">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Update Book</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="fields">
-						<form id="updateBookForm">
-							<div class="field half" style="text-align: center;">
-								<label>Title: </label>
-								<label id="booktitleUpdate"></label>
-							</div>
-							<div class="field half" style="text-align: center;">
-								<label>Author: </label>
-								<label id="bookauthorUpdate"></label>
-							</div>
-							<div class="field half" style="text-align: center;">
-								<label>ISBN: </label>
-								<label id="bookisbnUpdate"></label>
-							</div>
-							<div class="field half" style="text-align: center;">
-								<img src="" type="hidden" id="bookimgLinkUpdate">
-							</div>
+		<div class="class=" modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;"">
+			<div class=" modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Update Book</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="fields">
+					<form id="updateBookForm">
+						<div class="field half" style="text-align: center;">
+							<label>Title: </label>
+							<label id="booktitleUpdate"></label>
+						</div>
+						<div class="field half" style="text-align: center;">
+							<label>Author: </label>
+							<label id="bookauthorUpdate"></label>
+						</div>
+						<div class="field half" style="text-align: center;">
+							<label>ISBN: </label>
+							<label id="bookisbnUpdate"></label>
+						</div>
+						<div class="field half" style="text-align: center;">
+							<img src="" type="hidden" id="bookimgLinkUpdate">
+						</div>
 
-							<div class="field">
-								<label>Change Title</label>
-								<input type="text" name="updateTitle" id="updateTitle" placeholder="Name" />
-							</div>
-							<br />
-							<div class="field">
-								<label>Change Author</label>
-								<input type="text" name="updateAuthor" id="updateAuthor" placeholder="Email address" />
-							</div>
-							<br />
-							<div class="field">
-								<button name="updateCategory" id="updateCategory" onclick="showCategory()">Change Category</button>
-							</div>
-							<div id="category"></div>
-							<input type="hidden" value="" id="catDisplay" />
-							<br />
-							<div class="field half">
-								<label for="publisher">Publisher</label>
-								<input type="text" name="updatepublisher" id="updatepublisher" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="pageCount">Page Count</label>
-								<input type="number" name="updatepageCount" id="updatepageCount" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="publishedDate">Published Date</label>
-								<input type="text" name="updatepublishedDate" id="updatepublishedDate" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="money">Price</label>
-								<input type="text" name="updatemoney" id="updatemoney" />
-							</div>
-							<br />
-							<div class="field half">
-								<label for="updateOldID">Old ID</label>
-								<input type="text" name="updateOldID" id="updateOldID" />
-							</div>
-							<br />
-							<div class="field">
-								<label for="updateimage">Image</label>
-								<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-								<input id="updateimgFile" type="file" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false">
-							</div>
-							<br />
-							<div class="field">
-								<label>Add copies</label>
-								<input type="number" name="updateaddcopies" id="updateaddcopies">
-							</div>
-							<br />
+						<div class="field">
+							<label>Change Title</label>
+							<input type="text" name="updateTitle" id="updateTitle" placeholder="Name" />
+						</div>
+						<br />
+						<div class="field">
+							<label>Change Author</label>
+							<input type="text" name="updateAuthor" id="updateAuthor" placeholder="Email address" />
+						</div>
+						<br />
+						<div class="field">
+							<button name="updateCategory" id="updateCategory" onclick="showCategory()">Change Category</button>
+						</div>
+						<div id="category"></div>
+						<input type="hidden" value="" id="catDisplay" />
+						<br />
+						<div class="field half">
+							<label for="publisher">Publisher</label>
+							<input type="text" name="updatepublisher" id="updatepublisher" />
+						</div>
+						<br />
+						<div class="field half">
+							<label for="pageCount">Page Count</label>
+							<input type="number" name="updatepageCount" id="updatepageCount" />
+						</div>
+						<br />
+						<div class="field half">
+							<label for="publishedDate">Published Date</label>
+							<input type="text" name="updatepublishedDate" id="updatepublishedDate" />
+						</div>
+						<br />
+						<div class="field half">
+							<label for="money">Price</label>
+							<input type="text" name="updatemoney" id="updatemoney" />
+						</div>
+						<br />
+						<div class="field half">
+							<label for="updateOldID">Old ID</label>
+							<input type="text" name="updateOldID" id="updateOldID" />
+						</div>
+						<br />
+						<div class="field">
+							<label for="updateimage">Image</label>
+							<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+							<input id="updateimgFile" type="file" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false">
+						</div>
+						<br />
+						<div class="field">
+							<label>Add copies</label>
+							<input type="number" name="updateaddcopies" id="updateaddcopies">
+						</div>
+						<br />
 
-							<ul class="actions">
-								<li><input type="submit" value="update" name="update" class="primary" /></li>
-								<li><input type="reset" value="Clear" /></li>
-							</ul>
+						<ul class="actions">
+							<li><input type="submit" value="update" name="update" class="primary" /></li>
+							<li><input type="reset" value="Clear" /></li>
+						</ul>
 
-							</br>
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Understood</button>
+						</br>
+					</form>
 				</div>
 			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Understood</button>
+			</div>
 		</div>
+	</div>
 	</div>
 
 	<script src="category.js"></script>
