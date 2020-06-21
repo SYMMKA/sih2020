@@ -13,7 +13,9 @@ function autoFillBook(i) {
       html +=
         `<div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">` +
+        title[i] +
+        `</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -35,29 +37,12 @@ function autoFillBook(i) {
           html += `
                 <div class="col mb-4">
                         <div class="card h-100">`;
-          if (imgLink[i]) {
-            html +=
-              `<img class="card-img-top" src="` +
-              imgLink[i] +
-              `"
-                            alt="Card image cap" style="height:15vw;" />`;
-          }
           html +=
             ` <div class="card-body" style="padding: 1rem;">
-                            <h5 class="card-title text-center">` +
-            title[i] +
+                            <h5 class="card-title text-center"><strong>Copy No: </strong>` +
+            item.copyno +
             `</h4>
                             <p class="card-text">                   
-                            <div class="row no-gutters">
-                                <div Class="col-4">
-                                <strong>Copy No:</strong>
-                                </div>
-                                <div Class="col-8">
-                            ` +
-            item.copyno +
-            `
-                                </div>
-                            </div>
                         <div class="row no-gutters">
                                 <div Class="col-4">
                                 <strong>Old ID:</strong>

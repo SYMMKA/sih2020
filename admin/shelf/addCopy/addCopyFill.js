@@ -9,15 +9,18 @@ function addCopyFill(i) {
     processData: false, // Dont delete this
     success: function (data) {
       var html = "";
-      html += `<div class="modal-content">
+      html +=
+        `<div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <h5 class="modal-title" id="staticBackdropLabel">` +
+        title[i] +
+        `</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div class="row row-cols-1 row-cols-md-3" id='displayBookCopies' style:"overflow-y:scroll;">`;
+                  <div class="row row-cols-1 row-cols-md-3" id='displayBookCopies' style="height: 500px; overflow-y: scroll;">`;
       if (data) {
         console.log(data);
         var data = JSON.parse(data);
@@ -28,18 +31,10 @@ function addCopyFill(i) {
               <div class="col mb-4">
                 <div class="card h-100">
                   <div class="card-body" style="padding: 1rem;">
-                    <h4 class="card-title text-center">`+title[i]+`</h4>
-                    <p class="card-text">                   
-                    <div class="row no-gutters">
-                        <div Class="col-4">
-                        <strong>Copy No:</strong>
-                        </div>
-                        <div Class="col-8">
-                        ` +
+                    <h4 class="card-title text-center"><strong>Copy No: </strong>` +
             item.copyno +
-            `
-                        </div>
-                    </div>
+            `</h4>
+                    <p class="card-text">                   
                    <div class="row no-gutters">
                         <div Class="col-4">
                         <strong>Copy ID: </strong>
