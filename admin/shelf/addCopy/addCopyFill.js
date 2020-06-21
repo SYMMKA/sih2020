@@ -28,7 +28,7 @@ function addCopyFill(i) {
               <div class="col mb-4">
                 <div class="card h-100">
                   <div class="card-body" style="padding: 1rem;">
-                    <h4 class="card-title text-center">Book Name</h4>
+                    <h4 class="card-title text-center">`+title[i]+`</h4>
                     <p class="card-text">                   
                     <div class="row no-gutters">
                         <div Class="col-4">
@@ -57,7 +57,7 @@ function addCopyFill(i) {
                         </div>
                         <div Class="col-8">
                         ` +
-            item.oldID +
+            isbn[i] +
             `
                         </div></br>
                     </div>
@@ -68,7 +68,18 @@ function addCopyFill(i) {
                         </div>
                         <div Class="col-8">
                         ` +
-            item.shelf +
+            item.oldID +
+            `
+                        </div></br>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div Class="col-4">
+                        <strong>Shelf ID: </strong>
+                        </div>
+                        <div Class="col-8">
+                        ` +
+            item.shelfID +
             `
                         </div></br>
                     </div></p></div>

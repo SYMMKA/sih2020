@@ -8,6 +8,18 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
     </div>
 
     <div class="fields">
+        <div>
+            <div class="field">
+                <label>Copy ID:</label>
+                <label id="displayCopyTitleCopyID">`+copyID+`</label>
+                <label>Old ID:</label>
+                <label id="displayCopyTitleOldID">`+oldID+`</label>
+            </div>
+        </div>
+        </br>
+    </div>
+
+    <div class="fields">
 
             <div name="studentDetailsIssue" id="studentDetailsIssue">
                 <div class="field">
@@ -23,7 +35,5 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
             </br>
     </div>`;
     document.getElementById("issueBookFormDiv").innerHTML = html;
-    document.getElementById('displayCopyTitleCopyID').textContent = copyID;
-    document.getElementById('displayCopyTitleOldID').textContent = oldID;
     document.getElementById('reservedBy').value = reservedBy;
 }

@@ -1,3 +1,7 @@
+function autoFillReturnBook(copyID) {
+    document.getElementById('copyID').textContent = copyID;
+}
+
 // Listen for form submit
 document.getElementById('returnBookForm').addEventListener('submit', returnBook);
 
@@ -6,8 +10,8 @@ function returnBook(e) {
     e.preventDefault();
 
     // Get values
-    var isbn = document.getElementById('displayCopyIsbn').textContent;
-    var copyID = document.getElementById('displayCopyTitleCopyID').textContent;
+    var isbn = document.getElementById('copyIsbn').textContent;
+    var copyID = document.getElementById('copyID').textContent;
 
     var formData = new FormData();
     formData.append('isbn', isbn);

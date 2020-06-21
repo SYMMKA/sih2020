@@ -78,7 +78,6 @@ function autoFillShelf(shelfID) {
                         `
                                 </div></br>
                             </div>`;
-                    var reservedBy = "";
                     if (item.status == "reserved" && item.returnTime > item.currentTime) {
                         html += `
                             <div class="row no-gutters">
@@ -101,7 +100,6 @@ function autoFillShelf(shelfID) {
                             `
                                 </div></br>
                             </div>`;
-                        reservedBy = item.stud_ID;
                         reserved++;
                     } else if (item.status == "issued") {
                         html += `

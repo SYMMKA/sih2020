@@ -7,7 +7,7 @@ function issueBook(e) {
 
     // Get values
     var reservedBy = document.getElementById('reservedBy').value;
-    var isbn = document.getElementById('displayCopyIsbn').textContent;
+    var isbn = document.getElementById('copyIsbn').textContent;
     var stud_ID = document.getElementById('stud_IDIssue').value;
     var copyID = document.getElementById('displayCopyTitleCopyID').textContent;
     var oldID = document.getElementById('displayCopyTitleOldID').textContent;
