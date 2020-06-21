@@ -3,26 +3,24 @@
 document.getElementById('deleteCopyForm').addEventListener('submit', removeCopy);
 // Submit form
 function removeCopy(e) {
-    e.preventDefault();
+	e.preventDefault();
 
-    // Get values
-    var copyID = document.getElementById('deleteCopyID').textContent;
+	// Get values
+	var copyID = document.getElementById('deleteCopyID').textContent;
+	var elementID = document.getElementById('elementID').value;
 
-    var formData = new FormData();
-    formData.append('copyID', copyID);
+	var formData = new FormData();
+	formData.append('copyID', copyID);
 
-    console.log(copyID);
-
-    $.ajax({
-        type: "POST",
-        url: "searchBook/deleteCopy/deleteCopyQuery.php",
-        data: formData,
-        contentType: false, // Dont delete this (jQuery 1.6+)
-        processData: false, // Dont delete this
-        //Other options
-    });
-
-    // Clear form
-    window.location.reload();
+	$.ajax({
+		type: "POST",
+		url: "searchBook/deleteCopy/deleteCopyQuery.php",
+		data: formData,
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function () {
+			autoFillBook(elementID);
+		}
+	});
 
 }

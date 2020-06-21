@@ -21,6 +21,7 @@ function autoFillBook(i) {
                 <div class="row">
                     <div class="col-12">
                     <div class="row row-cols-1 row-cols-md-4" style="height:500px; overflow-y: scroll;">
+                    <input type="hidden" id="elementID">
                     <input type="hidden" id="reservedBy">
                     <input type="hidden" id="copyIsbn" value="`+isbn[i]+`">
                     <input type="hidden" id="copyID">`;
@@ -125,6 +126,8 @@ function autoFillBook(i) {
             html +=
               `<button type="submit" form="returnBookForm" class="btn btn-info btn-block btn-sm" name="issueReturnCopy" onclick="autoFillReturnBook('` +
               item.copyID +
+              `','` +
+              i +
               `')">Return Copy`;
           } else {
             html +=
@@ -134,12 +137,16 @@ function autoFillBook(i) {
               item.oldID +
               `','` +
               reservedBy +
+              `','` +
+              i +
               `')">Issue Copy`;
           }
           html +=
             `</button>
                     <button type="submit" form="deleteCopyForm" class="btn btn-info btn-block btn-sm" name="deleteCopyCopy" onclick="autoFillDeleteCopy('` +
             item.copyID +
+			`','` +
+			i +
             `')">
                         Delete Copy
                     </button>

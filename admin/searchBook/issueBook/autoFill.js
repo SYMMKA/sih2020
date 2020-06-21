@@ -1,4 +1,4 @@
-function autoFillIssueBook(copyID, oldID, reservedBy) {
+function autoFillIssueBook(copyID, oldID, reservedBy, i) {
     var html = '';
     html += `</br>
     </br>
@@ -36,4 +36,5 @@ function autoFillIssueBook(copyID, oldID, reservedBy) {
     </div>`;
     document.getElementById("issueBookFormDiv").innerHTML = html;
     document.getElementById('reservedBy').value = reservedBy;
+    document.getElementById('elementID').value = i;
 }

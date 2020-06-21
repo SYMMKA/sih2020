@@ -283,7 +283,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 	</script>
 	<script src="searchBook/autoFill.js"></script>
 	<script src="searchBook/issueBook/autoFill.js"></script>
-	<script src="searchBook/returnBook/autoFill.js"></script>
 	<script src="searchBook/updateBook/autoFill.js"></script>
 	<script src="searchBook/deleteCopy/autoFill.js"></script>
 
