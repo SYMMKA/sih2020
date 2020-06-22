@@ -7,14 +7,14 @@ function issueBook(e) {
 
 	// Get values
 	var reservedBy = document.getElementById('reservedBy').value;
-	var isbn = document.getElementById('copyIsbn').textContent;
+	var bookID = document.getElementById('copyBookID').value;
 	var stud_ID = document.getElementById('stud_IDIssue').value;
 	var copyID = document.getElementById('displayCopyTitleCopyID').textContent;
 	var oldID = document.getElementById('displayCopyTitleOldID').textContent;
 	var elementID = document.getElementById('elementID').value;
 
 	var formData = new FormData();
-	formData.append('isbn', isbn);
+	formData.append('bookID', bookID);
 	formData.append('stud_ID', stud_ID);
 	formData.append('copyID', copyID);
 	formData.append('oldID', oldID);
@@ -26,7 +26,8 @@ function issueBook(e) {
 			data: formData,
 			contentType: false, // Dont delete this (jQuery 1.6+)
 			processData: false, // Dont delete this
-			success: function () {
+			success: function (data) {
+				console.log(data);
 				autoFillBook(elementID);
 			}
 		},

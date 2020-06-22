@@ -1,26 +1,29 @@
 <?php
 include("../../db.php");
 
-$isbn = $_POST['isbn'];
-$query = "SELECT * FROM copies WHERE `copies`.`isbn` = '$isbn'";
-$returnD = mysqli_query($conn, $query);
+$bookID = $_POST['bookID'];
+$sql = "SELECT * FROM copies WHERE `copies`.`bookID` = '$bookID'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
 
-while ($result = mysqli_fetch_array($returnD)) {
-    $data["shelfID"] = $result["shelfID"];
-    $data["copyno"] = $result["copyno"];
-    $data["copyID"] = $result["copyID"];
-    $data["oldID"] = $result["oldID"];
-    $data["stud_ID"] = $result["stud_ID"];
-    $data["status"] = $result["status"];
-    $data["time"] = $result["time"];
-    $data["returnTime"] = $result["returnTime"];
-    $data["currentTime"] = time();
-    $return_arr[] = $data;
+while ($row = $stmt->fetchObject()) {
+	$data["shelfID"] = $row->shelfID;
+	$data["copyno"] = $row->copyNO;
+	$data["copyID"] = $row->copyID;
+	$data["oldID"] = $row->oldID;
+	$data["stud_ID"] = $row->stud_ID;
+	$data["status"] = $row->status;
+	$data["time"] = $row->time;
+	$data["returnTime"] = $row->returnTime;
+	$data["currentTime"] = time();
+	$return_arr[] = $data;
 }
 
 // Encoding array in JSON format
-if(!isset($return_arr))
-    echo FALSE;
+if (!isset($return_arr))
+	echo FALSE;
 else
-    echo json_encode($return_arr);
-?>
+	echo json_encode($return_arr);
+
+$conn = null;
+exit;

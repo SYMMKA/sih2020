@@ -1,22 +1,20 @@
 <?php
 include("../db.php");
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-if ($_POST['shelfName'])
-    $shelfID = $_POST['shelfName'];
+if ($_POST['shelfID'])
+	$shelfID = $_POST['shelfID'];
 else
-    $shelfID = NULL;
+	$shelfID = NULL;
 
-//Dont add `id` column
-$sql = "INSERT INTO `shelf` (`shelfID`) VALUES ('$shelfID')";
-if ($conn->query($sql) === TRUE) {
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+try {
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = "INSERT INTO `shelf` (`shelfID`) VALUES ('$shelfID')";
+	$conn->exec($sql);
+	echo "New shelf added successfully";
+} catch (PDOException $e) {
+	echo "Failed " . $e->getMessage();
 }
-$conn->close();
 
-header( "Location: ../shelf.php" );
+$conn = null;
 exit;

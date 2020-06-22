@@ -1,47 +1,47 @@
 <?php
 include("../../db.php");
 
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
 if ($_POST['copyID'])
 	$copyID = $_POST['copyID'];
 else
 	$copyID = NULL;
 
-// To get isbn
-$query = "SELECT * FROM copies Where `copies`.`copyID` = '$copyID'";
-$returnD = mysqli_query($conn, $query);
+// To get bookID
+$query1 = "SELECT * FROM copies Where `copies`.`copyID` = '$copyID'";
+$stmt1 = $conn->prepare($query1);
+$stmt1->execute();
+$row1 = $stmt1->fetchObject();
+$bookID = $row1->bookID;
 
-while ($result = mysqli_fetch_array($returnD)) {
-	$isbn = $result["isbn"];
-}
 // To get quantity
-$query = "SELECT * FROM main Where `main`.`isbn` = '$isbn'";
-$returnD = mysqli_query($conn, $query);
+$query2 = "SELECT * FROM main Where `main`.`bookID` = '$bookID'";
+$stmt2 = $conn->prepare($query2);
+$stmt2->execute();
+$row2 = $stmt2->fetchObject();
+$quantity = $row2->quantity - 1;  //reduce quantity by 1
 
-while ($result = mysqli_fetch_array($returnD)) {
-	$quantity = $result["quantity"] - 1; //reduce quantity by 1
+try {
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$conn->beginTransaction();
+
+	$sql1 = "DELETE FROM `copies` WHERE `copies`.`copyID` = '$copyID'";
+	$conn->exec($sql1);
+	echo "Copies table updated";
+
+	$sql2 = "UPDATE `main` SET `quantity` = '$quantity' WHERE `main`.`bookID` = '$bookID'";
+	$conn->exec($sql2);
+	echo "\nIssued table updated";
+
+	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'admin', '-', 'delete', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
+	$conn->exec($sql3);
+	echo "\nAdded to history table";
+
+	$conn->commit();
+} catch (PDOException $e) {
+	$conn->rollBack();
+	echo "Failed " . $e->getMessage();
 }
 
-//Dont add `id` column
-$sql = "DELETE FROM `copies` WHERE `copies`.`copyID` = '$copyID'";
-if ($conn->query($sql) === TRUE) {
-	$sql1 = "UPDATE `main` SET `quantity` = '$quantity' WHERE `main`.`isbn` = '$isbn'";
-	if ($conn->query($sql1) === TRUE) {
-		$sql2 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `isbn`, `oldID`) VALUES ('$copyID', 'admin', '-', 'delete', UNIX_TIMESTAMP(), '$isbn', 'oldID')";
-		if ($conn->query($sql2) === TRUE) {
-		} else {
-			echo "Error: " . $sql2 . "<br>" . $conn->error;
-		}
-	} else {
-		echo "Error: " . $sql1 . "<br>" . $conn->error;
-	}
-} else {
-	echo "Error: " . $sql . "<br>" . $conn->error;
-}
-$conn->close();
-
-//header( "Location: ../searchBooks.php" );
+$conn = null;
 exit;

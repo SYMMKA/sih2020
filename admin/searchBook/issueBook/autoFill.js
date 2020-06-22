@@ -1,7 +1,7 @@
 function autoFillIssueBook(copyID, oldID, reservedBy, i) {
-  var html = "";
-  html +=
-    `
+	var html = "";
+	html +=
+		`
 
  
         <h1 class="text-center mb-4">Issue Book</h1>
@@ -10,15 +10,13 @@ function autoFillIssueBook(copyID, oldID, reservedBy, i) {
     <div class="text-center mb-4">
                 <h4 class="d-inline">Copy ID: </h4>
                 <h4 class="d-inline" id="displayCopyTitleCopyID">` +
-    copyID +
-    `</h4></br>
+		copyID +
+		`</h4></br>
                 <h4 class="d-inline">Old ID: </h4>
                 <h4 class="d-inline" id="displayCopyTitleOldID">` +
-    oldID +
-    `</h4>
+		oldID +
+		`</h4>
      </div>      
-
-   
 
             <div name="studentDetailsIssue" id="studentDetailsIssue" >
                 <div class="form-group row justify-content-center" >
@@ -34,7 +32,7 @@ function autoFillIssueBook(copyID, oldID, reservedBy, i) {
     
             </br>
 `;
-  document.getElementById("issueBookFormDiv").innerHTML = html;
-  document.getElementById("reservedBy").value = reservedBy;
-  document.getElementById("elementID").value = i;
+	document.getElementById("issueBookFormDiv").innerHTML = html;
+	document.getElementById("reservedBy").value = reservedBy;
+	document.getElementById("elementID").value = i;
 }

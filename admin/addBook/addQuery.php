@@ -1,10 +1,7 @@
 <?php
 include("../db.php");
 $uploadOk = 1;
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
+
 if ($_POST['title1'])
 	$title2 = $_POST['title1'];
 else
@@ -55,7 +52,7 @@ else
 	$quantity2 = '1';
 if ($_POST['imgValue1'])
 	$imgValue2 = $_POST['imgValue1'] . "&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-else if(!file_exists($_FILES["imgFile"]['tmp_name']))
+else if (!isset($_FILES["imgFile"]['tmp_name']))
 	$imgValue2 = NULL;
 else {
 	//check image upload
@@ -114,27 +111,31 @@ else
 $shelfID = "name";
 
 if ($uploadOk == 1) {
-	//Dont add `id` column
-	$sql = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`) VALUES ('$title2', '$author2', '$quantity2', '$mainCategorySelect1', '$mainCategorySelect2', '$mainCategorySelect3', '$mainCategorySelect4', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2', '$quantity2')";
-	if ($conn->query($sql) === TRUE) {
+	try {
+		// set the PDO error mode to exception
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$conn->beginTransaction();
+
+		$sql1 = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`) VALUES ('$title2', '$author2', '$quantity2', '$mainCategorySelect1', '$mainCategorySelect2', '$mainCategorySelect3', '$mainCategorySelect4', '$publisher2', '$pageCount2', '$money2', '$imgValue2', '$date_of_publication2', '$isbn2', '$quantity2')";
+		$conn->exec($sql1);
+		echo "New book added successfully";
+
+		$bookID = $conn->lastInsertId();
 		for ($i = 1; $i <= $quantity2; $i++) {
-			$copyID = $isbn2 . '-' . $i;
-			$sql1 = "INSERT INTO `copies` (`isbn`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES ('$isbn2', '$i', '$oldID', '$copyID', '', NULL, '', NULL, '$shelfID')";
-			if ($conn->query($sql1) === TRUE) {
-				$sql2 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `isbn`, `oldID`) VALUES ('$copyID', 'admin', '-', 'add', UNIX_TIMESTAMP(), '$isbn2', '$oldID')";
-				if ($conn->query($sql2) === TRUE) {
-				} else {
-					echo "Error: " . $sql2 . "<br>" . $conn->error;
-				}
-			} else {
-				echo "Error: " . $sql1 . "<br>" . $conn->error;
-			}
+			$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES ('$bookID', '$i', '$oldID', '', '', NULL, '', NULL, '$shelfID')";
+			$conn->exec($sql2);
+			echo "\nCopy no " . $i . " added successfully";
+
+			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT('$bookID', ' - ', '$i'), 'admin', '-', 'add', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
+			$conn->exec($sql3);
+			echo "\nCopy no " . $i . " added to history";
 		}
-	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
+		$conn->commit();
+	} catch (PDOException $e) {
+		$conn->rollBack();
+		echo "Failed " . $e->getMessage();
 	}
 }
 
-
-$conn->close();
+$conn = null;
 exit;

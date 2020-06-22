@@ -84,21 +84,24 @@ include("db.php");
 			<h1 class="text-center p-5">Your Shelves</h1>
 			<div class="row row-cols-1 row-cols-md-4">
 				<?php
-				$query = "SELECT * FROM main Where title LIKE '%$search%'";
-				$returnD = mysqli_query($conn, $query);
+				$sql = "SELECT * FROM main Where title LIKE '%$search%'";
+				$stmt = $conn->prepare($sql);
+				$stmt->execute();
 
 				$i = 0;
 
-				while ($result = mysqli_fetch_array($returnD)) {
-					$imgLink[$i] = $result["imgLink"];
-					$title[$i] = $result["title"];
-					$isbn[$i] = $result["isbn"];
-					$author[$i] = $result["author"];
+				while ($row = $stmt->fetchObject()) {
+					$imgLink[$i] = $row->imgLink;
+					$title[$i] = $row->title;
+					$isbn[$i] = $row->isbn;
+					$author[$i] = $row->author;
+					$bookID[$i] = $row->bookID;
 
-					$query1 = "SELECT AVG(star) FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`isbn` = '$isbn[$i]'";
-					$returnD1 = mysqli_query($conn, $query1);
-					$result1 = mysqli_fetch_array($returnD1);
-					$star[$i] = $result1["AVG(star)"];
+					$sql1 = "SELECT AVG(star) AS `STAR` FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = '$bookID[$i]'";
+					$stmt1 = $conn->prepare($sql1);
+					$stmt1->execute();
+					$row1 = $stmt1->fetchObject();
+					$star[$i] = $row1->STAR;
 				?>
 					<div class="col mb-4">
 						<div class="card h-100">
@@ -196,6 +199,10 @@ include("db.php");
 												<div class="col-8" id="bookauthorUpdate"></div>
 											</div>
 											<div class="row">
+												<div class="col-4"><strong>BookID:</strong></div>
+												<div class="col-8" id="bookIDUpdate"></div>
+											</div>
+											<div class="row">
 												<div class="col-4"><strong>ISBN:</strong></div>
 												<div class="col-8" id="bookisbnUpdate"></div>
 											</div>
@@ -215,6 +222,12 @@ include("db.php");
 									<label for="updateAuthor" class="col-sm-2 col-form-label">Author</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="updateAuthor" id="updateAuthor" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="updateISBN" class="col-sm-2 col-form-label">ISBN</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="updateISBN" id="updateISBN" />
 									</div>
 								</div>
 								<div class="form-group row">
@@ -297,7 +310,8 @@ include("db.php");
 		title = <?php echo json_encode($title); ?>;
 		author = <?php echo json_encode($author); ?>;
 		isbn = <?php echo json_encode($isbn); ?>;
-		imgLink = <?php echo json_encode($imgLink); ?>
+		imgLink = <?php echo json_encode($imgLink); ?>;
+		bookID = <?php echo json_encode($bookID); ?>;
 	</script>
 	<script src="searchBook/autoFill.js"></script>
 	<script src="searchBook/issueBook/autoFill.js"></script>

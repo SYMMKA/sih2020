@@ -11,12 +11,10 @@ function returnBook(e) {
 	e.preventDefault();
 
 	// Get values
-	var isbn = document.getElementById('copyIsbn').textContent;
 	var copyID = document.getElementById('copyID').textContent;
 	var elementID = document.getElementById('elementID').value;
 
 	var formData = new FormData();
-	formData.append('isbn', isbn);
 	formData.append('copyID', copyID);
 
 	$.ajax({
@@ -25,7 +23,8 @@ function returnBook(e) {
 		data: formData,
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
-		success: function () {
+		success: function (data) {
+			console.log(data);
 			autoFillBook(elementID);
 		}
 	});
