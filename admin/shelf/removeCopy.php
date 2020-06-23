@@ -1,4 +1,5 @@
 <?php
+include("../session.php");
 include("../db.php");
 
 $copyID = $_POST['copyID'];

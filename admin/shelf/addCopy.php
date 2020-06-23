@@ -2,9 +2,8 @@
 if (isset($_GET['shelfID'])) {
 	$shelfID = $_GET['shelfID'];
 }
-?>
 
-<?php
+include("../session.php");
 include("../db.php");
 ?>
 <!DOCTYPE html>

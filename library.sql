@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2020 at 03:54 AM
+-- Generation Time: Jun 23, 2020 at 02:42 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `library`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminlogin`
+--
+
+CREATE TABLE `adminlogin` (
+  `userID` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `fname` text NOT NULL,
+  `lname` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adminlogin`
+--
+
+INSERT INTO `adminlogin` (`userID`, `password`, `fname`, `lname`) VALUES
+('admin1', '456', 'admin', 'dummy'),
+('manu21', '123', 'Manu', 'Naik');
 
 -- --------------------------------------------------------
 
@@ -224,6 +245,12 @@ INSERT INTO `syllabus` (`id`, `sem`, `branch`, `bookID`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `adminlogin`
+--
+ALTER TABLE `adminlogin`
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- Indexes for table `copies`
