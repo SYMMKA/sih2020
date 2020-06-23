@@ -1,0 +1,32 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="QR Code" content="width=device-width, initial-scale=1.0">
+        <title>QR Code</title>
+        
+    </head>
+    <body>
+        shelf No:
+        <input type="text" id="shelf_no">
+        <br>
+        Rack No:
+        <input type="text" id="rack_no">
+        <br>
+        <button onclick="generateQR()">generateQR</button>
+        <br>
+        <br>
+        <div id="qrcode"></div>
+    </body>
+    <script src="qrcode.min.js" ></script>
+    
+    <script>
+            var shelf_no = document.getElementById("shelf_no");
+            var rack_no = document.getElementById("rack_no");
+            function generateQR()
+            {
+                var data = "Shelf No:"+ shelf_no.value + " Rack No:" +rack_no.value
+                new QRCode(document.getElementById("qrcode"),data); 
+                //instead of data google book api link of certain book for book info ka qr code
+            }
+    </script>
+</html>
