@@ -3,9 +3,13 @@ include("../session.php");
 include("../db.php");
 
 $shelfID = $_POST['shelfID'];
-$sql1 = "SELECT * FROM copies WHERE `copies`.`shelfID` = '$shelfID'";
+$sql1 = "SELECT * FROM copies WHERE `copies`.`shelfID` = :shelfID";
 $stmt1 = $conn->prepare($sql1);
+$stmt1->bindParam(':shelfID', $shelfID);
 $stmt1->execute();
+
+$sql2 = "SELECT `title`, `imgLink`, `isbn` FROM main WHERE `main`.`bookID` = :bookID";
+$stmt2 = $conn->prepare($sql2);
 
 while ($row1 = $stmt1->fetchObject()) {
 	$data["copyno"] = $row1->copyNO;
@@ -18,10 +22,10 @@ while ($row1 = $stmt1->fetchObject()) {
 	$data["currentTime"] = time();
 	$bookID = $row1->bookID;
 
-	$sql2 = "SELECT `imgLink`, `isbn` FROM main WHERE `main`.`bookID` = '$bookID'";
-	$stmt2 = $conn->prepare($sql2);
+	$stmt2->bindParam(':bookID', $bookID);
 	$stmt2->execute();
 	$row2 = $stmt2->fetchObject();
+	$data["title"] = $row2->title;
 	$data["imgLink"] = $row2->imgLink;
 	$data["isbn"] = $row2->isbn;
 

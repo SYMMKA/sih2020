@@ -80,15 +80,19 @@ include("db.php");
 	$search = '';
 	if (isset($_POST['search'])) {
 		$search = $_POST['search'];
+		$search = "%$search%";
 	?>
 		<section class="container">
 			<h1 class="text-center p-5">Your Shelves</h1>
 			<div class="row row-cols-1 row-cols-md-4">
 				<?php
-				$sql = "SELECT * FROM main Where title LIKE '%$search%'";
+				$sql = "SELECT * FROM main Where title LIKE :search";
 				$stmt = $conn->prepare($sql);
+				$stmt->bindParam(':search', $search);
 				$stmt->execute();
 
+				$sql1 = "SELECT AVG(star) AS `STAR` FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = :bookID";
+				$stmt1 = $conn->prepare($sql1);
 				$i = 0;
 
 				while ($row = $stmt->fetchObject()) {
@@ -98,8 +102,8 @@ include("db.php");
 					$author[$i] = $row->author;
 					$bookID[$i] = $row->bookID;
 
-					$sql1 = "SELECT AVG(star) AS `STAR` FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = '$bookID[$i]'";
-					$stmt1 = $conn->prepare($sql1);
+					
+					$stmt1->bindParam(':bookID', $bookID[$i]);
 					$stmt1->execute();
 					$row1 = $stmt1->fetchObject();
 					$star[$i] = $row1->STAR;

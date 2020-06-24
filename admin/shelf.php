@@ -82,8 +82,9 @@ include("db.php");
 			while ($row = $stmt->fetchObject()) {
 				$shelfID[$i] = $row->shelfID;
 
-				$sql1 = "SELECT COUNT(*) AS 'QUANTITY' FROM `copies` WHERE `copies`.`shelfID` = '$shelfID[$i]'";
+				$sql1 = "SELECT COUNT(*) AS 'QUANTITY' FROM `copies` WHERE `copies`.`shelfID` = :shelfID";
 				$stmt1 = $conn->prepare($sql1);
+				$stmt1->bindParam(':shelfID', $shelfID[$i]);
 				$stmt1->execute();
 				$row1 = $stmt1->fetchObject();
 				$count[$i] = $row1->QUANTITY;

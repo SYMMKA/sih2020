@@ -3,8 +3,9 @@ include("../../session.php");
 include("../../db.php");
 
 $bookID = $_POST['bookID'];
-$sql = "SELECT * FROM copies WHERE `copies`.`bookID` = '$bookID'";
+$sql = "SELECT * FROM copies WHERE `copies`.`bookID` = :bookID";
 $stmt = $conn->prepare($sql);
+$stmt->bindParam(':bookID', $bookID);
 $stmt->execute();
 
 while ($row = $stmt->fetchObject()) {

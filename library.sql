@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2020 at 02:42 PM
+-- Generation Time: Jun 24, 2020 at 01:13 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -56,9 +56,9 @@ CREATE TABLE `copies` (
   `copyID` varchar(50) NOT NULL,
   `stud_ID` varchar(50) NOT NULL,
   `time` bigint(20) DEFAULT NULL,
-  `status` text NOT NULL,
+  `status` text DEFAULT NULL,
   `returnTime` bigint(20) DEFAULT NULL,
-  `shelfID` varchar(50) DEFAULT NULL
+  `shelfID` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -66,20 +66,15 @@ CREATE TABLE `copies` (
 --
 
 INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES
-(21, 1, '', '21 - 1', 'check', 1592832594, 'issued', 1592832614, '2'),
-(21, 2, '', '21 - 2', 'test', 1592832395, 'issued', 1592832415, NULL),
-(22, 1, '', '22 - 1', '', 1592833226, '', 1592833246, NULL),
-(22, 2, '', '22 - 2', '', NULL, '', NULL, '3'),
-(22, 3, '', '22 - 3', '', NULL, '', NULL, '2'),
-(22, 4, '', '22 - 4', '', NULL, '', NULL, NULL),
-(25, 1, '', '25 - 1', '', 1592834634, '', 1592834654, 'name'),
-(25, 2, '', '25 - 2', '', NULL, '', NULL, '2'),
-(25, 3, '', '25 - 3', 'okay', 1592837214, 'issued', 1592837234, '3'),
-(30, 1, '', '30 - 1', '', 1592836732, '', 1592836752, '3'),
-(30, 2, '', '30 - 2', 'che', 1592837393, 'issued', 1592837413, NULL),
-(30, 3, 'oldID', '30 - 3', '', NULL, '', NULL, NULL),
-(30, 4, 'oldID', '30 - 4', '', NULL, '', NULL, NULL),
-(30, 5, 'oldID', '30 - 5', '', NULL, '', NULL, NULL);
+(1, 1, '', '1 - 1', '', NULL, '', NULL, ''),
+(1, 2, '', '1 - 2', '', NULL, '', NULL, 'shelf1'),
+(1, 3, '', '1 - 3', '', NULL, '', NULL, ''),
+(2, 1, '', '2 - 1', 'sam', 1592984376, 'issued', 1592984396, 'shelf2'),
+(2, 2, '', '2 - 2', '', 1592984359, '', 1592984379, 'shelf1'),
+(3, 1, '', '3 - 1', '', NULL, '', NULL, 'shelf2'),
+(3, 2, '', '3 - 2', 'gillfoyle', 1592984405, 'issued', 1592984425, 'shelf1'),
+(3, 3, '', '3 - 3', '', NULL, '', NULL, 'shelf2'),
+(3, 4, '', '3 - 4', 'raj', 1592984392, 'issued', 1592984412, '');
 
 --
 -- Triggers `copies`
@@ -103,7 +98,7 @@ CREATE TABLE `history` (
   `id` int(11) NOT NULL,
   `copyID` varchar(50) NOT NULL,
   `user` text NOT NULL,
-  `stud_ID` varchar(50) NOT NULL,
+  `user_ID` varchar(50) NOT NULL,
   `action` text NOT NULL,
   `time` bigint(20) NOT NULL,
   `bookID` int(50) NOT NULL,
@@ -114,14 +109,21 @@ CREATE TABLE `history` (
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`id`, `copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES
-(306, '30 - 4', 'admin', '-', 'add', 1592840402, 0, 'oldID'),
-(307, '-', 'admin', '-', 'update', 1592840402, 0, 'oldID'),
-(308, '-', 'admin', '-', 'update', 1592840419, 0, 'oldID'),
-(309, '30 - 5', 'admin', '-', 'add', 1592840509, 30, 'oldID'),
-(310, '-', 'admin', '-', 'update', 1592840509, 30, 'oldID'),
-(311, '-', 'admin', '-', 'update', 1592858330, 30, 'oldID'),
-(312, '-', 'admin', '-', 'update', 1592858374, 30, 'oldID');
+INSERT INTO `history` (`id`, `copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES
+(1, '1 - 1', 'admin', 'manu21', 'add', 1592983906, 1, ''),
+(2, '1 - 2', 'admin', 'manu21', 'add', 1592983906, 1, ''),
+(3, '1 - 3', 'admin', 'manu21', 'add', 1592983906, 1, ''),
+(4, '2 - 1', 'admin', 'manu21', 'add', 1592983962, 2, ''),
+(5, '2 - 2', 'admin', 'manu21', 'add', 1592983962, 2, ''),
+(6, '3 - 1', 'admin', 'manu21', 'add', 1592983992, 3, ''),
+(7, '3 - 2', 'admin', 'manu21', 'add', 1592983992, 3, ''),
+(8, '3 - 3', 'admin', 'manu21', 'add', 1592983992, 3, ''),
+(9, '3 - 4', 'admin', 'manu21', 'add', 1592983992, 3, ''),
+(10, '2 - 2', 'user', 'john', 'issue', 1592984359, 2, ''),
+(11, '2 - 2', 'user', 'john', 'return', 1592984369, 2, ''),
+(12, '2 - 1', 'user', 'sam', 'issue', 1592984376, 2, ''),
+(13, '3 - 4', 'user', 'raj', 'issue', 1592984392, 3, ''),
+(14, '3 - 2', 'user', 'gillfoyle', 'issue', 1592984405, 3, '');
 
 -- --------------------------------------------------------
 
@@ -137,26 +139,20 @@ CREATE TABLE `issued` (
   `stud_ID` varchar(50) NOT NULL,
   `time` bigint(20) DEFAULT NULL,
   `returnTime` bigint(20) DEFAULT NULL,
-  `star` varchar(1) DEFAULT NULL
+  `star` varchar(1) DEFAULT NULL,
+  `fine` varchar(50) NOT NULL,
+  `due` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `issued`
 --
 
-INSERT INTO `issued` (`id`, `bookID`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`, `star`) VALUES
-(70, 22, '', '22 - 1', 'test', NULL, 1592834396, '4'),
-(71, 25, '', '25 - 1', '', NULL, 1592834640, '3'),
-(72, 0, '', '25 - 1', 'test', 1592833692, 1592834640, NULL),
-(73, 0, '', '30 - 1', 'check', 1592833786, 1592834543, NULL),
-(74, 0, '', '30 - 2', 'last', 1592833827, 1592834528, NULL),
-(75, 0, '', '25 - 1', 'check', 1592834634, 1592834640, NULL),
-(76, 0, '', '30 - 2', 'check', 1592836674, 1592837241, NULL),
-(77, 0, '', '30 - 1', 'last', 1592836732, 1592837309, NULL),
-(78, 25, '', '25 - 3', 'okay', 1592837214, NULL, NULL),
-(79, 30, '', '30 - 2', 'last', 1592837249, 1592837308, NULL),
-(80, 30, '', '30 - 2', 'okay', 1592837314, 1592837387, NULL),
-(81, 30, '', '30 - 2', 'che', 1592837393, NULL, NULL);
+INSERT INTO `issued` (`id`, `bookID`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`, `star`, `fine`, `due`) VALUES
+(1, 2, '', '2 - 2', 'john', 1592984359, 1592984369, '4', '', 0),
+(2, 2, '', '2 - 1', 'sam', 1592984376, NULL, '3', '', 0),
+(3, 3, '', '3 - 4', 'raj', 1592984392, NULL, '2', '', 0),
+(4, 3, '', '3 - 2', 'gillfoyle', 1592984405, NULL, '4', '', 0);
 
 -- --------------------------------------------------------
 
@@ -179,18 +175,19 @@ CREATE TABLE `main` (
   `imgLink` text NOT NULL,
   `date_of_publication` text NOT NULL,
   `isbn` varchar(50) NOT NULL,
-  `orgQuan` int(11) NOT NULL
+  `orgQuan` int(11) NOT NULL,
+  `digital` tinyint(4) NOT NULL,
+  `book` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `main`
 --
 
-INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`) VALUES
-(21, 'Olympus', 'Devdutt Pattanaik', 3, 'Religion', 'Generalities', 'Philosophy and theory of religion', '', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199 9385990195 ', 3),
-(22, 'Matilda (Colour Edition)', 'Roald Dahl', 4, 'Language', 'English and Old English', 'English etymology, word origins', '', 'Penguin UK', '212', 'INR 450.76', 'http://books.google.com/books/content?id=P6D7DAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-13', '9780141378541 0141378549 ', 4),
-(25, 'Programming in C', 'Pradip Dey,Manas Ghosh', 3, 'Religion', 'Natural theology', 'Creation', '', 'Oxford Higher Education', '547', '', 'http://books.google.com/books/content?id=p9X8ygAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2011', '0198065280 9780198065289 ', 4),
-(30, 'check', 'sam Author', 5, 'Religion', 'Natural theology', 'Concepts of God', '', '', '', '', '', '', '12345678', 5);
+INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`) VALUES
+(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Generalities', 'Generalities and computer science', 'Knowledge', 'Intellectual Life', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199 9385990195 ', 3, 0, 1),
+(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 2, 'Philosophy and Psychology', 'Epistemology, causation, humankind', 'Epistemology', '', 'HarperCollins', '448', 'INR 401.67', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665 000822966X ', 2, 0, 1),
+(3, 'Inferno', 'Dan Brown', 4, 'Language', 'English and Old English', 'English and Old English', '', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585 0552169587 ', 4, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -207,11 +204,8 @@ CREATE TABLE `shelf` (
 --
 
 INSERT INTO `shelf` (`shelfID`) VALUES
-('2'),
-('3'),
-('check'),
-('name'),
-('test');
+('shelf1'),
+('shelf2');
 
 -- --------------------------------------------------------
 
@@ -225,22 +219,6 @@ CREATE TABLE `syllabus` (
   `branch` varchar(50) NOT NULL,
   `bookID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `syllabus`
---
-
-INSERT INTO `syllabus` (`id`, `sem`, `branch`, `bookID`) VALUES
-(1, 3, 'Comps', 21),
-(2, 4, 'Comps', 21),
-(3, 3, 'Comps', 30),
-(4, 3, 'Comps', 22),
-(5, 4, 'Comps', 25),
-(6, 4, 'IT', 30),
-(7, 4, 'IT', 25),
-(8, 5, 'IT', 22),
-(9, 5, 'Extc', 30),
-(10, 7, 'Elec', 21);
 
 --
 -- Indexes for dumped tables
@@ -257,8 +235,7 @@ ALTER TABLE `adminlogin`
 --
 ALTER TABLE `copies`
   ADD PRIMARY KEY (`copyID`),
-  ADD KEY `isbn` (`bookID`),
-  ADD KEY `shelfID` (`shelfID`);
+  ADD KEY `isbn` (`bookID`);
 
 --
 -- Indexes for table `history`
@@ -299,25 +276,25 @@ ALTER TABLE `syllabus`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `issued`
 --
 ALTER TABLE `issued`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `main`
 --
 ALTER TABLE `main`
-  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `syllabus`
 --
 ALTER TABLE `syllabus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -327,7 +304,6 @@ ALTER TABLE `syllabus`
 -- Constraints for table `copies`
 --
 ALTER TABLE `copies`
-  ADD CONSTRAINT `copies_ibfk_2` FOREIGN KEY (`shelfID`) REFERENCES `shelf` (`shelfID`),
   ADD CONSTRAINT `copies_ibfk_3` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`);
 
 --

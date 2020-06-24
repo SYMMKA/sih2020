@@ -10,8 +10,10 @@ else
 try {
 	// set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$sql = "INSERT INTO `shelf` (`shelfID`) VALUES ('$shelfID')";
-	$conn->exec($sql);
+	$sql = "INSERT INTO `shelf` (`shelfID`) VALUES (:shelfID)";
+	$stmt = $conn->prepare($sql);
+	$stmt->bindParam(':shelfID', $shelfID);
+	$stmt->execute();
 	echo "New shelf added successfully";
 } catch (PDOException $e) {
 	echo "Failed " . $e->getMessage();

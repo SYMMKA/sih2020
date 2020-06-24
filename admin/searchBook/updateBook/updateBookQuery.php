@@ -5,8 +5,9 @@ include("../../db.php");
 $bookID = $_POST['bookID'];
 
 // To get original book properties
-$query = "SELECT * FROM `main` Where `main`.`bookID` = '$bookID'";
+$query = "SELECT * FROM `main` Where `main`.`bookID` = :bookID";
 $stmt = $conn->prepare($query);
+$stmt->bindParam(':bookID', $bookID);
 $stmt->execute();
 $row = $stmt->fetchObject();
 $change = 0;
@@ -149,28 +150,57 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
 
-	$sql1 = "UPDATE `main` SET `title` = '$title', `author` = '$author', `quantity` = '$quantity', `Category1` = '$category1', `Category2` = '$category2', `Category3` = '$category3', `Category4` = '$category4', `publisher` = '$publisher', `pages` = '$pages', `price` = '$price', `imgLink` = '$imgLink', `date_of_publication` = '$date_of_publication', `isbn` = '$isbn', `orgQuan` = '$orgQuan' WHERE `main`.`bookID` = '$bookID'";
-	$conn->exec($sql1);
-	echo "Copies table updated";
+	$sql1 = "UPDATE `main` SET `title` = :title, `author` = :author, `quantity` = :quantity, `Category1` = :category1, `Category2` = :category2, `Category3` = :category3, `Category4` = :category4, `publisher` = :publisher, `pages` = :pages, `price` = :price, `imgLink` = :imgLink, `date_of_publication` = :date_of_publication, `isbn` = :isbn, `orgQuan` = :orgQuan WHERE `main`.`bookID` = :bookID";
+	$stmt1 = $conn->prepare($sql1);
+	$stmt1->bindParam(':title', $title);
+	$stmt1->bindParam(':author', $author);
+	$stmt1->bindParam(':quantity', $quantity);
+	$stmt1->bindParam(':category1', $category1);
+	$stmt1->bindParam(':category2', $category2);
+	$stmt1->bindParam(':category3', $category3);
+	$stmt1->bindParam(':category4', $category4);
+	$stmt1->bindParam(':publisher', $publisher);
+	$stmt1->bindParam(':pages', $pages);
+	$stmt1->bindParam(':price', $price);
+	$stmt1->bindParam(':imgLink', $imgLink);
+	$stmt1->bindParam(':date_of_publication', $date_of_publication);
+	$stmt1->bindParam(':isbn', $isbn);
+	$stmt1->bindParam(':orgQuan', $orgQuan);
+	$stmt1->bindParam(':bookID', $bookID);
+	$stmt1->execute();
+	echo "\nCopies table updated";
 
 	//if new copy added
 	if ($_POST['addQuan']) {
+		$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', '', NULL, '', NULL, '')";
+		$stmt2 = $conn->prepare($sql2);
+		$stmt2->bindParam(':bookID', $bookID);
+
+		$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'admin', :adminID, 'add', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$stmt3 = $conn->prepare($sql3);
+		$stmt3->bindParam(':adminID', $adminID);
+		$stmt3->bindParam(':bookID', $bookID);
+
 		for ($copyNO = $prevOrgQuan + 1; $copyNO <= $orgQuan; $copyNO++) {
-			$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES ('$bookID', '$copyNO', 'oldID', '', '', NULL, '', NULL, 'name')";
-			$conn->exec($sql2);
+			$stmt2->bindParam(':copyNO', $copyNO);
+			$stmt2->execute();
 			echo "\nIssued table updated";
 
-			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT($bookID, ' - ', $copyNO), 'admin', '$adminID', 'add', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
-			$conn->exec($sql3);
+			$copyID = $bookID.' - '.$copyNO;
+			$stmt3->bindParam(':copyID', $copyID);
+			$stmt3->execute();
 			echo "\nAdded to history table";
 		}
 	}
 
 	// if book property changed
 	if ($change == 1) {
-		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', '$adminID', 'update', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
-		$conn->exec($sql4);
-		echo "Copies table updated";
+		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', :adminID, 'update', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$stmt4 = $conn->prepare($sql4);
+		$stmt4->bindParam(':adminID', $adminID);
+		$stmt4->bindParam(':bookID', $bookID);
+		$stmt4->execute();
+		echo "\nHistory table updated";
 	}
 
 	$conn->commit();

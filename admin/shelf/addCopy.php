@@ -84,13 +84,15 @@ include("../db.php");
 	$search = '';
 	if (isset($_POST['search'])) {
 		$search = $_POST['search'];
+		$search = "%$search%";
 	?>
 		<section class="container">
 			<h1 class="text-center p-5">Your Shelves</h1>
 			<div class="row row-cols-1 row-cols-md-4">
 				<?php
-				$sql1 = "SELECT * FROM main Where title LIKE '%$search%'";
+				$sql1 = "SELECT * FROM main Where title LIKE :search";
 				$stmt1 = $conn->prepare($sql1);
+				$stmt1->bindParam(':search', $search);
 				$stmt1->execute();
 
 				$i = 0;
@@ -102,8 +104,9 @@ include("../db.php");
 					$author[$i] = $row1->author;
 					$bookID[$i] = $row1->bookID;
 
-					$sql2 = "SELECT AVG(star) AS 'STAR' FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = '$bookID[$i]'";
+					$sql2 = "SELECT AVG(star) AS 'STAR' FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = :bookID";
 					$stmt2 = $conn->prepare($sql2);
+					$stmt2->bindParam(':bookID', $bookID[$i]);
 					$stmt2->execute();
 					$row2 = $stmt2->fetchObject();
 					$star[$i] = $row2->STAR;
@@ -179,7 +182,7 @@ include("../db.php");
 			isbn = <?php echo json_encode($isbn); ?>;
 			imgLink = <?php echo json_encode($imgLink); ?>;
 			bookID = <?php echo json_encode($bookID); ?>;
-			shelfID = <?php echo $shelfID; ?>;
+			shelfID = <?php echo json_encode($shelfID); ?>;
 		</script>
 
 		<script src="addCopy/addCopyFill.js"></script>
