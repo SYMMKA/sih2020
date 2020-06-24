@@ -132,26 +132,38 @@ include('session.php');
 				<?php
 				$i = 0;
 				foreach ($results as $item) {
-					$title[$i] = $item['volumeInfo']['title'];
-					$author[$i] = @implode(",", $item['volumeInfo']['authors']); //implode for array of strings
-					$category[$i] = @implode(",", $item['volumeInfo']['categories']); //implode for array of strings
-					$publisher[$i] = $item['volumeInfo']['publisher'];
-					$publishedDate[$i] = $item['volumeInfo']['publishedDate'];
+					if (isset($item['volumeInfo']['title']))
+						$title[$i] = $item['volumeInfo']['title'];
+					if (isset($item['volumeInfo']['authors']))
+						$author[$i] = @implode(",", $item['volumeInfo']['authors']); //implode for array of strings
+					if (isset($item['volumeInfo']['categories']))
+						$category[$i] = @implode(",", $item['volumeInfo']['categories']); //implode for array of strings
+					if (isset($item['volumeInfo']['publisher']))
+						$publisher[$i] = $item['volumeInfo']['publisher'];
+					if (isset($item['volumeInfo']['publishedDate']))
+						$publishedDate[$i] = $item['volumeInfo']['publishedDate'];
 					//volumeInfo.industryIdentifiers[].type
 					$isbn[$i] = "";
-					for ($n = 0; $n < count($item['volumeInfo']['industryIdentifiers']); $n++) {
-						$isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
+					if (isset($item['volumeInfo']['industryIdentifiers'])) {
+						for ($n = 0; $n < count($item['volumeInfo']['industryIdentifiers']); $n++) {
+							$isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
+						}
 					}
 					$pageCount[$i] = $item['volumeInfo']['pageCount'];
-					$country[$i] = $item['saleInfo']['country'];
-					$currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
-					$amount[$i] = $item['saleInfo']['listPrice']['amount'];
-					if ($currencyCode[$i] || $amount[$i])
+					if (isset($item['saleInfo']['country']))
+						$country[$i] = $item['saleInfo']['country'];
+					if (isset($item['saleInfo']['listPrice']['currencyCode']))
+						$currencyCode[$i] = $item['saleInfo']['listPrice']['currencyCode'];
+					if (isset($item['saleInfo']['listPrice']['amount']))
+						$amount[$i] = $item['saleInfo']['listPrice']['amount'];
+					if (isset($currencyCode[$i]) || isset($amount[$i]))
 						$money[$i] = $currencyCode[$i] . " " . $amount[$i];
 					else
 						$money[$i] = NULL;
-					$imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
-					$preview[$i] = $item['accessInfo']['webReaderLink'];
+					if (isset($item['volumeInfo']['imageLinks']['thumbnail']))
+						$imgLink[$i] = $item['volumeInfo']['imageLinks']['thumbnail'];
+					if (isset($item['accessInfo']['webReaderLink']))
+						$preview[$i] = $item['accessInfo']['webReaderLink'];
 				?>
 
 					<div class="col">
@@ -165,18 +177,18 @@ include('session.php');
 								</div>
 								<div class="col-md-6">
 									<div class="card-body">
-										<?php if ($title[$i]) { ?>
-											<h5 class="card-title"><?= $title[$i] ?></h5>
-										<?php } ?>
-										<P>Author:<?= $author[$i] ?></br>
-										Category<?= $category[$i] ?></br>
-										Publisher:<?= $publisher[$i] ?></br>
-										Published Date:<?= $publishedDate[$i] ?></br>
-										ISBN:<?= $isbn[$i] ?></br>
-										Page Count:<?= $pageCount[$i] ?></br>
-										Country:<?= $country[$i] ?></br>
-										Amount:<?= $money[$i] ?></P>
-										
+										<h5 class="card-title">
+											<?php echo $title[$i] ? "Author: " . $title[$i] : null ?>
+										</h5>
+										<P><?php echo isset($author[$i]) ? "Author: " . $author[$i] : null ?>
+											<?php echo isset($category[$i]) ? "<br>Category: " . $category[$i] : null ?>
+											<?php echo isset($publisher[$i]) ? "<br>Publisher: " . $publisher[$i] : null ?>
+											<?php echo isset($publishedDate[$i]) ? "<br>Published Date: " . $publishedDate[$i] : null ?>
+											<?php echo $isbn[$i] ? "<br>ISBN: " . $isbn[$i] : null ?>
+											<?php echo isset($pageCount[$i]) ? "<br>Page Count: " . $pageCount[$i] : null ?>
+											<?php echo isset($country[$i]) ? "<br>Country: " . $country[$i] : null ?>
+											<?php echo isset($money[$i]) ? "<br>Amount: " . $money[$i] : null ?></P>
+
 									</div>
 								</div>
 								<div class="col-md-2 align-self-center justify-content-center p-3">
