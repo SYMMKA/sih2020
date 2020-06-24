@@ -110,6 +110,7 @@ if ($_POST['oldID'])
 else
 	$oldID = NULL;
 $shelfID = "name";
+$adminID = $_SESSION['adminID'];
 
 if ($uploadOk == 1) {
 	try {
@@ -127,7 +128,7 @@ if ($uploadOk == 1) {
 			$conn->exec($sql2);
 			echo "\nCopy no " . $i . " added successfully";
 
-			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT('$bookID', ' - ', '$i'), 'admin', '-', 'add', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
+			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT('$bookID', ' - ', '$i'), 'admin', '$adminID', 'add', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
 			$conn->exec($sql3);
 			echo "\nCopy no " . $i . " added to history";
 		}

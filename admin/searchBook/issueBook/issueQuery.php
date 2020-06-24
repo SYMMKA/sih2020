@@ -34,7 +34,7 @@ try {
 	$conn->exec($sql2);
 	echo "\nAdded to issued table";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'issue', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
+	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'issue', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
 	$conn->exec($sql3);
 	echo "\nAdded to history table";
 

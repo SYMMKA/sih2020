@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($stmt->rowCount()) {
 		$_SESSION['adminID'] = $username;
-		header("location:home.html");
+		header("location:home.php");
 	} else {
 		echo "\nFailed login";
 	}

@@ -21,6 +21,8 @@ $stmt2->execute();
 $row2 = $stmt2->fetchObject();
 $quantity = $row2->quantity - 1;  //reduce quantity by 1
 
+$adminID = $_SESSION['adminID'];
+
 try {
 	// set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -34,7 +36,7 @@ try {
 	$conn->exec($sql2);
 	echo "\nIssued table updated";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'admin', '-', 'delete', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
+	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'admin', '$adminID', 'delete', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
 	$conn->exec($sql3);
 	echo "\nAdded to history table";
 

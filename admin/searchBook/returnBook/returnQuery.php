@@ -29,7 +29,7 @@ try {
 	$conn->exec($sql2);
 	echo "\nIssued table updated";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'return', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
+	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'return', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
 	$conn->exec($sql3);
 	echo "\nAdded to history table";
 

@@ -141,6 +141,8 @@ if ($_POST['addQuan']) {
 	$orgQuan = $row->orgQuan;
 }
 
+$adminID = $_SESSION['adminID'];
+
 //oldID and shelfID for newly added copies not inserted
 try {
 	// set the PDO error mode to exception
@@ -158,7 +160,7 @@ try {
 			$conn->exec($sql2);
 			echo "\nIssued table updated";
 
-			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT($bookID, ' - ', $copyNO), 'admin', '-', 'add', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
+			$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (CONCAT($bookID, ' - ', $copyNO), 'admin', '$adminID', 'add', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
 			$conn->exec($sql3);
 			echo "\nAdded to history table";
 		}
@@ -166,7 +168,7 @@ try {
 
 	// if book property changed
 	if ($change == 1) {
-		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `stud_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', '-', 'update', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
+		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', '$adminID', 'update', UNIX_TIMESTAMP(), '$bookID', 'oldID')";
 		$conn->exec($sql4);
 		echo "Copies table updated";
 	}
