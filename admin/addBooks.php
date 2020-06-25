@@ -19,30 +19,6 @@ include('session.php');
     ></script> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="./assets/css/common.css" />
-	<!--Validation-->
-	<script type="text/javascript">
-		(function() {
-			"use strict";
-			window.addEventListener(
-				"load",
-				function() {
-					var form = document.getElementById("needs-validation");
-					form.addEventListener(
-						"submit",
-						function(event) {
-							if (form.checkValidity() === false) {
-								event.preventDefault();
-								event.stopPropagation();
-							}
-							form.classList.add("was-validated");
-						},
-						false
-					);
-				},
-				false
-			);
-		})();
-	</script>
 </head>
 
 <body>
@@ -93,7 +69,7 @@ include('session.php');
 				</form>
 			</div>
 			<div class="col-12 align-self-end text-center pb-5">
-				<button type="button" class="btn btn-outline-dark pl-5 pr-5">
+				<button type="button" class="btn btn-outline-dark pl-5 pr-5" onclick="hideResult()">
 					<span>
 						<i class="fa fa-arrow-down" aria-hidden="true"></i>
 					</span>
@@ -101,7 +77,7 @@ include('session.php');
 			</div>
 		</div>
 	</section>
-	<section class="container">
+	<section class="container" id="searchResults">
 		<?php
 		$search = '';
 		if (isset($_POST['search']))
@@ -213,7 +189,7 @@ include('session.php');
 		?>
 
 	</section>
-	<section>
+	<section id="addForm">
 		<div class="container mb-5 mt-5 pt-5 pb-5">
 			<h1 class="text-center mb-5">Details</h1>
 			<form id="addBookForm" novalidate>
@@ -381,30 +357,6 @@ include('session.php');
 					</div>
 				</div>
 			</form>
-			<!--Validation-->
-			<script type="text/javascript">
-				(function() {
-					"use strict";
-					window.addEventListener(
-						"load",
-						function() {
-							var form = document.getElementById("addBookForm");
-							form.addEventListener(
-								"submit",
-								function(event) {
-									if (form.checkValidity() === false) {
-										event.preventDefault();
-										event.stopPropagation();
-									}
-									form.classList.add("was-validated");
-								},
-								false
-							);
-						},
-						false
-					);
-				})();
-			</script>
 		</div>
 	</section>
 

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2020 at 01:13 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Jun 24, 2020 at 11:34 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -253,7 +252,8 @@ ALTER TABLE `issued`
 -- Indexes for table `main`
 --
 ALTER TABLE `main`
-  ADD PRIMARY KEY (`bookID`);
+  ADD PRIMARY KEY (`bookID`),
+  ADD UNIQUE KEY `uni_book` (`title`,`author`,`isbn`) USING HASH;
 
 --
 -- Indexes for table `shelf`
