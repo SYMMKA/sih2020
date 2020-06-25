@@ -102,7 +102,7 @@ include("db.php");
 					$author[$i] = $row->author;
 					$bookID[$i] = $row->bookID;
 
-					
+
 					$stmt1->bindParam(':bookID', $bookID[$i]);
 					$stmt1->execute();
 					$row1 = $stmt1->fetchObject();
@@ -243,7 +243,10 @@ include("db.php");
 										</button>
 									</div>
 								</div>
-								<div class="form-group row" id="category"></div>
+								<div class="form-group row">
+									<label class="col-sm-2 col-form-label"></label>
+									<div class="col-sm-10" id="category"></div>
+								</div>
 								<input type="hidden" value="" id="catDisplay" />
 								<div class="form-group row">
 									<label for="updatepublisher" class="col-sm-2 col-form-label">Publisher</label>
