@@ -235,7 +235,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">ISBN</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="isbn" id="isbn" required />
+								<input type="text" class="form-control" name="isbn" id="isbn" />
 								<div class="invalid-feedback">
 									Required Field
 								</div>

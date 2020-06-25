@@ -3,12 +3,12 @@
 		<script>
 		function get_ddc()
 		{
-			var ip=$("#isbn").val();
+			var isbn=$("#isbn").val();
 			var title=$("#title").val();
 			var author=$("#author").val();
-			alert(ip);
+			alert(isbn);
 			alert(title);
-			$.get("form_get.php",{ip:ip,title:title,author:author},
+			$.get("form_get.php",{isbn:isbn,title:title,author:author},
 			function(data)
 			{
 				$("#json_response").html(data);
