@@ -15,7 +15,7 @@
       $haa = $response->works->work[1]['owi'];
       echo "Owi1: ";
       echo ($haa);
-      echo "\n";
+      #echo "\n";
       if(isset($response->recommendations->ddc))
       {
         echo $response->recommendations->ddc->mostPopular['sfa'];
@@ -33,7 +33,7 @@
           $haa = $response->works->work[2]['owi'];
           echo "Owi2: ";
           echo ($haa);
-          echo "\n";
+          #echo "\n";
           $url = "http://classify.oclc.org/classify2/Classify?owi=$haa";
           $response = simplexml_load_file($url);
           if(isset($response->recommendations->ddc))
@@ -51,6 +51,5 @@
   else{
     echo "No DDC";
   }
-  #if (!isset($reddc->mostPopular))
   ?>
 </html>
