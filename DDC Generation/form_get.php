@@ -1,52 +1,34 @@
 <html>
   <?php
-  $isbn=$_GET['isbn'];
+  $ip=$_GET['ip'];
   $title=$_GET['title'];
   $author=$_GET['author'];
   $title = rawurlencode($title);
   $author = rawurlencode($author);
-  $url = "http://classify.oclc.org/classify2/Classify?author=$author&title=$title&isbn=$isbn&summary=true";
-  $response = simplexml_load_file($url);
-  $code = $response->response['code'];
-  echo $code;
-  echo "     ";
+  $url = "http://classify.oclc.org/classify2/Classify?author=$author&title=$title&summary=false";
+  $response1 = simplexml_load_file($url);
+  $code = $response1->response['code'];
+  echo "code:$code<br>";
+  $i = 0;
   if ($code == 0 || $code == 2 || $code == 4)
     {
-      $haa = $response->works->work[1]['owi'];
-      echo "Owi1: ";
-      echo ($haa);
-      #echo "\n";
-      if(isset($response->recommendations->ddc))
+      for ($i=0;$i<10;$i++)
       {
-        echo $response->recommendations->ddc->mostPopular['sfa'];
-      }
-      else
-      {
+        $haa = $response1->works->work[$i]['owi'];
+        echo "owi$i=$haa<br>";
         $url = "http://classify.oclc.org/classify2/Classify?owi=$haa";
         $response = simplexml_load_file($url);
         if(isset($response->recommendations->ddc))
         {
-		  echo "DDC: ";
-		  echo $response->recommendations->ddc->mostPopular['sfa'];
+          $ddc = $response->recommendations->ddc->mostPopular['sfa'];
+          #can use is_numeric($ddc) to remove FIC wale code
+          echo $ddc;
+          break;
         }
-        else
-        {
-          $haa = $response->works->work[2]['owi'];
-          echo "Owi2: ";
-          echo ($haa);
-          #echo "\n";
-          $url = "http://classify.oclc.org/classify2/Classify?owi=$haa";
-          $response = simplexml_load_file($url);
-          if(isset($response->recommendations->ddc))
-          {
-            echo "DDC: ";
-            echo $response->recommendations->ddc->mostPopular['sfa'];
-          }
-          else
-          {
-            echo "NO DDC";
-          }
-        }
+      }
+      if($i == 9)
+      {
+        echo "No DDC";
       }
     }
   else{
