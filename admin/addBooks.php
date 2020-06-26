@@ -217,7 +217,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">Title</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="title" id="title" required />
+								<input type="text" class="form-control DDC" name="title" id="title" required />
 								<div class="invalid-feedback">
 									Required Field
 								</div>
@@ -226,7 +226,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">Author</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="author" id="author" />
+								<input type="text" class="form-control DDC" name="author" id="author" />
 								<div class="invalid-feedback">
 									Required Field
 								</div>
@@ -235,7 +235,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">ISBN</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="isbn" id="isbn" />
+								<input type="text" class="form-control DDC" name="isbn" id="isbn" />
 								<div class="invalid-feedback">
 									Required Field
 								</div>
