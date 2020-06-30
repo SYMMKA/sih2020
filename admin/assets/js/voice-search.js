@@ -88,16 +88,27 @@ if (SpeechRecognition) {
   recognition2.addEventListener("result", resultOfSpeechRecognition2); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
   function resultOfSpeechRecognition2(event) {
     const current = event.resultIndex;
-    const transcript = event.results[current][0].transcript;
-    console.log(transcript.toLowerCase());
-    if (transcript.toLowerCase().trim() === "stop recording") {
-      endSpeechRecognition2();
-    } else if (!searchFormInput.value) {
-      searchFormInput.value = transcript;
-    } else transcript.toLowerCase().trim() == "home";
-    if (transcript.toLowerCase().trim() === "go") {
-      window.location.href = "http://www.w3schools.com";
+    const transcript = event.results[current][0].transcript
+      .toLowerCase()
+      .trim();
+    if (transcript.indexOf("stop recording") >= 0) {
+      console.log("stopped");
+      recognition2.stop();
+    } else if (transcript.indexOf("home") >= 0) {
+      window.location.href = "home.php";
+    } else if (transcript.indexOf("add") >= 0) {
+      window.location.href = "addBooks.php";
+    } else if (transcript.indexOf("recommend") >= 0) {
+      window.location.href = "recom.html";
+    } else if (transcript.indexOf("report") >= 0) {
+      window.location.href = "report.html";
+    } else if (transcript.indexOf("shelf") >= 0) {
+      window.location.href = "shelf.php";
+    } else {
+      console.log("voice recog failed");
     }
+
+    recognition2.stop();
     // setTimeout(() => {
     //   searchForm.submit();
     // }, 500);
