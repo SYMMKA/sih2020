@@ -43,6 +43,9 @@
                         colorLight : "#ffffff",
                         correctLevel : QRCode.CorrectLevel.H
                     });
+                    var div = document.createElement('div');
+                    div.innerHTML='<br>';
+                    document.getElementById('qrcode').appendChild(div);
                 }
                 //instead of data google book api link of certain book for book info ka qr code
 
