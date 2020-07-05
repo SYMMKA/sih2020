@@ -109,7 +109,7 @@ if ($_POST['oldID'])
 	$oldID = $_POST['oldID'];
 else
 	$oldID = '';
-$shelfID = '';
+$shelfID = NULL;
 $adminID = $_SESSION['adminID'];
 $digital = 0;
 $book = 1;
@@ -142,13 +142,13 @@ if ($uploadOk == 1) {
 		echo "New book added successfully";
 
 		$bookID = $conn->lastInsertId();
-		$sql2 = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, :oldID, '', '', NULL, '', NULL, :shelfID)";
+		$sql2 = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, :oldID, '', NULL, NULL, '', NULL, :shelfID)";
 		$stmt2 = $conn->prepare($sql2);
 		$stmt2->bindParam(':bookID', $bookID);
 		$stmt2->bindParam(':oldID', $oldID);
 		$stmt2->bindParam(':shelfID', $shelfID);
 
-		$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'admin', :adminID, 'add', UNIX_TIMESTAMP(), :bookID, :oldID)";
+		$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, :oldID)";
 		$stmt3 = $conn->prepare($sql3);
 		$stmt3->bindParam(':adminID', $adminID);
 		$stmt3->bindParam(':bookID', $bookID);

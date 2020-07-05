@@ -44,7 +44,7 @@ try {
 	$stmt2->execute();
 	echo "\nIssued table updated";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'admin', :adminID, 'delete', UNIX_TIMESTAMP(), :bookID, :oldID)";
+	$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'delete', UNIX_TIMESTAMP(), :bookID, :oldID)";
 	$stmt3 = $conn->prepare($sql3);
 	$stmt3->bindParam(':copyID', $copyID);
 	$stmt3->bindParam(':adminID', $adminID);

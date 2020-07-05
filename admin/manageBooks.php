@@ -312,7 +312,6 @@ include("db.php");
 		</div>
 	</div>
 
-	<script src="category.js"></script>
 	<script src="catName.js"></script>
 	<script>
 		title = <?php echo json_encode($title); ?>;

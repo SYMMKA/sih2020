@@ -119,10 +119,20 @@ include('session.php');
 					if (isset($item['volumeInfo']['publishedDate']))
 						$publishedDate[$i] = $item['volumeInfo']['publishedDate'];
 					//volumeInfo.industryIdentifiers[].type
-					$isbn[$i] = "";
+					//$isbn[$i] = "";
+					$isbn13Found = 0;
 					if (isset($item['volumeInfo']['industryIdentifiers'])) {
 						for ($n = 0; $n < count($item['volumeInfo']['industryIdentifiers']); $n++) {
-							$isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
+							if ($item['volumeInfo']['industryIdentifiers'][$n]['type'] == 'ISBN_13') {
+								$isbn[$i] = $item['volumeInfo']['industryIdentifiers'][$n]['identifier'];
+								$isbn13Found = 1;
+								break;
+							}
+							//$isbn[$i] = $isbn[$i] . $item['volumeInfo']['industryIdentifiers'][$n]['identifier'] . " ";
+						}
+						// if isbn 13 not found
+						if ($isbn13Found == 0) {
+							$isbn[$i] = $item['volumeInfo']['industryIdentifiers'][0]['identifier'];
 						}
 					}
 					$pageCount[$i] = $item['volumeInfo']['pageCount'];
@@ -146,7 +156,7 @@ include('session.php');
 						<div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
 							<div class="row no-gutters">
 								<div class="col-md-4">
-									<?php if ($imgLink[$i]) { ?>
+									<?php if (isset($imgLink[$i])) { ?>
 										<img src="<?= $imgLink[$i] ?>" class="card-img" alt="..." style="max-height: 300px; width: 100%" />
 									<?php } ?>
 
@@ -160,7 +170,7 @@ include('session.php');
 											<?php echo isset($category[$i]) ? "<br>Category: " . $category[$i] : null ?>
 											<?php echo isset($publisher[$i]) ? "<br>Publisher: " . $publisher[$i] : null ?>
 											<?php echo isset($publishedDate[$i]) ? "<br>Published Date: " . $publishedDate[$i] : null ?>
-											<?php echo $isbn[$i] ? "<br>ISBN: " . $isbn[$i] : null ?>
+											<?php echo isset($isbn[$i]) ? "<br>ISBN: " . $isbn[$i] : null ?>
 											<?php echo isset($pageCount[$i]) ? "<br>Page Count: " . $pageCount[$i] : null ?>
 											<?php echo isset($country[$i]) ? "<br>Country: " . $country[$i] : null ?>
 											<?php echo isset($money[$i]) ? "<br>Amount: " . $money[$i] : null ?></P>
@@ -226,7 +236,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">Author</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control DDC" name="author" id="author" />
+								<input type="text" class="form-control" name="author" id="author" />
 								<div class="invalid-feedback">
 									Required Field
 								</div>
@@ -271,7 +281,7 @@ include('session.php');
 						<div class="form-group row">
 							<label for="" class="col-sm-2 col-form-label">DDC No.</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="testDDC" id="testDDC" />
+								<input type="text" class="form-control" name="ddcNO" id="ddcNO" />
 								<div class="invalid-feedback">
 									Required Field
 								</div>
@@ -375,10 +385,9 @@ include('session.php');
 		preview = <?php echo json_encode($preview); ?>;
 	</script>
 
-	<script src="category.js"></script>
 	<script src="catName.js"></script>
 	<script src="addBook/autoFill.js"></script>
-	<script src="addBook/autoDDC.js"></script>
+	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
 
 	<!-- Optional JavaScript -->

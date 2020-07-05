@@ -32,27 +32,16 @@ if ($_POST['isbn']) {
 
 if ($_POST['mainCategory1']) {
 	$category1 = $_POST['mainCategory1'];
-	$change = 1;
-} else
-	$category1 = $row->Category1;
-
-if ($_POST['mainCategory2']) {
 	$category2 = $_POST['mainCategory2'];
-	$change = 1;
-} else
-	$category2 = $row->Category2;
-
-if ($_POST['mainCategory3']) {
 	$category3 = $_POST['mainCategory3'];
-	$change = 1;
-} else
-	$category3 = $row->Category3;
-
-if ($_POST['mainCategory4']) {
 	$category4 = $_POST['mainCategory4'];
 	$change = 1;
-} else
+} else {
+	$category1 = $row->Category1;
+	$category2 = $row->Category2;
+	$category3 = $row->Category3;
 	$category4 = $row->Category4;
+}
 
 if ($_POST['publisher']) {
 	$publisher = $_POST['publisher'];
@@ -143,6 +132,7 @@ if ($_POST['addQuan']) {
 }
 
 $adminID = $_SESSION['adminID'];
+$shelfID = NULL;
 
 //oldID and shelfID for newly added copies not inserted
 try {
@@ -172,11 +162,12 @@ try {
 
 	//if new copy added
 	if ($_POST['addQuan']) {
-		$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', '', NULL, '', NULL, '')";
+		$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', NULL, NULL, '', NULL, :shelfID)";
 		$stmt2 = $conn->prepare($sql2);
 		$stmt2->bindParam(':bookID', $bookID);
+		$stmt2->bindParam(':shelfID', $shelfID);
 
-		$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'admin', :adminID, 'add', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, 'oldID')";
 		$stmt3 = $conn->prepare($sql3);
 		$stmt3->bindParam(':adminID', $adminID);
 		$stmt3->bindParam(':bookID', $bookID);
@@ -195,7 +186,7 @@ try {
 
 	// if book property changed
 	if ($change == 1) {
-		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', :adminID, 'update', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$sql4 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', :adminID, NULL, 'update', UNIX_TIMESTAMP(), :bookID, 'oldID')";
 		$stmt4 = $conn->prepare($sql4);
 		$stmt4->bindParam(':adminID', $adminID);
 		$stmt4->bindParam(':bookID', $bookID);

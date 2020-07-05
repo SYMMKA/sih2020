@@ -10,8 +10,12 @@ if(isset($_SESSION['adminID'])) {
 	$stmt->execute();
 }
 
+$domain = $_SERVER['HTTP_HOST'].'/sih2020/web';
+$prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+$relative = '/admin/login.php';
+$url = $prefix.$domain.$relative;
 if(!isset($_SESSION['adminID']) || !$stmt->rowCount()){
-	header("location:login.php");
+	header("location:".$url);
 }
 
 $conn = null;

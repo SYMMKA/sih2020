@@ -13,6 +13,7 @@ function autoFill(i) {
 		document.getElementById('imgValue').value = imgLink[i];
 		document.getElementById('imgLink').hidden = false;
 	}
+	searchDDC(); // autoload ddc columns
 	hideResult();
 }
 

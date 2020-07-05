@@ -16,13 +16,14 @@ $row = $stmt->fetchObject();
 $oldID = $row->oldID;
 $st_ID = $row->stud_ID;
 $bookID = $row->bookID;
+$adminID = $_SESSION['adminID'];
 
 try {
 	// set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
 
-	$sql1 = "UPDATE `copies` SET `stud_ID` = '', `status` = '' WHERE `copies`.`copyID` = :copyID";
+	$sql1 = "UPDATE `copies` SET `stud_ID` = NULL, `status` = '' WHERE `copies`.`copyID` = :copyID";
 	$stmt1 = $conn->prepare($sql1);
 	$stmt1->bindParam(':copyID', $copyID);
 	$stmt1->execute();
@@ -34,9 +35,10 @@ try {
 	$stmt2->execute();
 	echo "\nIssued table updated";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'user', :st_ID, 'return', UNIX_TIMESTAMP(), :bookID, :oldID)";
+	$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, :st_ID, 'return', UNIX_TIMESTAMP(), :bookID, :oldID)";
 	$stmt3 = $conn->prepare($sql3);
 	$stmt3->bindParam(':copyID', $copyID);
+	$stmt3->bindParam(':adminID', $adminID);
 	$stmt3->bindParam(':st_ID', $st_ID);
 	$stmt3->bindParam(':bookID', $bookID);
 	$stmt3->bindParam(':oldID', $oldID);

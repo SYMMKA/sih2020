@@ -20,6 +20,7 @@ else
 	$copyID = '';
 
 $timePeriod = 20; //reserve time period
+$adminID = $_SESSION['adminID'];
 
 try {
 	// set the PDO error mode to exception
@@ -42,9 +43,10 @@ try {
 	$stmt2->execute();
 	echo "\nAdded to issued table";
 
-	$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('$copyID', 'user', '$st_ID', 'issue', UNIX_TIMESTAMP(), '$bookID', '$oldID')";
+	$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, :st_ID, 'issue', UNIX_TIMESTAMP(), :bookID, :oldID)";
 	$stmt3 = $conn->prepare($sql3);
 	$stmt3->bindParam(':copyID', $copyID);
+	$stmt3->bindParam(':adminID', $adminID);
 	$stmt3->bindParam(':st_ID', $st_ID);
 	$stmt3->bindParam(':bookID', $bookID);
 	$stmt3->bindParam(':oldID', $oldID);
