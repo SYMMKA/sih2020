@@ -2,6 +2,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="QR Code" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+        <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
         <title>QR Code</title>
         
     </head>
@@ -11,22 +14,68 @@
         <br>
         Rack No:
         <input type="text" id="rack_no">
+        No. of copies
+        <input type="number" id="copy_no">
         <br>
-        <button onclick="generateQR()">generateQR</button>
+        <button id="gen" onclick="generateQR()">generateQR</button>
         <br>
         <br>
-        <div id="qrcode"></div>
+        <div id="qrcode" class='html-content'></div>
     </body>
     <script src="qrcode.min.js" ></script>
+    <div id="qrcode"></div>
     
     <script>
             var shelf_no = document.getElementById("shelf_no");
             var rack_no = document.getElementById("rack_no");
+            var copy_no = document.getElementById("copy_no");
+            var data = "Shelf No:"+ shelf_no.value + " Rack No:" +rack_no.value
+
             function generateQR()
             {
-                var data = "Shelf No:"+ shelf_no.value + " Rack No:" +rack_no.value
-                new QRCode(document.getElementById("qrcode"),data); 
+                for (var i=0 ; i<copy_no.value; i++)
+                {
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        text: "data",
+                        width: 64,
+                        height: 64,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                    var div = document.createElement('div');
+                    div.innerHTML='<br>';
+                    document.getElementById('qrcode').appendChild(div);
+                }
                 //instead of data google book api link of certain book for book info ka qr code
+
+                //making pdf ka code
+                var HTML_Width = $(".html-content").width();
+                var HTML_Height = $(".html-content").height();
+                var top_left_margin = 15;
+                var PDF_Width = HTML_Width + (top_left_margin * 2);
+                var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+                var canvas_image_width = HTML_Width;
+                var canvas_image_height = HTML_Height;
+
+                var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+                html2canvas($(".html-content")[0]).then(function (canvas) {
+                    var imgData = canvas.toDataURL("image/jpeg", 1.0);
+                    var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+                    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+                    for (var i = 1; i <= totalPDFPages; i++) { 
+                        pdf.addPage(PDF_Width, PDF_Height);
+                        pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+                    }
+                    pdf.save("Example.pdf");
+    });
             }
     </script>
+    <script>
+        function CreatePDFfromHTML() {
+        
+}
+    </script>
+    
 </html>
