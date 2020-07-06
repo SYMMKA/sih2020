@@ -1,5 +1,6 @@
 <?php
 include('session.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -389,6 +390,15 @@ include('session.php');
 	<script src="addBook/autoFill.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
+
+	<?php
+	if (isset($_GET['q'])) {
+		$get = $_GET['q'];
+		echo "<script>
+		document.querySelector('input').value = '" . $get . "';
+	</script>";
+	}
+	?>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
