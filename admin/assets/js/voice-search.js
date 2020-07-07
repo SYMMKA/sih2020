@@ -94,30 +94,25 @@ if (SpeechRecognition) {
     console.log(transcript);
     var array = transcript.split(" ");
     console.log(array);
-    if (
-      array[array.length - 1] == "search" &&
-      array[array.length - 2] == "in"
-    ) {
+    var a = array.indexOf("search");
+    if (a >= 0) {
       var n = array.lastIndexOf("in");
-      var search = array.slice(0, n).join(" ");
+      var search = array.slice(a + 1, n).join(" ");
       console.log(search);
       window.location.href = "addBooks.php?q=" + search + "";
+    } else if (transcript.indexOf("home") >= 0) {
+      window.location.href = "home.php";
+    } else if (transcript.indexOf("add") >= 0) {
+      window.location.href = "addBooks.php";
+    } else if (transcript.indexOf("recommend") >= 0) {
+      window.location.href = "recom.html";
+    } else if (transcript.indexOf("report") >= 0) {
+      window.location.href = "report.html";
+    } else if (transcript.indexOf("shelf") >= 0) {
+      window.location.href = "shelf.php";
+    } else {
+      console.log("voice recog failed");
     }
-    // if (transcript.indexOf("stop recording") >= 0) {
-    //   console.log("stopped");
-    // } else if (transcript.indexOf("home") >= 0) {
-    //   window.location.href = "home.php";
-    // } else if (transcript.indexOf("add") >= 0) {
-    //   window.location.href = "addBooks.php";
-    // } else if (transcript.indexOf("recommend") >= 0) {
-    //   window.location.href = "recom.html";
-    // } else if (transcript.indexOf("report") >= 0) {
-    //   window.location.href = "report.html";
-    // } else if (transcript.indexOf("shelf") >= 0) {
-    //   window.location.href = "shelf.php";
-    // } else {
-    //   console.log("voice recog failed");
-    // }
     recognition2.stop();
     // setTimeout(() => {
     //   searchForm.submit();
