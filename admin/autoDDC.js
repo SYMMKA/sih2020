@@ -1,9 +1,6 @@
 // To select category
 
 window.onload = function () {
-	/* fetch("category.json")
-		.then(response => response.json())
-		.then(json => DDCjson = json); */
 	loadCategory();
 	//ddc
 	var ddcNO = document.getElementById('ddcNO');

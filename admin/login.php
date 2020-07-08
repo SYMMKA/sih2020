@@ -10,12 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	echo $username;
 	echo "\n".$password;
 
-	$sql = "SELECT * FROM adminlogin WHERE `adminlogin`.`userID` = '$username' AND `adminlogin`.`password` = '$password'";
+	$sql = "SELECT `password` FROM adminlogin WHERE `adminlogin`.`userID` = :username";
 	$stmt = $conn->prepare($sql);
+	$stmt->bindParam(':username', $username);
 	$stmt->execute();
-	echo "\n".$stmt->rowCount();
+	$pass = $stmt->fetchObject()->password;
 
-	if ($stmt->rowCount()) {
+	if ($pass == $password) {
 		$_SESSION['adminID'] = $username;
 		header("location:home.php");
 	} else {

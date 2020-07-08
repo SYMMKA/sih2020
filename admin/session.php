@@ -5,8 +5,9 @@ session_start();
 if(isset($_SESSION['adminID'])) {
 	$adminID = $_SESSION['adminID'];
 
-	$sql = "SELECT * FROM adminlogin WHERE `adminlogin`.`userID` = '$adminID'";
+	$sql = "SELECT * FROM adminlogin WHERE `adminlogin`.`userID` = :adminID";
 	$stmt = $conn->prepare($sql);
+	$stmt->bindParam(':adminID',$adminID);
 	$stmt->execute();
 }
 

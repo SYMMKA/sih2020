@@ -1,4 +1,3 @@
-// Your web app's Firebase configuration
 // Listen for form submit
 document.getElementById('updateBookForm').addEventListener('submit', updateBook);
 // Submit form
@@ -12,26 +11,30 @@ function updateBook(e) {
 	var publisher = getInputVal('updatepublisher');
 	var publishedDate = getInputVal('updatepublishedDate');
 	var isbn = getInputVal('updateISBN');
-	var pageCount = getInputVal('updatepageCount');
 	var money = getInputVal('updatemoney');
 	var oldID = getInputVal('updateOldID');
+	var imgFile = $('#updateimgFile')[0].files[0];
+	if (!imgFile)
+		imgFile = null;
 	var addQuan = getInputVal('updateaddcopies');
-	var files = $('#updateimgFile')[0].files[0];
-	if (!files)
-		files = null;
+	var pageCount = getInputVal('updatepageCount');
+	var mediaFile = $('#mediaFile')[0].files[0]; //digital
 
 	var mainCategory1 = '';
 	var mainCategory2 = '';
 	var mainCategory3 = '';
 	var mainCategory4 = '';
-	if (mainCategorySelect1.value)
-		mainCategory1 = mainCategorySelect1.options[mainCategorySelect1.selectedIndex].text
-	if (mainCategorySelect2.value)
-		mainCategory2 = mainCategorySelect2.options[mainCategorySelect2.selectedIndex].text
-	if (mainCategorySelect3.value)
-		mainCategory3 = mainCategorySelect3.options[mainCategorySelect3.selectedIndex].text
-	if (mainCategorySelect4.value)
-		mainCategory4 = mainCategorySelect4.options[mainCategorySelect4.selectedIndex].text
+	console.log(getInputVal('catDisplay'));
+	if (getInputVal('catDisplay') == "true") {
+		if (mainCategorySelect1.value)
+			mainCategory1 = mainCategorySelect1.options[mainCategorySelect1.selectedIndex].text
+		if (mainCategorySelect2.value)
+			mainCategory2 = mainCategorySelect2.options[mainCategorySelect2.selectedIndex].text
+		if (mainCategorySelect3.value)
+			mainCategory3 = mainCategorySelect3.options[mainCategorySelect3.selectedIndex].text
+		if (mainCategorySelect4.value)
+			mainCategory4 = mainCategorySelect4.options[mainCategorySelect4.selectedIndex].text
+	}
 
 	var formData = new FormData();
 	formData.append('bookID', bookID);
@@ -47,8 +50,9 @@ function updateBook(e) {
 	formData.append('pageCount', pageCount);
 	formData.append('money', money);
 	formData.append('oldID', oldID);
-	formData.append('imgFile', files);
+	formData.append('imgFile', imgFile);
 	formData.append('addQuan', addQuan);
+	formData.append('mediaFile', mediaFile);
 
 	$.ajax({
 		type: "POST",
@@ -59,7 +63,7 @@ function updateBook(e) {
 		processData: false, // Dont delete this
 		success: function (data) {
 			console.log(data);
-			window.location.reload();
+			//window.location.reload();
 		}
 		//Other options
 	});

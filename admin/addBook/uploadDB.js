@@ -1,5 +1,5 @@
 // Listen for form submit
-var searchBookForm = document.getElementById('needs-validation');
+var searchBookForm = document.getElementById('search_form');
 searchBookForm.addEventListener('submit', searchBook, false);
 
 var addBookForm = document.getElementById('addBookForm');
@@ -29,14 +29,17 @@ function addBook(event) {
 		var publisher = getInputVal('publisher');
 		var publishedDate = getInputVal('publishedDate');
 		var isbn = getInputVal('isbn');
-		var pageCount = getInputVal('pageCount');
 		var money = getInputVal('money');
-		var quantity = getInputVal('quantity');
 		var oldID = getInputVal('oldID');
 		var imgValue = document.getElementById('imgValue').value;
-		var files = $('#imgFile')[0].files[0];
-		if (!files)
-			files = null;
+		var imgFile = $('#imgFile')[0].files[0];
+		if (!imgFile)
+			imgFile = null;
+		var quantity = getInputVal('quantity'); //physical
+		var pageCount = getInputVal('pageCount'); //book
+		var mediaFile = $('#mediaFile')[0].files[0]; //digital
+		var book_audio = document.querySelector('input[name="book_audio"]:checked').value;
+		var physical_digital = document.querySelector('input[name="physical_digital"]:checked').value;
 
 		var mainCategory1 = '';
 		var mainCategory2 = '';
@@ -64,9 +67,12 @@ function addBook(event) {
 		formData.append('pageCount1', pageCount);
 		formData.append('money1', money);
 		formData.append('imgValue1', imgValue);
-		formData.append('imgFile', files);
+		formData.append('imgFile', imgFile);
 		formData.append('quantity1', quantity);
 		formData.append('oldID', oldID);
+		formData.append('mediaFile', mediaFile);
+		formData.append('book_audio', book_audio);
+		formData.append('physical_digital', physical_digital);
 
 		$.ajax({
 			type: "POST",
