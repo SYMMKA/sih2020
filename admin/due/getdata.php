@@ -3,23 +3,22 @@
 include("../session.php");
 include("../db.php");
 
-if ($_POST['query'])
-    $query = $_POST['query'];
-else
-    $query = '';
 
+$query = "SELECT * FROM `issued` WHERE `due` = 1";
 $stmt = $conn->prepare($query);
 $stmt->execute();
-$i = 0;
+
 while ($row = $stmt->fetchObject()) {
     $data["id"] = $row->id;
-    $data["copyID"] = $row->copyID;
-    $data["adminID"] = $row->adminID;
-    $data["studentID"] = $row->studentID;
-    $data["action"] = $row->action;
-    $data["time"] = date('d/m/Y H:i', $row->time);
     $data["bookID"] = $row->bookID;
     $data["oldID"] = $row->oldID;
+    $data["copyID"] = $row->copyID;
+    $data["stud_ID"] = $row->stud_ID;
+    $data["time"] = date('d/m/Y H:i', $row->time);
+    $data["returnTime"] = $row->returnTime;
+    $data["star"] = $row->star;
+    $data["fine"] = $row->fine;
+    $data["due"] = $row->due;
     $result[] = $data;
 }
 // Encoding array in JSON format

@@ -1,6 +1,7 @@
 var action = "";
 var bookID = "";
 var user = "";
+var html = "";
 function changeAccess() {
   if (document.getElementById("student").selected == true) {
     document.getElementById("checkAdd").checked = false;
@@ -75,15 +76,61 @@ function generateQuery() {
     contentType: false, // Dont delete this (jQuery 1.6+)
     processData: false, // Dont delete this
     success: function (data) {
-      console.log(data);
+      if (data) {
+        html = `<div class="table-responsive"><table id="reportTable" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">CopyID</th>
+          <th scope="col">AdminID</th>
+          <th scope="col">StudentID</th>
+          <th scope="col">Action</th>
+          <th scope="col">Time</th>
+          <th scope="col">BookID</th>
+          <th scope="col">OldID</th>
+        </tr>
+        </thead>
+        <tbody>`;
+        var table = JSON.parse(data);
+        //console.log(table[0].id);
+        var count = Object.keys(table).length;
+        table.forEach(function (item, index) {
+          html +=
+            `<tr> 
+            <th  scope="row">` +
+            item.id +
+            `</th>
+            <td>` +
+            item.copyID +
+            `</td>
+            <td>` +
+            item.adminID +
+            `</td>
+            <td>` +
+            item.studentID +
+            `</td>
+            <td>` +
+            item.action +
+            `</td>
+            <td>` +
+            item.time +
+            `</td>
+            <td>` +
+            item.bookID +
+            `</td>
+            <td>` +
+            item.oldID +
+            `</td>
+        </tr>`;
+        });
 
-      var doc = new jsPDF();
+        html += `</tbody></table></div>
+        <div> <button type="button" id="downloadPdf" class="btn btn-bot btn-info col-3 ml-4 mr-4" onclick="downloadPdf()">DownLoad PDF</button>
+        </> `;
+        document.getElementById("pdfView").innerHTML = html;
 
-      doc.text(20, 20, "TEST Message!!");
-      doc.addPage();
-      doc.text(20, 20, "TEST Page 2!");
-      doc.save("Test.pdf");
-      /* document.getElementById("pdfView").innerHTML = `<iframe src="report/report.pdf" width="100%" height="500px">`; */
+        /* document.getElementById("pdfView").innerHTML = `<iframe src="report/report.pdf" width="100%" height="500px">`; */
+      }
     },
     //Other options
   });
@@ -119,4 +166,12 @@ function generateReport() {
     user = "admin";
   }
   generateQuery();
+}
+
+function downloadPdf() {
+  // It can parse html:
+  // <table id="my-table"><!-- ... --></table>
+  const doc = new jsPDF();
+  doc.autoTable({ html: "#reportTable" });
+  doc.save("report.pdf");
 }

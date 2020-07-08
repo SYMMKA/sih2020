@@ -7,10 +7,8 @@ if ($_POST['query'])
     $query = $_POST['query'];
 else
     $query = '';
-
 $stmt = $conn->prepare($query);
 $stmt->execute();
-$i = 0;
 while ($row = $stmt->fetchObject()) {
     $data["id"] = $row->id;
     $data["copyID"] = $row->copyID;

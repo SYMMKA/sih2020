@@ -161,9 +161,13 @@ include('session.php');
       </div>
     </div>
   </div>
-  <div id="pdfView"></div> <!-- Optional JavaScript -->
+  <section class="container landing-section" id="scrollhere">
+    <div id="pdfView"></div>
+  </section>
+  <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="jsPDF-master/dist/jspdf.min.js"></script>
+  <script src="jsPDF-AutoTable-master/dist/jspdf.plugin.autotable.min.js"></script>
   <script src="report/report.js"></script>
   <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
