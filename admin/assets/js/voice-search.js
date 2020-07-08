@@ -96,10 +96,13 @@ if (SpeechRecognition) {
     console.log(array);
     var a = array.indexOf("search");
     if (a >= 0) {
+	  var last = array.slice(n + 1, transcript.length).join(" ");
       var n = array.lastIndexOf("in");
       var search = array.slice(a + 1, n).join(" ");
       console.log(search);
-      window.location.href = "addBooks.php?q=" + search + "";
+      if (last.indexOf("add") >= 0){
+         window.location.href = "addBooks.php?q=" + search + "";
+      }     
     } else if (transcript.indexOf("home") >= 0) {
       window.location.href = "home.php";
     } else if (transcript.indexOf("add") >= 0) {

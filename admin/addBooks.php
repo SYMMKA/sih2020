@@ -1,7 +1,7 @@
 <?php
 include('session.php');
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +55,7 @@ include('session.php');
 					<h4>Find books and material to add to your library</h4>
 				</div>
 
-				<form id="needs-validation" novalidate class="row search-form mb-2 align-self-center justify-content-center" method="post">
+				<form id="search_form" novalidate class="row search-form mb-2 align-self-center justify-content-center" method="post" action="addBooks.php">
 					<div class="col-sm-6 search-box mb-2">
 						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" title="Required Field" required />
 						<div class="invalid-feedback">
@@ -80,13 +80,18 @@ include('session.php');
 	</section>
 	<section class="container" id="searchResults">
 		<?php
+		if (isset($_GET['q'])) {
+			$search = $_GET['q'];
+			echo "<script>
+				document.querySelector('input').value = '" . $search . "'
+				document.getElementById('search_form').submit();
+			</script>";
+		}
+
 		$search = '';
 		if (isset($_POST['search']))
 			$search = $_POST['search'];
-		?>
 
-
-		<?php
 		if ($search) {
 
 			// API key, future ref
@@ -206,23 +211,39 @@ include('session.php');
 			<form id="addBookForm" novalidate>
 				<fieldset class="form-group">
 					<div class="row">
-						<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-						<div class="col-sm-10">
+						<legend class="col-form-label col-sm-2 pt-0">Books/Audio</legend>
+						<div class="col-sm-4" id="book_audio">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
-								<label class="form-check-label" for="gridRadios1">
-									First radio
+								<input class="form-check-input" type="radio" name="book_audio" id="book" value="book" checked />
+								<label class="form-check-label" for="book">
+									Book
 								</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-								<label class="form-check-label" for="gridRadios2">
-									Second radio
+								<input class="form-check-input" type="radio" name="book_audio" id="audio" value="audio" />
+								<label class="form-check-label" for="audio">
+									Audio
+								</label>
+							</div>
+						</div>
+						<legend class="col-form-label col-sm-2 pt-0">Digital/Physical</legend>
+						<div class="col-sm-4" id="physical_digital">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="physical_digital" id="physical" value="physical" checked  />
+								<label class="form-check-label" for="physical">
+									Physical
+								</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="physical_digital" id="digital" value="digital"/>
+								<label class="form-check-label" for="digital">
+									Digital
 								</label>
 							</div>
 						</div>
 					</div>
 				</fieldset>
+						
 				<div class="row justify-content-center mb-4">
 					<div class="col-md-8">
 						<div class="form-group row">
@@ -339,7 +360,7 @@ include('session.php');
 								</div>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row" id="pageCountGroup">
 							<label for="" class="col-sm-2 col-form-label">Page Count</label>
 							<div class="col-sm-10">
 								<input type="number" class="form-control" name="pageCount" id="pageCount" placeholder="" min="0" />
@@ -348,12 +369,21 @@ include('session.php');
 								</div>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row" id="quantityGroup">
 							<label for="" class="col-sm-2 col-form-label">Quantity</label>
 							<div class="col-sm-10">
 								<input type="number" class="form-control" name="quantity" id="quantity" placeholder="" min="1" required />
 								<div class="invalid-feedback">
 									Must be a positive number
+								</div>
+							</div>
+						</div>
+						<div class="form-group row" id="mediaGroup" hidden>
+							<label for="" class="col-sm-2 col-form-label">Upload File</label>
+							<div class="col-sm-10">
+								<input type="file" class="form-control-file" id="mediaFile"/>
+								<div class="invalid-feedback">
+									Import File
 								</div>
 							</div>
 						</div>
@@ -388,17 +418,9 @@ include('session.php');
 
 	<script src="catName.js"></script>
 	<script src="addBook/autoFill.js"></script>
+	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-
-	<?php
-	if (isset($_GET['q'])) {
-		$get = $_GET['q'];
-		echo "<script>
-		document.querySelector('input').value = '" . $get . "';
-	</script>";
-	}
-	?>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

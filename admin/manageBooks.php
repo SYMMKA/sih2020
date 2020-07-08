@@ -101,7 +101,9 @@ include("db.php");
 					$isbn[$i] = $row->isbn;
 					$author[$i] = $row->author;
 					$bookID[$i] = $row->bookID;
-
+					$digital[$i] = $row->digital;
+					$digitalLink[$i] = $row->digitalLink;
+					$book[$i] = $row->book;
 
 					$stmt1->bindParam(':bookID', $bookID[$i]);
 					$stmt1->execute();
@@ -140,9 +142,18 @@ include("db.php");
 							<div class="card-footer bg-white">
 								<div class="row justify-content-center">
 									<div class="col-12">
-										<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
-											Issue/Return Delete Copy
+										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
+											Info
 										</button>
+									<?php if($digital[$i]) {?>
+										<a type="button" class="btn btn-info btn-block btn-sm" name="download" href="<?= $digitalLink[$i]; ?>" download>
+											Download
+										</a>
+									<?php } else {?>
+										<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
+											Issue/Return Delete
+										</button>
+									<?php } ?>
 										<button type="button" class="btn btn-info btn-block btn-sm" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBookForm">
 											Update
 										</button>
@@ -247,14 +258,14 @@ include("db.php");
 									<label class="col-sm-2 col-form-label"></label>
 									<div class="col-sm-10" id="category"></div>
 								</div>
-								<input type="hidden" value="" id="catDisplay" />
+								<input type="hidden" value="false" id="catDisplay" />
 								<div class="form-group row">
 									<label for="updatepublisher" class="col-sm-2 col-form-label">Publisher</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="updatepublisher" id="updatepublisher" />
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="form-group row" id="pageCountGroup">
 									<label for="updatepageCount" class="col-sm-2 col-form-label">Page Count</label>
 									<div class="col-sm-10">
 										<input type="number" class="form-control" name="updatepageCount" id="updatepageCount" />
@@ -279,16 +290,22 @@ include("db.php");
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="updateimageFile" class="col-sm-2 col-form-label">Image</label>
+									<label for="updateimgLink" class="col-sm-2 col-form-label">Image</label>
 									<img name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100px" height="100px" />
 									<div class="col-sm-10">
 										<input type="file" class="form-control-file" id="updateimgFile" onchange="document.getElementById('updateimgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('updateimgLink').hidden= false" />
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="form-group row" id="quantityGroup">
 									<label for="updateaddcopies" class="col-sm-2 col-form-label">Add Copies</label>
 									<div class="col-sm-10">
 										<input type="number" class="form-control" id="updateaddcopies" name="updateaddcopies" placeholder="Number of copies" min="0" />
+									</div>
+								</div>
+								<div class="form-group row" id="mediaGroup">
+									<label for="updateimageFile" class="col-sm-2 col-form-label">Change File</label>
+									<div class="col-sm-10">
+										<input type="file" class="form-control-file" id="mediaFile"/>
 									</div>
 								</div>
 								<div class="row text-center">
@@ -299,7 +316,6 @@ include("db.php");
 										<button type="submit" class="btn btn-info" value="update" name="update">Update</button>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</form>
@@ -319,6 +335,8 @@ include("db.php");
 		isbn = <?php echo json_encode($isbn); ?>;
 		imgLink = <?php echo json_encode($imgLink); ?>;
 		bookID = <?php echo json_encode($bookID); ?>;
+		digital = <?php echo json_encode($digital); ?>;
+		book = <?php echo json_encode($book); ?>;
 	</script>
 	<script src="searchBook/autoFill.js"></script>
 	<script src="searchBook/issueBook/autoFill.js"></script>

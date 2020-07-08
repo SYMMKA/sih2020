@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 01:30 PM
+-- Generation Time: Jul 07, 2020 at 10:44 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -140,7 +140,7 @@ CREATE TABLE `issued` (
   `time` bigint(20) DEFAULT NULL,
   `returnTime` bigint(20) DEFAULT NULL,
   `star` varchar(1) DEFAULT NULL,
-  `fine` varchar(50) NOT NULL,
+  `fine` varchar(50) DEFAULT NULL,
   `due` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -149,10 +149,10 @@ CREATE TABLE `issued` (
 --
 
 INSERT INTO `issued` (`id`, `bookID`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`, `star`, `fine`, `due`) VALUES
-(1, 2, '', '2 - 2', '14482', 1593947994, NULL, NULL, '', 0),
-(2, 2, '', '2 - 1', '14332', 1593948092, 1593948236, NULL, '', 0),
-(3, 3, '', '3 - 2', '14332', 1593948265, NULL, NULL, '', 0),
-(4, 3, '', '3 - 4', '14482', 1593948271, 1593948273, NULL, '', 0);
+(1, 2, '', '2 - 2', '14482', 1593947994, NULL, NULL, NULL, 0),
+(2, 2, '', '2 - 1', '14332', 1593948092, 1593948236, NULL, NULL, 0),
+(3, 3, '', '3 - 2', '14332', 1593948265, NULL, NULL, NULL, 0),
+(4, 3, '', '3 - 4', '14482', 1593948271, 1593948273, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -177,17 +177,30 @@ CREATE TABLE `main` (
   `isbn` varchar(50) NOT NULL,
   `orgQuan` int(11) NOT NULL,
   `digital` tinyint(4) NOT NULL,
-  `book` tinyint(4) NOT NULL
+  `book` tinyint(4) NOT NULL,
+  `digitalLink` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `main`
 --
 
-INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`) VALUES
-(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1),
-(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 2, 'Philosophy and Psychology', 'Epistemology, causation, humankind', 'Epistemology', '', 'HarperCollins', '448', 'INR 401.67', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 2, 0, 1),
-(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1);
+INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES
+(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
+(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 2, 'Philosophy and Psychology', 'Epistemology, causation, humankind', 'Epistemology', '', 'HarperCollins', '448', 'INR 401.67', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 2, 0, 1, ''),
+(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sem_branch`
+--
+
+CREATE TABLE `sem_branch` (
+  `sem_branchID` int(11) NOT NULL,
+  `sem` int(11) NOT NULL,
+  `branch` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -238,8 +251,7 @@ INSERT INTO `students` (`stud_ID`, `name`, `email`, `mobile`, `points`) VALUES
 
 CREATE TABLE `syllabus` (
   `id` int(11) NOT NULL,
-  `sem` int(11) NOT NULL,
-  `branch` varchar(50) NOT NULL,
+  `sem_branchID` int(11) NOT NULL,
   `bookID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -282,6 +294,12 @@ ALTER TABLE `main`
   ADD UNIQUE KEY `uni_book` (`title`,`author`,`isbn`) USING HASH;
 
 --
+-- Indexes for table `sem_branch`
+--
+ALTER TABLE `sem_branch`
+  ADD PRIMARY KEY (`sem_branchID`);
+
+--
 -- Indexes for table `shelf`
 --
 ALTER TABLE `shelf`
@@ -298,6 +316,7 @@ ALTER TABLE `students`
 --
 ALTER TABLE `syllabus`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sem_branchID` (`sem_branchID`),
   ADD KEY `bookID` (`bookID`);
 
 --
@@ -323,6 +342,12 @@ ALTER TABLE `main`
   MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `sem_branch`
+--
+ALTER TABLE `sem_branch`
+  MODIFY `sem_branchID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `syllabus`
 --
 ALTER TABLE `syllabus`
@@ -344,7 +369,8 @@ ALTER TABLE `copies`
 -- Constraints for table `syllabus`
 --
 ALTER TABLE `syllabus`
-  ADD CONSTRAINT `syllabus_ibfk_1` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`);
+  ADD CONSTRAINT `syllabus_ibfk_1` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`),
+  ADD CONSTRAINT `syllabus_ibfk_2` FOREIGN KEY (`sem_branchID`) REFERENCES `sem_branch` (`sem_branchID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

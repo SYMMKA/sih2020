@@ -172,7 +172,7 @@ function loadCategory1() {
 
 function hideCategory() {
 	document.getElementById("category").innerHTML = "";
-	document.getElementById("catDisplay").value = "";
+	document.getElementById("catDisplay").value = "false";
 }
 
 function c1() {
