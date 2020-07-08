@@ -11,7 +11,7 @@ $.ajax({
     <caption>Click pay when payment is recieved</caption>
     <thead>
     <tr>
-        <th scope="col">
+        <th style="display:none;" scope="col">
             ID</th>
         <th scope="col">
             BookID</th>
@@ -26,11 +26,7 @@ $.ajax({
         <th scope="col">
             Return Time</th>
         <th scope="col">
-            Star</th>
-        <th scope="col">
             Fine</th>
-        <th scope="col">
-            Due</th>
         <th scope="col">
             Pay</th>
     </tr>
@@ -39,9 +35,6 @@ $.ajax({
     data.forEach(function (item, index) {
       html +=
         `<tr>
-        <th scope="row">` +
-        item.id +
-        `</th>
         <td>` +
         item.bookID +
         `</td>
@@ -61,15 +54,11 @@ $.ajax({
         item.returnTime +
         `</td>
         <td>` +
-        item.star +
-        `</td>
-        <td>` +
         item.fine +
         `</td>
-        <td>` +
-        item.due +
-        `</td>
-        <td><button type="button" class="btn btn-outline-dark">Pay</button></td>
+        <td><button type="button" id="` +
+        item.id +
+        `"class="btn btn-outline-dark" onclick="updateDueStatus(this.id); location.reload();">Pay</button></td>
         </tr>`;
     });
     html += `</tbody>
@@ -78,4 +67,21 @@ $.ajax({
   },
   //Other options
 });
-//https://getbootstrap.com/docs/4.5/content/tables/
+
+function updateDueStatus(id) {
+  //alert(id);
+  var formData = new FormData();
+  formData.append("id", id);
+  $.ajax({
+    type: "POST",
+    url: "due/updateDue.php",
+    data: formData,
+    type: "POST",
+    contentType: false, // Dont delete this (jQuery 1.6+)
+    processData: false, // Dont delete this
+    success: function (data) {
+      console.log(data);
+    },
+    //Other options
+  });
+}
