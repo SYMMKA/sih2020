@@ -15,10 +15,10 @@ while ($row = $stmt->fetchObject()) {
     $data["copyID"] = $row->copyID;
     $data["stud_ID"] = $row->stud_ID;
     $data["time"] = date('d/m/Y H:i', $row->time);
-    $data["returnTime"] = $row->returnTime;
-    $data["star"] = $row->star;
+    $data["returnTime"] = date('d/m/Y H:i', $row->returnTime);
+    //$data["star"] = $row->star;
     $data["fine"] = $row->fine;
-    $data["due"] = $row->due;
+    //$data["due"] = $row->due;
     $result[] = $data;
 }
 // Encoding array in JSON format

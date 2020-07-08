@@ -3,28 +3,13 @@
 include("../session.php");
 include("../db.php");
 
-if ($_POST['query'])
-    $query = $_POST['query'];
+if ($_POST['id'])
+    $id = $_POST['id'];
 else
-    $query = '';
+    $id = '';
+$query = "UPDATE `issued` SET `due`=0 WHERE `id`='$id'";
+//echo $query;
 $stmt = $conn->prepare($query);
 $stmt->execute();
-while ($row = $stmt->fetchObject()) {
-    $data["id"] = $row->id;
-    $data["copyID"] = $row->copyID;
-    $data["adminID"] = $row->adminID;
-    $data["studentID"] = $row->studentID;
-    $data["action"] = $row->action;
-    $data["time"] = date('d/m/Y H:i', $row->time);
-    $data["bookID"] = $row->bookID;
-    $data["oldID"] = $row->oldID;
-    $result[] = $data;
-}
-// Encoding array in JSON format
-if (!isset($result))
-    echo FALSE;
-else
-    echo json_encode($result);
-
 $conn = null;
 exit;
