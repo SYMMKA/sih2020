@@ -56,9 +56,9 @@ include("db.php");
 					</h4>
 				</div>
 
-				<form class="row search-form mb-2 align-self-center justify-content-center" method="post" novalidate>
+				<form id="search_form" class="row search-form mb-2 align-self-center justify-content-center" method="post" action="manageBooks.php" novalidate>
 					<div class="col-sm-6 search-box mb-2">
-						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" />
+						<input class="form-control ml-sm-4" type="search" name="search" id="search" placeholder="Search" aria-label="Search" />
 					</div>
 					<div class="col-sm-6 col-md-2">
 						<button class="btn btn-info btn-block ml-sm-2" type="submit">
@@ -332,10 +332,8 @@ include("db.php");
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
 		echo "<script>
-				const searchForm = document.querySelector('.search-form');
-				const searchFormInput = document.querySelector('.search-box');
-				const input = searchFormInput.querySelector('input');
-				input.value = '" . $searchq . "'
+				document.getElementById('search').value = '" . $searchq . "';
+				document.getElementById('search_form').submit();
 			</script>";
 	}
 	?>

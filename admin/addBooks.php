@@ -55,9 +55,9 @@ include('session.php');
 					<h4>Find books and material to add to your library</h4>
 				</div>
 
-				<form id="search_form" novalidate class="row search-form mb-2 align-self-center justify-content-center" method="post" action="addBooks.php">
+				<form id="search_form" class="row search-form mb-2 align-self-center justify-content-center" method="post" action="addBooks.php" novalidate>
 					<div class="col-sm-6 search-box mb-2">
-						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" title="Required Field" required />
+						<input class="form-control ml-sm-4" type="search" name="search" id="search" placeholder="Search" aria-label="Search" title="Required Field" required />
 						<div class="invalid-feedback">
 							Required Field
 						</div>
@@ -400,10 +400,8 @@ include('session.php');
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
 		echo "<script>
-				const searchForm = document.querySelector('.search-form');
-				const searchFormInput = document.querySelector('.search-box');
-				const input = searchFormInput.querySelector('input');
-				input.value = '" . $searchq . "'
+				document.getElementById('search').value = '" . $searchq . "';
+				document.getElementById('search_form').submit();
 			</script>";
 	}
 	?>

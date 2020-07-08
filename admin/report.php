@@ -11,6 +11,7 @@ include('session.php');
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
   <!-- <script
       src="https://kit.fontawesome.com/97f3c2998d.js"
@@ -51,7 +52,7 @@ include('session.php');
         <div class="col-md-12 col-lg-6 align-self-center">
           <h1 class="display-2 mb-4">GENERATE <br />LIBRARY <br />REPORT</h1>
           <div class="row">
-            <button type="button" class="btn btn-info col-7 ml-4 mr-4" data-toggle="modal" data-target=".bd-example-modal-xl">
+            <button type="button" class="btn btn-info col-7 ml-4 mr-4" onclick="loadBookID()" data-toggle="modal" data-target=".bd-example-modal-xl">
               Generate Now
             </button>
           </div>
@@ -59,13 +60,6 @@ include('session.php');
         <div class="col-lg-6 align-self-center d-none d-md-block">
           <img src="https://static-2.gumroad.com/res/gumroad/1211634803146/asset_previews/06c502fdd9bffc8b179bc6f9f46b79dd/retina/drawkit-charts-and-graphs-thumbnail.png" alt="" srcset="" style="width: 100%; height: 35rem;" />
         </div>
-      </div>
-      <div class="col-12 align-self-end text-center pb-5">
-        <button type="button" class="btn btn-outline-dark pl-5 pr-5" hidden>
-          <span>
-            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-          </span>
-        </button>
       </div>
     </div>
   </section>
@@ -88,14 +82,15 @@ include('session.php');
                     <label for="" class="col-sm-1 col-form-label">User</label>
                     <div class="col-sm-4">
                       <select class="custom-select" onchange="changeAccess()">
-                        <!-- <option selected id="all" value="all">All</option> -->
+                        <option selected id="all" value="all">All</option>
                         <option id="admin" value="admin">Admin</option>
                         <option id="student" value="student">Student</option>
                       </select>
                     </div>
                     <div class="form-group row mt-5 justify-content-center">
                       <label for="bookID" class="col-sm-1 col-form-label">Book ID</label>
-                      <input name="bookID" id="bookID"></input>
+                      <select class="selectpicker" data-live-search="true" title="Select Book" name="bookID" id="bookID" >
+						</select>
                     </div>
                   </div>
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-3 justify-content-center">
@@ -138,15 +133,7 @@ include('session.php');
                           Update
                         </label>
                       </div>
-                    </div>
-                    <div class="col mb-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                        <label class="form-check-label" for="defaultCheck1">
-                          Default checkbox
-                        </label>
-                      </div>
-                    </div>
+					</div>
                   </div>
                   <div class="text-center">
                     <button type="button" id="report" onclick="generateReport()" class="btn btn-info" data-dismiss="modal">
@@ -168,12 +155,13 @@ include('session.php');
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="jsPDF-master/dist/jspdf.min.js"></script>
   <script src="jsPDF-AutoTable-master/dist/jspdf.plugin.autotable.min.js"></script>
-  <script src="report/report.js"></script>
   <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-  <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
   <script src="./assets/js/common.js"></script>
+  <script src="report/report.js"></script>
 </body>
 
 </html>

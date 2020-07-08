@@ -21,37 +21,6 @@ function changeAccess() {
 	}
 }
 
-/* function generateReport() {
-  action = "";
-  bookID = "";
-  user = "";
-  if (document.getElementById("checkAdd").checked == true) {
-    action = " add";
-  }
-  if (document.getElementById("checkIssue").checked == true) {
-    action = action + " issue";
-  }
-  if (document.getElementById("checkReturn").checked == true) {
-    action = action + " return";
-  }
-  if (document.getElementById("checkDelete").checked == true) {
-    action = action + " delete";
-  }
-  if (document.getElementById("checkUpdate").checked == true) {
-    action = action + " update";
-  }
-  if (document.getElementById("bookID").value == null) {
-  } else {
-    bookID = document.getElementById("bookID").value;
-  }
-  if (document.getElementById("student").selected == true) {
-    user = "student";
-  }
-  if (document.getElementById("admin").selected == true) {
-    user = "admin";
-  }
-  generateQuery();
-} */
 function generateReport() {
 	var add = 0;
 	var issue = 0;
@@ -168,4 +137,22 @@ function downloadPdf() {
 	const doc = new jsPDF();
 	doc.autoTable({ html: "#reportTable" });
 	doc.save("report.pdf");
+}
+
+function loadBookID(){
+	var bookIDoption = document.getElementById("bookID");
+	$.ajax({
+		type: "POST",
+		url: "report/bookID.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			var data = JSON.parse(data);
+			for (var key in data) {
+				bookIDoption.options[key] = new Option(key + " - " + data[key], key);
+			}
+			$('.selectpicker').selectpicker('refresh');
+		}
+		//Other options
+	});
 }
