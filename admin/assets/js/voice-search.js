@@ -94,15 +94,56 @@ if (SpeechRecognition) {
     console.log(transcript);
     var array = transcript.split(" ");
     console.log(array);
+    // var x;
+    // var y;
+    // switch (array.indexOf(x) >= 0) {
+    //   case "search":
+    //     var a = array.indexOf("search");
+    //     var n = array.lastIndexOf("in");
+    //     var last = array.slice(n + 1, transcript.length).join(" ");
+    //     var search = array.slice(a + 1, n).join(" ");
+    //     switch (last.indexOf(y) >= 0) {
+    //       case "add":
+    //         window.location.href = "addBooks.php?q=" + search + "";
+    //         break;
+    //       case "manage":
+    //         window.location.href = "manageBooks.php?q=" + search + "";
+    //         break;
+    //     }
+    //     break;
+    //   case "home":
+    //     window.location.href = "home.php";
+    //     break;
+    //   case "add":
+    //     window.location.href = "addBooks.php";
+    //     break;
+    //   case "recommend":
+    //     window.location.href = "recom.php";
+    //     break;
+    //   case "shelf":
+    //     window.location.href = "shelf.php";
+    //     break;
+    //   case "manage":
+    //     window.location.href = "manageBooks.php";
+    //     break;
+    //   case "report":
+    //     window.location.href = "report.php";
+    //     break;
+    //   case "due":
+    //     window.location.href = "due.php";
+    //     break;
+    // }
     var a = array.indexOf("search");
     if (a >= 0) {
-	  var last = array.slice(n + 1, transcript.length).join(" ");
+      var last = array.slice(n + 1, transcript.length).join(" ");
       var n = array.lastIndexOf("in");
       var search = array.slice(a + 1, n).join(" ");
       console.log(search);
-      if (last.indexOf("add") >= 0){
-         window.location.href = "addBooks.php?q=" + search + "";
-      }     
+      if (last.indexOf("add") >= 0) {
+        window.location.href = "addBooks.php?q=" + search + "";
+      } else if (last.indexOf("manage") >= 0) {
+        window.location.href = "manageBooks.php?q=" + search + "";
+      }
     } else if (transcript.indexOf("home") >= 0) {
       window.location.href = "home.php";
     } else if (transcript.indexOf("add") >= 0) {
@@ -113,6 +154,10 @@ if (SpeechRecognition) {
       window.location.href = "report.html";
     } else if (transcript.indexOf("shelf") >= 0) {
       window.location.href = "shelf.php";
+    } else if (transcript.indexOf("due") >= 0) {
+      window.location.href = "due.php";
+    } else if (transcript.indexOf("manage") >= 0) {
+      window.location.href = "manageBooks.php";
     } else {
       console.log("voice recog failed");
     }

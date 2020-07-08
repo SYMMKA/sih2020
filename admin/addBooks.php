@@ -80,13 +80,6 @@ include('session.php');
 	</section>
 	<section class="container" id="searchResults">
 		<?php
-		if (isset($_GET['q'])) {
-			$search = $_GET['q'];
-			echo "<script>
-				document.querySelector('input').value = '" . $search . "'
-				document.getElementById('search_form').submit();
-			</script>";
-		}
 
 		$search = '';
 		if (isset($_POST['search']))
@@ -229,13 +222,13 @@ include('session.php');
 						<legend class="col-form-label col-sm-2 pt-0">Digital/Physical</legend>
 						<div class="col-sm-4" id="physical_digital">
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="physical_digital" id="physical" value="physical" checked  />
+								<input class="form-check-input" type="radio" name="physical_digital" id="physical" value="physical" checked />
 								<label class="form-check-label" for="physical">
 									Physical
 								</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="physical_digital" id="digital" value="digital"/>
+								<input class="form-check-input" type="radio" name="physical_digital" id="digital" value="digital" />
 								<label class="form-check-label" for="digital">
 									Digital
 								</label>
@@ -243,7 +236,7 @@ include('session.php');
 						</div>
 					</div>
 				</fieldset>
-						
+
 				<div class="row justify-content-center mb-4">
 					<div class="col-md-8">
 						<div class="form-group row">
@@ -381,7 +374,7 @@ include('session.php');
 						<div class="form-group row" id="mediaGroup" hidden>
 							<label for="" class="col-sm-2 col-form-label">Upload File</label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control-file" id="mediaFile"/>
+								<input type="file" class="form-control-file" id="mediaFile" />
 								<div class="invalid-feedback">
 									Import File
 								</div>
@@ -402,7 +395,18 @@ include('session.php');
 	</section>
 
 	<!-- variables declared without var are global
-          I removed var because of warnings-->
+		  I removed var because of warnings-->
+	<?php
+	if (isset($_GET['q'])) {
+		$searchq = $_GET['q'];
+		echo "<script>
+				const searchForm = document.querySelector('.search-form');
+				const searchFormInput = document.querySelector('.search-box');
+				const input = searchFormInput.querySelector('input');
+				input.value = '" . $searchq . "'
+			</script>";
+	}
+	?>
 	<script>
 		title = <?php echo json_encode($title); ?>;
 		author = <?php echo json_encode($author); ?>;
@@ -415,7 +419,6 @@ include('session.php');
 		imgLink = <?php echo json_encode($imgLink); ?>;
 		preview = <?php echo json_encode($preview); ?>;
 	</script>
-
 	<script src="catName.js"></script>
 	<script src="addBook/autoFill.js"></script>
 	<script src="addBook/mediaType.js"></script>

@@ -145,15 +145,15 @@ include("db.php");
 										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
 											Info
 										</button>
-									<?php if($digital[$i]) {?>
-										<a type="button" class="btn btn-info btn-block btn-sm" name="download" href="<?= $digitalLink[$i]; ?>" download>
-											Download
-										</a>
-									<?php } else {?>
-										<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
-											Issue/Return Delete
-										</button>
-									<?php } ?>
+										<?php if ($digital[$i]) { ?>
+											<a type="button" class="btn btn-info btn-block btn-sm" name="download" href="<?= $digitalLink[$i]; ?>" download>
+												Download
+											</a>
+										<?php } else { ?>
+											<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
+												Issue/Return Delete
+											</button>
+										<?php } ?>
 										<button type="button" class="btn btn-info btn-block btn-sm" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBookForm">
 											Update
 										</button>
@@ -305,7 +305,7 @@ include("db.php");
 								<div class="form-group row" id="mediaGroup">
 									<label for="updateimageFile" class="col-sm-2 col-form-label">Change File</label>
 									<div class="col-sm-10">
-										<input type="file" class="form-control-file" id="mediaFile"/>
+										<input type="file" class="form-control-file" id="mediaFile" />
 									</div>
 								</div>
 								<div class="row text-center">
@@ -328,6 +328,17 @@ include("db.php");
 		</div>
 	</div>
 
+	<?php
+	if (isset($_GET['q'])) {
+		$searchq = $_GET['q'];
+		echo "<script>
+				const searchForm = document.querySelector('.search-form');
+				const searchFormInput = document.querySelector('.search-box');
+				const input = searchFormInput.querySelector('input');
+				input.value = '" . $searchq . "'
+			</script>";
+	}
+	?>
 	<script src="catName.js"></script>
 	<script>
 		title = <?php echo json_encode($title); ?>;
