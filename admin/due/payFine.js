@@ -5,8 +5,9 @@ $.ajax({
   contentType: false, // Dont delete this (jQuery 1.6+)
   processData: false, // Dont delete this
   success: function (data) {
+	if(data){
     data = JSON.parse(data);
-    console.log(data);
+	console.log(data);
     var html = `<div class="table-responsive"><table id="issuedTable" class="table table-bordered table-hover">
     <caption>Click pay when payment is recieved</caption>
     <thead>
@@ -62,7 +63,10 @@ $.ajax({
         </tr>`;
     });
     html += `</tbody>
-    </table></div>`;
+	</table></div>`;
+  } else {
+	  var html = "All payments cleared"
+  }
     document.getElementById("tableData").innerHTML = html;
   },
   //Other options
