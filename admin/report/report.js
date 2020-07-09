@@ -3,6 +3,12 @@ var bookID = "";
 var user = "";
 var html = "";
 function changeAccess() {
+	document.getElementById("adminIDGroup").hidden = false;
+	document.getElementById("studentIDGroup").hidden = false;
+	document.getElementById("checkAdd").disabled = false;
+	document.getElementById("checkDelete").disabled = false;
+	document.getElementById("checkUpdate").disabled = false;
+
 	if (document.getElementById("student").selected == true) {
 		document.getElementById("checkAdd").checked = false;
 		document.getElementById("checkDelete").checked = false;
@@ -10,14 +16,11 @@ function changeAccess() {
 		document.getElementById("checkAdd").disabled = true;
 		document.getElementById("checkDelete").disabled = true;
 		document.getElementById("checkUpdate").disabled = true;
+		document.getElementById("adminIDGroup").hidden = true;
+
 	}
-	if (
-		document.getElementById("admin").selected == true ||
-		document.getElementById("all").selected == true
-	) {
-		document.getElementById("checkAdd").disabled = false;
-		document.getElementById("checkDelete").disabled = false;
-		document.getElementById("checkUpdate").disabled = false;
+	if (document.getElementById("admin").selected == true) {
+		document.getElementById("studentIDGroup").hidden = true;
 	}
 }
 
@@ -28,8 +31,8 @@ function generateReport() {
 	var bookdelete = 0;
 	var update = 0;
 	var bookID = "";
-	var student = 0;
-	var admin = 0;
+	var studentID = "";
+	var adminID = "";
 	if (document.getElementById("checkAdd").checked == true) {
 		add = 1;
 	}
@@ -50,10 +53,16 @@ function generateReport() {
 		bookID = document.getElementById("bookID").value;
 	}
 	if (document.getElementById("student").selected == true) {
-		student = 1;
+		studentID = document.getElementById("studentID").value;
+		if (studentID == '')
+			studentID = 'show';
 	}
 	if (document.getElementById("admin").selected == true) {
-		admin = 1;
+		adminID = document.getElementById("adminID").value;
+	}
+	if (document.getElementById("all").selected == true) {
+		studentID = document.getElementById("studentID").value;
+		adminID = document.getElementById("adminID").value;
 	}
 	console.log("add - " + add);
 	console.log("issue - " + issue);
@@ -61,8 +70,8 @@ function generateReport() {
 	console.log("bookdelete - " + bookdelete);
 	console.log("update - " + update);
 	console.log("bookID - " + bookID);
-	console.log("student - " + student);
-	console.log("admin - " + admin);
+	console.log("student - " + studentID);
+	console.log("admin - " + adminID);
 
 	var formData = new FormData();
 	formData.append("add", add);
@@ -71,8 +80,8 @@ function generateReport() {
 	formData.append("bookdelete", bookdelete);
 	formData.append("update", update);
 	formData.append("bookID", bookID);
-	formData.append("student", student);
-	formData.append("admin", admin);
+	formData.append("studentID", studentID);
+	formData.append("adminID", adminID);
 	$.ajax({
 		type: "POST",
 		url: "report/generateReport.php",
@@ -80,7 +89,6 @@ function generateReport() {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
-			console.log(data);
 			if (data) {
 				html = `
 			<div class="table-responsive">
@@ -99,14 +107,17 @@ function generateReport() {
 					<tbody>`;
 				var table = JSON.parse(data);
 				console.log(table);
-				var count = Object.keys(table).length;
 				table.forEach(function (item, index) {
 					html +=
 						`<tr> 
 							<th  scope="row">` + item.bookID + `</th>
 							<td>` + item.copyID + `</td>
-							<td>` + item.adminID + `</td>
-							<td>` + item.studentID + `</td>
+							<td>` + item.adminID + `</td>`;
+					if (item.studentID)
+						html += `<td>` + item.studentID + `</td>`;
+					else
+						html += `<td> --- </td>`;
+					html += `
 							<td>` + item.action + `</td>
 							<td>` + item.time + `</td>
 							<td>` + item.oldID + `</td>
@@ -118,14 +129,14 @@ function generateReport() {
 				</table>
 			</div>
 			<div>
-				<button type="button" id="downloadPdf" class="btn btn-bot btn-info col-3 ml-4 mr-4" onclick="downloadPdf()">
+				<button type="button" id="downloadPdf" class="btn btn-info float-left m-2" onclick="downloadPdf()">
 					DownLoad PDF
 				</button>
 			</div> `;
-				document.getElementById("pdfView").innerHTML = html;
-
-				/* document.getElementById("pdfView").innerHTML = `<iframe src="report/report.pdf" width="100%" height="500px">`; */
+			} else {
+				html = '';
 			}
+			document.getElementById("reportDIV").innerHTML = html;
 		},
 		//Other options
 	});
@@ -134,12 +145,17 @@ function generateReport() {
 function downloadPdf() {
 	// It can parse html:
 	// <table id="my-table"><!-- ... --></table>
+	var today = new Date();
+	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+	var dateTime = date+'--'+time;
+	console.log(dateTime);
 	const doc = new jsPDF();
 	doc.autoTable({ html: "#reportTable" });
-	doc.save("report.pdf");
+	doc.save(dateTime+".pdf");
 }
 
-function loadBookID(){
+function loadBookID() {
 	var bookIDoption = document.getElementById("bookID");
 	$.ajax({
 		type: "POST",
@@ -155,4 +171,46 @@ function loadBookID(){
 		}
 		//Other options
 	});
+}
+
+function loadStudentID() {
+	var studentIDoption = document.getElementById("studentID");
+	$.ajax({
+		type: "POST",
+		url: "report/studentID.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			var data = JSON.parse(data);
+			for (var key in data) {
+				studentIDoption.options[parseInt(key) + 1] = new Option(data[key], data[key]);
+			}
+			$('.selectpicker').selectpicker('refresh');
+		}
+		//Other options
+	});
+}
+
+function loadAdminID() {
+	var adminIDoption = document.getElementById("adminID");
+	$.ajax({
+		type: "POST",
+		url: "report/adminID.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			var data = JSON.parse(data);
+			for (var key in data) {
+				adminIDoption.options[parseInt(key) + 1] = new Option(data[key], data[key]);
+			}
+			$('.selectpicker').selectpicker('refresh');
+		}
+		//Other options
+	});
+}
+
+function loadDropDowns() {
+	loadBookID();
+	loadStudentID();
+	loadAdminID();
 }

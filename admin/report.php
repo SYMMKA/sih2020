@@ -52,7 +52,7 @@ include('session.php');
         <div class="col-md-12 col-lg-6 align-self-center">
           <h1 class="display-2 mb-4">GENERATE <br />LIBRARY <br />REPORT</h1>
           <div class="row">
-            <button type="button" class="btn btn-info col-7 ml-4 mr-4" onclick="loadBookID()" data-toggle="modal" data-target=".bd-example-modal-xl">
+            <button type="button" class="btn btn-info col-7 ml-4 mr-4" onclick="loadDropDowns()" data-toggle="modal" data-target=".bd-example-modal-xl">
               Generate Now
             </button>
           </div>
@@ -88,8 +88,8 @@ include('session.php');
                   <div class="row justify-content-center mb-4">
                     <div class="col-sm-6">
                       <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label">User</label>
-                        <div class="col-sm-10">
+                        <label for="" class="col-sm-3 col-form-label">User</label>
+                        <div class="col-sm-9">
                           <select class="custom-select" onchange="changeAccess()">
                             <option selected id="all" value="all">All</option>
                             <option id="admin" value="admin">Admin</option>
@@ -101,39 +101,46 @@ include('session.php');
                     <div class="col-sm-6">
                       <div class="container">
                         <div class="form-group row">
-                          <label for="bookID" class="col-sm-2 col-form-label">Book ID</label>
-                          <div class="col-sm-10">
-                            <select class="selectpicker w-100" data-live-search="true" title="Select Book" name="bookID" id="bookID">
+                          <label for="bookID" class="col-sm-3 col-form-label">Book ID</label>
+                          <div class="col-sm-9">
+                            <select class="selectpicker w-100" data-live-search="true" name="bookID" id="bookID">
+                              <option value=''>All</option>
                             </select>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
-
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 mb-3">
+                  <div class="row justify-content-center mb-4">
+                    <div class="col-sm-6" name="adminIDGroup" id="adminIDGroup">
+                      <div class="form-group row">
+                        <label for="adminID" class="col-sm-3 col-form-label">Admin ID</label>
+                        <div class="col-sm-9">
+                          <select class="selectpicker w-100" name="adminID" id="adminID" data-live-search="true">
+                            <option value=''>All</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6" name="studentIDGroup" id="studentIDGroup">
+                      <div class="container">
+                        <div class="form-group row">
+                          <label for="studentID" class="col-sm-3 col-form-label">Student ID</label>
+                          <div class="col-sm-9">
+                            <select class="selectpicker w-100" name="studentID" id="studentID" data-live-search="true">
+                              <option value=''>All</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 mb-3 text-center">
                     <div class="col mb-4">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="add" id="checkAdd" />
                         <label class="form-check-label" for="checkAdd">
                           Add
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col mb-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="issue" id="checkIssue" />
-                        <label class="form-check-label" for="checkIssue">
-                          Issue
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col mb-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="return" id="checkReturn" />
-                        <label class="form-check-label" for="checkReturn">
-                          Return
                         </label>
                       </div>
                     </div>
@@ -153,7 +160,24 @@ include('session.php');
                         </label>
                       </div>
                     </div>
+                    <div class="col mb-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="issue" id="checkIssue" />
+                        <label class="form-check-label" for="checkIssue">
+                          Issue
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col mb-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="return" id="checkReturn" />
+                        <label class="form-check-label" for="checkReturn">
+                          Return
+                        </label>
+                      </div>
+                    </div>
                   </div>
+
                   <div class="text-center">
                     <button type="button" id="report" onclick="generateReport()" class="btn btn-info" data-dismiss="modal">
                       Generate Report
@@ -167,8 +191,11 @@ include('session.php');
       </div>
     </div>
   </div>
-  <section class="container landing-section" id="scrollhere">
-    <div id="pdfView"></div>
+  <section>
+    <div class="container">
+       <div id="reportDIV"></div>
+    </div>
+   
   </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
