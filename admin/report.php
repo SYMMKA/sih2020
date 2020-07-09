@@ -61,6 +61,13 @@ include('session.php');
           <img src="https://static-2.gumroad.com/res/gumroad/1211634803146/asset_previews/06c502fdd9bffc8b179bc6f9f46b79dd/retina/drawkit-charts-and-graphs-thumbnail.png" alt="" srcset="" style="width: 100%; height: 35rem;" />
         </div>
       </div>
+      <div class="col-12 align-self-end text-center pb-5">
+        <button type="button" class="btn btn-outline-dark pl-5 pr-5" hidden>
+          <span>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
     </div>
   </section>
   <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -78,22 +85,34 @@ include('session.php');
               <div class="col-12">
                 <h1 class="text-center mt-3 mb-5">Choose Details</h1>
                 <form>
-                  <div class="form-group row mb-5 justify-content-center">
-                    <label for="" class="col-sm-1 col-form-label">User</label>
-                    <div class="col-sm-4">
-                      <select class="custom-select" onchange="changeAccess()">
-                        <option selected id="all" value="all">All</option>
-                        <option id="admin" value="admin">Admin</option>
-                        <option id="student" value="student">Student</option>
-                      </select>
+                  <div class="row justify-content-center mb-4">
+                    <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label">User</label>
+                        <div class="col-sm-10">
+                          <select class="custom-select" onchange="changeAccess()">
+                            <option selected id="all" value="all">All</option>
+                            <option id="admin" value="admin">Admin</option>
+                            <option id="student" value="student">Student</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group row mt-5 justify-content-center">
-                      <label for="bookID" class="col-sm-1 col-form-label">Book ID</label>
-                      <select class="selectpicker" data-live-search="true" title="Select Book" name="bookID" id="bookID" >
-						</select>
+                    <div class="col-sm-6">
+                      <div class="container">
+                        <div class="form-group row">
+                          <label for="bookID" class="col-sm-2 col-form-label">Book ID</label>
+                          <div class="col-sm-10">
+                            <select class="selectpicker w-100" data-live-search="true" title="Select Book" name="bookID" id="bookID">
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-3 justify-content-center">
+
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 mb-3">
                     <div class="col mb-4">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="add" id="checkAdd" />
@@ -133,7 +152,7 @@ include('session.php');
                           Update
                         </label>
                       </div>
-					</div>
+                    </div>
                   </div>
                   <div class="text-center">
                     <button type="button" id="report" onclick="generateReport()" class="btn btn-info" data-dismiss="modal">
