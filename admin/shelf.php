@@ -66,8 +66,11 @@ include("db.php");
 						<input class="form-control ml-sm-4" type="search" name="search" id="search" placeholder="Search" aria-label="Search" />
 					</div>
 					<div class="col-sm-6 col-md-2">
-						<button class="btn btn-info btn-block ml-sm-2" type="submit">
+						<button class="btn btn-info ml-sm-2" type="submit">
 							Search
+						</button>
+						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">
+							<i class="fa fa-plus" aria-hidden="true"></i>
 						</button>
 					</div>
 				</form>
@@ -149,37 +152,40 @@ include("db.php");
 	<?php
 	}
 	?>
-	<section>
-		<div class="container mb-5 mt-5 pt-5 pb-5">
-			<h1 class="text-center mb-5">Add a new shelf</h1>
-			<form id="addShelf" novalidate>
-				<div class="row justify-content-center mb-4">
-					<div class="form-group row col-sm-6">
-						<label for="shelfnamme" class="col-sm-2 col-form-label text-center">Name</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="shelfName" name="shelfName" placeholder="Name of the shelf" required />
-							<div class="invalid-feedback">
-								Required Field
-							</div>
-						</div>
-					</div>
-					<div class="row mb-4">
-						<div class="col-sm-6 text-right">
-							<button type="submit" class="btn btn-info">ADD</button>
-						</div>
-						<div class="col-sm-6 text-left">
-							<button type="reset" class="btn btn-info">CLEAR</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</section>
-
 	<!-- Shelf Modal-->
 	<div name="shelf" id="shelf" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" id="displayShelfCopies" style="max-height:100vh !important; max-width:90vw !important;" />
+		<div class="modal-content">
+			<form id="addShelf" novalidate>
+				<div class="modal-header">
+					<h5 class="modal-title">Add a new shelf</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
 
+						<div class="row justify-content-center">
+							<div class="form-group row col-sm-6">
+								<label for="shelfnamme" class="col-sm-2 col-form-label text-center">Name</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="shelfName" name="shelfName" placeholder="Name of the shelf" required />
+									<div class="invalid-feedback">
+										Required Field
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-info">Add shelf</button>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<!-- Optional JavaScript -->

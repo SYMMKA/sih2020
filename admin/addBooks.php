@@ -206,15 +206,16 @@ include('session.php');
 	<div class="modal fade bd-example-modal-xl" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document" style="max-height:100vh !important; max-width:90vw !important;">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Details</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" id="addForm">
-					<div class="container-fluid">
-						<form id="addBookForm" novalidate>
+				<form id="addBookForm" novalidate>
+					<div class="modal-header">
+						<h5 class="modal-title">Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="addForm">
+						<div class="container-fluid">
+
 							<fieldset class="form-group">
 								<div class="row">
 									<legend class="col-form-label col-sm-2 pt-0">Books/Audio</legend>
@@ -394,13 +395,14 @@ include('session.php');
 									</div>
 								</div>
 							</div>
-						</form>
+
+						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" value="Add Book" name="addBook" class="btn btn-info">Add Book</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" value="Add Book" name="addBook" class="btn btn-info">Add Book</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
