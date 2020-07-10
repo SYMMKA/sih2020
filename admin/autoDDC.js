@@ -1,7 +1,11 @@
 // To select category
 
 window.onload = function () {
-	loadCategory();
+	var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
+	var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
+	var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
+	var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
+	loadCategory(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 	//ddc
 	var ddcNO = document.getElementById('ddcNO');
 
@@ -59,7 +63,7 @@ function fillDDC(ddc) {
 		document.getElementById("mainCategorySelect2").disabled = false;
 		document.getElementById("mainCategorySelect3").disabled = false;
 		document.getElementById("mainCategorySelect4").disabled = false;
-		c1();
+		c1(mainCategorySelect1, mainCategorySelect2);
 	}
 
 	var d2 = Math.floor((ddc % 100) / 10);
@@ -74,7 +78,7 @@ function fillDDC(ddc) {
 	} else {
 		document.getElementById("mainCategorySelect3").disabled = false;
 		document.getElementById("mainCategorySelect4").disabled = false;
-		c2();
+		c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
 	}
 
 	var d3 = Math.floor(ddc % 10);
@@ -86,7 +90,7 @@ function fillDDC(ddc) {
 		return
 	} else {
 		document.getElementById("mainCategorySelect4").disabled = false;
-		c3();
+		c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 	}
 
 	var d4 = Math.floor(((ddc % 1) / .1) + 0.5);

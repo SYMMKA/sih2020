@@ -20,21 +20,21 @@ function updateBook(e) {
 	var pageCount = getInputVal('updatepageCount');
 	var mediaFile = $('#mediaFile')[0].files[0]; //digital
 
-	var mainCategory1 = '';
-	var mainCategory2 = '';
-	var mainCategory3 = '';
-	var mainCategory4 = '';
-	console.log(getInputVal('catDisplay'));
+	var updateCategory1 = '';
+	var updateCategory2 = '';
+	var updateCategory3 = '';
+	var updateCategory4 = '';
 	if (getInputVal('catDisplay') == "true") {
-		if (mainCategorySelect1.value)
-			mainCategory1 = mainCategorySelect1.options[mainCategorySelect1.selectedIndex].text
-		if (mainCategorySelect2.value)
-			mainCategory2 = mainCategorySelect2.options[mainCategorySelect2.selectedIndex].text
-		if (mainCategorySelect3.value)
-			mainCategory3 = mainCategorySelect3.options[mainCategorySelect3.selectedIndex].text
-		if (mainCategorySelect4.value)
-			mainCategory4 = mainCategorySelect4.options[mainCategorySelect4.selectedIndex].text
+		if (updateCategorySelect1.value)
+			updateCategory1 = updateCategorySelect1.options[updateCategorySelect1.selectedIndex].text
+		if (updateCategorySelect2.value)
+			updateCategory2 = updateCategorySelect2.options[updateCategorySelect2.selectedIndex].text
+		if (updateCategorySelect3.value)
+			updateCategory3 = updateCategorySelect3.options[updateCategorySelect3.selectedIndex].text
+		if (updateCategorySelect4.value)
+			updateCategory4 = updateCategorySelect4.options[updateCategorySelect4.selectedIndex].text
 	}
+	//console.log(updateCategory4);
 
 	var formData = new FormData();
 	formData.append('bookID', bookID);

@@ -83,7 +83,43 @@ include("db.php");
 		$search = "%$search%";
 	?>
 		<section class="container">
-			<h1 class="text-center p-5">Your Shelves</h1>
+			<h1 class="text-center p-5">Your Books</h1>
+			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6">
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect1" id="mainCategorySelect1">
+						<option value="">-- Category 1--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect2" id="mainCategorySelect2">
+						<option value="">-- Category 2--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect3" id="mainCategorySelect3">
+						<option value="">-- Category 3--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect4" id="mainCategorySelect4">
+						<option value="">-- Category 4--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" name="book_audio" id="book_audio">
+						<option value="">All</option>
+						<option value="1">Book</option>
+						<option value="0">Audio</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" name="dig_phy" id="dig_phy">
+						<option value="">All</option>
+						<option value="0">Physical</option>
+						<option value="1">Digital</option>
+					</select>
+				</div>
+			</div>
 			<div class="row row-cols-1 row-cols-md-4">
 				<?php
 				$sql = "SELECT * FROM main Where title LIKE :search";
@@ -93,17 +129,26 @@ include("db.php");
 
 				$sql1 = "SELECT AVG(star) AS `STAR` FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = :bookID";
 				$stmt1 = $conn->prepare($sql1);
-				$i = 0;
 
+				$i = 0;
 				while ($row = $stmt->fetchObject()) {
-					$imgLink[$i] = $row->imgLink;
-					$title[$i] = $row->title;
-					$isbn[$i] = $row->isbn;
-					$author[$i] = $row->author;
 					$bookID[$i] = $row->bookID;
+					$title[$i] = $row->title;
+					$author[$i] = $row->author;
+					$quantity[$i] = $row->quantity;
+					$Category1[$i] = $row->Category1;
+					$Category2[$i] = $row->Category2;
+					$Category3[$i] = $row->Category3;
+					$Category4[$i] = $row->Category4;
+					$publisher[$i] = $row->publisher;
+					$pages[$i] = $row->pages;
+					$price[$i] = $row->price;
+					$imgLink[$i] = $row->imgLink;
+					$date_of_publication[$i] = $row->date_of_publication;
+					$isbn[$i] = $row->isbn;
 					$digital[$i] = $row->digital;
-					$digitalLink[$i] = $row->digitalLink;
 					$book[$i] = $row->book;
+					$digitalLink[$i] = $row->digitalLink;
 
 					$stmt1->bindParam(':bookID', $bookID[$i]);
 					$stmt1->execute();
@@ -113,7 +158,7 @@ include("db.php");
 					<div class="col mb-4">
 						<div class="card h-100">
 							<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" style="height:20vw;" />
-							<div class=" card-body">
+							<div class="card-body">
 								<div class="row no-gutters">
 									<div class="col-4"><strong>Title:</strong></div>
 									<div class="col-8">
@@ -138,6 +183,12 @@ include("db.php");
 										<?= $star[$i] ?>
 									</div>
 								</div>
+								<input type="hidden" class="Category1" value="<?= $Category1[$i] ?>" />
+								<input type="hidden" class="Category2" value="<?= $Category2[$i] ?>" />
+								<input type="hidden" class="Category3" value="<?= $Category3[$i] ?>" />
+								<input type="hidden" class="Category4" value="<?= $Category4[$i] ?>" />
+								<input type="hidden" class="digital" value="<?= $digital[$i] ?>" />
+								<input type="hidden" class="book" value="<?= $book[$i] ?>" />
 							</div>
 							<div class="card-footer bg-white">
 								<div class="row justify-content-center">
@@ -159,7 +210,6 @@ include("db.php");
 										</button>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -249,7 +299,7 @@ include("db.php");
 								<div class="form-group row">
 									<label for="updateCategory" class="col-sm-2 col-form-label">Category</label>
 									<div class="col-sm-10">
-										<button type="button" class="btn btn-info" name="updateCategory" id="updateCategory" onclick="showCategory()">
+										<button type="button" class="btn btn-info" name="updateCategory" id="updateCategory" onclick="fillUpdateCat()">
 											click here
 										</button>
 									</div>
@@ -328,34 +378,6 @@ include("db.php");
 		</div>
 	</div>
 
-	<?php
-	if (isset($_GET['q'])) {
-		$searchq = $_GET['q'];
-		echo "<script>
-				document.getElementById('search').value = '" . $searchq . "';
-				document.getElementById('search_form').submit();
-			</script>";
-	}
-	?>
-	<script src="catName.js"></script>
-	<script>
-		title = <?php echo json_encode($title); ?>;
-		author = <?php echo json_encode($author); ?>;
-		isbn = <?php echo json_encode($isbn); ?>;
-		imgLink = <?php echo json_encode($imgLink); ?>;
-		bookID = <?php echo json_encode($bookID); ?>;
-		digital = <?php echo json_encode($digital); ?>;
-		book = <?php echo json_encode($book); ?>;
-	</script>
-	<script src="searchBook/autoFill.js"></script>
-	<script src="searchBook/issueBook/autoFill.js"></script>
-	<script src="searchBook/updateBook/autoFill.js"></script>
-	<script src="searchBook/deleteCopy/autoFill.js"></script>
-
-	<script src="searchBook/issueBook/uploadDB.js"></script>
-	<script src="searchBook/returnBook/uploadDB.js"></script>
-	<script src="searchBook/updateBook/uploadDB.js"></script>
-	<script src="searchBook/deleteCopy/uploadDB.js"></script>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -365,6 +387,53 @@ include("db.php");
 	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 	<script src="./assets/js/common.js"></script>
 	<script src="./assets/js/voice-search.js"></script>
+
+	<script>
+		title = <?php echo json_encode($title); ?>;
+		author = <?php echo json_encode($author); ?>;
+		isbn = <?php echo json_encode($isbn); ?>;
+		imgLink = <?php echo json_encode($imgLink); ?>;
+		bookID = <?php echo json_encode($bookID); ?>;
+		digital = <?php echo json_encode($digital); ?>;
+		book = <?php echo json_encode($book); ?>;
+	</script>
+	
+	<script src="catName.js"></script>
+	<script src="filter.js"></script>
+	<script src="searchBook/autoFill.js"></script>
+	<script src="searchBook/issueBook/autoFill.js"></script>
+	<script src="searchBook/updateBook/autoFill.js"></script>
+	<script src="searchBook/deleteCopy/autoFill.js"></script>
+	<script src="searchBook/issueBook/uploadDB.js"></script>
+	<script src="searchBook/returnBook/uploadDB.js"></script>
+	<script src="searchBook/updateBook/uploadDB.js"></script>
+	<script src="searchBook/deleteCopy/uploadDB.js"></script>
+
+
+	<script>
+		window.onload = function () {
+			var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
+			var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
+			var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
+			var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
+			loadCategory(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
+		}
+
+		function fillUpdateCat(){
+			showCategory();
+		}
+	</script>
+
+	<?php
+	if (isset($_GET['q'])) {
+		$searchq = $_GET['q'];
+		echo "<script>
+				document.getElementById('search').value = '" . $searchq . "';
+				document.getElementById('search_form').submit();
+			</script>";
+	}
+	?>
+	
 </body>
 
 </html>

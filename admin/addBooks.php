@@ -405,6 +405,16 @@ include('session.php');
 			</script>";
 	}
 	?>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+	<script src="./assets/js/common.js"></script>
+	<script src="./assets/js/voice-search.js"></script>
+	
 	<script>
 		title = <?php echo json_encode($title); ?>;
 		author = <?php echo json_encode($author); ?>;
@@ -417,20 +427,12 @@ include('session.php');
 		imgLink = <?php echo json_encode($imgLink); ?>;
 		preview = <?php echo json_encode($preview); ?>;
 	</script>
+	
 	<script src="catName.js"></script>
 	<script src="addBook/autoFill.js"></script>
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-	<script src="./assets/js/common.js"></script>
-	<script src="./assets/js/voice-search.js"></script>
 </body>
 
 </html>

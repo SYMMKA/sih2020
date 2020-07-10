@@ -79,7 +79,7 @@ if (isset($_POST['importSubmit'])) {
 						// Insert book in the database
 						$stmtMain->execute();
 
-						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', '', NULL, '', NULL, NULL)";
+						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', NULL, NULL, '', NULL, NULL)";
 						$stmtCopies = $conn->prepare($sqlCopies);
 						$stmtCopies->bindParam(':bookID', $bookID);
 						$stmtCopies->bindParam(':copyNO', $orgQuan);

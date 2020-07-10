@@ -1,104 +1,81 @@
 function showCategory() {
-	// <div class="field half" id="mainCat1">
-	//     <select size="1" name="mainCategorySelect1" id="mainCategorySelect1" class="mainCategorySelect1" required />
-	//     <option value="">-- Select Category--</option>
-	//                 </select>
-	//             </div >
-	//     <div class="field half" id="mainCat2">
-	//         <select size="1" name="mainCategorySelect2" id="mainCategorySelect2" class="mainCategorySelect2" required />
-	//         <option value="">-- Select Category--</option>
-	//                 </select>
-	//             </div >
-	//     <div class="field half" id="mainCat3">
-	//         <select size="1" name="mainCategorySelect3" id="mainCategorySelect3" class="mainCategorySelect3" required />
-	//         <option value="">-- Select Category--</option>
-	//                 </select>
-	//             </div >
-	//     <div class="field half" id="mainCat4">
-	//         <select size="1" name="mainCategorySelect4" id="mainCategorySelect4" class="mainCategorySelect4" required />
-	//         <option value="">-- Select Category--</option>
-	//                 </select>
-	//             </div >
-	//     <div class="field">
-	//         <button name="cancelCategory" id="cancelCategory" onclick="hideCategory()">Cancel</button>
-	//     </div>
 	var html = `
-                    <div class="row">
-                    <div class="col-12">
-                     <div id="mainCat1">
-                            <select
-                                class="custom-select mb-2"
-                               name="mainCategorySelect1" id="mainCategorySelect1" 
-                                aria-label="Example select with button addon"
-                                required
-                            >
-                                <option value="">-- Select Category--</option>
-                            </select>
-                        </div>
-                        
-                        <div id="mainCat2">
-                            <select
-                                class="custom-select mb-2"
-                               name="mainCategorySelect2" id="mainCategorySelect2" 
-                                aria-label="Example select with button addon"
-                                required
-                            >
-                                <option value="">-- Select Category--</option>
-                            </select>
-                        </div>
+		<div class="row">
+			<div class="col-12">
+				<div id="mainCat1">
+					<select
+						class="custom-select mb-2"
+						name="updateCategorySelect1" id="updateCategorySelect1" 
+						aria-label="Example select with button addon"
+						required
+					>
+						<option value="">-- Select Category--</option>
+					</select>
+				</div>
+				
+				<div id="mainCat2">
+					<select
+						class="custom-select mb-2"
+						name="updateCategorySelect2" id="updateCategorySelect2" 
+						aria-label="Example select with button addon"
+						required
+					>
+						<option value="">-- Select Category--</option>
+					</select>
+				</div>
 
-                            <div id="mainCat3">
-                            <select
-                                class="custom-select mb-2"
-                               name="mainCategorySelect3" id="mainCategorySelect3" 
-                                aria-label="Example select with button addon"
-                                required
-                            >
-                                <option value="">-- Select Category--</option>
-                            </select>
-                        </div>
+					<div id="mainCat3">
+					<select
+						class="custom-select mb-2"
+						name="updateCategorySelect3" id="updateCategorySelect3" 
+						aria-label="Example select with button addon"
+						required
+					>
+						<option value="">-- Select Category--</option>
+					</select>
+				</div>
 
-                        <div id="mainCat4">
-                            <select
-                                class="custom-select mb-2"
-                               name="mainCategorySelect4" id="mainCategorySelect4" 
-                                aria-label="Example select with button addon"
-                                required
-                            >
-                                <option value="">-- Select Category--</option>
-                            </select>
-                        </div>
+				<div id="mainCat4">
+					<select
+						class="custom-select mb-2"
+						name="updateCategorySelect4" id="updateCategorySelect4" 
+						aria-label="Example select with button addon"
+						required
+					>
+						<option value="">-- Select Category--</option>
+					</select>
+				</div>
 
-                      
-                            <button class="btn btn-info" name="cancelCategory" id="cancelCategory" onclick="hideCategory()">
-                                Cancel
-                            </button>
+				
+					<button class="btn btn-info" name="cancelCategory" id="cancelCategory" onclick="hideCategory()">
+						Cancel
+					</button>
 
-                    </div>
-                       
-                    </div>
+			</div>
+		</div>
                `;
 	document.getElementById("category").innerHTML = html;
 	document.getElementById("catDisplay").value = "true";
 	document.getElementById("category").hidden = false;
-	loadCategory();
+		
+	var updateCategorySelect1 = document.getElementById("updateCategorySelect1");
+	var updateCategorySelect2 = document.getElementById("updateCategorySelect2");
+	var updateCategorySelect3 = document.getElementById("updateCategorySelect3");
+	var updateCategorySelect4 = document.getElementById("updateCategorySelect4");
+	loadCategory(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
 }
 
 var DDCjson = "";
-function loadCategory() {
+function loadCategory(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
 	$.getJSON("category.json", function(json){
 		DDCjson = json;
-		console.log(DDCjson);
-		loadCategory1();
+		loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 	});
 }
 
-function loadCategory1() {
-	var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
-	var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
-	var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
-	var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
+function loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
 	//Load main categories
+	mainCategorySelect1.length = 1
 	for (var mainCategory = 0; mainCategory < DDCjson.length; mainCategory++) {
 		mainCategorySelect1.options[
 			mainCategorySelect1.options.length
@@ -116,15 +93,15 @@ function loadCategory1() {
 
 		if (!DDCjson[this.value].subordinates) {
 			// hides sub category if not available
-			document.getElementById("mainCategorySelect2").disabled = true;
-			document.getElementById("mainCategorySelect3").disabled = true;
-			document.getElementById("mainCategorySelect4").disabled = true;
+			mainCategorySelect2.disabled = true;
+			mainCategorySelect3.disabled = true;
+			mainCategorySelect4.disabled = true;
 		} else {
-			document.getElementById("mainCategorySelect2").disabled = false;
-			document.getElementById("mainCategorySelect3").disabled = false;
-			document.getElementById("mainCategorySelect4").disabled = false;
+			mainCategorySelect2.disabled = false;
+			mainCategorySelect3.disabled = false;
+			mainCategorySelect4.disabled = false;
 
-			c1();
+			c1(mainCategorySelect1, mainCategorySelect2);
 		}
 	};
 	//Main Category2 Changed
@@ -139,12 +116,12 @@ function loadCategory1() {
 			!DDCjson[mainCategorySelect1.value].subordinates[this.value].subordinates
 		) {
 			// hides sub category if not available
-			document.getElementById("mainCategorySelect3").disabled = true;
-			document.getElementById("mainCategorySelect4").disabled = true;
+			mainCategorySelect3.disabled = true;
+			mainCategorySelect4.disabled = true;
 		} else {
-			document.getElementById("mainCategorySelect3").disabled = false;
-			document.getElementById("mainCategorySelect4").disabled = false;
-			c2();
+			mainCategorySelect3.disabled = false;
+			mainCategorySelect4.disabled = false;
+			c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
 		}
 	};
 	//Main Category3 Changed
@@ -160,10 +137,10 @@ function loadCategory1() {
 				.subordinates[this.value].subordinates
 		) {
 			// hides sub category if not available
-			document.getElementById("mainCategorySelect4").disabled = true;
+			mainCategorySelect4.disabled = true;
 		} else {
-			document.getElementById("mainCategorySelect4").disabled = false;
-			c3();
+			mainCategorySelect4.disabled = false;
+			c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 		}
 	};
 
@@ -175,7 +152,7 @@ function hideCategory() {
 	document.getElementById("catDisplay").value = "false";
 }
 
-function c1() {
+function c1(mainCategorySelect1, mainCategorySelect2) {
 	for (
 		var mainCategory = 0;
 		mainCategory < DDCjson[mainCategorySelect1.value].subordinates.length;
@@ -196,7 +173,7 @@ function c1() {
 	}
 }
 
-function c2() {
+function c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3) {
 	for (
 		var mainCategory = 0;
 		mainCategory <
@@ -223,7 +200,7 @@ function c2() {
 	}
 }
 
-function c3() {
+function c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
 	for (
 		var mainCategory = 0;
 		mainCategory <
