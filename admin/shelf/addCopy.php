@@ -88,6 +88,42 @@ include("../db.php");
 	?>
 		<section class="container">
 			<h1 class="text-center p-5">Your Shelves</h1>
+			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6 filter">
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect1" id="mainCategorySelect1">
+						<option value="">-- Category 1--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect2" id="mainCategorySelect2">
+						<option value="">-- Category 2--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect3" id="mainCategorySelect3">
+						<option value="">-- Category 3--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" size="1" name="mainCategorySelect4" id="mainCategorySelect4">
+						<option value="">-- Category 4--</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" name="book_audio" id="book_audio">
+						<option value="">All</option>
+						<option value="1">Book</option>
+						<option value="0">Audio</option>
+					</select>
+				</div>
+				<div class="col mb-4">
+					<select class="custom-select" name="dig_phy" id="dig_phy">
+						<option value="">All</option>
+						<option value="0">Physical</option>
+						<option value="1">Digital</option>
+					</select>
+				</div>
+			</div>
 			<div class="row row-cols-1 row-cols-md-4">
 				<?php
 				$sql1 = "SELECT * FROM main Where title LIKE :search";
@@ -95,17 +131,29 @@ include("../db.php");
 				$stmt1->bindParam(':search', $search);
 				$stmt1->execute();
 
+				$sql2 = "SELECT AVG(star) AS 'STAR' FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = :bookID";
+				$stmt2 = $conn->prepare($sql2);
+
 				$i = 0;
-
 				while ($row1 = $stmt1->fetchObject()) {
-					$imgLink[$i] = $row1->imgLink;
-					$title[$i] = $row1->title;
-					$isbn[$i] = $row1->isbn;
-					$author[$i] = $row1->author;
 					$bookID[$i] = $row1->bookID;
-
-					$sql2 = "SELECT AVG(star) AS 'STAR' FROM `issued` WHERE `issued`.`star` IS NOT NULL AND `issued`.`bookID` = :bookID";
-					$stmt2 = $conn->prepare($sql2);
+					$title[$i] = $row1->title;
+					$author[$i] = $row1->author;
+					$quantity[$i] = $row1->quantity;
+					$Category1[$i] = $row1->Category1;
+					$Category2[$i] = $row1->Category2;
+					$Category3[$i] = $row1->Category3;
+					$Category4[$i] = $row1->Category4;
+					$publisher[$i] = $row1->publisher;
+					$pages[$i] = $row1->pages;
+					$price[$i] = $row1->price;
+					$imgLink[$i] = $row1->imgLink;
+					$date_of_publication[$i] = $row1->date_of_publication;
+					$isbn[$i] = $row1->isbn;
+					$digital[$i] = $row1->digital;
+					$book[$i] = $row1->book;
+					$digitalLink[$i] = $row1->digitalLink;
+					
 					$stmt2->bindParam(':bookID', $bookID[$i]);
 					$stmt2->execute();
 					$row2 = $stmt2->fetchObject();
@@ -146,6 +194,12 @@ include("../db.php");
 											<?= $star[$i] ?>
 										</div>
 									</div>
+									<input type="hidden" class="Category1" value="<?= $Category1[$i] ?>" />
+									<input type="hidden" class="Category2" value="<?= $Category2[$i] ?>" />
+									<input type="hidden" class="Category3" value="<?= $Category3[$i] ?>" />
+									<input type="hidden" class="Category4" value="<?= $Category4[$i] ?>" />
+									<input type="hidden" class="digital" value="<?= $digital[$i] ?>" />
+									<input type="hidden" class="book" value="<?= $book[$i] ?>" />
 								</div>
 							</div>
 							<div class="card-footer bg-white">
@@ -174,8 +228,18 @@ include("../db.php");
 		<div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;">
 		</div>
 
-		<script src="../category.js"></script>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="./../assets/node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="./../assets/node_modules/popper.js/dist/popper.min.js"></script>
+		<script src="./../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+		<script src="./../assets/js/common.js"></script>
+		<script src="./../assets/js/voice-search.js"></script>
+		<script src="addCopy/addCopyFill.js"></script>
 		<script src="../catName.js"></script>
+		<script src="../filter.js"></script>
+
 		<script>
 			title = <?php echo json_encode($title); ?>;
 			author = <?php echo json_encode($author); ?>;
@@ -185,16 +249,18 @@ include("../db.php");
 			shelfID = <?php echo json_encode($shelfID); ?>;
 		</script>
 
-		<script src="addCopy/addCopyFill.js"></script>
-
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="./../assets/node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="./../assets/node_modules/popper.js/dist/popper.min.js"></script>
-		<script src="./../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="./../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-		<script src="./../assets/js/common.js"></script>
-		<script src="./../assets/js/voice-search.js"></script>
+		<script>
+			window.onload = function () {
+				var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
+				var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
+				var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
+				var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
+				$.getJSON("../category.json", function(json){
+					DDCjson = json;
+					loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
+				});
+			}
+		</script>
 </body>
 
 </html>

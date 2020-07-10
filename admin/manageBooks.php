@@ -84,7 +84,7 @@ include("db.php");
 	?>
 		<section class="container">
 			<h1 class="text-center p-5">Your Books</h1>
-			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6">
+			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6 filter">
 				<div class="col mb-4">
 					<select class="custom-select" size="1" name="mainCategorySelect1" id="mainCategorySelect1">
 						<option value="">-- Category 1--</option>
