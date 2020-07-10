@@ -63,8 +63,11 @@ include('session.php');
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-2">
-						<button class="btn btn-info btn-block ml-sm-2" type="submit">
+						<button class="btn btn-info ml-sm-2" type="submit">
 							Search
+						</button>
+						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">
+							<i class="fa fa-plus" aria-hidden="true"></i>
 						</button>
 					</div>
 				</form>
@@ -177,7 +180,7 @@ include('session.php');
 									</div>
 								</div>
 								<div class="col-md-2 align-self-center justify-content-center p-3">
-									<button type="button" class="btn btn-info btn-block mb-4" id="<?= $i; ?>" onclick="autoFill(this.id)">
+									<button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" class="btn btn-info btn-block mb-4" id="<?= $i; ?>" onclick="autoFill(this.id)">
 										Add
 									</button>
 
@@ -198,202 +201,209 @@ include('session.php');
 		?>
 
 	</section>
-	<section id="addForm">
-		<div class="container mb-5 mt-5 pt-5 pb-5">
-			<h1 class="text-center mb-5">Details</h1>
-			<form id="addBookForm" novalidate>
-				<fieldset class="form-group">
-					<div class="row">
-						<legend class="col-form-label col-sm-2 pt-0">Books/Audio</legend>
-						<div class="col-sm-4" id="book_audio">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="book_audio" id="book" value="book" checked />
-								<label class="form-check-label" for="book">
-									Book
-								</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="book_audio" id="audio" value="audio" />
-								<label class="form-check-label" for="audio">
-									Audio
-								</label>
-							</div>
-						</div>
-						<legend class="col-form-label col-sm-2 pt-0">Digital/Physical</legend>
-						<div class="col-sm-4" id="physical_digital">
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="physical_digital" id="physical" value="physical" checked />
-								<label class="form-check-label" for="physical">
-									Physical
-								</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="physical_digital" id="digital" value="digital" />
-								<label class="form-check-label" for="digital">
-									Digital
-								</label>
-							</div>
-						</div>
-					</div>
-				</fieldset>
 
-				<div class="row justify-content-center mb-4">
-					<div class="col-md-8">
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Title</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control DDC" name="title" id="title" required />
-								<div class="invalid-feedback">
-									Required Field
+	<!-- add book form modal -->
+	<div class="modal fade bd-example-modal-xl" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document" style="max-height:100vh !important; max-width:90vw !important;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="addForm">
+					<div class="container-fluid">
+						<form id="addBookForm" novalidate>
+							<fieldset class="form-group">
+								<div class="row">
+									<legend class="col-form-label col-sm-2 pt-0">Books/Audio</legend>
+									<div class="col-sm-4" id="book_audio">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="book_audio" id="book" value="book" checked />
+											<label class="form-check-label" for="book">
+												Book
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="book_audio" id="audio" value="audio" />
+											<label class="form-check-label" for="audio">
+												Audio
+											</label>
+										</div>
+									</div>
+									<legend class="col-form-label col-sm-2 pt-0">Digital/Physical</legend>
+									<div class="col-sm-4" id="physical_digital">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="physical_digital" id="physical" value="physical" checked />
+											<label class="form-check-label" for="physical">
+												Physical
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="physical_digital" id="digital" value="digital" />
+											<label class="form-check-label" for="digital">
+												Digital
+											</label>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<div class="row justify-content-center">
+								<div class="col-md-8">
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Title</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control DDC" name="title" id="title" required />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Author</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="author" id="author" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">ISBN</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control DDC" name="isbn" id="isbn" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Publisher</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="publisher" id="publisher" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Publisher Date</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="publishedDate" id="publishedDate" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Old ID</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="oldID" id="oldID" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">DDC No.</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="ddcNO" id="ddcNO" />
+											<div class="invalid-feedback">
+												Required Field
+											</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Cover Image</label>
+										<div class="col-sm-10">
+											<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+											<input type="file" class="form-control-file" id="imgFile" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false" />
+											<input type="hidden" name="imgValue" id="imgValue" value="" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">1</label>
+										<div class="col-sm-10">
+											<select class="form-control" size="1" name="mainCategorySelect1" id="mainCategorySelect1" required>
+												<option value="">-- Select Category--</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">2</label>
+										<div class="col-sm-10">
+											<select class="form-control" size="1" name="mainCategorySelect2" id="mainCategorySelect2" required>
+												<option value="">-- Select Category--</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">3</label>
+										<div class="col-sm-10">
+											<select class="form-control" size="1" name="mainCategorySelect3" id="mainCategorySelect3" required>
+												<option value="">-- Select Category--</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">4</label>
+										<div class="col-sm-10">
+											<select class="form-control" size="1" name="mainCategorySelect4" id="mainCategorySelect4" required>
+												<option value="">-- Select Category--</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Price</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="money" id="money" />
+											<div class="invalid-feedback">
+												Must be a non negative number
+											</div>
+										</div>
+									</div>
+									<div class="form-group row" id="pageCountGroup">
+										<label for="" class="col-sm-2 col-form-label">Page Count</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control" name="pageCount" id="pageCount" placeholder="" min="0" />
+											<div class="invalid-feedback">
+												Must be a non negative number
+											</div>
+										</div>
+									</div>
+									<div class="form-group row" id="quantityGroup">
+										<label for="" class="col-sm-2 col-form-label">Quantity</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control" name="quantity" id="quantity" placeholder="" min="1" required />
+											<div class="invalid-feedback">
+												Must be a positive number
+											</div>
+										</div>
+									</div>
+									<div class="form-group row" id="mediaGroup" hidden>
+										<label for="" class="col-sm-2 col-form-label">Upload File</label>
+										<div class="col-sm-10">
+											<input type="file" class="form-control-file" id="mediaFile" />
+											<div class="invalid-feedback">
+												Import File
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Author</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="author" id="author" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">ISBN</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control DDC" name="isbn" id="isbn" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Publisher</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="publisher" id="publisher" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Publisher Date</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="publishedDate" id="publishedDate" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Old ID</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="oldID" id="oldID" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">DDC No.</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="ddcNO" id="ddcNO" />
-								<div class="invalid-feedback">
-									Required Field
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Cover Image</label>
-							<div class="col-sm-10">
-								<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-								<input type="file" class="form-control-file" id="imgFile" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false" />
-								<input type="hidden" name="imgValue" id="imgValue" value="" />
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">1</label>
-							<div class="col-sm-10">
-								<select class="form-control" size="1" name="mainCategorySelect1" id="mainCategorySelect1" required>
-									<option value="">-- Select Category--</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">2</label>
-							<div class="col-sm-10">
-								<select class="form-control" size="1" name="mainCategorySelect2" id="mainCategorySelect2" required>
-									<option value="">-- Select Category--</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">3</label>
-							<div class="col-sm-10">
-								<select class="form-control" size="1" name="mainCategorySelect3" id="mainCategorySelect3" required>
-									<option value="">-- Select Category--</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">4</label>
-							<div class="col-sm-10">
-								<select class="form-control" size="1" name="mainCategorySelect4" id="mainCategorySelect4" required>
-									<option value="">-- Select Category--</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="" class="col-sm-2 col-form-label">Price</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="money" id="money" />
-								<div class="invalid-feedback">
-									Must be a non negative number
-								</div>
-							</div>
-						</div>
-						<div class="form-group row" id="pageCountGroup">
-							<label for="" class="col-sm-2 col-form-label">Page Count</label>
-							<div class="col-sm-10">
-								<input type="number" class="form-control" name="pageCount" id="pageCount" placeholder="" min="0" />
-								<div class="invalid-feedback">
-									Must be a non negative number
-								</div>
-							</div>
-						</div>
-						<div class="form-group row" id="quantityGroup">
-							<label for="" class="col-sm-2 col-form-label">Quantity</label>
-							<div class="col-sm-10">
-								<input type="number" class="form-control" name="quantity" id="quantity" placeholder="" min="1" required />
-								<div class="invalid-feedback">
-									Must be a positive number
-								</div>
-							</div>
-						</div>
-						<div class="form-group row" id="mediaGroup" hidden>
-							<label for="" class="col-sm-2 col-form-label">Upload File</label>
-							<div class="col-sm-10">
-								<input type="file" class="form-control-file" id="mediaFile" />
-								<div class="invalid-feedback">
-									Import File
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row mb-4">
-						<div class="col-sm-6 text-right">
-							<button type="submit" value="Add Book" name="addBook" class="btn btn-info">ADD</button>
-						</div>
-						<div class="col-sm-6 text-left">
-							<button type="reset" class="btn btn-info">CLEAR</button>
-						</div>
+						</form>
 					</div>
 				</div>
-			</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" value="Add Book" name="addBook" class="btn btn-info">Add Book</button>
+				</div>
+			</div>
 		</div>
-	</section>
-
+	</div>
 	<!-- variables declared without var are global
 		  I removed var because of warnings-->
 	<?php
@@ -414,7 +424,7 @@ include('session.php');
 	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 	<script src="./assets/js/common.js"></script>
 	<script src="./assets/js/voice-search.js"></script>
-	
+
 	<script>
 		title = <?php echo json_encode($title); ?>;
 		author = <?php echo json_encode($author); ?>;
@@ -427,7 +437,7 @@ include('session.php');
 		imgLink = <?php echo json_encode($imgLink); ?>;
 		preview = <?php echo json_encode($preview); ?>;
 	</script>
-	
+
 	<script src="catName.js"></script>
 	<script src="addBook/autoFill.js"></script>
 	<script src="addBook/mediaType.js"></script>
