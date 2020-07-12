@@ -4,9 +4,8 @@ include("../../db.php");
 
 $copyID = $_POST['copyID'];
 $fine = $_POST['fine'];
-$points = $_POST['points'];
+$points = (int)$_POST['points'];
 $due = $_POST['due'];
-
 // To get bookID, stud_id and oldID
 $query = "SELECT * FROM copies Where `copies`.`copyID` = :copyID";
 $stmt = $conn->prepare($query);
@@ -43,6 +42,7 @@ try {
 	$stmt3_1->execute();
 	$orgPoint = $stmt3_1->fetchObject()->points;
 	$point = $orgPoint + $points;
+	echo $point;
 
 	$sql3_2 = "UPDATE `students` SET `points` = :points WHERE `students`.`stud_ID` = :st_ID";
 	$stmt3_2 = $conn->prepare($sql3_2);

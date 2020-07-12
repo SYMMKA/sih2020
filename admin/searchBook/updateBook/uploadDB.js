@@ -40,10 +40,10 @@ function updateBook(e) {
 	formData.append('bookID', bookID);
 	formData.append('title', title);
 	formData.append('author', author);
-	formData.append('mainCategory1', mainCategory1);
-	formData.append('mainCategory2', mainCategory2);
-	formData.append('mainCategory3', mainCategory3);
-	formData.append('mainCategory4', mainCategory4);
+	formData.append('mainCategory1', updateCategory1);
+	formData.append('mainCategory2', updateCategory2);
+	formData.append('mainCategory3', updateCategory3);
+	formData.append('mainCategory4', updateCategory4);
 	formData.append('publisher', publisher);
 	formData.append('publishedDate', publishedDate);
 	formData.append('isbn', isbn);
@@ -63,7 +63,7 @@ function updateBook(e) {
 		processData: false, // Dont delete this
 		success: function (data) {
 			console.log(data);
-			//window.location.reload();
+			window.location.reload();
 		}
 		//Other options
 	});

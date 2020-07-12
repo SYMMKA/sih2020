@@ -206,7 +206,7 @@ include("db.php");
 												Issue/Return Delete
 											</button>
 										<?php } ?>
-										<button type="button" class="btn btn-info btn-block btn-sm" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBookForm">
+										<button type="button" class="btn btn-info btn-block btn-sm" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBook">
 											Update
 										</button>
 									</div>
@@ -240,7 +240,7 @@ include("db.php");
 	</div>
 
 	<!-- update Modal-->
-	<div name="updateBookForm" id="updateBookForm" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div name="updateBook" id="updateBook" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" style="max-height:100vh !important; max-width:90vw !important;">
 			<div class=" modal-content">
 				<div class="modal-header">
@@ -365,7 +365,7 @@ include("db.php");
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-info" value="update" name="update" data-dismiss="modal">Update</button>
+					<button type="submit" class="btn btn-info" form="updateBookForm" value="update" name="update" >Update</button>
 				</div>
 			</div>
 		</div>
