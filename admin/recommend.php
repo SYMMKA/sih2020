@@ -1,12 +1,8 @@
-<?php
-include("session.php");
-include("db.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Recommended</title>
+  <title>Title</title>
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,16 +10,61 @@ include("db.php");
   <link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
-  <!-- <script
-      src="https://kit.fontawesome.com/97f3c2998d.js"
-      crossorigin="anonymous"
-    ></script> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="./assets/css/common.css" />
+  <style>
+    .btn-orange {
+      background-color: #fe4a49;
+      color: #fff;
+    }
+
+    .btn-orange:hover {
+      background-color: #b13333;
+      color: #fff;
+    }
+
+    .btn-blue {
+      background-color: #001b58;
+      color: #fff;
+    }
+
+    .btn-blue:hover {
+      background-color: #001546;
+      color: #fff;
+    }
+
+    .jumbotron {
+      background-color: #4ad7d1;
+    }
+
+    .text-orange {
+      color: #fe4a49;
+    }
+
+    .card {
+      min-height: 200px;
+      min-width: 200px;
+      margin-right: 15px;
+    }
+  </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <button type="button" class="btn btn-orange voice-button" style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            ">
+    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+  </button>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Library Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,174 +72,193 @@ include("db.php");
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Add</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Shelf <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-comment fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Amit Ramani</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Change username</a>
+              <a class="dropdown-item" href="#">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">
+                  Logout
+                </button></a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <section class="container landing-section">
-    <div class="row h-100">
-      <div class="col-12 align-self-end">
-        <div class="mb-4 text-center">
-          <h1 class="display-2">RECOMMENDED BOOKS</h1>
-          <h4>Official Reference Books</h4>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <form class="row justify-content-center">
-              <div class="input-group" style="max-width: 540px;">
-                <div class="form-group col">
-                  <select class="selectpicker w-100" name="branch" id="branch" data-live-search="true">
-                    <option value=''>All</option>
-                  </select>
-                </div>
-                <div class="form-group col">
-                  <select class="selectpicker w-100" name="semester" id="semester" data-live-search="true">
-                    <option value=''>All</option>
-                  </select>
-                </div>
-                <div class="form-group col">
-                  <button type="button" data-toggle="modal" data-target="#add" id="addNewSemBranch" class="btn btn-info">Add Sem/Branch</button>
-                </div>
-                <div class="form-group col">
-                  <button type="button" data-toggle="modal" data-target="#delete" id="deleteSemBranch" class="btn btn-info">Delete Sem/Branch</button>
-                </div>
-              </div>
-            </form>
+  <!-- landing -->
+  <section>
+    <div class="container pt-4 mb-4" style="margin-top: 10vh;">
+      <div class="jumbotron shadow">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-8">
+            <h2 class="display-4 font-weight-bold">
+              Recommended <br />
+              Books
+            </h2>
+            <p class="lead">
+              This is a simple hero unit, a simple
+              jumbotron-style component for calling extra
+              attention to featured content or information.
+            </p>
+            <select class="selectpicker mb-2" title="Branch" data-style="btn-blue">
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+            </select>
+            <select class="selectpicker mb-2" title="Sem" data-style="btn-blue">
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+            </select>
+          </div>
+          <div class="col-sm-4 d-none d-lg-block">
+            <img class="img" src="assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="
+                                    height: auto;
+                                    width: 100%;
+                                    max-width: 340px;
+                                " />
           </div>
         </div>
       </div>
-      <div class="col-12 align-self-end text-center pb-5">
-        <button type="button" class="btn btn-outline-dark pl-5 pr-5">
-          <span>
-            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-          </span>
-        </button>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="mb-4">
+        <h2>Computer Engineering</h2>
+        <div class="d-flex flex-row flex-nowrap overflow-auto p-4">
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId" href>
+              <h1 class="card-title">SEM 1</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn btn" data-toggle="modal" data-target="#modelId">
+              <h1 class="card-title">SEM 2</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
+              <h1 class="card-title">SEM 3</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
+              <h1 class="card-title">SEM 4</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
+              <h1 class="card-title">SEM 5</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
+              <h1 class="card-title">SEM 6</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-
-  <div name="add" id="add" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" id="modalinput" style="max-height:100vh !important; max-width:90vw !important;">
+  <!-- Modal -->
+  <div class="modal fade" id="modelId" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" style="
+                    max-height: 100vh !important;
+                    max-width: 90vw !important;
+                ">
       <div class="modal-content">
-        <form id="addnew" novalidate>
-          <div class="modal-header">
-            <h5 class="modal-title">Add a new Sem Branch</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row justify-content-center">
-                <div class="form-group row col-sm-6">
-                  <label for="shelfnamme" class="col-sm-2 col-form-label text-center">Sem</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="semesterModal" name="semesterModal" placeholder="Semester" required />
-                    <div class="invalid-feedback">
-                      Required Field
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row col-sm-6">
-                  <label for="shelfnamme" class="col-sm-2 col-form-label text-center">Branch</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="branchModal" name="branchModal" placeholder="Branch" required />
-                    <div class="invalid-feedback">
-                      Required Field
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8 col-lg-10">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4" style="height: 500px; overflow-y: scroll;">
+                <div class="col mb-4">
+                  <div class="card">
+                    <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg" alt="Card image cap" />
+                    <div class="card-body text-center">
+                      <h4 class="card-title">
+                        Book Name
+                      </h4>
+                      <p class="card-text">
+                        Book ID
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" onclick="addSemBranch(); location.reload(true);" class="btn btn-info">Add</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div name="delete" id="delete" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" id="modalinput" style="max-height:100vh !important; max-width:90vw !important;">
-      <div class="modal-content">
-        <form id="deleteSem_branch" novalidate>
-          <div class="modal-header">
-            <h5 class="modal-title">Delete a Sem Branch</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row justify-content-center">
-                <div class="form-group row col-sm-6">
-                  <label for="shelfnamme" class="col-sm-2 col-form-label text-center">Sem</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="semesterModalDelete" name="semesterModalDelete" placeholder="Semester" required />
-                    <div class="invalid-feedback">
-                      Required Field
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row col-sm-6">
-                  <label for="shelfnamme" class="col-sm-2 col-form-label text-center">Branch</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="branchModalDelete" name="branchModalDelete" placeholder="Branch" required />
-                    <div class="invalid-feedback">
-                      Required Field
-                    </div>
-                  </div>
-                </div>
+            <div class="col-md-4 col-lg-2">
+              <div>
+                <h3>Add Books</h3>
+                <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                  <option>Mustard</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+                </select>
+                <button type="button" class="btn btn-orange btn-block mb-5">
+                  Add
+                </button>
+                <h3>Delete Books</h3>
+                <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                  <option>Mustard</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+                </select>
+                <button type="button" class="btn btn-orange btn-block mb-5">
+                  Remove
+                </button>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" onclick="deleteSemBranch(); location.reload(true);" class="btn btn-info">Delete</button>
-          </div>
-        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-blue" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-orange">
+            Save
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  <section class="container landing-section">
-    <div id="bookCards"></div>
-    <div id="addnewbook" hidden>
-      <div class="col mb-4">
-        <h5>Add Book in Sem/Branch</h5>
 
-        <h5> Enter BookID</h5>
-        <div class="col-sm-9">
-          <select class="selectpicker w-100" data-live-search="true" name="bookID" id="bookID">
-            <option value=''>All</option>
-          </select>
-        </div>
-        <button type="button" id="addthebook" class="btn btn-info" name="">Add Book</button>
-      </div>
-    </div>
-  </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+  <script src="./assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
   <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/voice-search.js"></script>
   <script src="recommend/recom.js"></script>
+  <script src="recommend/recom2.js"></script>
 </body>
 
 </html>
