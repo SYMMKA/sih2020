@@ -19,6 +19,7 @@ include("db.php");
     ></script> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="./assets/css/common.css" />
+
 </head>
 
 <body>
@@ -193,7 +194,7 @@ include("db.php");
 							<div class="card-footer bg-white">
 								<div class="row justify-content-center">
 									<div class="col-12">
-										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
+										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#moreInfo">
 											Info
 										</button>
 										<?php if ($digital[$i]) { ?>
@@ -277,7 +278,6 @@ include("db.php");
 								</div>
 							</div>
 							<div class="col-sm-8">
-
 								<div class="form-group row">
 									<label for="updateTitle" class="col-sm-2 col-form-label">Title</label>
 									<div class="col-sm-10">
@@ -358,24 +358,86 @@ include("db.php");
 										<input type="file" class="form-control-file" id="mediaFile" />
 									</div>
 								</div>
-								<div class="row text-center">
-									<div class="col-12">
-										<button type="button" class="btn btn-secondary" type="reset" value="Clear">
-											clear
-										</button>
-										<button type="submit" class="btn btn-info" value="update" name="update">Update</button>
-									</div>
-								</div>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Understood</button>
+					<button type="submit" class="btn btn-info" value="update" name="update" data-dismiss="modal">Update</button>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<!-- info modal -->
+	<div class="modal fade" data-backdrop="static" data-keyboard="false" id="moreInfo" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" style="max-height:100vh !important; max-width:90vw !important;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Info</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-4">
+								<img src="assets/images/1.jpg" alt="" srcset="" class="img-thumbnail">
+							</div>
+							<div class="col-6">
+								<div class="row no-gutters">
+									<div class="col-4"><strong>Title:</strong></div>
+									<div class="col-8">
+										Book Title
+									</div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Author:</Strong></div>
+									<div class="col-8">
+										Book Author
+									</div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>ISBN:</Strong></div>
+									<div class="col-8">
+										Book ISBN
+									</div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Rating:</Strong></div>
+									<div class="col-8">
+										Book Rating
+									</div>
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="row no-gutters justify-content-center text-center h-100 align-items-center">
+									<div class="col-12">
+										<h4>
+											Issued: 2</br></br>
+											</br></br>Reserved: 3</br></br>
+											</br></br>Available: 0</br></br>
+										</h4></br>
+									</div>
+									<div class="col-12">
+										<button class="btn btn-primary">
+											Add Copy
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
 	</div>
 
 
@@ -397,7 +459,7 @@ include("db.php");
 		digital = <?php echo json_encode($digital); ?>;
 		book = <?php echo json_encode($book); ?>;
 	</script>
-	
+
 	<script src="catName.js"></script>
 	<script src="filter.js"></script>
 	<script src="searchBook/autoFill.js"></script>
@@ -411,7 +473,7 @@ include("db.php");
 
 
 	<script>
-		window.onload = function () {
+		window.onload = function() {
 			var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
 			var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
 			var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
@@ -419,7 +481,7 @@ include("db.php");
 			loadCategory(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 		}
 
-		function fillUpdateCat(){
+		function fillUpdateCat() {
 			showCategory();
 		}
 	</script>
@@ -433,7 +495,7 @@ include("db.php");
 			</script>";
 	}
 	?>
-	
+
 </body>
 
 </html>
