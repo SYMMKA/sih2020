@@ -15,9 +15,43 @@ include("session.php");
   <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="./assets/css/common.css" />
+  <style>
+    body {
+      background-color: #4AD7D1;
+    }
+
+    .btn-info {
+      background-color: #FE4A49;
+    }
+
+    .btn-secondary {
+      background-color: #001B58;
+    }
+
+    .card {
+      background-color: #001B58;
+    }
+
+    .text-orange {
+      color: #FFF;
+    }
+  </style>
 </head>
 
 <body>
+  <button type="button" class="btn btn-info voice-button" style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            ">
+    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+  </button>
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
     <div class="container">
@@ -29,16 +63,29 @@ include("session.php");
 
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Add</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-comment fa-2x" aria-hidden="true"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Shelf</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Amit Ramani</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Change username</a>
+              <a class="dropdown-item" href="#">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">Logout</button></a>
+            </div>
           </li>
         </ul>
       </div>
@@ -46,49 +93,52 @@ include("session.php");
   </nav>
   <!-- landing -->
   <section>
-    <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-5">Welcome to AlphaByte</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <div class="row">
-          <div class="col">
-            <a class="btn btn-info btn-lg mr-sm-2" href="#" role="button">Docs</a>
-            <a class="btn btn-outline-secondary btn-lg" href="#" role="button">Setting</a>
+    <div class="landing-section container">
+      <div class="row pt-5 mt-5 mb-4">
+        <div class="col-8">
+          <h1 class="display-5">Hi! Amit Ramani</h1>
+          <hr class="my-4">
+          <h1 class="display-3 font-weight-bold">AlphaByte</h1>
+          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+
+          <div class="row">
+            <div class="col">
+              <a class="btn btn-info btn-lg mr-sm-2" href="#" role="button">Docs</a>
+              <a class="btn btn-secondary btn-lg" href="#" role="button">Setting</a>
+            </div>
           </div>
+        </div>
+        <div class="col-4">
+          <img src="assets/FINAL MEDIA/undraw_voice_control_ofo1.svg" alt="" style="max-height: 360px;">
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-sm-4">
-        <div class="col">
-          <div class="card btn btn-outline-info h-100" id="card1">
-            <div class="card-body text-center  ">
-              <h4 class="card-title" id="cardtitle1">Add</h4>
+      <!-- <div class="card">
+        <div class="card-body">
+          <div class="row text-center text-orange">
+            <div class="col-md-3">
+              <i class="fa fa-book fa-5x mb-3" aria-hidden="true"></i>
+              <h2 class="count text-orange">10000</h2>
+              <h5 class="text-orange">Physical Books</h5>
+            </div>
+            <div class="col-md-3">
+              <i class="fa fa-cloud fa-5x mb-3" aria-hidden="true"></i>
+              <h2 class="count text-orange">10000</h2>
+              <h5 class="text-orange">Digital Books</h5>
+            </div>
+            <div class="col-md-3">
+              <i class="fa fa-music fa-5x mb-3" aria-hidden="true"></i>
+              <h2 class="count text-orange">10000</h2>
+              <h5 class="text-orange">Audio Books</h5>
+            </div>
+            <div class="col-md-3">
+              <i class="fa fa-video-camera fa-5x mb-3" aria-hidden="true"></i>
+              <h2 class="count text-orange">10000</h2>
+              <h5 class="text-orange">Video Books</h5>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card btn btn-outline-info h-100" id="card2">
-            <div class="card-body text-center  ">
-              <h4 class="card-title" id="cardtitle2">Manage</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card btn btn-outline-info h-100" id="card3">
-            <div class="card-body text-center  ">
-              <h4 class="card-title" id="cardtitle3">Shelf</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card btn btn-outline-info h-100" id="card4">
-            <div class="card-body text-center  ">
-              <h4 class="card-title" id="cardtitle4">Report</h4>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> -->
+
     </div>
   </section>
 
@@ -96,37 +146,19 @@ include("session.php");
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+  <script src="./assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-  <script src="./assets/js/common.js"></script>
-  <script src="./assets/js/voice-search.js"></script>
+  <script src="./assets/node_modules/waypoints/lib/jquery.waypoints.min.js"></script>
+  <script src="./assets/node_modules/counterup/jquery.counterup.min.js"></script>
   <script>
-    $('#card1').mouseenter(function() {
-
-      $('#cardtitle1').addClass('text-white');
-    }).mouseleave(function() {
-      $('#cardtitle1').removeClass('text-white');
-    });
-    $('#card2').mouseenter(function() {
-
-      $('#cardtitle2').addClass('text-white');
-    }).mouseleave(function() {
-      $('#cardtitle2').removeClass('text-white');
-    });
-    $('#card3').mouseenter(function() {
-
-      $('#cardtitle3').addClass('text-white');
-    }).mouseleave(function() {
-      $('#cardtitle3').removeClass('text-white');
-    });
-    $('#card4').mouseenter(function() {
-
-      $('#cardtitle4').addClass('text-white');
-    }).mouseleave(function() {
-      $('#cardtitle4').removeClass('text-white');
+    $(".count").counterUp({
+      delay: 50,
+      time: 2000,
     });
   </script>
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/voice-search.js"></script>
 </body>
 
 </html>

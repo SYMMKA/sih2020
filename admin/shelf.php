@@ -187,7 +187,6 @@ include("db.php");
 			</form>
 		</div>
 	</div>
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
