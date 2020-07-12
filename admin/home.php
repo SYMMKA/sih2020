@@ -20,12 +20,24 @@ include("session.php");
       background-color: #4AD7D1;
     }
 
-    .btn-info {
+    .btn-orange {
       background-color: #FE4A49;
+      color: #FFF;
     }
 
-    .btn-secondary {
+    .btn-orange:hover {
+      background-color: #b13333;
+      color: #FFF;
+    }
+
+    .btn-blue {
       background-color: #001B58;
+      color: #FFF;
+    }
+
+    .btn-blue:hover {
+      background-color: #001546;
+      color: #FFF;
     }
 
     .card {
@@ -39,7 +51,7 @@ include("session.php");
 </head>
 
 <body>
-  <button type="button" class="btn btn-info voice-button" style="
+  <button type="button" class="btn btn-orange voice-button" style="
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
@@ -103,8 +115,8 @@ include("session.php");
 
           <div class="row">
             <div class="col">
-              <a class="btn btn-info btn-lg mr-sm-2" href="#" role="button">Docs</a>
-              <a class="btn btn-secondary btn-lg" href="#" role="button">Setting</a>
+              <a class="btn btn-orange btn-lg mr-sm-2" href="#" role="button">Docs</a>
+              <a class="btn btn-blue btn-lg" href="#" role="button">Setting</a>
             </div>
           </div>
         </div>
