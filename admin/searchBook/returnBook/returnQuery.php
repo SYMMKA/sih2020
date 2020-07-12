@@ -49,7 +49,7 @@ try {
 	$stmt3_2->bindParam(':points', $point);
 	$stmt3_2->bindParam(':st_ID', $st_ID);
 	$stmt3_2->execute();
-	echo "\nIssued table updated";
+	echo "\nStudents table updated";
 
 	$sql4 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, :st_ID, 'return', UNIX_TIMESTAMP(), :bookID, :oldID)";
 	$stmt4 = $conn->prepare($sql4);
