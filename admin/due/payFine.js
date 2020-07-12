@@ -5,10 +5,10 @@ $.ajax({
   contentType: false, // Dont delete this (jQuery 1.6+)
   processData: false, // Dont delete this
   success: function (data) {
-	if(data){
-    data = JSON.parse(data);
-	console.log(data);
-    var html = `<div class="table-responsive"><table id="issuedTable" class="table table-bordered table-hover">
+    if (data) {
+      data = JSON.parse(data);
+      console.log(data);
+      var html = `<div class="table-responsive"><table id="issuedTable" class="table table-bordered table-hover">
     <caption>Click pay when payment is recieved</caption>
     <thead>
     <tr>
@@ -33,40 +33,40 @@ $.ajax({
     </tr>
     </thead>
     <tbody>`;
-    data.forEach(function (item, index) {
-      html +=
-        `<tr>
+      data.forEach(function (item, index) {
+        html +=
+          `<tr>
         <td>` +
-        item.bookID +
-        `</td>
+          item.bookID +
+          `</td>
         <td>` +
-        item.oldID +
-        `</td>
+          item.oldID +
+          `</td>
         <td>` +
-        item.copyID +
-        `</td>
+          item.copyID +
+          `</td>
         <td>` +
-        item.stud_ID +
-        `</td>
+          item.stud_ID +
+          `</td>
         <td>` +
-        item.time +
-        `</td>
+          item.time +
+          `</td>
         <td>` +
-        item.returnTime +
-        `</td>
+          item.returnTime +
+          `</td>
         <td>` +
-        item.fine +
-        `</td>
+          item.fine +
+          `</td>
         <td><button type="button" id="` +
-        item.id +
-        `"class="btn btn-outline-dark" onclick="updateDueStatus(this.id); location.reload();">Pay</button></td>
+          item.id +
+          `"class="btn btn-outline-dark" onclick="updateDueStatus(this.id); location.reload();">Pay</button></td>
         </tr>`;
-    });
-    html += `</tbody>
+      });
+      html += `</tbody>
 	</table></div>`;
-  } else {
-	  var html = "All payments cleared"
-  }
+    } else {
+      var html = "All payments cleared";
+    }
     document.getElementById("tableData").innerHTML = html;
   },
   //Other options
