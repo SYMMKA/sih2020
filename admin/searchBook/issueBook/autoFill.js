@@ -1,9 +1,7 @@
 function autoFillIssueBook(copyID, oldID, reservedBy, i) {
-	var html = "";
-	html +=
+	document.getElementById("bookFormDiv").innerHTML = "";
+	var html =
 		`
-
- 
         <h1 class="text-center mb-4">Issue Book</h1>
 
 
@@ -29,10 +27,11 @@ function autoFillIssueBook(copyID, oldID, reservedBy, i) {
 				<button type="submit" form="issueBookForm" value="issue" name="issue" class="btn btn-info">Issue</button>
 			</div>
 		</div>
+	</div>
 
 	</br>
-`;
-	document.getElementById("issueBookFormDiv").innerHTML = html;
+	`;
+	document.getElementById("bookFormDiv").innerHTML = html;
 	document.getElementById("reservedBy").value = reservedBy;
 	document.getElementById("elementID").value = i;
 }

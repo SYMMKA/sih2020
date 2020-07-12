@@ -228,10 +228,11 @@ include("db.php");
 	<div name="displayCopy" id="displayCopy" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;">
 		</div>
+
+		<!-- Outside modal -->
 		<form id="issueBookForm">
 		</form>
 		<form id="returnBookForm">
-			<div id='returnBookFormDiv'></div>
 		</form>
 		<form id="deleteCopyForm">
 			<div id='deleteCopyFormDiv'></div>
@@ -240,7 +241,7 @@ include("db.php");
 
 	<!-- update Modal-->
 	<div name="updateBookForm" id="updateBookForm" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" id="displayBookCopies" style="max-height:100vh !important; max-width:90vw !important;">
+		<div class="modal-dialog modal-lg" style="max-height:100vh !important; max-width:90vw !important;">
 			<div class=" modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">Update Book</h5>
@@ -463,6 +464,7 @@ include("db.php");
 	<script src="filter.js"></script>
 	<script src="searchBook/autoFill.js"></script>
 	<script src="searchBook/issueBook/autoFill.js"></script>
+	<script src="searchBook/returnBook/autoFill.js"></script>
 	<script src="searchBook/updateBook/autoFill.js"></script>
 	<script src="searchBook/deleteCopy/autoFill.js"></script>
 	<script src="searchBook/issueBook/uploadDB.js"></script>

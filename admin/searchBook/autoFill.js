@@ -112,8 +112,10 @@ function autoFillBook(i) {
                             <div class="col-12">`;
           if (item.status == "issued") {
             html +=
-              `<button type="submit" form="returnBookForm" class="btn btn-info btn-block btn-sm" name="issueReturnCopy" onclick="autoFillReturnBook('` +
+              `<button type="button" class="btn btn-info btn-block btn-sm" name="issueReturnCopy" onclick="autoFillReturnBook('` +
               item.copyID +
+              `','` +
+              item.oldID +
               `','` +
               i +
               `')">Return Copy`;
@@ -150,7 +152,7 @@ function autoFillBook(i) {
         </div>
                 </div>
             </div>
-            <div id='issueBookFormDiv'></div>
+            <div id='bookFormDiv'></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary">Understood</button>
