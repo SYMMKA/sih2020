@@ -194,7 +194,7 @@ include("db.php");
 							<div class="card-footer bg-white">
 								<div class="row justify-content-center">
 									<div class="col-12">
-										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#moreInfo">
+										<button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id="<?= $i; ?>" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo">
 											Info
 										</button>
 										<?php if ($digital[$i]) { ?>
@@ -202,11 +202,11 @@ include("db.php");
 												Download
 											</a>
 										<?php } else { ?>
-											<button type="button" class="btn btn-info btn-block btn-sm" name="issue-book" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
+											<button type="button" class="btn btn-info btn-block btn-sm" id="<?= $i; ?>" onclick="autoFillBook(this.id)" data-toggle="modal" data-target="#displayCopy">
 												Issue/Return Delete
 											</button>
 										<?php } ?>
-										<button type="button" class="btn btn-info btn-block btn-sm" name="update-book" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBook">
+										<button type="button" class="btn btn-info btn-block btn-sm" id="<?= $i; ?>" onclick="autoFillUpdateBook(this.id)" data-toggle="modal" data-target="#updateBook">
 											Update
 										</button>
 									</div>
@@ -385,46 +385,86 @@ include("db.php");
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-4">
-								<img src="assets/images/1.jpg" alt="" srcset="" class="img-thumbnail">
+								<img id="bookimgLinkInfo" src="" alt="" srcset="" class="img-thumbnail">
 							</div>
 							<div class="col-6">
 								<div class="row no-gutters">
+									<div class="col-4"><strong>BookID:</strong></div>
+									<div class="col-8" id="bookIDInfo"></div>
+								</div>
+								<div class="row no-gutters">
 									<div class="col-4"><strong>Title:</strong></div>
-									<div class="col-8">
-										Book Title
-									</div>
+									<div class="col-8" id="bookTitleInfo"></div>
 								</div>
 								<div class="row no-gutters">
 									<div class="col-4"><Strong>Author:</Strong></div>
-									<div class="col-8">
-										Book Author
-									</div>
+									<div class="col-8" id="bookAuthorInfo"></div>
 								</div>
 								<div class="row no-gutters">
 									<div class="col-4"><Strong>ISBN:</Strong></div>
-									<div class="col-8">
-										Book ISBN
-									</div>
+									<div class="col-8" id="bookISBNInfo"></div>
 								</div>
 								<div class="row no-gutters">
 									<div class="col-4"><Strong>Rating:</Strong></div>
-									<div class="col-8">
-										Book Rating
-									</div>
+									<div class="col-8" id="bookRatingInfo"></div>
+								</div>
+								<div class="row no-gutters" id="groupQuantityInfo">
+									<div class="col-4"><Strong>Quantity:</Strong></div>
+									<div class="col-8" id="bookQuantityInfo"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Category1:</Strong></div>
+									<div class="col-8" id="bookCategory1Info"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Category2:</Strong></div>
+									<div class="col-8" id="bookCategory2Info"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Category3:</Strong></div>
+									<div class="col-8" id="bookCategory3Info"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Category4:</Strong></div>
+									<div class="col-8" id="bookCategory4Info"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Publisher:</Strong></div>
+									<div class="col-8" id="bookPublisherInfo"></div>
+								</div>
+								<div class="row no-gutters" id="groupPagesInfo">
+									<div class="col-4"><Strong>Pages:</Strong></div>
+									<div class="col-8" id="bookPagesInfo"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Price:</Strong></div>
+									<div class="col-8" id="bookPriceInfo"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Date of publication:</Strong></div>
+									<div class="col-8" id="bookDate_of_publicationInfo"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Type:</Strong></div>
+									<div class="col-8" id="bookBookInfo"></div>
+								</div>
+								<div class="row no-gutters">
+									<div class="col-4"><Strong>Format:</Strong></div>
+									<div class="col-8" id="bookDigitalInfo"></div>
 								</div>
 							</div>
 							<div class="col-2">
 								<div class="row no-gutters justify-content-center text-center h-100 align-items-center">
 									<div class="col-12">
 										<h4>
-											Issued: 2</br></br>
-											</br></br>Reserved: 3</br></br>
-											</br></br>Available: 0</br></br>
+											Issued: <a id="issued"></a></br></br>
+											</br></br>Reserved: <a id="reserved"></a></br></br>
+											</br></br>Available: <a id="available"></a></br></br>
 										</h4></br>
 									</div>
 									<div class="col-12">
 										<button class="btn btn-primary">
-											Add Copy
+											QR code
 										</button>
 									</div>
 								</div>
@@ -451,18 +491,29 @@ include("db.php");
 	<script src="./assets/js/voice-search.js"></script>
 
 	<script>
+		bookID = <?php echo json_encode($bookID); ?>;
 		title = <?php echo json_encode($title); ?>;
 		author = <?php echo json_encode($author); ?>;
 		isbn = <?php echo json_encode($isbn); ?>;
+		star = <?php echo json_encode($star); ?>;
+		quantity = <?php echo json_encode($quantity); ?>;
+		Category1 = <?php echo json_encode($Category1); ?>;
+		Category2 = <?php echo json_encode($Category2); ?>;
+		Category3 = <?php echo json_encode($Category3); ?>;
+		Category4 = <?php echo json_encode($Category4); ?>;
+		publisher = <?php echo json_encode($publisher); ?>;
+		pages = <?php echo json_encode($pages); ?>;
+		price = <?php echo json_encode($price); ?>;
 		imgLink = <?php echo json_encode($imgLink); ?>;
-		bookID = <?php echo json_encode($bookID); ?>;
-		digital = <?php echo json_encode($digital); ?>;
+		date_of_publication = <?php echo json_encode($date_of_publication); ?>;
 		book = <?php echo json_encode($book); ?>;
+		digital = <?php echo json_encode($digital); ?>;
 	</script>
 
 	<script src="catName.js"></script>
 	<script src="filter.js"></script>
 	<script src="searchBook/autoFill.js"></script>
+	<script src="searchBook/info/info.js"></script>
 	<script src="searchBook/issueBook/autoFill.js"></script>
 	<script src="searchBook/returnBook/autoFill.js"></script>
 	<script src="searchBook/updateBook/autoFill.js"></script>

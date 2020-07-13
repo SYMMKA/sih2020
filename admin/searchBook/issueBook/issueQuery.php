@@ -19,6 +19,19 @@ if ($_POST['copyID'])
 else
 	$copyID = '';
 
+// check if student is yet to pay fine
+$dueLeftQuery = "SELECT * FROM `issued` WHERE `issued`.`stud_ID` = :st_ID AND `issued`.`due` = '1'";
+$dueLeftstmt = $conn->prepare($dueLeftQuery);
+$dueLeftstmt->bindParam(':st_ID', $st_ID);
+$dueLeftstmt->execute();
+$dueLeft = $dueLeftstmt->rowCount();;
+
+if($dueLeft > 0){
+	echo "\nClear dues";
+	$conn = null;
+	exit;
+}
+
 // total books issued currently by the student
 $totalIssuedQuery = "SELECT * FROM `copies` WHERE `copies`.`stud_ID` = :st_ID";
 $totalIssuedstmt = $conn->prepare($totalIssuedQuery);
