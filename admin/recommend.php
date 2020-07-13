@@ -141,42 +141,7 @@
     </div>
   </section>
   <section>
-    <div class="container">
-      <div class="mb-4">
-        <h2>Computer Engineering</h2>
-        <div class="d-flex flex-row flex-nowrap overflow-auto p-4">
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId" href>
-              <h1 class="card-title">SEM 1</h1>
-            </div>
-          </div>
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn btn" data-toggle="modal" data-target="#modelId">
-              <h1 class="card-title">SEM 2</h1>
-            </div>
-          </div>
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
-              <h1 class="card-title">SEM 3</h1>
-            </div>
-          </div>
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
-              <h1 class="card-title">SEM 4</h1>
-            </div>
-          </div>
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
-              <h1 class="card-title">SEM 5</h1>
-            </div>
-          </div>
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center card-body btn" data-toggle="modal" data-target="#modelId">
-              <h1 class="card-title">SEM 6</h1>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container" id="recommendations">
     </div>
   </section>
 
