@@ -73,7 +73,7 @@ function deleteFromSection(bookID, sem_branchID) {
 window.onload = function () {
     $.ajax({
         type: "POST",
-        url: "recommend/getBooks.php",
+        url: "recommend/sem_branch.php",
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
@@ -89,9 +89,7 @@ window.onload = function () {
                     for (sem in data[branch]) {
                         html +=
                             `<div class="card show-books" id="` +
-                            branch +
-                            `-` +
-                            sem +
+                            data[branch][sem] +
                             `" 
 							>
                             <div
@@ -113,7 +111,25 @@ window.onload = function () {
             }
         },
         //Other options
-    });
+	});
+	// example to load sem-branch modal
+	var formdata = new FormData();
+	formdata.append("branch", "comps");
+	formdata.append("semester", 1);
+	$.ajax({
+        type: "POST",
+		url: "recommend/getBooks.php",
+		data: formdata,
+        contentType: false, // Dont delete this (jQuery 1.6+)
+        processData: false, // Dont delete this
+        success: function (data) {
+            if (data) {
+                data = JSON.parse(data);
+				console.log(data);
+            }
+        },
+        //Other options
+	});
 };
 
 /* var branch = document.getElementById("branch");
