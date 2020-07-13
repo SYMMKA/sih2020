@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2020 at 10:44 PM
+-- Generation Time: Jul 13, 2020 at 03:40 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -31,16 +31,45 @@ CREATE TABLE `adminlogin` (
   `userID` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `fname` text NOT NULL,
-  `lname` text NOT NULL
+  `lname` text NOT NULL,
+  `clearance` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `adminlogin`
 --
 
-INSERT INTO `adminlogin` (`userID`, `password`, `fname`, `lname`) VALUES
-('admin1', '456', 'admin1', 'dummy'),
-('manu21', '123', 'Manu', 'Naik');
+INSERT INTO `adminlogin` (`userID`, `password`, `fname`, `lname`, `clearance`) VALUES
+('admin1', '456', 'admin1', 'dummy', 1),
+('manu21', '123', 'Manu', 'Naik', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chats`
+--
+
+CREATE TABLE `chats` (
+  `id` int(11) NOT NULL,
+  `stud_ID` varchar(15) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `message` text NOT NULL,
+  `time` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`id`, `stud_ID`, `name`, `message`, `time`) VALUES
+(1, 'a', 'a', 'message1', 1594401441),
+(2, 'b', 'b', '2nd', 1594401493),
+(3, '14332', 'shraddha', 'hello', 1594406881),
+(4, 'xyz', 'xyz', 'heyyyyy', 1594407702),
+(30, 'null ', 'shraddha ', 'hola', 1594473693),
+(34, '14332', 'shraddha', 'helooooo', 1594473824),
+(38, '14332', 'shraddha', 'good eve', 1594474114),
+(41, 'null ', 'shraddha ', 'for widgets that always build the same way given a particular configuration and ambient state.', 1594474494);
 
 -- --------------------------------------------------------
 
@@ -66,14 +95,18 @@ CREATE TABLE `copies` (
 
 INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES
 (1, 1, '', '1 - 1', NULL, NULL, '', NULL, NULL),
-(1, 2, '', '1 - 2', NULL, NULL, '', NULL, 'shelf1'),
+(1, 2, '', '1 - 2', NULL, NULL, '', NULL, NULL),
 (1, 3, '', '1 - 3', NULL, NULL, '', NULL, NULL),
-(2, 1, '', '2 - 1', NULL, 1593948092, '', 1593948112, 'shelf2'),
-(2, 2, '', '2 - 2', '14482', 1593947994, 'issued', 1593948014, 'shelf1'),
-(3, 1, '', '3 - 1', NULL, NULL, '', NULL, 'shelf2'),
-(3, 2, '', '3 - 2', '14332', 1593948265, 'issued', 1593948285, 'shelf1'),
-(3, 3, '', '3 - 3', NULL, NULL, '', NULL, 'shelf2'),
-(3, 4, '', '3 - 4', NULL, 1593948271, '', 1593948291, NULL);
+(2, 1, '', '2 - 1', '14332', 1594634908, 'issued', 1595239708, NULL),
+(2, 2, '', '2 - 2', '14482', 1594634844, 'issued', 1595239644, NULL),
+(2, 3, '', '2 - 3', NULL, NULL, '', NULL, NULL),
+(3, 1, '', '3 - 1', NULL, NULL, '', NULL, NULL),
+(3, 2, '', '3 - 2', '14332', 1594634925, 'issued', 1595239725, NULL),
+(3, 3, '', '3 - 3', NULL, NULL, '', NULL, NULL),
+(3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL),
+(4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL),
+(4, 2, '', '4 - 2', NULL, NULL, '', NULL, NULL),
+(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL);
 
 --
 -- Triggers `copies`
@@ -109,21 +142,25 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`id`, `copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES
-(1, '1 - 1', 'manu21', NULL, 'add', 1593947705, 1, ''),
-(2, '1 - 2', 'manu21', NULL, 'add', 1593947705, 1, ''),
-(3, '1 - 3', 'manu21', NULL, 'add', 1593947705, 1, ''),
-(4, '2 - 1', 'manu21', NULL, 'add', 1593947786, 2, ''),
-(5, '2 - 2', 'manu21', NULL, 'add', 1593947786, 2, ''),
-(6, '3 - 1', 'manu21', NULL, 'add', 1593947933, 3, ''),
-(7, '3 - 2', 'manu21', NULL, 'add', 1593947933, 3, ''),
-(8, '3 - 3', 'manu21', NULL, 'add', 1593947933, 3, ''),
-(9, '3 - 4', 'manu21', NULL, 'add', 1593947933, 3, ''),
-(10, '2 - 2', 'manu21', '14482', 'issue', 1593947994, 2, ''),
-(11, '2 - 1', 'manu21', '14332', 'issue', 1593948092, 2, ''),
-(12, '2 - 1', 'manu21', '14332', 'return', 1593948236, 2, ''),
-(13, '3 - 2', 'manu21', '14332', 'issue', 1593948265, 3, ''),
-(14, '3 - 4', 'manu21', '14482', 'issue', 1593948271, 3, ''),
-(15, '3 - 4', 'manu21', '14482', 'return', 1593948273, 3, '');
+(1, '1 - 1', 'manu21', NULL, 'add', 1594634404, 1, ''),
+(2, '1 - 2', 'manu21', NULL, 'add', 1594634404, 1, ''),
+(3, '1 - 3', 'manu21', NULL, 'add', 1594634404, 1, ''),
+(4, '2 - 1', 'manu21', NULL, 'add', 1594634509, 2, ''),
+(5, '2 - 2', 'manu21', NULL, 'add', 1594634509, 2, ''),
+(6, '2 - 3', 'manu21', NULL, 'add', 1594634509, 2, ''),
+(7, '3 - 1', 'manu21', NULL, 'add', 1594634555, 3, ''),
+(8, '3 - 2', 'manu21', NULL, 'add', 1594634555, 3, ''),
+(9, '3 - 3', 'manu21', NULL, 'add', 1594634555, 3, ''),
+(10, '3 - 4', 'manu21', NULL, 'add', 1594634555, 3, ''),
+(11, '4 - 1', 'manu21', NULL, 'add', 1594634587, 4, ''),
+(12, '4 - 2', 'manu21', NULL, 'add', 1594634588, 4, ''),
+(13, '5 - 1', 'manu21', NULL, 'add', 1594634619, 5, ''),
+(14, '2 - 2', 'manu21', '14482', 'issue', 1594634844, 2, ''),
+(15, '2 - 1', 'manu21', '14332', 'issue', 1594634908, 2, ''),
+(16, '3 - 2', 'manu21', '14332', 'issue', 1594634925, 3, ''),
+(17, '3 - 4', 'manu21', '14482', 'issue', 1594634933, 3, ''),
+(18, '3 - 4', 'manu21', '14482', 'return', 1594634970, 3, ''),
+(19, '5 - 1', 'manu21', '14482', 'issue', 1594634982, 5, '');
 
 -- --------------------------------------------------------
 
@@ -149,10 +186,11 @@ CREATE TABLE `issued` (
 --
 
 INSERT INTO `issued` (`id`, `bookID`, `oldID`, `copyID`, `stud_ID`, `time`, `returnTime`, `star`, `fine`, `due`) VALUES
-(1, 2, '', '2 - 2', '14482', 1593947994, NULL, NULL, NULL, 0),
-(2, 2, '', '2 - 1', '14332', 1593948092, 1593948236, NULL, NULL, 0),
-(3, 3, '', '3 - 2', '14332', 1593948265, NULL, NULL, NULL, 0),
-(4, 3, '', '3 - 4', '14482', 1593948271, 1593948273, NULL, NULL, 0);
+(1, 2, '', '2 - 2', '14482', 1594634844, NULL, NULL, NULL, 0),
+(2, 2, '', '2 - 1', '14332', 1594634908, NULL, NULL, NULL, 0),
+(3, 3, '', '3 - 2', '14332', 1594634925, NULL, NULL, NULL, 0),
+(4, 3, '', '3 - 4', '14482', 1594634933, 1594634970, NULL, '-14', 1),
+(5, 5, '', '5 - 1', '14482', 1594634982, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -186,9 +224,11 @@ CREATE TABLE `main` (
 --
 
 INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES
-(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
-(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 2, 'Philosophy and Psychology', 'Epistemology, causation, humankind', 'Epistemology', '', 'HarperCollins', '448', 'INR 401.67', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 2, 0, 1, ''),
-(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'history and criticism', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, '');
+(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
+(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 3, 'Literature and rhetoric', 'English and Old English literatures and other literatures commonly translated into English', 'Fiction', 'collections, short stories', 'HarperCollins', '448', 'INR 396.84', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 3, 0, 1, ''),
+(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, ''),
+(4, 'Sa Re Ga Ma Pa', 'Jessica Foreman', 2, 'The Arts', 'Music', 'Vocal music', 'Secular forms', 'Independently Published', '', '', 'http://books.google.com/books/content?id=OR-UzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2020-05-28', '9798649351003', 2, 0, 0, ''),
+(5, 'Python Data Science Handbook', 'Jake VanderPlas', 1, 'Generalities', 'Generalities and computer science', 'Special computer methods', 'Artificial intelligence', '\"O\'Reilly Media, Inc.\"', '548', 'INR 2513.4', 'http://books.google.com/books/content?id=6omNDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-11-21', '9781491912133', 1, 0, 1, '');
 
 -- --------------------------------------------------------
 
@@ -201,6 +241,45 @@ CREATE TABLE `sem_branch` (
   `sem` int(11) NOT NULL,
   `branch` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sem_branch`
+--
+
+INSERT INTO `sem_branch` (`sem_branchID`, `sem`, `branch`) VALUES
+(1, 1, 'comps'),
+(2, 2, 'comps'),
+(3, 3, 'comps'),
+(4, 4, 'comps'),
+(5, 1, 'extc'),
+(6, 2, 'extc'),
+(7, 3, 'extc'),
+(8, 4, 'extc');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `parameter` varchar(50) NOT NULL,
+  `value` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`parameter`, `value`) VALUES
+('dueFine', '2'),
+('duePoint', '5'),
+('issueNum', '2'),
+('issuePeriod', '7'),
+('issuePoint', '5'),
+('reserveNum', '2'),
+('reservePeriod', '2'),
+('returnPoint', '5');
 
 -- --------------------------------------------------------
 
@@ -231,17 +310,18 @@ CREATE TABLE `students` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile` varchar(12) NOT NULL,
-  `points` int(5) NOT NULL DEFAULT 100
+  `points` int(5) NOT NULL DEFAULT 100,
+  `block` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`stud_ID`, `name`, `email`, `mobile`, `points`) VALUES
-('14332', 'shraddha', 'shraddha651@gmail.com', '8655266790', 100),
-('14333', 'symmka', 'symmka.ng@gmail.com', '865659562', 100),
-('14482', 'Manjunath Naik', 'manjunath2000@hotmail.com', '9322289496', 100);
+INSERT INTO `students` (`stud_ID`, `name`, `email`, `mobile`, `points`, `block`) VALUES
+('14332', 'shraddha', 'shraddha651@gmail.com', '8655266790', 110, 0),
+('14333', 'symmka', 'symmka.ng@gmail.com', '865659562', 100, 0),
+('14482', 'Manjunath Naik', 'manjunath2000@hotmail.com', '9322289496', 545, 0);
 
 -- --------------------------------------------------------
 
@@ -256,6 +336,15 @@ CREATE TABLE `syllabus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `syllabus`
+--
+
+INSERT INTO `syllabus` (`id`, `sem_branchID`, `bookID`) VALUES
+(1, 1, 1),
+(2, 2, 3),
+(3, 3, 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -264,6 +353,12 @@ CREATE TABLE `syllabus` (
 --
 ALTER TABLE `adminlogin`
   ADD PRIMARY KEY (`userID`);
+
+--
+-- Indexes for table `chats`
+--
+ALTER TABLE `chats`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `copies`
@@ -300,6 +395,12 @@ ALTER TABLE `sem_branch`
   ADD PRIMARY KEY (`sem_branchID`);
 
 --
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`parameter`);
+
+--
 -- Indexes for table `shelf`
 --
 ALTER TABLE `shelf`
@@ -324,34 +425,40 @@ ALTER TABLE `syllabus`
 --
 
 --
+-- AUTO_INCREMENT for table `chats`
+--
+ALTER TABLE `chats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `issued`
 --
 ALTER TABLE `issued`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `main`
 --
 ALTER TABLE `main`
-  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sem_branch`
 --
 ALTER TABLE `sem_branch`
-  MODIFY `sem_branchID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sem_branchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `syllabus`
 --
 ALTER TABLE `syllabus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -361,16 +468,16 @@ ALTER TABLE `syllabus`
 -- Constraints for table `copies`
 --
 ALTER TABLE `copies`
-  ADD CONSTRAINT `copies_ibfk_3` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`),
-  ADD CONSTRAINT `copies_ibfk_4` FOREIGN KEY (`shelfID`) REFERENCES `shelf` (`shelfID`),
-  ADD CONSTRAINT `copies_ibfk_5` FOREIGN KEY (`stud_ID`) REFERENCES `students` (`stud_ID`);
+  ADD CONSTRAINT `copies_ibfk_5` FOREIGN KEY (`stud_ID`) REFERENCES `students` (`stud_ID`),
+  ADD CONSTRAINT `copies_ibfk_6` FOREIGN KEY (`shelfID`) REFERENCES `shelf` (`shelfID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `copies_ibfk_7` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `syllabus`
 --
 ALTER TABLE `syllabus`
-  ADD CONSTRAINT `syllabus_ibfk_1` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`),
-  ADD CONSTRAINT `syllabus_ibfk_2` FOREIGN KEY (`sem_branchID`) REFERENCES `sem_branch` (`sem_branchID`);
+  ADD CONSTRAINT `syllabus_ibfk_2` FOREIGN KEY (`sem_branchID`) REFERENCES `sem_branch` (`sem_branchID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `syllabus_ibfk_3` FOREIGN KEY (`bookID`) REFERENCES `main` (`bookID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

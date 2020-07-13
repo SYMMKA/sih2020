@@ -35,13 +35,16 @@ function autoFillReturnBook(copyID, oldID, i) {
 				<input type="hidden" id="point" value="` +
 				data.point +
 				`" />
+				<input type="hidden" id="ratio" value="` +
+				data.duePointFineRatio +
+				`" />
 		</div>      
 
 		<div>
 			<div class="form-group row justify-content-center" >
 				<label class="col-sm-4 col-form-label  text-right">Add Fine</label>
 				<div class="col-sm-4">
-					<input class="form-control" name="addFine" id="addFine" placeholder="Fine" />
+					<input class="form-control" type="number" min="1" step="any" name="addFine" id="addFine" placeholder="Fine" />
 				</div>
 				<div class="col-sm-4">
 					<button type="reset" value="Clear" class="btn btn-secondary">
@@ -55,8 +58,8 @@ function autoFillReturnBook(copyID, oldID, i) {
 					<button type="submit" onclick="due = 0" form="returnBookForm" class="btn btn-info">
 						Pay & Return
 					</button>
-					<button type="submit" onclick="due = 1" form="returnBookForm" class="btn btn-info">
-						Return
+					<button type="submit" id="due1" onclick="due = 1" form="returnBookForm" class="btn btn-info">
+						Return & Pay Later
 					</button>
 				</div>
 			</div>
@@ -67,16 +70,28 @@ function autoFillReturnBook(copyID, oldID, i) {
 			document.getElementById('copyID').textContent = copyID;
 			document.getElementById("bookFormDiv").innerHTML = html;
 			document.getElementById("elementID").value = i;
+
+			if((data.dueFine) == 0)
+				document.getElementById('due1').hidden = true;
+			else
+				document.getElementById('due1').hidden = false;
 		}
 		//Other options
 	});
 }
 
 function addFine(){
-	var orgFine = parseInt(document.getElementById('fine').textContent);
-	var addFine = parseInt(document.getElementById('addFine').value);
+	var orgFine = parseFloat(document.getElementById('fine').textContent);
+	var addFine = parseFloat(document.getElementById('addFine').value);
+	if(document.getElementById('addFine').value == '')
+		addFine = 0;
 	var extraFine = document.getElementById('extraFine');
 	var totalFine = document.getElementById('totalFine');
 	extraFine.textContent = addFine;
 	totalFine.textContent = orgFine+addFine;
+
+	if((orgFine+addFine) == 0)
+		document.getElementById('due1').hidden = true;
+	else
+		document.getElementById('due1').hidden = false;
 }

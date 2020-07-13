@@ -10,11 +10,14 @@ function returnBook(e) {
 	var copyID = document.getElementById('copyID').textContent;
 	var elementID = document.getElementById('elementID').value;
 	
-	var orgFine = parseInt(document.getElementById('fine').textContent);
-	var fine = parseInt(document.getElementById('totalFine').textContent);
+	var ratio = parseFloat(document.getElementById('ratio').value);
+	var fine = parseFloat(document.getElementById('totalFine').textContent);
 
-	var orgPoint = parseInt(document.getElementById('point').value);
-	var points = fine * (orgPoint/orgFine);
+	var orgPoint = parseFloat(document.getElementById('point').value);
+	var points = -fine * ratio;
+
+	if(fine == 0)
+		points = orgPoint;
 
 	var formData = new FormData();
 	formData.append('copyID', copyID);

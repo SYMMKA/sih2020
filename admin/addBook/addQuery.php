@@ -210,9 +210,8 @@ function insertImage($bookID)
 		}
 		if ($uploadOk == 0)
 			throw new Exception('Image not uploaded');
-		else
-			return $imgValue2;
 	}
+	return $imgValue2;
 }
 
 function insertDigital($bookID)

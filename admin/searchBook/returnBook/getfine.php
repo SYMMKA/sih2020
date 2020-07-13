@@ -15,6 +15,8 @@ $returnDay = strtotime("today", $returnTime);
 $today = time();
 $days = ($today-$returnDay)/86400;
 $days = floor($days);
+if($days < 0)
+	$days = 0;
 
 // fine for late submission
 $dueFineQuery = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'dueFine'";
@@ -30,14 +32,18 @@ $duePointstmt->execute();
 $duePointPerDay = $duePointstmt->fetchObject()->value;
 $point = -$duePointPerDay*$days;
 
+// Due Point Fine Ratio
+$duePointFineRatio = $duePointPerDay/$dueFinePerDay;
+
 // +ve points for submission in time
 $returnPointQuery = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'returnPoint'";
 $returnPointstmt = $conn->prepare($returnPointQuery);
 $returnPointstmt->execute();
 $returnPoint = $returnPointstmt->fetchObject()->value;
 if($days == 0)
-	$point += $returnPoint;
+	$point = $returnPoint;
 
 $return['dueFine'] = $dueFine;
 $return['point'] = $point;
+$return['duePointFineRatio'] = $duePointFineRatio;
 echo json_encode($return);

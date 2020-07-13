@@ -166,7 +166,7 @@ include('session.php');
 								<div class="col-md-6">
 									<div class="card-body">
 										<h5 class="card-title">
-											<?php echo $title[$i] ? "Author: " . $title[$i] : null ?>
+											<?php echo $title[$i] ? "Title: " . $title[$i] : null ?>
 										</h5>
 										<P><?php echo isset($author[$i]) ? "Author: " . $author[$i] : null ?>
 											<?php echo isset($category[$i]) ? "<br>Category: " . $category[$i] : null ?>
