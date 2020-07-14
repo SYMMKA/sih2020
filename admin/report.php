@@ -103,8 +103,7 @@ include('session.php');
                         <div class="form-group row">
                           <label for="bookID" class="col-sm-3 col-form-label">Book ID</label>
                           <div class="col-sm-9">
-                            <select class="selectpicker w-100" data-live-search="true" name="bookID" id="bookID">
-                              <option value=''>All</option>
+                            <select class="selectpicker w-100" name="bookID" id="bookID" multiple data-live-search="true" data-actions-box="true">
                             </select>
                           </div>
                         </div>
@@ -116,8 +115,7 @@ include('session.php');
                       <div class="form-group row">
                         <label for="adminID" class="col-sm-3 col-form-label">Admin ID</label>
                         <div class="col-sm-9">
-                          <select class="selectpicker w-100" name="adminID" id="adminID" data-live-search="true">
-                            <option value=''>All</option>
+                          <select class="selectpicker w-100" name="adminID" id="adminID" multiple data-live-search="true" data-actions-box="true">
                           </select>
                         </div>
                       </div>
@@ -127,8 +125,7 @@ include('session.php');
                         <div class="form-group row">
                           <label for="studentID" class="col-sm-3 col-form-label">Student ID</label>
                           <div class="col-sm-9">
-                            <select class="selectpicker w-100" name="studentID" id="studentID" data-live-search="true">
-                              <option value=''>All</option>
+                            <select class="selectpicker w-100" name="studentID" id="studentID" multiple data-live-search="true" data-actions-box="true">
                             </select>
                           </div>
                         </div>

@@ -14,22 +14,45 @@ if ($_POST['bookdelete'] == 1)
 if ($_POST['update'] == 1)
 	$action['update'] = $_POST['update'];
 $bookID = $_POST['bookID'];
+$bookID = json_decode($bookID, true);
 $studentID = $_POST['studentID'];
+$studentID = json_decode($studentID, true);
 $adminID = $_POST['adminID'];
+$adminID = json_decode($adminID, true);
 
 //studentIDquery
 if ($studentID == '')
 	$studentIDquery = "";
 elseif ($studentID == 'show')
 	$studentIDquery = "(`studentID` is NOT NULL)";
-else
-	$studentIDquery = "(`studentID` = :studentID)";
+else{
+	$studentIDlength = count($studentID);
+	$i = 1;
+	$studentIDquery = "(";
+	foreach ($studentID as $student){
+		$studentIDquery .= "`studentID` = :studentID".$i;
+		if ($i < $studentIDlength)
+			$studentIDquery .= " OR ";
+		$i++;
+	}
+	$studentIDquery .= ")";
+}
 
 //adminIDquery
-if ($adminID == '')
-	$adminIDquery = "";
+if ($adminID != ''){
+	$adminIDlength = count($adminID);
+	$i = 1;
+	$adminIDquery = "(";
+	foreach ($adminID as $admin){
+		$adminIDquery .= "`adminID` = :adminID".$i;
+		if ($i < $adminIDlength)
+			$adminIDquery .= " OR ";
+		$i++;
+	}
+	$adminIDquery .= ")";
+}
 else
-	$adminIDquery = "(`adminID` = :adminID)";
+	$adminIDquery = "";
 
 // actionquery
 $actionlength = count($action);
@@ -44,9 +67,18 @@ foreach ($action as $k => $v) {
 $actionquery .= ")";
 
 //bookID
-if ($bookID != '')
-	$bookIDquery = "(`bookID` = :bookID)";
-else
+if ($bookID != ''){
+	$bookIDlength = count($bookID);
+	$i = 1;
+	$bookIDquery = "(";
+	foreach ($bookID as $book){
+		$bookIDquery .= "`bookID` = :bookID".$i;
+		if ($i < $bookIDlength)
+			$bookIDquery .= " OR ";
+		$i++;
+	}
+	$bookIDquery .= ")";
+} else
 	$bookIDquery = "";
 
 $query = "SELECT * FROM `history` WHERE " . $actionquery;
@@ -58,12 +90,19 @@ if ($bookIDquery != '')
 	$query .= " AND " . $bookIDquery;
 
 $stmt = $conn->prepare($query);
-if ($bookID != '')
-	$stmt->bindParam(':bookID', $bookID);
-if ($adminID != '')
-	$stmt->bindParam(':adminID', $adminID);
-if (($studentID != '') && ($studentID != 'show'))
-	$stmt->bindParam(':studentID', $studentID);
+
+if ($bookID != ''){
+	for($i=1; $i<=$bookIDlength; $i++)
+		$stmt->bindParam(':bookID'.$i, $bookID[$i-1]);
+}
+if ($adminID != ''){
+	for($i=1; $i<=$adminIDlength; $i++)
+		$stmt->bindParam(':adminID'.$i, $adminID[$i-1]);
+}
+if (($studentID != '') && ($studentID != 'show')){
+	for($i=1; $i<=$studentIDlength; $i++)
+		$stmt->bindParam(':studentID'.$i, $studentID[$i-1]);
+}
 $stmt->execute();
 
 while ($row = $stmt->fetchObject()) {

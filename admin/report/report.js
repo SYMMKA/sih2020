@@ -48,20 +48,22 @@ function generateReport() {
 	if (document.getElementById("checkUpdate").checked == true) {
 		update = 1;
 	}
-	if (document.getElementById("bookID").value == null) {
+	if (document.getElementById("bookID").value == "") {
 	} else {
-		bookID = document.getElementById("bookID").value;
+		bookID = JSON.stringify($('#bookID').val());
+		console.log("hi");
 	}
 	if (document.getElementById("student").selected == true) {
-		studentID = document.getElementById("studentID").value;
-		if (studentID == "") studentID = "show";
+		studentID = JSON.stringify($('#studentID').val());
+		if (studentID == "") // to show where studentID is not NULL
+			studentID = "show";
 	}
 	if (document.getElementById("admin").selected == true) {
-		adminID = document.getElementById("adminID").value;
+		adminID = JSON.stringify($('#adminID').val());
 	}
 	if (document.getElementById("all").selected == true) {
-		studentID = document.getElementById("studentID").value;
-		adminID = document.getElementById("adminID").value;
+		studentID = JSON.stringify($('#studentID').val());
+		adminID = JSON.stringify($('#adminID').val());
 	}
 	console.log("add - " + add);
 	console.log("issue - " + issue);
@@ -175,11 +177,12 @@ function loadBookID() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			var data = JSON.parse(data);
-			var i = 1;
+			var i = 0;
 			for (var key in data) {
 				bookIDoption.options[i] = new Option(key + " - " + data[key], key);
 				i++;
 			}
+			$('#bookID option').attr("selected","selected");
 			$(".selectpicker").selectpicker("refresh");
 		},
 		//Other options
@@ -195,11 +198,12 @@ function loadStudentID() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			var data = JSON.parse(data);
-			var i = 1;
+			var i = 0;
 			for (var key in data) {
 				studentIDoption.options[i] = new Option(data[key], data[key]);
 				i++;
 			}
+			$('#studentID option').attr("selected","selected");
 			$(".selectpicker").selectpicker("refresh");
 		},
 		//Other options
@@ -215,11 +219,12 @@ function loadAdminID() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			var data = JSON.parse(data);
-			var i = 1;
+			var i = 0;
 			for (var key in data) {
 				adminIDoption.options[i] = new Option(data[key], data[key]);
 				i++;
 			}
+			$('#adminID option').attr("selected","selected");
 			$(".selectpicker").selectpicker("refresh");
 		},
 		//Other options
