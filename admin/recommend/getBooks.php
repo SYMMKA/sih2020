@@ -3,15 +3,7 @@
 include("../session.php");
 include("../db.php");
 
-$branch = $_POST['branch'];
-$semester = $_POST['semester'];
-$query1 = "SELECT `sem_branchID` FROM `sem_branch` WHERE `sem_branch`.`branch` = :branch AND `sem_branch`.`sem` = :sem";
-$stmt1 = $conn->prepare($query1);
-$stmt1->bindParam(':branch', $branch);
-$stmt1->bindParam(':sem', $semester);
-$stmt1->execute();
-$row1 = $stmt1->fetchObject();
-$sem_branchID = $row1->sem_branchID;
+$sem_branchID = $_POST['sem_branchID'];
 
 $query2 = "SELECT `bookID` FROM `syllabus` WHERE `sem_branchID` = :sem_branchID";
 $stmt2 = $conn->prepare($query2);
@@ -51,7 +43,7 @@ while ($row2 = $stmt2->fetchObject()) {
 	$row4 = $stmt4->fetchObject();
 	$data["star"] = $row4->STAR;
 
-	$return_arr[$sem_branchID][] = $data;
+	$return_arr[] = $data;
 }
 
 // Encoding array in JSON format

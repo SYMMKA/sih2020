@@ -158,7 +158,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="modalBodyContent">
           <div class="row">
             <div class="col-md-8 col-lg-10">
               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4" style="height: 500px; overflow-y: scroll;">

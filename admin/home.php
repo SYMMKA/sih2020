@@ -44,6 +44,10 @@ include("session.php");
       background-color: #001B58;
     }
 
+    .fa {
+      font-size: 1.5rem;
+    }
+
     .text-orange {
       color: #FFF;
     }
@@ -75,20 +79,20 @@ include("session.php");
 
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-comment fa-2x" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item dropdown active">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Amit Ramani</a>

@@ -107,29 +107,97 @@ window.onload = function () {
                     html += `</div>
                 </div>`;
                     $("#recommendations").html(html);
+                    // example to load sem-branch modal
+                    $(".show-books").click(function () {
+                        var id = $(this).attr("id");
+                        var formdata = new FormData();
+                        formdata.append("sem_branchID", id);
+                        console.log(formdata);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "recommend/getBooks.php",
+                            data: formdata,
+                            contentType: false, // Dont delete this (jQuery 1.6+)
+                            processData: false, // Dont delete this
+                            success: function (data) {
+                                if (data) {
+                                    data = JSON.parse(data);
+                                    console.log(data);
+                                    html = `<div class="row">
+                            <div class="col-md-8 col-lg-10">
+                                <div
+                                    class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
+                                    style="height: 500px; overflow-y: scroll;"
+                                >`;
+                                    data.forEach(function (item, index) {
+                                        html +=
+                                            `
+                                    <div class="col mb-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="` +
+                                            item.imgLink +
+                                            `"
+                                        alt="Card image cap" style="height:18vw;" />
+                                        <div class="card-body text-center" style="padding: 1rem;">
+                                        <h4 class="card-title mb-4 ">` +
+                                            item.title +
+                                            `</h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">` +
+                                            item.author +
+                                            `</h6>
+                                        <p class="card-text"> 
+                                        Book ID:                   
+                                        ` +
+                                            item.bookID +
+                                            `                               
+                                        </p>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                                    });
+                                    html += `</div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-2">
+                                                    <div>
+                                                        <h3>Add Books</h3>
+                                                        <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                                                        <option>Mustard</option>
+                                                        <option>Ketchup</option>
+                                                        <option>Relish</option>
+                                                        </select>
+                                                        <button type="button" class="btn btn-orange btn-block mb-5">
+                                                        Add
+                                                        </button>
+                                                        <h3>Delete Books</h3>
+                                                        <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                                                        `;
+                                    data.forEach(function (item, index) {
+                                        html +=
+                                            `<option>` +
+                                            item.title +
+                                            `</option>`;
+                                    });
+                                    html += `
+                                                        </select>
+                                                        <button type="button" class="btn btn-orange btn-block mb-5">
+                                                        Remove
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                </div> `;
+                                    $("#modalBodyContent").html(html);
+                                    $(".selectpicker").selectpicker({});
+                                }
+                            },
+                            //Other options
+                        });
+                    });
                 }
             }
         },
         //Other options
-	});
-	// example to load sem-branch modal
-	var formdata = new FormData();
-	formdata.append("branch", "comps");
-	formdata.append("semester", 1);
-	$.ajax({
-        type: "POST",
-		url: "recommend/getBooks.php",
-		data: formdata,
-        contentType: false, // Dont delete this (jQuery 1.6+)
-        processData: false, // Dont delete this
-        success: function (data) {
-            if (data) {
-                data = JSON.parse(data);
-				console.log(data);
-            }
-        },
-        //Other options
-	});
+    });
 };
 
 /* var branch = document.getElementById("branch");
