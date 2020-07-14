@@ -19,6 +19,27 @@ if ($_POST['copyID'])
 else
 	$copyID = '';
 
+$adminID = $_SESSION['adminID'];
+
+// check clearance level required
+$accessSQL = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'issueAccess'";
+$accessstmt = $conn->prepare($accessSQL);
+$accessstmt->execute();
+$access = (int)$accessstmt->fetchObject()->value;
+
+// check admin clearance level
+$adminLevelSQL = "SELECT `clearance` FROM `adminlogin` WHERE `adminlogin`.`userID` = :adminID ";
+$adminLevelstmt = $conn->prepare($adminLevelSQL);
+$adminLevelstmt->bindParam(':adminID', $adminID);
+$adminLevelstmt->execute();
+$adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
+
+if($access > $adminLevel){
+	echo "\nAccess not granted";
+	$conn = null;
+	exit;
+}
+
 // check if student is yet to pay fine
 $dueLeftQuery = "SELECT * FROM `issued` WHERE `issued`.`stud_ID` = :st_ID AND `issued`.`due` = '1'";
 $dueLeftstmt = $conn->prepare($dueLeftQuery);
@@ -73,8 +94,6 @@ $orgPoint = $stmtPoint->fetchObject()->points;
 
 // new points
 $point = $orgPoint + $addPoint;
-
-$adminID = $_SESSION['adminID'];
 
 try {
 	// set the PDO error mode to exception

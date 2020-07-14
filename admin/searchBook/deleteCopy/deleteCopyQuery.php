@@ -7,6 +7,27 @@ if ($_POST['copyID'])
 else
 	$copyID = '';
 
+$adminID = $_SESSION['adminID'];
+
+// check clearance level required
+$accessSQL = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'updateBookAccess'";
+$accessstmt = $conn->prepare($accessSQL);
+$accessstmt->execute();
+$access = (int)$accessstmt->fetchObject()->value;
+
+// check admin clearance level
+$adminLevelSQL = "SELECT `clearance` FROM `adminlogin` WHERE `adminlogin`.`userID` = :adminID ";
+$adminLevelstmt = $conn->prepare($adminLevelSQL);
+$adminLevelstmt->bindParam(':adminID', $adminID);
+$adminLevelstmt->execute();
+$adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
+
+if($access > $adminLevel){
+	echo "\nAccess not granted";
+	$conn = null;
+	exit;
+}
+
 // To get bookID
 $query1 = "SELECT * FROM copies Where `copies`.`copyID` = :copyID";
 $stmtt1 = $conn->prepare($query1);
@@ -23,8 +44,6 @@ $stmtt2->bindParam(':bookID', $bookID);
 $stmtt2->execute();
 $row2 = $stmtt2->fetchObject();
 $quantity = $row2->quantity - 1;  //reduce quantity by 1
-
-$adminID = $_SESSION['adminID'];
 
 try {
 	// set the PDO error mode to exception
