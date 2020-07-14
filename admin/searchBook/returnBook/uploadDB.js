@@ -1,11 +1,7 @@
-function autoFillReturnBook(copyID, i) {
-	document.getElementById('copyID').textContent = copyID;
-	document.getElementById('elementID').value = i;
-}
-
 // Listen for form submit
 document.getElementById('returnBookForm').addEventListener('submit', returnBook);
 
+var due;
 // Submit form
 function returnBook(e) {
 	e.preventDefault();
@@ -13,9 +9,21 @@ function returnBook(e) {
 	// Get values
 	var copyID = document.getElementById('copyID').textContent;
 	var elementID = document.getElementById('elementID').value;
+	
+	var ratio = parseFloat(document.getElementById('ratio').value);
+	var fine = parseFloat(document.getElementById('totalFine').textContent);
+
+	var orgPoint = parseFloat(document.getElementById('point').value);
+	var points = -fine * ratio;
+
+	if(fine == 0)
+		points = orgPoint;
 
 	var formData = new FormData();
 	formData.append('copyID', copyID);
+	formData.append('fine', fine);
+	formData.append('points', points);
+	formData.append('due', due);
 
 	$.ajax({
 		type: "POST",

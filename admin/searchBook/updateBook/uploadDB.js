@@ -1,4 +1,3 @@
-// Your web app's Firebase configuration
 // Listen for form submit
 document.getElementById('updateBookForm').addEventListener('submit', updateBook);
 // Submit form
@@ -12,57 +11,48 @@ function updateBook(e) {
 	var publisher = getInputVal('updatepublisher');
 	var publishedDate = getInputVal('updatepublishedDate');
 	var isbn = getInputVal('updateISBN');
-	var pageCount = getInputVal('updatepageCount');
 	var money = getInputVal('updatemoney');
 	var oldID = getInputVal('updateOldID');
+	var imgFile = $('#updateimgFile')[0].files[0];
+	if (!imgFile)
+		imgFile = null;
 	var addQuan = getInputVal('updateaddcopies');
-	var files = $('#updateimgFile')[0].files[0];
-	if (!files)
-		files = null;
+	var pageCount = getInputVal('updatepageCount');
+	var mediaFile = $('#mediaFile')[0].files[0]; //digital
 
-	if (!getInputVal('catDisplay')) {
-		var mainCategory1 = '';
-		var mainCategory2 = '';
-		var mainCategory3 = '';
-		var mainCategory4 = '';
-	} else {
-		var mainCategory1 = test[mainCategorySelect1.value].description;
-		if (!test[mainCategorySelect1.value].subordinates) {
-			var mainCategory2 = '';
-			var mainCategory3 = '';
-			var mainCategory4 = '';
-		} else {
-			var mainCategory2 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].description;
-			if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates) {
-				var mainCategory3 = '';
-				var mainCategory4 = '';
-			} else {
-				var mainCategory3 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].description;
-				if (!test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates)
-					var mainCategory4 = '';
-				else
-					var mainCategory4 = test[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategorySelect4.value].description;
-
-			}
-		}
+	var updateCategory1 = '';
+	var updateCategory2 = '';
+	var updateCategory3 = '';
+	var updateCategory4 = '';
+	if (getInputVal('catDisplay') == "true") {
+		if (updateCategorySelect1.value)
+			updateCategory1 = updateCategorySelect1.options[updateCategorySelect1.selectedIndex].text
+		if (updateCategorySelect2.value)
+			updateCategory2 = updateCategorySelect2.options[updateCategorySelect2.selectedIndex].text
+		if (updateCategorySelect3.value)
+			updateCategory3 = updateCategorySelect3.options[updateCategorySelect3.selectedIndex].text
+		if (updateCategorySelect4.value)
+			updateCategory4 = updateCategorySelect4.options[updateCategorySelect4.selectedIndex].text
 	}
+	//console.log(updateCategory4);
 
 	var formData = new FormData();
 	formData.append('bookID', bookID);
 	formData.append('title', title);
 	formData.append('author', author);
-	formData.append('mainCategory1', mainCategory1);
-	formData.append('mainCategory2', mainCategory2);
-	formData.append('mainCategory3', mainCategory3);
-	formData.append('mainCategory4', mainCategory4);
+	formData.append('mainCategory1', updateCategory1);
+	formData.append('mainCategory2', updateCategory2);
+	formData.append('mainCategory3', updateCategory3);
+	formData.append('mainCategory4', updateCategory4);
 	formData.append('publisher', publisher);
 	formData.append('publishedDate', publishedDate);
 	formData.append('isbn', isbn);
 	formData.append('pageCount', pageCount);
 	formData.append('money', money);
 	formData.append('oldID', oldID);
-	formData.append('imgFile', files);
+	formData.append('imgFile', imgFile);
 	formData.append('addQuan', addQuan);
+	formData.append('mediaFile', mediaFile);
 
 	$.ajax({
 		type: "POST",

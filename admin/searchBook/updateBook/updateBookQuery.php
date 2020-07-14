@@ -1,8 +1,33 @@
 <?php
 include("../../session.php");
 include("../../db.php");
+$relative = dirname($_SERVER["SCRIPT_NAME"], 4) . '/';
+$domain = $_SERVER['HTTP_HOST'] . $relative;
+$prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+$link = $prefix . $domain;
 
 $bookID = $_POST['bookID'];
+$shelfID = NULL;
+$adminID = $_SESSION['adminID'];
+
+// check clearance level required
+$accessSQL = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'updateBookAccess'";
+$accessstmt = $conn->prepare($accessSQL);
+$accessstmt->execute();
+$access = (int)$accessstmt->fetchObject()->value;
+
+// check admin clearance level
+$adminLevelSQL = "SELECT `clearance` FROM `adminlogin` WHERE `adminlogin`.`userID` = :adminID ";
+$adminLevelstmt = $conn->prepare($adminLevelSQL);
+$adminLevelstmt->bindParam(':adminID', $adminID);
+$adminLevelstmt->execute();
+$adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
+
+if($access > $adminLevel){
+	echo "\nAccess not granted";
+	$conn = null;
+	exit;
+}
 
 // To get original book properties
 $query = "SELECT * FROM `main` Where `main`.`bookID` = :bookID";
@@ -32,39 +57,22 @@ if ($_POST['isbn']) {
 
 if ($_POST['mainCategory1']) {
 	$category1 = $_POST['mainCategory1'];
-	$change = 1;
-} else
-	$category1 = $row->Category1;
-
-if ($_POST['mainCategory2']) {
 	$category2 = $_POST['mainCategory2'];
-	$change = 1;
-} else
-	$category2 = $row->Category2;
-
-if ($_POST['mainCategory3']) {
 	$category3 = $_POST['mainCategory3'];
-	$change = 1;
-} else
-	$category3 = $row->Category3;
-
-if ($_POST['mainCategory4']) {
 	$category4 = $_POST['mainCategory4'];
 	$change = 1;
-} else
+} else {
+	$category1 = $row->Category1;
+	$category2 = $row->Category2;
+	$category3 = $row->Category3;
 	$category4 = $row->Category4;
+}
 
 if ($_POST['publisher']) {
 	$publisher = $_POST['publisher'];
 	$change = 1;
 } else
 	$publisher = $row->publisher;
-
-if ($_POST['pageCount']) {
-	$pages = $_POST['pageCount'];
-	$change = 1;
-} else
-	$pages = $row->pages;
 
 if ($_POST['publishedDate']) {
 	$date_of_publication = $_POST['publishedDate'];
@@ -84,7 +92,7 @@ else {
 	//check image upload
 	if ($_FILES["imgFile"]["error"] == 0) {
 		/* Location */
-		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "/web/bookImage/";
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . $relative . "bookImage/";
 		$target_file = $target_dir . basename($_FILES["imgFile"]["name"]);
 		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -100,9 +108,9 @@ else {
 		}
 		// Check file size
 		/* if ($_FILES["imgFile"]["size"] > 500000) {
-	echo "Sorry, your file is too large.";
-	$uploadOk = 0;
-} */
+			echo "Sorry, your file is too large.";
+			$uploadOk = 0;
+		} */
 
 		/* Valid Extensions */
 		$valid_extensions = array("jpg", "jpeg", "png");
@@ -117,32 +125,86 @@ else {
 		} else {
 			$temp = explode(".", $_FILES["imgFile"]["name"]);
 			$imageName = $bookID . '.' . end($temp);
-			$newName = $target_dir . $imageName;
-			if (move_uploaded_file($_FILES["imgFile"]["tmp_name"], $newName)) {
+			$imageDest = $target_dir . $imageName;
+			if (move_uploaded_file($_FILES["imgFile"]["tmp_name"], $imageDest)) {
 				echo "<br>" . "The file " . basename($_FILES["imgFile"]["name"]) . " has been uploaded.";
-				$imgLink = "http://" . $_SERVER['SERVER_NAME'] . "/web/bookImage/" . $imageName;
+				$imgLink = $link . "bookImage/" . $imageName;
 				$change = 1;
 			} else {
 				echo "<br>" . "Sorry, there was an error uploading your file.";
 				$uploadOk = 0;
+				echo "<br>" . "Wrong file format.";
 			}
 		}
 	}
 }
 
-
-if ($_POST['addQuan']) {
-	$addQuan = $_POST['addQuan'];
-	$quantity = $addQuan + $row->quantity;
-	$prevOrgQuan = $row->orgQuan;
-	$orgQuan =  $addQuan + $prevOrgQuan;
-} else {
-	$prevOrgQuan = $row->quantity;
-	$quantity = $row->quantity;
-	$orgQuan = $row->orgQuan;
+$pages = $row->pages;
+if ($row->book == 1) {
+	if ($_POST['pageCount']) {
+		$pages = $_POST['pageCount'];
+		$change = 1;
+	}
 }
 
-$adminID = $_SESSION['adminID'];
+$prevOrgQuan = $row->quantity;
+$quantity = $row->quantity;
+$orgQuan = $row->orgQuan;
+if ($row->digital == 0) {
+	if ($_POST['addQuan']) {
+		$addQuan = $_POST['addQuan'];
+		$quantity = $addQuan + $row->quantity;
+		$prevOrgQuan = $row->orgQuan;
+		$orgQuan =  $addQuan + $prevOrgQuan;
+	}
+ } else {
+	if (!isset($_FILES["mediaFile"]['tmp_name']))
+		$digitalLink = $row->digitalLink;
+	else {
+		if ($_FILES["mediaFile"]["error"] == 0) {
+			/* Location */
+			$target_dir = $_SERVER["DOCUMENT_ROOT"] . $relative . "book_audio/";
+			$target_file = $target_dir . basename($_FILES["mediaFile"]["name"]);
+			$mediaFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+			// Check if image file is a actual image or fake image
+
+			$check = filesize($_FILES["mediaFile"]["tmp_name"]);
+			if ($check !== false) {
+				echo "<br>" . "File is not corrupt.";
+				$uploadOk = 1;
+			} else {
+				echo "<br>" . "File is corrupt.";
+				$uploadOk = 0;
+			}
+
+			/* Valid Extensions */
+			$valid_extensions = array("pdf", "epub", "mp3", "wav");
+			/* Check file extension */
+			if (!in_array(strtolower($mediaFileType), $valid_extensions)) {
+				$uploadOk = 0;
+				echo "<br>" . "Wrong file format.";
+			}
+
+			if ($uploadOk == 0) {
+				echo "<br>" . "Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+			} else {
+				$temp = explode(".", $_FILES["mediaFile"]["name"]);
+				$mediaName = $bookID . '.' . end($temp);
+				$mediaDest = $target_dir . $mediaName;
+				if (move_uploaded_file($_FILES["mediaFile"]["tmp_name"], $mediaDest)) {
+					echo "<br>" . "The file " . basename($_FILES["mediaFile"]["name"]) . " has been uploaded.";
+					$digitalLink = $link . "book_audio/" . $mediaName;
+					$change = 1;
+				} else {
+					echo "<br>" . "Sorry, there was an error uploading your file.";
+					$uploadOk = 0;
+				}
+			}
+		}
+	}
+}
 
 //oldID and shelfID for newly added copies not inserted
 try {
@@ -150,7 +212,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
 
-	$sql1 = "UPDATE `main` SET `title` = :title, `author` = :author, `quantity` = :quantity, `Category1` = :category1, `Category2` = :category2, `Category3` = :category3, `Category4` = :category4, `publisher` = :publisher, `pages` = :pages, `price` = :price, `imgLink` = :imgLink, `date_of_publication` = :date_of_publication, `isbn` = :isbn, `orgQuan` = :orgQuan WHERE `main`.`bookID` = :bookID";
+	$sql1 = "UPDATE `main` SET `title` = :title, `author` = :author, `quantity` = :quantity, `Category1` = :category1, `Category2` = :category2, `Category3` = :category3, `Category4` = :category4, `publisher` = :publisher, `pages` = :pages, `price` = :price, `imgLink` = :imgLink, `date_of_publication` = :date_of_publication, `isbn` = :isbn, `orgQuan` = :orgQuan, `digitalLink` = :digitalLink WHERE `main`.`bookID` = :bookID";
 	$stmt1 = $conn->prepare($sql1);
 	$stmt1->bindParam(':title', $title);
 	$stmt1->bindParam(':author', $author);
@@ -167,16 +229,18 @@ try {
 	$stmt1->bindParam(':isbn', $isbn);
 	$stmt1->bindParam(':orgQuan', $orgQuan);
 	$stmt1->bindParam(':bookID', $bookID);
+	$stmt1->bindParam(':digitalLink', $digitalLink);
 	$stmt1->execute();
-	echo "\nCopies table updated";
+	echo "\nMain table updated";
 
 	//if new copy added
 	if ($_POST['addQuan']) {
-		$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', '', NULL, '', NULL, '')";
+		$sql2 = "INSERT INTO `copies` (`bookID`, `copyno`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', NULL, NULL, '', NULL, :shelfID)";
 		$stmt2 = $conn->prepare($sql2);
 		$stmt2->bindParam(':bookID', $bookID);
+		$stmt2->bindParam(':shelfID', $shelfID);
 
-		$sql3 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, 'admin', :adminID, 'add', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, 'oldID')";
 		$stmt3 = $conn->prepare($sql3);
 		$stmt3->bindParam(':adminID', $adminID);
 		$stmt3->bindParam(':bookID', $bookID);
@@ -184,9 +248,9 @@ try {
 		for ($copyNO = $prevOrgQuan + 1; $copyNO <= $orgQuan; $copyNO++) {
 			$stmt2->bindParam(':copyNO', $copyNO);
 			$stmt2->execute();
-			echo "\nIssued table updated";
+			echo "\nCopies table updated";
 
-			$copyID = $bookID.' - '.$copyNO;
+			$copyID = $bookID . ' - ' . $copyNO;
 			$stmt3->bindParam(':copyID', $copyID);
 			$stmt3->execute();
 			echo "\nAdded to history table";
@@ -195,7 +259,7 @@ try {
 
 	// if book property changed
 	if ($change == 1) {
-		$sql4 = "INSERT INTO `history` (`copyID`, `user`, `user_ID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', 'admin', :adminID, 'update', UNIX_TIMESTAMP(), :bookID, 'oldID')";
+		$sql4 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES ('-', :adminID, NULL, 'update', UNIX_TIMESTAMP(), :bookID, 'oldID')";
 		$stmt4 = $conn->prepare($sql4);
 		$stmt4->bindParam(':adminID', $adminID);
 		$stmt4->bindParam(':bookID', $bookID);

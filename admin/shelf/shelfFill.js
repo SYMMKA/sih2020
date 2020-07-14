@@ -9,7 +9,7 @@ function autoFillShelf(shelfID) {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
-			var issued = (reserved = available = 0);
+			var issued = reserved = available = 0;
 			var html = "";
 			html += `
         <div class="modal-content">

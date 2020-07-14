@@ -96,8 +96,10 @@ function addCopyFill(i) {
               `','` +
               i +
               `')">`;
-            if (item.shelfID == '') html += `Add to Shelf`;
-            else html += `Change Shelf`;
+			if (item.shelfID == null)
+				html += `Add to Shelf`;
+			else
+				html += `Change Shelf`;
           }
           html += `</button>
                         </div>

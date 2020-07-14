@@ -1,598 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/shards-ui/dist/css/shards.min.css"
-    />
-    <!--
-       <script
-      src="https://kit.fontawesome.com/97f3c2998d.js"
-      crossorigin="anonymous"
-    ></script> -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/common.css" />
-    <!--Validation-->
-    <script type="text/javascript">
-      (function () {
-        "use strict";
-        window.addEventListener(
-          "load",
-          function () {
-            var form = document.getElementById("needs-validation");
-            form.addEventListener(
-              "submit",
-              function (event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add("was-validated");
-              },
-              false
-            );
-          },
-          false
-        );
-      })();
-    </script>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Library Management System</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Add<span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Manage</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shelf </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section class="container landing-section">
-      <div class="row h-100">
-        <div class="col-12 align-self-end">
-          <div class="mb-4 text-center">
-            <h1 class="display-2">SEARCH BOOKS</h1>
-            <h4>Find books and material to add to your library</h4>
-          </div>
-
-          <form
-            id="needs-validation"
-            novalidate
-            class="row search-form mb-2 align-self-center justify-content-center"
-          >
-            <div class="col-sm-6 search-box mb-2">
-              <input
-                class="form-control ml-sm-4"
-                type="search"
-                name="search"
-                placeholder="Search"
-                aria-label="Search"
-                title="Required Field"
-                required
-              />
-              <div class="invalid-feedback">
-                Required Field
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-2">
-              <button class="btn btn-info btn-block ml-sm-2" type="submit">
-                Search
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-12 align-self-end text-center pb-5">
-          <button type="button" class="btn btn-outline-dark pl-5 pr-5">
-            <span>
-              <i class="fa fa-arrow-down" aria-hidden="true"></i>
-            </span>
-          </button>
-        </div>
-      </div>
-    </section>
-    <section class="container">
-      <h1 class="text-center p-5">Showing Results for 'xyz'</h1>
-      <div class="row row-cols-1">
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img
-                  src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
-                  class="card-img"
-                  alt="..."
-                />
-              </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-md-2 align-self-center justify-content-center p-3"
-              >
-                <button type="button" class="btn btn-info btn-block mb-4">
-                  add
-                </button>
-
-                <button type="button" class="btn btn-info btn-block">
-                  preview
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="container mb-5 mt-5 pt-5 pb-5">
-        <h1 class="text-center mb-5">Details</h1>
-        <form id="needs-validation1" novalidate>
-          <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-              <div class="col-sm-10">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios1"
-                    value="option1"
-                    checked
-                  />
-                  <label class="form-check-label" for="gridRadios1">
-                    First radio
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="gridRadios2">
-                    Second radio
-                  </label>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-          <div class="row justify-content-center mb-4">
-            <div class="col-md-8">
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Title</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Author</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">ISBN</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Publisher</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label"
-                  >Publisher Date</label
-                >
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Old ID</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">DDC No.</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="" required />
-                  <div class="invalid-feedback">
-                    Required Field
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label"
-                  >Cover Image</label
-                >
-                <div class="col-sm-10">
-                  <input type="file" class="form-control-file" id="" />
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">1</label>
-                <div class="col-sm-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">2</label>
-                <div class="col-sm-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">3</label>
-                <div class="col-sm-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">4</label>
-                <div class="col-sm-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Price</label>
-                <div class="col-sm-10">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id=""
-                    min="0"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Must be a non negative number
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Page Count</label>
-                <div class="col-sm-10">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id=""
-                    placeholder=""
-                    min="0"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Must be a non negative number
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Quantity</label>
-                <div class="col-sm-10">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id=""
-                    placeholder=""
-                    min="0"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Must be a non negative number
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col-sm-6 text-right">
-                <button type="submit" class="btn btn-info">ADD</button>
-              </div>
-              <div class="col-sm-6 text-left">
-                <button type="button" class="btn btn-info">CLEAR</button>
-              </div>
-            </div>
-          </div>
-        </form>
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/node_modules/shards-ui/dist/css/shards.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="./assets/css/common.css" />
         <!--Validation-->
         <script type="text/javascript">
-          (function () {
-            "use strict";
-            window.addEventListener(
-              "load",
-              function () {
-                var form = document.getElementById("needs-validation1");
-                form.addEventListener(
-                  "submit",
-                  function (event) {
-                    if (form.checkValidity() === false) {
-                      event.preventDefault();
-                      event.stopPropagation();
-                    }
-                    form.classList.add("was-validated");
-                  },
-                  false
+            (function () {
+                "use strict";
+                window.addEventListener(
+                    "load",
+                    function () {
+                        var form = document.getElementById("needs-validation");
+                        form.addEventListener(
+                            "submit",
+                            function (event) {
+                                if (form.checkValidity() === false) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add("was-validated");
+                            },
+                            false
+                        );
+                    },
+                    false
                 );
-              },
-              false
-            );
-          })();
+            })();
         </script>
-      </div>
-    </section>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-    <script src="./assets/js/common.js"></script>
-    <script src="./assets/js/voice-search.js"></script>
-  </body>
+    </head>
+    <body>
+        <button
+            type="button"
+            class="btn btn-info voice-button"
+            style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            "
+        >
+            <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+        </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Library Management System</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"
+                                >Add<span class="sr-only">(current)</span></a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Manage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shelf </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="container landing-section" style="margin-top: 10vh;">
+            <div class="jumbotron">
+                <div class="row justify-content-center">
+                    <div class="col-sm-9">
+                        <h1 class="display-4">Hello, world!</h1>
+                        <p class="lead">
+                            This is a simple hero unit, a simple jumbotron-style
+                            component for calling extra attention to featured
+                            content or information.
+                        </p>
+                        <form
+                            id="needs-validation"
+                            novalidate
+                            class="form-group row search-form"
+                        >
+                            <input
+                                class="col-sm-8 form-control"
+                                type="search"
+                                name="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                title="Required Field"
+                                required
+                            />
+                            <div class="invalid-feedback">
+                                Required Field
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-info" type="submit">
+                                    Search
+                                </button>
+                                <button class="btn btn-secondary" type="button">
+                                    <i
+                                        class="fa fa-plus"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-3">
+                        <img
+                            class="img-responsive"
+                            height="210"
+                            src="assets/images/gamer-colour.svg"
+                            alt=""
+                            srcset=""
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <h1 class="text-center p-5">Showing Results for 'xyz'</h1>
+            <div class="row row-cols-1">
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/2.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;"
+                    >
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/3.jpg"
+                                    class="card-img"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        This is a wider card with supporting
+                                        text below as a natural lead-in to
+                                        additional content. This content is a
+                                        little bit longer.
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted"
+                                            >Last updated 3 mins ago</small
+                                        >
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block mb-4"
+                                >
+                                    add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-block"
+                                >
+                                    preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container mb-5 mt-5 pt-5 pb-5">
+                <h1 class="text-center mb-5">Details</h1>
+                <form id="needs-validation1" novalidate>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">
+                                Radios
+                            </legend>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="gridRadios"
+                                        id="gridRadios1"
+                                        value="option1"
+                                        checked
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="gridRadios1"
+                                    >
+                                        First radio
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="gridRadios"
+                                        id="gridRadios2"
+                                        value="option2"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="gridRadios2"
+                                    >
+                                        Second radio
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Title</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Author</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >ISBN</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Publisher</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Publisher Date</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Old ID</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >DDC No.</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id=""
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Required Field
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Cover Image</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="file"
+                                        class="form-control-file"
+                                        id=""
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >1</label
+                                >
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>Default select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >2</label
+                                >
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>Default select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >3</label
+                                >
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>Default select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >4</label
+                                >
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>Default select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Price</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id=""
+                                        min="0"
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Must be a non negative number
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Page Count</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id=""
+                                        placeholder=""
+                                        min="0"
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Must be a non negative number
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label"
+                                    >Quantity</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id=""
+                                        placeholder=""
+                                        min="0"
+                                        required
+                                    />
+                                    <div class="invalid-feedback">
+                                        Must be a non negative number
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-6 text-right">
+                                <button type="submit" class="btn btn-info">
+                                    ADD
+                                </button>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <button type="button" class="btn btn-info">
+                                    CLEAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--Validation-->
+                <script type="text/javascript">
+                    (function () {
+                        "use strict";
+                        window.addEventListener(
+                            "load",
+                            function () {
+                                var form = document.getElementById(
+                                    "needs-validation1"
+                                );
+                                form.addEventListener(
+                                    "submit",
+                                    function (event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add("was-validated");
+                                    },
+                                    false
+                                );
+                            },
+                            false
+                        );
+                    })();
+                </script>
+            </div>
+        </section>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+        <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+        <script src="./assets/js/common.js"></script>
+        <script src="./assets/js/voice-search.js"></script>
+    </body>
 </html>
