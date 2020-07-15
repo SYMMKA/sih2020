@@ -118,15 +118,9 @@
               jumbotron-style component for calling extra
               attention to featured content or information.
             </p>
-            <select class="selectpicker mb-2" title="Branch" data-style="btn-blue">
-              <option>Mustard</option>
-              <option>Ketchup</option>
-              <option>Relish</option>
+            <select class="selectpicker mb-2" id="branch" title="Branch" data-style="btn-blue">
             </select>
-            <select class="selectpicker mb-2" title="Sem" data-style="btn-blue">
-              <option>Mustard</option>
-              <option>Ketchup</option>
-              <option>Relish</option>
+            <select class="selectpicker mb-2" id="semester" title="Sem" data-style="btn-blue">
             </select>
           </div>
           <div class="col-sm-4 d-none d-lg-block">
@@ -180,7 +174,7 @@
             <div class="col-md-4 col-lg-2">
               <div>
                 <h3>Add Books</h3>
-                <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                <select class="selectpicker mb-3 w-100" title="Add Books" data-style="btn-blue">
                   <option>Mustard</option>
                   <option>Ketchup</option>
                   <option>Relish</option>
@@ -189,7 +183,7 @@
                   Add
                 </button>
                 <h3>Delete Books</h3>
-                <select class="selectpicker mb-3 w-100" title="Select Book" data-style="btn-blue">
+                <select class="selectpicker mb-3 w-100" title="Delete Books" data-style="btn-blue">
                   <option>Mustard</option>
                   <option>Ketchup</option>
                   <option>Relish</option>
