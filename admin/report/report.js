@@ -4,7 +4,6 @@ var user = "";
 var html = "";
 var table;
 function changeAccess() {
-	document.getElementById("adminIDGroup").hidden = false;
 	document.getElementById("studentIDGroup").hidden = false;
 	document.getElementById("checkAdd").disabled = false;
 	document.getElementById("checkDelete").disabled = false;
@@ -17,7 +16,6 @@ function changeAccess() {
 		document.getElementById("checkAdd").disabled = true;
 		document.getElementById("checkDelete").disabled = true;
 		document.getElementById("checkUpdate").disabled = true;
-		document.getElementById("adminIDGroup").hidden = true;
 	}
 	if (document.getElementById("admin").selected == true) {
 		document.getElementById("studentIDGroup").hidden = true;
@@ -59,10 +57,6 @@ function generateReport() {
 			studentID = "show";
 	}
 	if (document.getElementById("admin").selected == true) {
-		adminID = JSON.stringify($('#adminID').val());
-	}
-	if (document.getElementById("all").selected == true) {
-		studentID = JSON.stringify($('#studentID').val());
 		adminID = JSON.stringify($('#adminID').val());
 	}
 	console.log("add - " + add);

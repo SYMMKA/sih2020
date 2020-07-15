@@ -91,8 +91,7 @@ include('session.php');
                         <label for="" class="col-sm-3 col-form-label">User</label>
                         <div class="col-sm-9">
                           <select class="custom-select" onchange="changeAccess()">
-                            <option selected id="all" value="all">All</option>
-                            <option id="admin" value="admin">Admin</option>
+                            <option selected id="admin" value="admin">Admin</option>
                             <option id="student" value="student">Student</option>
                           </select>
                         </div>
@@ -120,7 +119,7 @@ include('session.php');
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" name="studentIDGroup" id="studentIDGroup">
+                    <div class="col-sm-6" name="studentIDGroup" id="studentIDGroup" hidden>
                       <div class="container">
                         <div class="form-group row">
                           <label for="studentID" class="col-sm-3 col-form-label">Student ID</label>
