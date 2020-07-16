@@ -1,178 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
-    <!-- CSS Dependencies -->
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/shards-ui/dist/css/shards.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/common.css" />
-  </head>
-  <body>
-    <button
-      type="button"
-      class="btn btn-info voice-button"
-      style="
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        position: fixed;
-        bottom: 2rem;
-        right: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0px 2px 5px #666;
-        z-index: 9999;
-      "
-    >
-      <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-    </button>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Library Management System</a>
+        <!-- CSS Dependencies -->
+        <link
+            rel="stylesheet"
+            href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/node_modules/shards-ui/dist/css/shards.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" href="./assets/css/common.css" />
+    </head>
+    <body>
         <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+            type="button"
+            class="btn btn-info voice-button"
+            style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            "
         >
-          <span class="navbar-toggler-icon"></span>
+            <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Add<span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Manage</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shelf </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section>
-      <div class="container">
-        <h3 class="mb-4" style="margin-top: 10vh;">Settings</h3>
-        <form>
-          <h4 class="p-3 mb-4 bg-light">
-            Home Settings
-          </h4>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label"
-              >Email</label
-            >
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" />
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label"
-              >Password</label
-            >
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" />
-            </div>
-          </div>
-          <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios1"
-                    value="option1"
-                    checked
-                  />
-                  <label class="form-check-label" for="gridRadios1">
-                    First radio
-                  </label>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Library Management System</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"
+                                >Add<span class="sr-only">(current)</span></a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Manage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shelf </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="gridRadios2">
-                    Second radio
-                  </label>
+            </div>
+        </nav>
+        <section>
+            <div class="container">
+                <div class="container mb-4" style="margin-top: 10vh;">
+                    <div class="jumbotron shadow">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <h2 class="display-4 font-weight-bold">
+                                    Settings
+                                </h2>
+                                <p class="lead">
+                                    This is a simple hero unit, a simple
+                                    jumbotron-style component for calling extra
+                                    attention to featured content or
+                                    information.
+                                </p>
+                            </div>
+                            <div class="col-sm-6 d-none d-lg-block">
+                                <img
+                                    class="img float-right"
+                                    src="assets/FINAL MEDIA/undraw_reading_0re1.svg"
+                                    alt=""
+                                    style="
+                                        height: auto;
+                                        width: 100%;
+                                        max-width: 340px;
+                                    "
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check disabled">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios3"
-                    value="option3"
-                    disabled
-                  />
-                  <label class="form-check-label" for="gridRadios3">
-                    Third disabled radio
-                  </label>
+                <div class="row">
+                    <div class="col-4 col-sm-2">
+                        <div
+                            class="nav flex-column nav-pills"
+                            id="v-pills-tab"
+                            role="tablist"
+                            aria-orientation="vertical"
+                        >
+                            <a
+                                class="nav-link active"
+                                id="v-pills-home-tab"
+                                data-toggle="pill"
+                                href="#v-pills-home"
+                                role="tab"
+                                aria-controls="v-pills-home"
+                                aria-selected="true"
+                                >General</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="v-pills-profile-tab"
+                                data-toggle="pill"
+                                href="#v-pills-profile"
+                                role="tab"
+                                aria-controls="v-pills-profile"
+                                aria-selected="false"
+                                >User</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="v-pills-messages-tab"
+                                data-toggle="pill"
+                                href="#v-pills-messages"
+                                role="tab"
+                                aria-controls="v-pills-messages"
+                                aria-selected="false"
+                                >Messages</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="v-pills-settings-tab"
+                                data-toggle="pill"
+                                href="#v-pills-settings"
+                                role="tab"
+                                aria-controls="v-pills-settings"
+                                aria-selected="false"
+                                >Settings</a
+                            >
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-10">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div
+                                class="tab-pane fade show active"
+                                id="v-pills-home"
+                                role="tabpanel"
+                                aria-labelledby="v-pills-home-tab"
+                            >
+                                <form>
+                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                        General Settings
+                                    </h4>
+                                    <div class="form-group row">
+                                        <label
+                                            for="issuePeriod"
+                                            class="col-sm-4 col-form-label"
+                                            >Issue Period</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="issuePeriod"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="reservePeriod"
+                                            class="col-sm-4 col-form-label"
+                                            >Reserve Period</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="reservePeriod"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="issueLimit"
+                                            class="col-sm-4 col-form-label"
+                                            >Issue Limit</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="issueLimit"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="reserveLimit"
+                                            class="col-sm-4 col-form-label"
+                                            >Reserve Limit</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="reserveLimit"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="dueFineAmount"
+                                            class="col-sm-4 col-form-label"
+                                            >Due Fine Amount</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="dueFineAmount"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="issuePoint"
+                                            class="col-sm-4 col-form-label"
+                                            >Issue Point</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="issuePoint"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="reservePoint"
+                                            class="col-sm-4 col-form-label"
+                                            >Reserve Point</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="reservePoint"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="returnPoint"
+                                            class="col-sm-4 col-form-label"
+                                            >Return Point</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="returnPoint"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="duePoint"
+                                            class="col-sm-4 col-form-label"
+                                            >Due Point</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="duePoint"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="ratingPoint"
+                                            class="col-sm-4 col-form-label"
+                                            >Rating Point</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="ratingPoint"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="p-3 mb-5 bg-light rounded">
+                                        <div class="text-right">
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                            >
+                                                Reset
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                id="SaveGeneral"
+                                            >
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div
+                                class="tab-pane fade"
+                                id="v-pills-profile"
+                                role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab"
+                            >
+                                <h4 class="p-3 mb-4 bg-light rounded">
+                                    User Settings
+                                </h4>
+                                <div class="form-group row">
+                                    <label
+                                        for="inputEmail"
+                                        class="col-sm-4 col-form-label"
+                                        >Change Email</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <input
+                                            type="email"
+                                            class="form-control"
+                                            id="inputEmail"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="inputUname"
+                                        class="col-sm-4 col-form-label"
+                                        >Change Username</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="inputUname"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="inputPassword"
+                                        class="col-sm-4 col-form-label"
+                                        >Change Password</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <input
+                                            type="password"
+                                            class="form-control"
+                                            id="inputPassword"
+                                        />
+                                    </div>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend
+                                            class="col-form-label col-sm-4 pt-0"
+                                        >
+                                            Radios
+                                        </legend>
+                                        <div class="col-sm-8">
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="gridRadios"
+                                                    id="gridRadios1"
+                                                    value="option1"
+                                                    checked
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="gridRadios1"
+                                                >
+                                                    First radio
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="gridRadios"
+                                                    id="gridRadios2"
+                                                    value="option2"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="gridRadios2"
+                                                >
+                                                    Second radio
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="gridRadios"
+                                                    id="gridRadios3"
+                                                    value="option3"
+                                                    disabled
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="gridRadios3"
+                                                >
+                                                    Third disabled radio
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">Checkbox</div>
+                                    <div class="col-sm-8">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="gridCheck1"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="gridCheck1"
+                                            >
+                                                Example checkbox
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 mb-5 bg-light rounded">
+                                    <div class="text-right">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            Reset
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-info"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="tab-pane fade"
+                                id="v-pills-messages"
+                                role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab"
+                            >
+                                ...
+                            </div>
+                            <div
+                                class="tab-pane fade"
+                                id="v-pills-settings"
+                                role="tabpanel"
+                                aria-labelledby="v-pills-settings-tab"
+                            >
+                                ...
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </fieldset>
-          <div class="form-group row">
-            <div class="col-sm-2">Checkbox</div>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="gridCheck1"
-                />
-                <label class="form-check-label" for="gridCheck1">
-                  Example checkbox
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="p-3 mb-5 bg-light">
-            <div class="text-right">
-              <button type="submit" class="btn btn-danger">Reset</button>
-              <button type="submit" class="btn btn-info">Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-    <!-- Optional JavaScript -->
-    <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
-    <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-    <script src="./assets/js/common.js"></script>
-    <script src="./assets/js/voice-search.js"></script>
-  </body>
+        </section>
+        <!-- Optional JavaScript -->
+        <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
+        <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+        <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+        <script src="./assets/js/common.js"></script>
+        <script src="./assets/js/voice-search.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#SaveGeneral").on("click", function () {
+                    console.log("clicked");
+                    var issuePeriod = $("#issuePeriod").val();
+                    var reservePeriod = $("#reservePeriod").val();
+                    var issueLimit = $("#issueLimit").val();
+                    var reserveLimit = $("#reserveLimit").val();
+                    var dueFineAmount = $("#dueFineAmount").val();
+                    var issuePoint = $("#issuePoint").val();
+                    var returnPoint = $("#returnPoint").val();
+                    var duePoint = $("#duePoint").val();
+                    var ratingPoint = $("#ratingPoint").val();
+                    if (
+                        (issueLimit != "",
+                        issuePeriod != "",
+                        issuePoint != "",
+                        ratingPoint != "",
+                        reserveLimit != "",
+                        reservePeriod != "",
+                        returnPoint != "",
+                        dueFineAmount != "",
+                        duePoint != "")
+                    ) {
+                        $.ajax({
+                            url: "setting/settings.php",
+                            method: "POST",
+                            dataType: "text",
+                            data: {
+                                generalSetting: 1,
+                                issuePeriod: issuePeriod,
+                                reservePeriod: reservePeriod,
+                                issueLimit: issueLimit,
+                                reserveLimit: reserveLimit,
+                                dueFineAmount: dueFineAmount,
+                                issuePoint: issuePoint,
+                                returnPoint: returnPoint,
+                                duePoint: duePoint,
+                                ratingPoint: ratingPoint,
+                            },
+                            success: function (response) {
+                                alert(response);
+                            },
+                            error: function (error) {
+                                alert(error);
+                            },
+                        });
+                    } else {
+                        alert("Please fill and submit");
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
