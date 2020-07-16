@@ -195,13 +195,13 @@ include('session.php');
   </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="jsPDF-master/dist/jspdf.min.js"></script>
-  <script src="jsPDF-AutoTable-master/dist/jspdf.plugin.autotable.min.js"></script>
   <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
   <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+  <script src="jsPDF-master/dist/jspdf.min.js"></script>
+  <script src="jsPDF-AutoTable-master/dist/jspdf.plugin.autotable.min.js"></script>
   <script src="./assets/js/common.js"></script>
   <script src="report/report.js"></script>
 </body>

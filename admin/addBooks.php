@@ -426,6 +426,9 @@ include('session.php');
 	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 	<script src="./assets/js/common.js"></script>
 	<script src="./assets/js/voice-search.js"></script>
+	<script src="./assets/js/jquery.qrcode.min.js"></script>
+	<script src="jsPDF-master/dist/jspdf.min.js"></script>
+	<script src="./assets/js/html2canvas.min.js"></script>
 
 	<script>
 		title = <?php echo json_encode($title); ?>;
@@ -445,6 +448,8 @@ include('session.php');
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
+
+	<div id="QRpdf"></div>
 </body>
 
 </html>

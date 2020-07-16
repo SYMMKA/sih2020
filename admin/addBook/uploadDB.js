@@ -82,7 +82,23 @@ function addBook(event) {
 			contentType: false, // Dont delete this (jQuery 1.6+)
 			processData: false, // Dont delete this
 			success: function (data) {
-				console.log(data)
+				console.log(data);
+				var formCopyID = new FormData();
+				formCopyID.append('title', title);
+				formCopyID.append('author', author);
+				formCopyID.append('isbn', isbn);
+				$.ajax({
+					type: "POST",
+					url: "addBook/getCopyID.php",
+					data: formCopyID,
+					type: 'POST',
+					contentType: false, // Dont delete this (jQuery 1.6+)
+					processData: false, // Dont delete this
+					success: function (data) {
+						generateQR(data);
+					}
+					//Other options
+				});
 			}
 			//Other options
 		});
@@ -96,7 +112,7 @@ function addBook(event) {
 		}, 1500); */
 
 		// Clear form
-		document.getElementById('addBookForm').reset();
+		//document.getElementById('addBookForm').reset();
 	}
 	addBookForm.classList.add("was-validated");
 }
@@ -104,4 +120,46 @@ function addBook(event) {
 // Function to get form values
 function getInputVal(id) {
 	return document.getElementById(id).value;
+}
+
+function generateQR(data){
+	data = JSON.parse(data);
+	const bookID = data.bookID;
+	data.copyID.forEach(copyID => {
+		var qrData = {
+			"Type": "Book",
+			"BookID": bookID,
+			"CopyID": copyID
+		};
+		qrData = JSON.stringify(qrData);
+		$("#QRpdf").qrcode({
+			//render:"table"
+			width: 96,
+			height: 96,
+			text: qrData
+		});
+		$("#QRpdf").append(copyID);
+	});
+	
+	var HTML_Width = $("#QRpdf").width();
+	var HTML_Height = $("#QRpdf").height();
+	var top_left_margin = 15;
+	var PDF_Width = HTML_Width + (top_left_margin * 2);
+	var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+	var canvas_image_width = HTML_Width;
+	var canvas_image_height = HTML_Height;
+
+	var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+	html2canvas($("#QRpdf")[0]).then(function (canvas) {
+		var imgData = canvas.toDataURL("image/png", 1.0);
+		var doc = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+		doc.addImage(imgData, 'PNG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+		for (var i = 1; i <= totalPDFPages; i++) {
+			doc.addPage(PDF_Width, PDF_Height);
+			doc.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+		}
+		doc.save(bookID+".pdf");
+	});
+	$("#QRpdf").hide();
 }
