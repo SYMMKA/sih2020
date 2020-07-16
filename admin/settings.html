@@ -259,21 +259,6 @@
                                     </div>
                                     <div class="form-group row">
                                         <label
-                                            for="reservePoint"
-                                            class="col-sm-4 col-form-label"
-                                            >Reserve Point</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="reservePoint"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
                                             for="returnPoint"
                                             class="col-sm-4 col-form-label"
                                             >Return Point</label
@@ -509,58 +494,6 @@
         <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
         <script src="./assets/js/common.js"></script>
         <script src="./assets/js/voice-search.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#SaveGeneral").on("click", function () {
-                    console.log("clicked");
-                    var issuePeriod = $("#issuePeriod").val();
-                    var reservePeriod = $("#reservePeriod").val();
-                    var issueLimit = $("#issueLimit").val();
-                    var reserveLimit = $("#reserveLimit").val();
-                    var dueFineAmount = $("#dueFineAmount").val();
-                    var issuePoint = $("#issuePoint").val();
-                    var returnPoint = $("#returnPoint").val();
-                    var duePoint = $("#duePoint").val();
-                    var ratingPoint = $("#ratingPoint").val();
-                    if (
-                        (issueLimit != "",
-                        issuePeriod != "",
-                        issuePoint != "",
-                        ratingPoint != "",
-                        reserveLimit != "",
-                        reservePeriod != "",
-                        returnPoint != "",
-                        dueFineAmount != "",
-                        duePoint != "")
-                    ) {
-                        $.ajax({
-                            url: "setting/settings.php",
-                            method: "POST",
-                            dataType: "text",
-                            data: {
-                                generalSetting: 1,
-                                issuePeriod: issuePeriod,
-                                reservePeriod: reservePeriod,
-                                issueLimit: issueLimit,
-                                reserveLimit: reserveLimit,
-                                dueFineAmount: dueFineAmount,
-                                issuePoint: issuePoint,
-                                returnPoint: returnPoint,
-                                duePoint: duePoint,
-                                ratingPoint: ratingPoint,
-                            },
-                            success: function (response) {
-                                alert(response);
-                            },
-                            error: function (error) {
-                                alert(error);
-                            },
-                        });
-                    } else {
-                        alert("Please fill and submit");
-                    }
-                });
-            });
-        </script>
+        <script src="setting/general/general.js"></script>
     </body>
 </html>

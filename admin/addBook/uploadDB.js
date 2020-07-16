@@ -112,7 +112,7 @@ function addBook(event) {
 		}, 1500); */
 
 		// Clear form
-		//document.getElementById('addBookForm').reset();
+		document.getElementById('addBookForm').reset();
 	}
 	addBookForm.classList.add("was-validated");
 }
