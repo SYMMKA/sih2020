@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	orgValues();
+
 	$("#SaveGeneral").on("click", function () {
 		console.log("clicked");
 		var issuePeriod = $("#issuePeriod").val();
@@ -38,7 +40,7 @@ $(document).ready(function () {
 					ratingPoint: ratingPoint,
 				},
 				success: function (data) {
-					console.log(data);
+					alert(data);
 				},
 				error: function (error) {
 					alert(error);
@@ -49,3 +51,22 @@ $(document).ready(function () {
 		}
 	});
 });
+
+// gets org values
+function orgValues(){
+	$.ajax({
+		url: "setting/general/getOrgSettings.php",
+		success: function (data) {
+			data = JSON.parse(data);
+			$("#issuePeriod").val(data.issuePeriod);
+			$("#reservePeriod").val(data.reservePeriod);
+			$("#issueLimit").val(data.issueNum);
+			$("#reserveLimit").val(data.reserveNum);
+			$("#dueFineAmount").val(data.dueFine);
+			$("#issuePoint").val(data.issuePoint);
+			$("#returnPoint").val(data.returnPoint);
+			$("#duePoint").val(data.duePoint);
+			$("#ratingPoint").val(data.ratingPoint);
+		}
+	});
+}
