@@ -76,7 +76,7 @@
         </nav>
         <section>
             <div class="container">
-                <div class="container mb-4" style="margin-top: 10vh;">
+                <div class="mb-4" style="margin-top: 10vh;">
                     <div class="jumbotron shadow">
                         <div class="row">
                             <div class="col-12 col-sm-6">
@@ -141,7 +141,7 @@
                                 role="tab"
                                 aria-controls="v-pills-messages"
                                 aria-selected="false"
-                                >Messages</a
+                                >Privilege</a
                             >
                             <a
                                 class="nav-link"
@@ -306,8 +306,8 @@
                                         <div class="text-right">
                                             <button
                                                 type="button"
-												class="btn btn-danger"
-												onclick="orgValues()"
+                                                class="btn btn-danger"
+                                                onclick="orgValues()"
                                             >
                                                 Reset
                                             </button>
@@ -472,7 +472,400 @@
                                 role="tabpanel"
                                 aria-labelledby="v-pills-messages-tab"
                             >
-                                ...
+                                <form>
+                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                        Privileges Settings
+                                    </h4>
+
+                                    <div class="form-group row">
+                                        <label
+                                            for="issueAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Issue Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id="issueAccess1"
+                                                    name="issueAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="issueAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id="issueAccess2"
+                                                    name="issueAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="issueAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="returnAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Return Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="returnAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="returnAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="returnAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="returnAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="returnAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="returnAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="addBookAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Add Book Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="addBookAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="addBookAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="addBookAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="addBookAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="addBookAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="addBookAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="updateBookAccess"
+                                            class="col-sm-4 col-form-label"
+                                        >
+                                            Update Book Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="updateBookAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="updateBookAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="updateBookAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="updateBookAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="updateBookAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="updateBookAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="shelfModifyAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Shelf Modify Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="shelfModifyAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="shelfModifyAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="shelfModifyAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="shelfModifyAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="shelfModifyAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="shelfModifyAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="bookShelfAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Book Shelf Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="bookShelfAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="bookShelfAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="bookShelfAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="bookShelfAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="bookShelfAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="bookShelfAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="semBranchModifyAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Sem Branch Modify Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="semBranchModifyAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="semBranchModifyAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="semBranchModifyAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="semBranchModifyAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="semBranchModifyAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="semBranchModifyAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="bookSemBranchAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Book Sem Branch Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="bookSemBranchAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="bookSemBranchAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="bookSemBranchAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="bookSemBranchAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="bookSemBranchAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="bookSemBranchAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="settingsAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Settings Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="settingsAccess"
+                                                    class="custom-control-input"
+                                                    value="1"
+                                                    id="settingsAccess1"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="settingsAccess1"
+                                                    >Yes</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="settingsAccess"
+                                                    class="custom-control-input"
+                                                    value="0"
+                                                    id="settingsAccess2"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="settingsAccess2"
+                                                    >No</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 mb-5 bg-light rounded">
+                                        <div class="text-right">
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                                onclick="orgValues()"
+                                            >
+                                                Reset
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                id="SavePrivileges"
+                                            >
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div
                                 class="tab-pane fade"
@@ -496,5 +889,6 @@
         <script src="./assets/js/common.js"></script>
         <script src="./assets/js/voice-search.js"></script>
         <script src="setting/general/general.js"></script>
+        <script src="setting/privileges/privileges.js"></script>
     </body>
 </html>
