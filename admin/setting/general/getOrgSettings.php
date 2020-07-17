@@ -57,5 +57,59 @@ $stmtreturnPoint->execute();
 $returnPoint = $stmtreturnPoint->fetchObject()->value;
 $return['returnPoint'] = $returnPoint;
 
+$sqlissueAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'issueAccess'";
+$stmtissueAccess = $conn->prepare($sqlissueAccess);
+$stmtissueAccess->execute();
+$issueAccess = $stmtissueAccess->fetchObject()->value;
+$return['issueAccess'] = $issueAccess;
+
+$sqlreturnAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'returnAccess'";
+$stmtreturnAccess = $conn->prepare($sqlreturnAccess);
+$stmtreturnAccess->execute();
+$returnAccess = $stmtreturnAccess->fetchObject()->value;
+$return['returnAccess'] = $returnAccess;
+
+$sqladdBookAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'addBookAccess'";
+$stmtaddBookAccess = $conn->prepare($sqladdBookAccess);
+$stmtaddBookAccess->execute();
+$addBookAccess = $stmtaddBookAccess->fetchObject()->value;
+$return['addBookAccess'] = $addBookAccess;
+
+$sqlupdateBookAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'updateBookAccess'";
+$stmtupdateBookAccess = $conn->prepare($sqlupdateBookAccess);
+$stmtupdateBookAccess->execute();
+$updateBookAccess = $stmtupdateBookAccess->fetchObject()->value;
+$return['updateBookAccess'] = $updateBookAccess;
+
+$sqlshelfModifyAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'shelfModifyAccess'";
+$stmtshelfModifyAccess = $conn->prepare($sqlshelfModifyAccess);
+$stmtshelfModifyAccess->execute();
+$shelfModifyAccess = $stmtshelfModifyAccess->fetchObject()->value;
+$return['shelfModifyAccess'] = $shelfModifyAccess;
+
+$sqlbookShelfAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'bookShelfAccess'";
+$stmtbookShelfAccess = $conn->prepare($sqlbookShelfAccess);
+$stmtbookShelfAccess->execute();
+$bookShelfAccess = $stmtbookShelfAccess->fetchObject()->value;
+$return['bookShelfAccess'] = $bookShelfAccess;
+
+$sqlsemBranchModifyAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'semBranchModifyAccess'";
+$stmtsemBranchModifyAccess = $conn->prepare($sqlsemBranchModifyAccess);
+$stmtsemBranchModifyAccess->execute();
+$semBranchModifyAccess = $stmtsemBranchModifyAccess->fetchObject()->value;
+$return['semBranchModifyAccess'] = $semBranchModifyAccess;
+
+$sqlbookSemBranchAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'bookSemBranchAccess'";
+$stmtbookSemBranchAccess = $conn->prepare($sqlbookSemBranchAccess);
+$stmtbookSemBranchAccess->execute();
+$bookSemBranchAccess = $stmtbookSemBranchAccess->fetchObject()->value;
+$return['bookSemBranchAccess'] = $bookSemBranchAccess;
+
+$sqlsettingsAccess = "SELECT `value` FROM `setting` WHERE `parameter` = 'settingsAccess'";
+$stmtsettingsAccess = $conn->prepare($sqlsettingsAccess);
+$stmtsettingsAccess->execute();
+$settingsAccess = $stmtsettingsAccess->fetchObject()->value;
+$return['settingsAccess'] = $settingsAccess;
+
 echo json_encode($return);
 $conn = null;
