@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    orgValues();
-
     $("#SavePrivileges").on("click", function () {
         var issueAccess = $("input[name='issueAccess']:checked").val();
         var returnAccess = $("input[name='returnAccess']:checked").val();
