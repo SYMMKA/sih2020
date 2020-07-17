@@ -5,55 +5,71 @@ include("../../db.php");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $issuePeriod = $_POST['issuePeriod'];
+$issuePeriodParam = 'issuePeriod';
+
 $reservePeriod = $_POST['reservePeriod'];
+$reservePeriodParam = 'reservePeriod';
+
 $issueLimit = $_POST['issueLimit'];
+$issueLimitParam = 'issueNum';
+
 $reserveLimit = $_POST['reserveLimit'];
+$reserveLimitParam = 'reserveNum';
+
 $dueFineAmount = $_POST['dueFineAmount'];
+$dueFineAmountParam = 'dueFine';
+
 $issuePoint = $_POST['issuePoint'];
+$issuePointParam = 'issuePoint';
+
 $returnPoint = $_POST['returnPoint'];
+$returnPointParam = 'returnPoint';
+
 $duePoint = $_POST['duePoint'];
+$duePointParam = 'duePoint';
+
 $ratingPoint = $_POST['ratingPoint'];
+$ratingPointParam = 'ratingPoint';
 
 try {
-	$sql1 = "UPDATE `setting` SET `value` = :due_fine_amount WHERE `setting`.`parameter` = 'dueFine'";
-	$sql2 = " UPDATE `setting` SET `value` = :due_point WHERE `setting`.`parameter` = 'duePoint'";
-	$sql3 = " UPDATE `setting` SET `value` = :issue_limit WHERE `setting`.`parameter` = 'issueNum'";
-	$sql4 = "UPDATE `setting` SET `value` = :issue_period WHERE `setting`.`parameter` = 'issuePeriod'";
-	$sql5 = " UPDATE `setting` SET `value` = :issue_point WHERE `setting`.`parameter` = 'issuePoint'";
-	$sql6 = " UPDATE `setting` SET `value` = :rating_point WHERE `setting`.`parameter` = 'ratingPoint'";
-	$sql7 = " UPDATE `setting` SET `value` = :reserve_limit WHERE `setting`.`parameter` = 'reserveNum'";
-	$sql8 = " UPDATE `setting` SET `value` = :reserve_period WHERE `setting`.`parameter` = 'reservePeriod'";
-	$sql9 = "  UPDATE `setting` SET `value` = :return_point WHERE `setting`.`parameter` = 'returnPoint'";
+	$sql = "UPDATE `setting` SET `value` = :val WHERE `setting`.`parameter` = :parameter";
+	$stmt = $conn->prepare($sql);
 
-	$stmt1 = $conn->prepare($sql1);
-	$stmt2 = $conn->prepare($sql2);
-	$stmt3 = $conn->prepare($sql3);
-	$stmt4 = $conn->prepare($sql4);
-	$stmt5 = $conn->prepare($sql5);
-	$stmt6 = $conn->prepare($sql6);
-	$stmt7 = $conn->prepare($sql7);
-	$stmt8 = $conn->prepare($sql8);
-	$stmt9 = $conn->prepare($sql9);
+	$stmt->bindParam(':val', $dueFineAmount);
+	$stmt->bindParam(':parameter', $dueFineAmountParam);
+	$stmt->execute();
 
-	$stmt1->bindParam(':due_fine_amount', $dueFineAmount);
-	$stmt2->bindParam(':due_point', $duePoint);
-	$stmt3->bindParam(':issue_limit', $issueLimit);
-	$stmt4->bindParam(':issue_period', $issuePeriod);
-	$stmt5->bindParam(':issue_point', $issuePoint);
-	$stmt6->bindParam(':rating_point', $ratingPoint);
-	$stmt7->bindParam(':reserve_limit', $reserveLimit);
-	$stmt8->bindParam(':reserve_period', $reservePeriod);
-	$stmt9->bindParam(':return_point', $returnPoint);
+	$stmt->bindParam(':val', $duePoint);
+	$stmt->bindParam(':parameter', $duePointParam);
+	$stmt->execute();
 
-	$stmt1->execute();
-	$stmt2->execute();
-	$stmt3->execute();
-	$stmt4->execute();
-	$stmt5->execute();
-	$stmt6->execute();
-	$stmt7->execute();
-	$stmt8->execute();
-	$stmt9->execute();
+	$stmt->bindParam(':val', $issueLimit);
+	$stmt->bindParam(':parameter', $issueLimitParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $issuePeriod);
+	$stmt->bindParam(':parameter', $issuePeriodParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $issuePoint);
+	$stmt->bindParam(':parameter', $issuePointParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $ratingPoint);
+	$stmt->bindParam(':parameter', $ratingPointParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $reserveLimit);
+	$stmt->bindParam(':parameter', $reserveLimitParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $reservePeriod);
+	$stmt->bindParam(':parameter', $reservePeriodParam);
+	$stmt->execute();
+
+	$stmt->bindParam(':val', $returnPoint);
+	$stmt->bindParam(':parameter', $returnPointParam);
+	$stmt->execute();
 
 	exit('success');
 } catch (PDOException $e) {

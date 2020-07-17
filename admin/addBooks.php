@@ -405,18 +405,7 @@ include('session.php');
 				</form>
 			</div>
 		</div>
-	</div>
-	<!-- variables declared without var are global
-		  I removed var because of warnings-->
-	<?php
-	if (isset($_GET['q'])) {
-		$searchq = $_GET['q'];
-		echo "<script>
-				document.getElementById('search').value = '" . $searchq . "';
-				document.getElementById('search_form').submit();
-			</script>";
-	}
-	?>
+	</div>	
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -448,7 +437,17 @@ include('session.php');
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-
+	
+	<?php
+	if (isset($_GET['q'])) {
+		$searchq = $_GET['q'];
+		echo "<script>
+				document.getElementById('search').value = '" . $searchq . "';
+				document.getElementById('search_form').submit();
+			</script>";
+	}
+	?>
+	
 	<div id="QRpdf"></div>
 </body>
 

@@ -9,6 +9,9 @@ function autoFillInfo(i) {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
+			var copyIDQR = document.getElementById("copyIDQR");
+			var i = 0;
+			copyIDQR.options.length = 0;
 			data = JSON.parse(data);
 			data.forEach(element => {
 				if(element.status == "issued")
@@ -16,11 +19,16 @@ function autoFillInfo(i) {
 				else if (element.status == "reserved" && element.returnTime > element.currentTime)
 					reserved++;
 				else
-					available++;;
+					available++;
+				copyIDQR.options[i] = new Option(element.copyID, element.copyID);
+				i++;
 			});
 			document.getElementById('issued').textContent = issued;
 			document.getElementById('reserved').textContent = reserved;
 			document.getElementById('available').textContent = available;
+
+			$('#copyIDQR option').attr("selected","selected");
+			$(".selectpicker").selectpicker("refresh");
 		},
 		//Other options
 	});
@@ -51,9 +59,7 @@ function autoFillInfo(i) {
 		document.getElementById('bookimgLinkInfo').src = imgLink[i];
 		document.getElementById('bookimgLinkInfo').hidden = false;
 	}
-console.log(book[i]);
-console.log(digital[i]);
-	 if(parseInt(book[i]) == 1)
+	if(parseInt(book[i]) == 1)
 		document.getElementById("groupPagesInfo").hidden = false;
 	else
 		document.getElementById("groupPagesInfo").hidden = true;
@@ -64,5 +70,18 @@ console.log(digital[i]);
 	else {
 		document.getElementById("groupQuantityInfo").hidden = false;
 	}
-	
 }
+
+$('#genQRcode').click(() =>{
+	var copyIDObj = $('#copyIDQR').val();
+	var bookID = $('#bookIDInfo').text();
+	copyIDObj.forEach(copyID => {
+		var qrData = {
+			"Type": "Book",
+			"BookID": bookID,
+			"CopyID": copyID
+		};
+		qrData = JSON.stringify(qrData);
+		console.log(qrData);
+	});
+});

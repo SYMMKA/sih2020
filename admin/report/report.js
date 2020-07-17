@@ -49,7 +49,6 @@ function generateReport() {
 	if (document.getElementById("bookID").value == "") {
 	} else {
 		bookID = JSON.stringify($('#bookID').val());
-		console.log("hi");
 	}
 	if (document.getElementById("student").selected == true) {
 		studentID = JSON.stringify($('#studentID').val());

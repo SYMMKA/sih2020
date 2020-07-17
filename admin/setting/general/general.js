@@ -1,8 +1,7 @@
 $(document).ready(function () {
-	orgValues();
+	orgGeneralValues();
 
-	$("#SaveGeneral").on("click", function () {
-		console.log("clicked");
+	$("#saveGeneral").on("click", function () {
 		var issuePeriod = $("#issuePeriod").val();
 		var reservePeriod = $("#reservePeriod").val();
 		var issueLimit = $("#issueLimit").val();
@@ -23,7 +22,6 @@ $(document).ready(function () {
 			dueFineAmount != "" &&
 			duePoint != "")
 		) {
-			console.log(issuePeriod);
 			$.ajax({
 				url: "setting/general/general.php",
 				method: "POST",
@@ -53,7 +51,7 @@ $(document).ready(function () {
 });
 
 // gets org values
-function orgValues(){
+function orgGeneralValues(){
 	$.ajax({
 		url: "setting/general/getOrgSettings.php",
 		success: function (data) {

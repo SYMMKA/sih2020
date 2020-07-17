@@ -3,58 +3,62 @@
 include("../../session.php");
 include("../../db.php");
 
-$sqldueFine = "SELECT `value` FROM `setting` WHERE `parameter` = 'dueFine'";
-$stmtdueFine = $conn->prepare($sqldueFine);
-$stmtdueFine->execute();
-$dueFine = $stmtdueFine->fetchObject()->value;
+$dueFineParam = 'dueFine';
+$duePointParam = 'duePoint';
+$issueNumParam = 'issueNum';
+$issuePeriodParam = 'issuePeriod';
+$issuePointParam = 'issuePoint';
+$ratingPointParam = 'ratingPoint';
+$reserveNumParam = 'reserveNum';
+$reservePeriodParam = 'reservePeriod';
+$returnPointParam = 'returnPoint';
+
+$sql = "SELECT `value` FROM `setting` WHERE `parameter` = :parameter";
+$stmt = $conn->prepare($sql);
+
+$stmt->bindParam(':parameter', $dueFineParam);
+$stmt->execute();
+$dueFine = $stmt->fetchObject()->value;
 $return['dueFine'] = $dueFine;
 
-$sqlduePoint = "SELECT `value` FROM `setting` WHERE `parameter` = 'duePoint'";
-$stmtduePoint = $conn->prepare($sqlduePoint);
-$stmtduePoint->execute();
-$duePoint = $stmtduePoint->fetchObject()->value;
+$stmt->bindParam(':parameter', $duePointParam);
+$stmt->execute();
+$duePoint = $stmt->fetchObject()->value;
 $return['duePoint'] = $duePoint;
 
-$sqlissueNum = "SELECT `value` FROM `setting` WHERE `parameter` = 'issueNum'";
-$stmtissueNum = $conn->prepare($sqlissueNum);
-$stmtissueNum->execute();
-$issueNum = $stmtissueNum->fetchObject()->value;
+$stmt->bindParam(':parameter', $issueNumParam);
+$stmt->execute();
+$issueNum = $stmt->fetchObject()->value;
 $return['issueNum'] = $issueNum;
 
-$sqlissuePeriod = "SELECT `value` FROM `setting` WHERE `parameter` = 'issuePeriod'";
-$stmtissuePeriod = $conn->prepare($sqlissuePeriod);
-$stmtissuePeriod->execute();
-$issuePeriod = $stmtissuePeriod->fetchObject()->value;
+$stmt->bindParam(':parameter', $issuePeriodParam);
+$stmt->execute();
+$issuePeriod = $stmt->fetchObject()->value;
 $return['issuePeriod'] = $issuePeriod;
 
-$sqlissuePoint = "SELECT `value` FROM `setting` WHERE `parameter` = 'issuePoint'";
-$stmtissuePoint = $conn->prepare($sqlissuePoint);
-$stmtissuePoint->execute();
-$issuePoint = $stmtissuePoint->fetchObject()->value;
+$stmt->bindParam(':parameter', $issuePointParam);
+$stmt->execute();
+$issuePoint = $stmt->fetchObject()->value;
 $return['issuePoint'] = $issuePoint;
 
-$sqlratingPoint = "SELECT `value` FROM `setting` WHERE `parameter` = 'ratingPoint'";
-$stmtratingPoint = $conn->prepare($sqlratingPoint);
-$stmtratingPoint->execute();
-$ratingPoint = $stmtratingPoint->fetchObject()->value;
+$stmt->bindParam(':parameter', $ratingPointParam);
+$stmt->execute();
+$ratingPoint = $stmt->fetchObject()->value;
 $return['ratingPoint'] = $ratingPoint;
 
-$sqlreserveNum = "SELECT `value` FROM `setting` WHERE `parameter` = 'reserveNum'";
-$stmtreserveNum = $conn->prepare($sqlreserveNum);
-$stmtreserveNum->execute();
-$reserveNum = $stmtreserveNum->fetchObject()->value;
+$stmt->bindParam(':parameter', $reserveNumParam);
+$stmt->execute();
+$reserveNum = $stmt->fetchObject()->value;
 $return['reserveNum'] = $reserveNum;
 
-$sqlreservePeriod = "SELECT `value` FROM `setting` WHERE `parameter` = 'reservePeriod'";
-$stmtreservePeriod = $conn->prepare($sqlreservePeriod);
-$stmtreservePeriod->execute();
-$reservePeriod = $stmtreservePeriod->fetchObject()->value;
+$stmt->bindParam(':parameter', $reservePeriodParam);
+$stmt->execute();
+$reservePeriod = $stmt->fetchObject()->value;
 $return['reservePeriod'] = $reservePeriod;
 
-$sqlreturnPoint = "SELECT `value` FROM `setting` WHERE `parameter` = 'returnPoint'";
-$stmtreturnPoint = $conn->prepare($sqlreturnPoint);
-$stmtreturnPoint->execute();
-$returnPoint = $stmtreturnPoint->fetchObject()->value;
+$stmt->bindParam(':parameter', $returnPointParam);
+$stmt->execute();
+$returnPoint = $stmt->fetchObject()->value;
 $return['returnPoint'] = $returnPoint;
 
 echo json_encode($return);

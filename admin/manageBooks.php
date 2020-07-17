@@ -12,6 +12,7 @@ include("db.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  	<link rel="stylesheet" href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
 	<link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
 	<!-- <script
       src="https://kit.fontawesome.com/97f3c2998d.js"
@@ -463,7 +464,9 @@ include("db.php");
 										</h4></br>
 									</div>
 									<div class="col-12">
-										<button class="btn btn-primary">
+										<select class="selectpicker w-100" name="copyIDQR" id="copyIDQR" multiple data-live-search="true" data-actions-box="true">
+										</select>
+										<button class="btn btn-primary" id="genQRcode">
 											QR code
 										</button>
 									</div>
@@ -485,7 +488,8 @@ include("db.php");
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  	<script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 	<script src="./assets/js/common.js"></script>
 	<script src="./assets/js/voice-search.js"></script>
