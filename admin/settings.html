@@ -11,6 +11,10 @@
         <link
             rel="stylesheet"
             href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<link
+            rel="stylesheet"
+            href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"
         />
         <link
             rel="stylesheet"
@@ -132,6 +136,36 @@
                                 aria-controls="privileges"
                                 aria-selected="false"
                                 >Privileges</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="timeTable-tab"
+                                data-toggle="pill"
+                                href="#timeTable"
+                                role="tab"
+                                aria-controls="timeTable"
+                                aria-selected="false"
+                                >Time Table</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="genQR-tab"
+                                data-toggle="pill"
+                                href="#genQR"
+                                role="tab"
+                                aria-controls="genQR"
+                                aria-selected="false"
+                                >Generate QR</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="admin-tab"
+                                data-toggle="pill"
+                                href="#admins"
+                                role="tab"
+                                aria-controls="admins"
+                                aria-selected="false"
+                                >Admins</a
                             >
                             <a
                                 class="nav-link"
@@ -496,6 +530,231 @@
                                         </div>
                                     </div>
                                 </form>
+							</div>
+							<div
+                                class="tab-pane fade"
+                                id="genQR"
+                                role="tabpanel"
+                                aria-labelledby="genQR-tab"
+                            >
+                                <h4 class="p-3 mb-4 bg-light rounded">
+                                    Generate QR code
+                                </h4>
+                                <div class="form-group row">
+                                    <label
+                                        for="bookID"
+                                        class="col-sm-4 col-form-label"
+                                        >Book ID</label
+                                    >
+                                    <div class="col-sm-8">
+										<select
+											class="selectpicker w-100"
+											name="bookID"
+											id="bookID"
+											multiple
+											data-live-search="true"
+											data-actions-box="true">
+										</select>
+										<button
+                                            type="submit"
+											class="btn btn-info"
+											onclick="bookQR()"
+                                        >
+                                            Generate
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="shelfID"
+                                        class="col-sm-4 col-form-label"
+                                        >Shelf ID</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <select
+											class="selectpicker w-100"
+											name="shelfID"
+											id="shelfID"
+											multiple
+											data-live-search="true"
+											data-actions-box="true">
+										</select>
+										<button
+                                            type="submit"
+                                            class="btn btn-info"
+											onclick="shelfQR()"
+                                        >
+                                            Generate
+                                        </button>
+                                    </div>
+                                </div>
+							</div>
+							<div
+                                class="tab-pane fade"
+                                id="timeTable"
+                                role="tabpanel"
+                                aria-labelledby="timeTable-tab"
+                            >
+                                <form>
+                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                        Time Table
+                                    </h4>
+                                    <div class="form-group row">
+                                        <label
+                                            for="issueAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Sunday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="issueAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="returnAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Monday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="returnAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="addBookAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Tuesday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="addBookAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="updateBookAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Wednesday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="updateBookAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="shelfModifyAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Thursday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="shelfModifyAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="bookShelfAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Friday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="bookShelfAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="semBranchModifyAccess"
+                                            class="col-sm-4 col-form-label"
+                                            >Saturday</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                class="form-control"
+                                                type="number"
+                                                min="0"
+                                                id="semBranchModifyAccess"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="p-3 mb-5 bg-light rounded">
+                                        <div class="text-right">
+                                            <button
+                                                type="button"
+												class="btn btn-danger"
+												onclick="orgPrivilegeValues()"
+                                            >
+                                                Reset
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                id="savePrivilege"
+                                            >
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+							</div>
+							<div
+                                class="tab-pane fade"
+                                id="admins"
+                                role="tabpanel"
+                                aria-labelledby="admins-tab"
+                            >
+                                <form>
+                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                        Admins
+                                    </h4>
+                                    <div class="form-group row" id="adminClearance">
+                                    </div>
+                                    <div class="p-3 mb-5 bg-light rounded">
+                                        <div class="text-right">
+                                            <button
+                                                type="button"
+												class="btn btn-danger"
+												onclick="orgAdminValues()"
+                                            >
+                                                Reset
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-info"
+                                                id="saveAdmins"
+                                            >
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div
                                 class="tab-pane fade"
@@ -666,11 +925,14 @@
         <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
         <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
         <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-        <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
         <script src="./assets/js/common.js"></script>
         <script src="./assets/js/voice-search.js"></script>
         <script src="setting/general/general.js"></script>
         <script src="setting/privileges/privileges.js"></script>
+        <script src="setting/genQR/genQR.js"></script>
+        <script src="setting/admins/admins.js"></script>
     </body>
 </html>
