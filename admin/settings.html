@@ -11,8 +11,8 @@
         <link
             rel="stylesheet"
             href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
-		/>
-		<link
+        />
+        <link
             rel="stylesheet"
             href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"
         />
@@ -185,7 +185,7 @@
                                 role="tab"
                                 aria-controls="v-pills-messages"
                                 aria-selected="false"
-                                >Messages</a
+                                >Manage Users</a
                             >
                             <a
                                 class="nav-link"
@@ -350,8 +350,8 @@
                                         <div class="text-right">
                                             <button
                                                 type="button"
-												class="btn btn-danger"
-												onclick="orgGeneralValues()"
+                                                class="btn btn-danger"
+                                                onclick="orgGeneralValues()"
                                             >
                                                 Reset
                                             </button>
@@ -515,8 +515,8 @@
                                         <div class="text-right">
                                             <button
                                                 type="button"
-												class="btn btn-danger"
-												onclick="orgPrivilegeValues()"
+                                                class="btn btn-danger"
+                                                onclick="orgPrivilegeValues()"
                                             >
                                                 Reset
                                             </button>
@@ -530,8 +530,8 @@
                                         </div>
                                     </div>
                                 </form>
-							</div>
-							<div
+                            </div>
+                            <div
                                 class="tab-pane fade"
                                 id="genQR"
                                 role="tabpanel"
@@ -547,18 +547,19 @@
                                         >Book ID</label
                                     >
                                     <div class="col-sm-8">
-										<select
-											class="selectpicker w-100"
-											name="bookID"
-											id="bookID"
-											multiple
-											data-live-search="true"
-											data-actions-box="true">
-										</select>
-										<button
+                                        <select
+                                            class="selectpicker w-100"
+                                            name="bookID"
+                                            id="bookID"
+                                            multiple
+                                            data-live-search="true"
+                                            data-actions-box="true"
+                                        >
+                                        </select>
+                                        <button
                                             type="submit"
-											class="btn btn-info"
-											onclick="bookQR()"
+                                            class="btn btn-info"
+                                            onclick="bookQR()"
                                         >
                                             Generate
                                         </button>
@@ -572,24 +573,25 @@
                                     >
                                     <div class="col-sm-8">
                                         <select
-											class="selectpicker w-100"
-											name="shelfID"
-											id="shelfID"
-											multiple
-											data-live-search="true"
-											data-actions-box="true">
-										</select>
-										<button
+                                            class="selectpicker w-100"
+                                            name="shelfID"
+                                            id="shelfID"
+                                            multiple
+                                            data-live-search="true"
+                                            data-actions-box="true"
+                                        >
+                                        </select>
+                                        <button
                                             type="submit"
                                             class="btn btn-info"
-											onclick="shelfQR()"
+                                            onclick="shelfQR()"
                                         >
                                             Generate
                                         </button>
                                     </div>
                                 </div>
-							</div>
-							<div
+                            </div>
+                            <div
                                 class="tab-pane fade"
                                 id="timeTable"
                                 role="tabpanel"
@@ -708,8 +710,8 @@
                                         <div class="text-right">
                                             <button
                                                 type="button"
-												class="btn btn-danger"
-												onclick="orgPrivilegeValues()"
+                                                class="btn btn-danger"
+                                                onclick="orgPrivilegeValues()"
                                             >
                                                 Reset
                                             </button>
@@ -723,8 +725,8 @@
                                         </div>
                                     </div>
                                 </form>
-							</div>
-							<div
+                            </div>
+                            <div
                                 class="tab-pane fade"
                                 id="admins"
                                 role="tabpanel"
@@ -734,14 +736,16 @@
                                     <h4 class="p-3 mb-4 bg-light rounded">
                                         Admins
                                     </h4>
-                                    <div class="form-group row" id="adminClearance">
-                                    </div>
+                                    <div
+                                        class="form-group row"
+                                        id="adminClearance"
+                                    ></div>
                                     <div class="p-3 mb-5 bg-light rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
-												class="btn btn-danger"
-												onclick="orgAdminValues()"
+                                                class="btn btn-danger"
+                                                onclick="orgAdminValues()"
                                             >
                                                 Reset
                                             </button>
@@ -906,15 +910,236 @@
                                 role="tabpanel"
                                 aria-labelledby="v-pills-messages-tab"
                             >
-                                ...
-                            </div>
-                            <div
-                                class="tab-pane fade"
-                                id="v-pills-settings"
-                                role="tabpanel"
-                                aria-labelledby="v-pills-settings-tab"
-                            >
-                                ...
+                                <h4 class="p-3 mb-4 bg-light rounded">
+                                    Manage User Settings
+                                </h4>
+                                <div class="form-group row">
+                                    <label
+                                        for="adminorstudent"
+                                        class="col-sm-4 col-form-label"
+                                        >Select User</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline"
+                                        >
+                                            <input
+                                                type="radio"
+                                                id="typeAdmin"
+                                                name="adminorstudent"
+                                                class="custom-control-input"
+                                                value="admin"
+                                            />
+                                            <label
+                                                class="custom-control-label"
+                                                for="typeAdmin"
+                                                >Admin</label
+                                            >
+                                        </div>
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline"
+                                        >
+                                            <input
+                                                type="radio"
+                                                id="typeStudent"
+                                                name="adminorstudent"
+                                                class="custom-control-input"
+                                                value="student"
+                                            />
+                                            <label
+                                                class="custom-control-label"
+                                                for="typeStudent"
+                                                >Student</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="addordelete"
+                                        class="col-sm-4 col-form-label"
+                                        >Select Operation</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline"
+                                        >
+                                            <input
+                                                type="radio"
+                                                id="typeAdd"
+                                                name="addordelete"
+                                                class="custom-control-input"
+                                                value="add"
+                                            />
+                                            <label
+                                                class="custom-control-label"
+                                                for="typeAdd"
+                                                >Add</label
+                                            >
+                                        </div>
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline"
+                                        >
+                                            <input
+                                                type="radio"
+                                                id="typeDelete"
+                                                name="addordelete"
+                                                class="custom-control-input"
+                                                value="delete"
+                                            />
+                                            <label
+                                                class="custom-control-label"
+                                                for="typeDelete"
+                                                >Delete</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="showAddAdmin">
+                                    <div class="form-group row">
+                                        <label
+                                            for="adminID"
+                                            class="col-sm-4 col-form-label"
+                                            >Admin ID</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="adminID"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="adminFirstName"
+                                            class="col-sm-4 col-form-label"
+                                            >First Name</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="firstName"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="adminLastName"
+                                            class="col-sm-4 col-form-label"
+                                            >Last Name</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="lastName"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="showAddStudent">
+                                    <div class="form-group row">
+                                        <label
+                                            for="studentID"
+                                            class="col-sm-4 col-form-label"
+                                            >Student ID</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="studentID"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="studentFirstName"
+                                            class="col-sm-4 col-form-label"
+                                            >First Name</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="studentFirstName"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="studentLastName"
+                                            class="col-sm-4 col-form-label"
+                                            >Last Name</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                id="studentLastName"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="showDeleteAdmin">
+                                    <div class="form-group row">
+                                        <label
+                                            for="deleteAdmin"
+                                            class="col-sm-4 col-form-label"
+                                            >Select Admin</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <select
+                                                class="selectpicker"
+                                                title="Select admins to delete "
+                                                id="deleteAdmin"
+                                                multiple
+                                                data-live-search="true"
+                                                data-actions-box="true"
+                                            >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="showDeleteStudent">
+                                    <div class="form-group row">
+                                        <label
+                                            for="deleteStudent"
+                                            class="col-sm-4 col-form-label"
+                                            >Select Student</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <select
+                                                class="selectpicker"
+                                                title="Select students to delete "
+                                                id="deleteStudent"
+                                                multiple
+                                                data-live-search="true"
+                                                data-actions-box="true"
+                                            >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 mb-5 bg-light rounded">
+                                    <div class="text-right">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            Reset
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-info"
+                                            id="saveManageUser"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -926,7 +1151,7 @@
         <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
         <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
         <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
         <script src="./assets/js/common.js"></script>
         <script src="./assets/js/voice-search.js"></script>
@@ -934,5 +1159,117 @@
         <script src="setting/privileges/privileges.js"></script>
         <script src="setting/genQR/genQR.js"></script>
         <script src="setting/admins/admins.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#showAddAdmin").addClass("d-none");
+                $("#showAddStudent").addClass("d-none");
+                $("#showDeleteAdmin").addClass("d-none");
+                $("#showDeleteStudent").addClass("d-none");
+
+                $("input[name=adminorstudent]").on("change", function () {
+                    $("#showAddAdmin").addClass("d-none");
+                    $("#showAddStudent").addClass("d-none");
+                    $("#showDeleteAdmin").addClass("d-none");
+                    $("#showDeleteStudent").addClass("d-none");
+
+                    if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        $("#showAddAdmin").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        $("#showAddStudent").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        $("#showDeleteAdmin").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        $("#showDeleteStudent").removeClass("d-none");
+                    } else {
+                        console.log("error");
+                    }
+                });
+
+                $("input[name=addordelete]").on("change", function () {
+                    $("#showAddAdmin").addClass("d-none");
+                    $("#showAddStudent").addClass("d-none");
+                    $("#showDeleteAdmin").addClass("d-none");
+                    $("#showDeleteStudent").addClass("d-none");
+
+                    if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        $("#showAddAdmin").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        $("#showAddStudent").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        $("#showDeleteAdmin").removeClass("d-none");
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        $("#showDeleteStudent").removeClass("d-none");
+                    } else {
+                        console.log("error");
+                    }
+                });
+
+                $("#saveManageUser").on("click", function () {
+                    if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        var adminID = $("#adminID").val();
+                        var adminFirstName = $("#adminFirstName").val();
+                        var adminLastName = $("#adminLastName").val();
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "add"
+                    ) {
+                        var studentID = $("#studentID").val();
+                        var studentFirstName = $("#studentFirstName").val();
+                        var studentLastName = $("#studentLastName").val();
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "admin" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        var deleteAdmin = $("#deleteAdmin").val();
+                    } else if (
+                        $("input[name=adminorstudent]:checked").val() ==
+                            "student" &&
+                        $("input[name=addordelete]:checked").val() == "delete"
+                    ) {
+                        var deleteStudent = $("#deleteStudent").val();
+                    } else {
+                        console.log("error");
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
