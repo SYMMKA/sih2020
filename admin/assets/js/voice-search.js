@@ -1,18 +1,13 @@
-const searchForm = document.querySelector(".search-form");
-const searchFormInput = document.querySelector(".search-box");
-const input = searchFormInput.querySelector("input"); // <=> document.querySelector("#search-form input");
-
 // The speech recognition interface lives on the browser’s window object
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
 
-if (SpeechRecognition) {
-    console.log("Your Browser supports speech Recognition");
+if (document.querySelector(".search-form") != null) {
+    const searchForm = document.querySelector(".search-form");
+    const searchFormInput = document.querySelector(".search-box");
+    const input = searchFormInput.querySelector("input"); // <=> document.querySelector("#search-form input");
 
     const recognition = new SpeechRecognition();
-    const recognition2 = new SpeechRecognition();
-    recognition2.continuous = true;
-    // recognition.lang = "en-US";
 
     searchFormInput.insertAdjacentHTML(
         "beforeend",
@@ -21,8 +16,6 @@ if (SpeechRecognition) {
 
     const micBtn = searchForm.querySelector(".mic-button");
     const micIcon = micBtn.firstElementChild;
-    const voiceBtn = document.querySelector(".voice-button");
-    const voiceIcon = voiceBtn.firstElementChild;
 
     micBtn.addEventListener("click", micBtnClick);
     function micBtnClick() {
@@ -31,16 +24,6 @@ if (SpeechRecognition) {
             recognition.start(); // First time you have to allow access to mic!
         } else {
             recognition.stop();
-        }
-    }
-
-    voiceBtn.addEventListener("click", voiceBtnClick);
-    function voiceBtnClick() {
-        if (voiceIcon.classList.contains("fa-microphone")) {
-            // Start Voice Recognition
-            recognition2.start();
-        } else {
-            recognition2.stop();
         }
     }
 
@@ -69,6 +52,27 @@ if (SpeechRecognition) {
         // setTimeout(() => {
         //   searchForm.submit();
         // }, 500);
+    }
+}
+
+if (SpeechRecognition) {
+    console.log("Your Browser supports speech Recognition");
+
+    const recognition2 = new SpeechRecognition();
+    recognition2.continuous = true;
+    // recognition.lang = "en-US";
+
+    const voiceBtn = document.querySelector(".voice-button");
+    const voiceIcon = voiceBtn.firstElementChild;
+
+    voiceBtn.addEventListener("click", voiceBtnClick);
+    function voiceBtnClick() {
+        if (voiceIcon.classList.contains("fa-microphone")) {
+            // Start Voice Recognition
+            recognition2.start();
+        } else {
+            recognition2.stop();
+        }
     }
 
     recognition2.addEventListener("start", startSpeechRecognition2); // <=> recognition.onstart = function() {...}
