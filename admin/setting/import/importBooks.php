@@ -1,12 +1,12 @@
 <?php
-include('session.php');
-include('db.php');
+include('../../session.php');
+include('../../db.php');
 $adminID = $_SESSION['adminID'];
 
-$DDCstr = file_get_contents("category.json");
+$DDCstr = file_get_contents("../../category.json");
 $DDCjson = json_decode($DDCstr,TRUE);
 
-if (isset($_POST['importSubmit'])) {
+if (isset($_FILES['bookCSV'])) {
 
 	// Allowed mime types
 	$csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
@@ -183,7 +183,8 @@ if (isset($_POST['importSubmit'])) {
 		$qstring = '?status=invalid_file';
 	}
 	// Redirect to the listing page
-	header("Location: importCSV.php" . $qstring);
+	//header("Location: importCSV.php" . $qstring);
+	echo $qstring;
 }
 
 function autoCAT($ddc){
@@ -209,17 +210,5 @@ function autoCAT($ddc){
 	if(isset($DDCjson[$d1]['subordinates'][$d2]['subordinates'][$d3]['subordinates'][$d4]['description']))
 		$Category4 = $DDCjson[$d1]['subordinates'][$d2]['subordinates'][$d3]['subordinates'][$d4]['description'];
 }
+
 ?>
-
-<div class="row">
-	<!-- CSV file upload form -->
-	<div class="col-md-12" id="importFrm">
-		<form action="" method="post" enctype="multipart/form-data">
-			<input type="file" name="bookCSV" />
-			<input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
-		</form>
-	</div>
-</div>
-
-<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="catName.js"></script>

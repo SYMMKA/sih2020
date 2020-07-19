@@ -12,7 +12,7 @@ $.ajax({
 			bookIDoption.options[i] = new Option(key + " - " + data[key], key);
 			i++;
 		}
-		$('#bookID option').attr("selected","selected");
+		//$('#bookID option').attr("selected","selected");
 		$(".selectpicker").selectpicker("refresh");
 	},
 	//Other options

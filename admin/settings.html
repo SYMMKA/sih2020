@@ -179,13 +179,23 @@
                             >
                             <a
                                 class="nav-link"
-                                id="v-pills-messages-tab"
+                                id="manage-tab"
                                 data-toggle="pill"
-                                href="#v-pills-messages"
+                                href="#manage"
                                 role="tab"
-                                aria-controls="v-pills-messages"
+                                aria-controls="manage"
                                 aria-selected="false"
                                 >Manage Users</a
+                            >
+                            <a
+                                class="nav-link"
+                                id="import-tab"
+                                data-toggle="pill"
+                                href="#import"
+                                role="tab"
+                                aria-controls="import"
+                                aria-selected="false"
+                                >Import</a
                             >
                             <a
                                 class="nav-link"
@@ -903,12 +913,12 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div
+							</div>
+							<div
                                 class="tab-pane fade"
-                                id="v-pills-messages"
+                                id="manage"
                                 role="tabpanel"
-                                aria-labelledby="v-pills-messages-tab"
+                                aria-labelledby="manage-tab"
                             >
                                 <h4 class="p-3 mb-4 bg-light rounded">
                                     Manage User Settings
@@ -1141,6 +1151,75 @@
                                     </div>
                                 </div>
                             </div>
+                            <div
+                                class="tab-pane fade"
+                                id="import"
+                                role="tabpanel"
+                                aria-labelledby="import-tab"
+                            >
+                                <h4 class="p-3 mb-4 bg-light rounded">
+                                    Import
+								</h4>
+								<div class="form-group row">
+									<label
+										for="bookImport"
+										class="col-sm-4 col-form-label"
+										>Books</label
+									>
+									<div class="col-sm-8">
+										<input type="file" id="bookCSV" />
+										<button
+											id="bookImport"
+											type="submit"
+											class="btn btn-info"
+										>
+											Import Books
+										</button>
+									</div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="studentsImport"
+                                        class="col-sm-4 col-form-label"
+                                        >Students</label
+                                    >
+                                    <div class="col-sm-8">
+										<input type="file" id="studentsCSV" />
+										<button
+											id="studentsImport"
+                                            type="submit"
+                                            class="btn btn-info"
+                                        >
+                                            Import Students
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="teachersImport"
+                                        class="col-sm-4 col-form-label"
+                                        >Teachers</label
+                                    >
+                                    <div class="col-sm-8">
+										<input type="file" id="teachersCSV" />
+										<button
+											id="teachersImport"
+                                            type="submit"
+                                            class="btn btn-info"
+                                        >
+                                            Import Teachers
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="tab-pane fade"
+                                id="v-pills-settings"
+                                role="tabpanel"
+                                aria-labelledby="v-pills-settings-tab"
+                            >
+                                ...
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1158,7 +1237,8 @@
         <script src="setting/general/general.js"></script>
         <script src="setting/privileges/privileges.js"></script>
         <script src="setting/genQR/genQR.js"></script>
-        <script src="setting/admins/admins.js"></script>
+		<script src="setting/admins/admins.js"></script>
+		<script src="setting/import/import.js"></script>
         <script>
             $(document).ready(function () {
                 $("#showAddAdmin").addClass("d-none");

@@ -13,7 +13,7 @@ $(document).ready(function () {
 			values[adminID] = clearance;
 		}
 		values = JSON.stringify(values);
-		//var issuePeriod = $("#issuePeriod").val();
+		
 		$.ajax({
 			url: "setting/admins/admins.php",
 			method: "POST",
