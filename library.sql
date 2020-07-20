@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 10:37 PM
+-- Generation Time: Jul 20, 2020 at 09:49 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adminlogin` (
   `userID` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL DEFAULT 'adminPass',
   `fname` text NOT NULL,
   `lname` text NOT NULL,
-  `clearance` tinyint(4) NOT NULL
+  `clearance` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `adminlogin` (
 
 INSERT INTO `adminlogin` (`userID`, `password`, `fname`, `lname`, `clearance`) VALUES
 ('admin1', '456', 'admin1', 'dummy', 1),
-('manu21', '123', 'Manu', 'Naik', 2);
+('manu21', '123', 'Manu', 'Naik', 3);
 
 -- --------------------------------------------------------
 
@@ -297,6 +297,15 @@ INSERT INTO `setting` (`parameter`, `value`) VALUES
 ('semBranchModifyAccess', '2'),
 ('settingsAccess', '2'),
 ('shelfModifyAccess', '2'),
+('teacherDueFine', '1'),
+('teacherDuePoint', '2'),
+('teacherIssueNum', '4'),
+('teacherIssuePeriod', '14'),
+('teacherIssuePoint', '10'),
+('teacherRatingpoint', '3'),
+('teacherReserveNum', '4'),
+('teacherReservePeriod', '4'),
+('teacherReturnPoint', '10'),
 ('updateBookAccess', '2');
 
 -- --------------------------------------------------------
@@ -330,17 +339,18 @@ CREATE TABLE `students` (
   `email` varchar(50) NOT NULL,
   `mobile` varchar(12) NOT NULL,
   `points` int(5) NOT NULL DEFAULT 100,
-  `block` tinyint(4) NOT NULL DEFAULT 0
+  `block` tinyint(4) NOT NULL DEFAULT 0,
+  `type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`stud_ID`, `password`, `name`, `email`, `mobile`, `points`, `block`) VALUES
-('14332', 'symmka', 'shraddha', 'shraddha651@gmail.com', '8655266790', 110, 0),
-('14333', 'symmka', 'symmka', 'symmka.ng@gmail.com', '865659562', 100, 0),
-('14482', 'symmka', 'Manjunath Naik', 'manjunath2000@hotmail.com', '9322289496', 80, 0);
+INSERT INTO `students` (`stud_ID`, `password`, `name`, `email`, `mobile`, `points`, `block`, `type`) VALUES
+('14332', 'symmka', 'shraddha', 'shraddha651@gmail.com', '8655266790', 110, 0, 'student'),
+('14333', 'symmka', 'symmka', 'symmka.ng@gmail.com', '865659562', 100, 0, 'teacher'),
+('14482', 'symmka', 'Manjunath Naik', 'manjunath2000@hotmail.com', '9322289496', 80, 0, 'student');
 
 -- --------------------------------------------------------
 
