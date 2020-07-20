@@ -925,7 +925,7 @@
                                 </h4>
                                 <div class="form-group row">
                                     <label
-                                        for="adminorstudent"
+                                        for="adminoruser"
                                         class="col-sm-4 col-form-label"
                                         >Select User</label
                                     >
@@ -936,7 +936,7 @@
                                             <input
                                                 type="radio"
                                                 id="typeAdmin"
-                                                name="adminorstudent"
+                                                name="adminoruser"
                                                 class="custom-control-input"
                                                 value="admin"
                                             />
@@ -951,15 +951,15 @@
                                         >
                                             <input
                                                 type="radio"
-                                                id="typeStudent"
-                                                name="adminorstudent"
+                                                id="typeuser"
+                                                name="adminoruser"
                                                 class="custom-control-input"
-                                                value="student"
+                                                value="user"
                                             />
                                             <label
                                                 class="custom-control-label"
-                                                for="typeStudent"
-                                                >Student</label
+                                                for="typeuser"
+                                                >User</label
                                             >
                                         </div>
                                     </div>
@@ -1030,7 +1030,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                id="firstName"
+                                                id="adminFirstName"
                                             />
                                         </div>
                                     </div>
@@ -1044,29 +1044,85 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                id="lastName"
+                                                id="adminLastName"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="adminLastName"
+                                            class="col-sm-4 col-form-label"
+                                            >Admin Access</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+												type="number"
+												min="0"
+                                                class="form-control"
+                                                id="adminAccess"
                                             />
                                         </div>
                                     </div>
                                 </div>
-                                <div id="showAddStudent">
+                                <div id="showAddUser">
+									<div class="form-group row">
+										<label
+											for="stuortea"
+											class="col-sm-4 col-form-label"
+											>Select Operation</label
+										>
+										<div class="col-sm-8">
+											<div
+												class="custom-control custom-radio custom-control-inline"
+											>
+												<input
+													type="radio"
+													id="typeStudent"
+													name="stuortea"
+													class="custom-control-input"
+													value="student"
+												/>
+												<label
+													class="custom-control-label"
+													for="typeStudent"
+													>Student</label
+												>
+											</div>
+											<div
+												class="custom-control custom-radio custom-control-inline"
+											>
+												<input
+													type="radio"
+													id="typeTeacher"
+													name="stuortea"
+													class="custom-control-input"
+													value="teacher"
+												/>
+												<label
+													class="custom-control-label"
+													for="typeTeacher"
+													>Teacher</label
+												>
+											</div>
+										</div>
+									</div>
                                     <div class="form-group row">
                                         <label
-                                            for="studentID"
+                                            for="userID"
                                             class="col-sm-4 col-form-label"
-                                            >Student ID</label
+                                            >User ID</label
                                         >
                                         <div class="col-sm-8">
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                id="studentID"
+                                                id="userID"
                                             />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label
-                                            for="studentFirstName"
+                                            for="userName"
                                             class="col-sm-4 col-form-label"
                                             >First Name</label
                                         >
@@ -1074,21 +1130,35 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                id="studentFirstName"
+                                                id="userName"
                                             />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label
-                                            for="studentLastName"
+                                            for="userEmail"
                                             class="col-sm-4 col-form-label"
-                                            >Last Name</label
+                                            >E-Mail</label
                                         >
                                         <div class="col-sm-8">
                                             <input
-                                                type="password"
+                                                type="email"
                                                 class="form-control"
-                                                id="studentLastName"
+                                                id="userEmail"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="userMobile"
+                                            class="col-sm-4 col-form-label"
+                                            >Mobile</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="userMobile"
                                             />
                                         </div>
                                     </div>
@@ -1113,18 +1183,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="showDeleteStudent">
+                                <div id="showDeleteUser">
                                     <div class="form-group row">
                                         <label
-                                            for="deleteStudent"
+                                            for="deleteUser"
                                             class="col-sm-4 col-form-label"
-                                            >Select Student</label
+                                            >Select User</label
                                         >
                                         <div class="col-sm-8">
                                             <select
                                                 class="selectpicker"
-                                                title="Select students to delete "
-                                                id="deleteStudent"
+                                                title="Select users to delete "
+                                                id="deleteUser"
                                                 multiple
                                                 data-live-search="true"
                                                 data-actions-box="true"
@@ -1239,117 +1309,6 @@
         <script src="setting/genQR/genQR.js"></script>
 		<script src="setting/admins/admins.js"></script>
 		<script src="setting/import/import.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#showAddAdmin").addClass("d-none");
-                $("#showAddStudent").addClass("d-none");
-                $("#showDeleteAdmin").addClass("d-none");
-                $("#showDeleteStudent").addClass("d-none");
-
-                $("input[name=adminorstudent]").on("change", function () {
-                    $("#showAddAdmin").addClass("d-none");
-                    $("#showAddStudent").addClass("d-none");
-                    $("#showDeleteAdmin").addClass("d-none");
-                    $("#showDeleteStudent").addClass("d-none");
-
-                    if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        $("#showAddAdmin").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        $("#showAddStudent").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        $("#showDeleteAdmin").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        $("#showDeleteStudent").removeClass("d-none");
-                    } else {
-                        console.log("error");
-                    }
-                });
-
-                $("input[name=addordelete]").on("change", function () {
-                    $("#showAddAdmin").addClass("d-none");
-                    $("#showAddStudent").addClass("d-none");
-                    $("#showDeleteAdmin").addClass("d-none");
-                    $("#showDeleteStudent").addClass("d-none");
-
-                    if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        $("#showAddAdmin").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        $("#showAddStudent").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        $("#showDeleteAdmin").removeClass("d-none");
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        $("#showDeleteStudent").removeClass("d-none");
-                    } else {
-                        console.log("error");
-                    }
-                });
-
-                $("#saveManageUser").on("click", function () {
-                    if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        var adminID = $("#adminID").val();
-                        var adminFirstName = $("#adminFirstName").val();
-                        var adminLastName = $("#adminLastName").val();
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "add"
-                    ) {
-                        var studentID = $("#studentID").val();
-                        var studentFirstName = $("#studentFirstName").val();
-                        var studentLastName = $("#studentLastName").val();
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "admin" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        var deleteAdmin = $("#deleteAdmin").val();
-                    } else if (
-                        $("input[name=adminorstudent]:checked").val() ==
-                            "student" &&
-                        $("input[name=addordelete]:checked").val() == "delete"
-                    ) {
-                        var deleteStudent = $("#deleteStudent").val();
-                    } else {
-                        console.log("error");
-                    }
-                });
-            });
-        </script>
+        <script src="setting/manageUsers/manageUsers.js"></script>
     </body>
 </html>
