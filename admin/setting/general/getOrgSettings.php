@@ -13,9 +13,20 @@ $reserveNumParam = 'reserveNum';
 $reservePeriodParam = 'reservePeriod';
 $returnPointParam = 'returnPoint';
 
+$teacherDueFineParam = 'teacherDueFine';
+$teacherDuePointParam = 'teacherDuePoint';
+$teacherIssueNumParam = 'teacherIssueNum';
+$teacherIssuePeriodParam = 'teacherIssuePeriod';
+$teacherIssuePointParam = 'teacherIssuePoint';
+$teacherRatingPointParam = 'teacherRatingPoint';
+$teacherReserveNumParam = 'teacherReserveNum';
+$teacherReservePeriodParam = 'teacherReservePeriod';
+$teacherReturnPointParam = 'teacherReturnPoint';
+
 $sql = "SELECT `value` FROM `setting` WHERE `parameter` = :parameter";
 $stmt = $conn->prepare($sql);
 
+// student
 $stmt->bindParam(':parameter', $dueFineParam);
 $stmt->execute();
 $dueFine = $stmt->fetchObject()->value;
@@ -60,6 +71,52 @@ $stmt->bindParam(':parameter', $returnPointParam);
 $stmt->execute();
 $returnPoint = $stmt->fetchObject()->value;
 $return['returnPoint'] = $returnPoint;
+
+// teacher
+$stmt->bindParam(':parameter', $teacherDueFineParam);
+$stmt->execute();
+$teacherDueFine = $stmt->fetchObject()->value;
+$return['teacherDueFine'] = $teacherDueFine;
+
+$stmt->bindParam(':parameter', $teacherDuePointParam);
+$stmt->execute();
+$teacherDuePoint = $stmt->fetchObject()->value;
+$return['teacherDuePoint'] = $teacherDuePoint;
+
+$stmt->bindParam(':parameter', $teacherIssueNumParam);
+$stmt->execute();
+$teacherIssueNum = $stmt->fetchObject()->value;
+$return['teacherIssueNum'] = $teacherIssueNum;
+
+$stmt->bindParam(':parameter', $teacherIssuePeriodParam);
+$stmt->execute();
+$teacherIssuePeriod = $stmt->fetchObject()->value;
+$return['teacherIssuePeriod'] = $teacherIssuePeriod;
+
+$stmt->bindParam(':parameter', $teacherIssuePointParam);
+$stmt->execute();
+$teacherIssuePoint = $stmt->fetchObject()->value;
+$return['teacherIssuePoint'] = $teacherIssuePoint;
+
+$stmt->bindParam(':parameter', $teacherRatingPointParam);
+$stmt->execute();
+$teacherRatingPoint = $stmt->fetchObject()->value;
+$return['teacherRatingPoint'] = $teacherRatingPoint;
+
+$stmt->bindParam(':parameter', $teacherReserveNumParam);
+$stmt->execute();
+$teacherReserveNum = $stmt->fetchObject()->value;
+$return['teacherReserveNum'] = $teacherReserveNum;
+
+$stmt->bindParam(':parameter', $teacherReservePeriodParam);
+$stmt->execute();
+$teacherReservePeriod = $stmt->fetchObject()->value;
+$return['teacherReservePeriod'] = $teacherReservePeriod;
+
+$stmt->bindParam(':parameter', $teacherReturnPointParam);
+$stmt->execute();
+$teacherReturnPoint = $stmt->fetchObject()->value;
+$return['teacherReturnPoint'] = $teacherReturnPoint;
 
 echo json_encode($return);
 $conn = null;

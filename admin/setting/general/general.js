@@ -2,6 +2,7 @@ $(document).ready(function () {
 	orgGeneralValues();
 
 	$("#saveGeneral").on("click", function () {
+		//student
 		var issuePeriod = $("#issuePeriod").val();
 		var reservePeriod = $("#reservePeriod").val();
 		var issueLimit = $("#issueLimit").val();
@@ -11,6 +12,17 @@ $(document).ready(function () {
 		var returnPoint = $("#returnPoint").val();
 		var duePoint = $("#duePoint").val();
 		var ratingPoint = $("#ratingPoint").val();
+
+		//teacher
+		var teacherIssuePeriod = $("#teacherIssuePeriod").val();
+		var teacherReservePeriod = $("#teacherReservePeriod").val();
+		var teacherIssueLimit = $("#teacherIssueLimit").val();
+		var teacherReserveLimit = $("#teacherReserveLimit").val();
+		var teacherDueFineAmount = $("#teacherDueFineAmount").val();
+		var teacherIssuePoint = $("#teacherIssuePoint").val();
+		var teacherReturnPoint = $("#teacherReturnPoint").val();
+		var teacherDuePoint = $("#teacherDuePoint").val();
+		var teacherRatingPoint = $("#teacherRatingPoint").val();
 		if (
 			(issueLimit != "" &&
 			issuePeriod != "" &&
@@ -20,7 +32,16 @@ $(document).ready(function () {
 			reservePeriod != "" &&
 			returnPoint != "" &&
 			dueFineAmount != "" &&
-			duePoint != "")
+			duePoint != "" &&
+			teacherIssuePeriod != "" &&
+			teacherReservePeriod != "" &&
+			teacherIssueLimit != "" &&
+			teacherReserveLimit != "" &&
+			teacherDueFineAmount != "" &&
+			teacherIssuePoint != "" &&
+			teacherReturnPoint != "" &&
+			teacherDuePoint != "" &&
+			teacherRatingPoint != "")
 		) {
 			$.ajax({
 				url: "setting/general/general.php",
@@ -36,6 +57,15 @@ $(document).ready(function () {
 					returnPoint: returnPoint,
 					duePoint: duePoint,
 					ratingPoint: ratingPoint,
+					teacherIssuePeriod: teacherIssuePeriod,
+					teacherReservePeriod: teacherReservePeriod,
+					teacherIssueLimit: teacherIssueLimit,
+					teacherReserveLimit: teacherReserveLimit,
+					teacherDueFineAmount: teacherDueFineAmount,
+					teacherIssuePoint: teacherIssuePoint,
+					teacherReturnPoint: teacherReturnPoint,
+					teacherDuePoint: teacherDuePoint,
+					teacherRatingPoint: teacherRatingPoint,
 				},
 				success: function (data) {
 					alert(data);
@@ -56,6 +86,8 @@ function orgGeneralValues(){
 		url: "setting/general/getOrgSettings.php",
 		success: function (data) {
 			data = JSON.parse(data);
+
+			//student
 			$("#issuePeriod").val(data.issuePeriod);
 			$("#reservePeriod").val(data.reservePeriod);
 			$("#issueLimit").val(data.issueNum);
@@ -65,6 +97,17 @@ function orgGeneralValues(){
 			$("#returnPoint").val(data.returnPoint);
 			$("#duePoint").val(data.duePoint);
 			$("#ratingPoint").val(data.ratingPoint);
+
+			// teacher
+			$("#teacherIssuePeriod").val(data.teacherIssuePeriod);
+			$("#teacherReservePeriod").val(data.teacherReservePeriod);
+			$("#teacherIssueLimit").val(data.teacherIssueNum);
+			$("#teacherReserveLimit").val(data.teacherReserveNum);
+			$("#teacherDueFineAmount").val(data.teacherDueFine);
+			$("#teacherIssuePoint").val(data.teacherIssuePoint);
+			$("#teacherReturnPoint").val(data.teacherReturnPoint);
+			$("#teacherDuePoint").val(data.teacherDuePoint);
+			$("#teacherRatingPoint").val(data.teacherRatingPoint);
 		}
 	});
 }
