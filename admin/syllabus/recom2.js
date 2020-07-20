@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#recommendations").load(function () {
+    $("#syllabusDiv").load(function () {
         $.ajax({
             type: "POST",
             url: "recommend/getBooks.php",

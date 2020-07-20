@@ -36,4 +36,3 @@ $(".filter").change(function () {
         );
     });
 });
-col;
