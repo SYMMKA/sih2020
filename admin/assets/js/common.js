@@ -10,10 +10,8 @@ function scrollFunction() {
         document.documentElement.scrollTop > 60
     ) {
         x.classList.add("floatingNav");
-        x.classList.remove("bg-transparent");
     } else {
         x.classList.remove("floatingNav");
-        x.classList.add("bg-transparent");
     }
 }
 

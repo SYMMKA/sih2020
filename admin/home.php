@@ -35,8 +35,7 @@ include("session.php");
     <nav class="navbar navbar-expand-lg navbar-light bg-green fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Library Management System</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -46,8 +45,7 @@ include("session.php");
                         <a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item dropdown active">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,8 +64,7 @@ include("session.php");
                         <a class="nav-link" href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item dropdown active">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -76,8 +73,7 @@ include("session.php");
                             <a class="dropdown-item" href="#">Change username</a>
                             <a class="dropdown-item" href="#">Change password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><button
-                                    class="btn btn-danger btn-block">Logout</button></a>
+                            <a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">Logout</button></a>
                         </div>
                     </li>
                 </ul>
@@ -87,8 +83,8 @@ include("session.php");
     <!-- landing -->
     <section>
         <div class="landing-section bg-green">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
+            <div class="container h-100 pb-5">
+                <div class="row h-100 align-items-center pb-5">
                     <div class="col-12 col-lg-8">
                         <h1 class="display-5">Hi! <?= $adminID ?> </h1>
                         <hr class="my-4">

@@ -4,12 +4,11 @@ const SpeechRecognition =
 
 if (document.querySelector(".search-form") != null) {
     const searchForm = document.querySelector(".search-form");
-    const searchFormInput = document.querySelector(".search-box");
-    const input = searchFormInput.querySelector("input"); // <=> document.querySelector("#search-form input");
+    const input = searchForm.querySelector("#searchByVoice"); // <=> document.querySelector("#search-form input");
 
     const recognition = new SpeechRecognition();
 
-    searchFormInput.insertAdjacentHTML(
+    searchForm.insertAdjacentHTML(
         "beforeend",
         '<button type="button" class="mic-button"><i i class= "fa fa-microphone " aria-hidden="true" ></i></button >'
     );

@@ -20,7 +20,6 @@ while ($row = $stmt->fetchObject()) {
 	$return_arr[] = $data;
 }
 
-
 // Encoding array in JSON format
 if (!isset($return_arr))
 	echo FALSE;
