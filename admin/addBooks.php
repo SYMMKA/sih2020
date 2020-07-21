@@ -215,7 +215,6 @@ include('session.php');
 					</div>
 					<div class="modal-body" id="addForm">
 						<div class="container-fluid">
-
 							<fieldset class="form-group">
 								<div class="row">
 									<legend class="col-form-label col-sm-2 pt-0">Books/Audio</legend>
@@ -292,15 +291,6 @@ include('session.php');
 										<label for="" class="col-sm-2 col-form-label">Publisher Date</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="publishedDate" id="publishedDate" />
-											<div class="invalid-feedback">
-												Required Field
-											</div>
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">Old ID</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control" name="oldID" id="oldID" />
 											<div class="invalid-feedback">
 												Required Field
 											</div>
@@ -395,7 +385,20 @@ include('session.php');
 									</div>
 								</div>
 							</div>
-
+							<div class="form-group row">
+								<label for="" class="col-sm-2 col-form-label">Source</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="source">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="" class="col-sm-2 col-form-label">Date of purchase</label>
+								<div class="col-sm-10">
+									<input class="form-control" type="datetime-local" id="dop" name="dop">
+								</div>
+							</div>
+							<div class="mb-2" id="copyInfo">
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -405,7 +408,7 @@ include('session.php');
 				</form>
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -437,7 +440,7 @@ include('session.php');
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-	
+
 	<?php
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
@@ -447,7 +450,7 @@ include('session.php');
 			</script>";
 	}
 	?>
-	
+
 	<div id="QRpdf"></div>
 </body>
 

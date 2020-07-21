@@ -30,7 +30,6 @@ function addBook(event) {
 		var publishedDate = getInputVal('publishedDate');
 		var isbn = getInputVal('isbn');
 		var money = getInputVal('money');
-		var oldID = getInputVal('oldID');
 		var imgValue = document.getElementById('imgValue').value;
 		var imgFile = $('#imgFile')[0].files[0];
 		if (!imgFile)
@@ -40,6 +39,15 @@ function addBook(event) {
 		var mediaFile = $('#mediaFile')[0].files[0]; //digital
 		var book_audio = document.querySelector('input[name="book_audio"]:checked').value;
 		var physical_digital = document.querySelector('input[name="physical_digital"]:checked').value;
+		var dop = $('#dop').val()
+		var dop = new Date(dop).valueOf()/1000;
+		var source = document.getElementById('source').value;
+		var oldID = [];
+		for (var i=1; i<=quantity; i++) {
+			oldID[i-1] = document.getElementById('oldID'+i).value;
+		}
+		oldID = JSON.stringify(oldID);
+		console.log(oldID);
 
 		var mainCategory1 = '';
 		var mainCategory2 = '';

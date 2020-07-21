@@ -105,7 +105,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
 
-	$sql1 = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES (:title, :author, :quantity, :Category1, :Category2, :Category3, :Category4, :publisher, :pages, :price, '', :date_of_publication, :isbn, :orgQuan, :digital, :book, '')";
+	$sql1 = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES (:title, :author, :quantity, :Category1, :Category2, :Category3, :Category4, :publisher, :pages, '', :date_of_publication, :isbn, :orgQuan, :digital, :book, '')";
 	$stmt1 = $conn->prepare($sql1);
 	$stmt1->bindParam(':title', $title2);
 	$stmt1->bindParam(':author', $author2);
@@ -116,7 +116,7 @@ try {
 	$stmt1->bindParam(':Category4', $mainCategorySelect4);
 	$stmt1->bindParam(':publisher', $publisher2);
 	$stmt1->bindParam(':pages', $pageCount2);
-	$stmt1->bindParam(':price', $money2);
+	//$stmt1->bindParam(':price', $money2);
 	$stmt1->bindParam(':date_of_publication', $date_of_publication2);
 	$stmt1->bindParam(':isbn', $isbn2);
 	$stmt1->bindParam(':orgQuan', $quantity2);

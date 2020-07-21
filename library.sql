@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2020 at 06:05 PM
+-- Generation Time: Jul 21, 2020 at 09:17 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -86,28 +86,31 @@ CREATE TABLE `copies` (
   `time` bigint(20) DEFAULT NULL,
   `status` text DEFAULT NULL,
   `returnTime` bigint(20) DEFAULT NULL,
-  `shelfID` varchar(50) DEFAULT NULL
+  `shelfID` varchar(50) DEFAULT NULL,
+  `purchaseTime` bigint(20) NOT NULL,
+  `purchaseSource` text NOT NULL,
+  `price` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `copies`
 --
 
-INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES
-(1, 1, '', '1 - 1', NULL, NULL, '', NULL, NULL),
-(1, 2, '', '1 - 2', NULL, NULL, '', NULL, 'shelf2'),
-(1, 3, '', '1 - 3', NULL, NULL, '', NULL, NULL),
-(2, 1, '', '2 - 1', '14332', 1594634908, 'issued', 1595239708, 'shelf2'),
-(2, 2, '', '2 - 2', '14482', 1594634844, 'issued', 1595239644, 'shelf1'),
-(2, 3, '', '2 - 3', NULL, NULL, '', NULL, 'shelf1'),
-(3, 1, '', '3 - 1', NULL, NULL, '', NULL, NULL),
-(3, 2, '', '3 - 2', '14332', 1594634925, 'issued', 1595239725, 'shelf2'),
-(3, 3, '', '3 - 3', NULL, NULL, '', NULL, 'shelf1'),
-(3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL),
-(4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL),
-(4, 2, '', '4 - 2', NULL, NULL, '', NULL, 'shelf2'),
-(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL),
-(6, 1, '', '6 - 1', NULL, NULL, '', NULL, NULL);
+INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES
+(1, 1, '', '1 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
+(1, 2, '', '1 - 2', NULL, NULL, '', NULL, 'shelf2', 20200721183417, '', ''),
+(1, 3, '', '1 - 3', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
+(2, 1, '', '2 - 1', '14332', 1594634908, 'issued', 1595239708, 'shelf2', 20200721183417, '', ''),
+(2, 2, '', '2 - 2', '14482', 1594634844, 'issued', 1595239644, 'shelf1', 20200721183417, '', ''),
+(2, 3, '', '2 - 3', NULL, NULL, '', NULL, 'shelf1', 20200721183417, '', ''),
+(3, 1, '', '3 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
+(3, 2, '', '3 - 2', '14332', 1594634925, 'issued', 1595239725, 'shelf2', 20200721183417, '', ''),
+(3, 3, '', '3 - 3', NULL, NULL, '', NULL, 'shelf1', 20200721183417, '', ''),
+(3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
+(4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
+(4, 2, '', '4 - 2', NULL, NULL, '', NULL, 'shelf2', 20200721183417, '', ''),
+(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL, 20200721183417, '', ''),
+(6, 1, '', '6 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', '');
 
 --
 -- Triggers `copies`
@@ -213,7 +216,6 @@ CREATE TABLE `main` (
   `Category4` text NOT NULL,
   `publisher` text NOT NULL,
   `pages` text NOT NULL,
-  `price` text NOT NULL,
   `imgLink` text NOT NULL,
   `date_of_publication` text NOT NULL,
   `isbn` varchar(50) NOT NULL,
@@ -227,13 +229,13 @@ CREATE TABLE `main` (
 -- Dumping data for table `main`
 --
 
-INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES
-(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House India', '296', 'INR 448.62', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
-(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 3, 'Literature and rhetoric', 'English and Old English literatures and other literatures commonly translated into English', 'Fiction', 'collections, short stories', 'HarperCollins', '448', 'INR 396.84', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 3, 0, 1, ''),
-(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House', '619', '', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, ''),
-(4, 'Sa Re Ga Ma Pa', 'Jessica Foreman', 2, 'The Arts', 'Music', 'Vocal music', 'Secular forms', 'Independently Published', '', '', 'http://books.google.com/books/content?id=OR-UzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2020-05-28', '9798649351003', 2, 0, 0, ''),
-(5, 'Python Data Science Handbook', 'Jake VanderPlas', 1, 'Generalities', 'Generalities and computer science', 'Special computer methods', 'Artificial intelligence', '\"O\'Reilly Media, Inc.\"', '548', 'INR 2513.4', 'http://books.google.com/books/content?id=6omNDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-11-21', '9781491912133', 1, 0, 1, ''),
-(6, 'test', '', 1, 'Natural sciences and mathematics', 'Life sciences', 'Human races', 'Geographic distribution of races', '', '', '', '', '', '', 1, 0, 1, '');
+INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES
+(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House India', '296', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
+(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 3, 'Literature and rhetoric', 'English and Old English literatures and other literatures commonly translated into English', 'Fiction', 'collections, short stories', 'HarperCollins', '448', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 3, 0, 1, ''),
+(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House', '619', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, ''),
+(4, 'Sa Re Ga Ma Pa', 'Jessica Foreman', 2, 'The Arts', 'Music', 'Vocal music', 'Secular forms', 'Independently Published', '', 'http://books.google.com/books/content?id=OR-UzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2020-05-28', '9798649351003', 2, 0, 0, ''),
+(5, 'Python Data Science Handbook', 'Jake VanderPlas', 1, 'Generalities', 'Generalities and computer science', 'Special computer methods', 'Artificial intelligence', '\"O\'Reilly Media, Inc.\"', '548', 'http://books.google.com/books/content?id=6omNDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-11-21', '9781491912133', 1, 0, 1, ''),
+(6, 'test', '', 1, 'Natural sciences and mathematics', 'Life sciences', 'Human races', 'Geographic distribution of races', '', '', '', '', '', 1, 0, 1, '');
 
 -- --------------------------------------------------------
 

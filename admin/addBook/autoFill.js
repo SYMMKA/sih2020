@@ -21,3 +21,25 @@ function hideResult() {
 	$("#searchResults").toggle();
 	window.scrollTo(0, $("#addForm").offset().top);
 }
+
+$('#quantity').change( ()=> {
+	var quantity = parseInt($('#quantity').val());
+	// Container <div> where dynamic content will be placed
+	var container = document.getElementById("copyInfo");
+	// Clear previous contents of the container
+	while (container.hasChildNodes()) {
+		container.removeChild(container.lastChild);
+	}
+	
+	for (i=1; i<=quantity; i++){
+		var html = `
+		<div class="form-group row">
+			<label for="" class="col-sm-2 col-form-label">Old ID of Copy No: `+i+`</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="oldID`+i+`">
+			</div>
+		</div>`;
+		$("#copyInfo").append(html);
+	}
+});
+
