@@ -27,10 +27,8 @@ function autoFillUpdateBook(i) {
     document.getElementById("updateTitle").value = title[i];
     document.getElementById("updateAuthor").value = author[i];
     document.getElementById("updatepublisher").value = publisher[i];
-    document.getElementById("updatepublishedDate").value =
-        date_of_publication[i];
+    document.getElementById("updatepublishedDate").value = date_of_publication[i];
     document.getElementById("updateISBN").value = isbn[i];
-    document.getElementById("updatemoney").value = price[i];
     document.getElementById("updatepageCount").value = pages[i];
 
     if (imgLink[i]) {
@@ -60,40 +58,47 @@ function resetUpdateForm() {
 
 $("#updateaddcopies").change(() => {
     var quantity = parseInt($("#updateaddcopies").val());
-    console.log(quantity);
     // Container <div> where dynamic content will be placed
     var container = document.getElementById("copyInfo");
     // Clear previous contents of the container
     while (container.hasChildNodes()) {
         container.removeChild(container.lastChild);
-    }
-    html1 = `<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Source</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="sourceUpdate">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Date of purchase</label>
-								<div class="col-sm-10">
-									<input class="form-control" type="datetime-local" id="dopUpdate" name="dop">
-								</div>
-							</div>
-                            `;
-    $("#copyInfo").append(html1);
-    for (i = 1; i <= quantity; i++) {
-        var html2 =
-            `
-		<div class="form-group row">
-			<label for="" class="col-sm-2 col-form-label">Old ID of Copy No: ` +
-            i +
-            `</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="oldID` +
-            i +
-            `">
-			</div>
-		</div>`;
-        $("#copyInfo").append(html2);
-    }
+	}
+	if(quantity>0) {
+		html1 = `<div class="form-group row">
+					<label for="sourceUpdate" class="col-sm-2 col-form-label">Source</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="sourceUpdate">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="dopUpdate" class="col-sm-2 col-form-label">Date of purchase</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="datetime-local" id="dopUpdate" name="dop">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="updatemoney" class="col-sm-2 col-form-label">Price</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="updatemoney" id="updatemoney" />
+					</div>
+				</div>
+				`;
+		$("#copyInfo").append(html1);
+		for (i = 1; i <= quantity; i++) {
+			var html2 =
+				`
+			<div class="form-group row">
+				<label for="" class="col-sm-2 col-form-label">Old ID of Copy No: ` +
+				i +
+				`</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="oldID` +
+				i +
+				`">
+				</div>
+			</div>`;
+			$("#copyInfo").append(html2);
+		}
+	}
 });

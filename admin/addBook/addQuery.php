@@ -44,9 +44,9 @@ if ($_POST['isbn1'])
 else
 	$isbn2 = '';
 if ($_POST['money1'])
-	$money2 = $_POST['money1'];
+	$price = $_POST['money1'];
 else
-	$money2 = '';
+	$price = '';
 
 $book_audio = $_POST['book_audio'];
 $physical_digital = $_POST['physical_digital'];
@@ -74,10 +74,21 @@ if ($physical_digital == "physical") {
 	$quantity2 = '1';
 }
 
+if ($_POST['dop'])
+	$dop = $_POST['dop'];
+else
+	$dop = '';
+
+if ($_POST['source'])
+	$source = $_POST['source'];
+else
+	$source = '';
+
 if ($_POST['oldID'])
-	$oldID = $_POST['oldID'];
+	$oldID = json_decode($_POST['oldID'], true);
 else
 	$oldID = '';
+
 $shelfID = NULL;
 $adminID = $_SESSION['adminID'];
 
@@ -116,7 +127,6 @@ try {
 	$stmt1->bindParam(':Category4', $mainCategorySelect4);
 	$stmt1->bindParam(':publisher', $publisher2);
 	$stmt1->bindParam(':pages', $pageCount2);
-	//$stmt1->bindParam(':price', $money2);
 	$stmt1->bindParam(':date_of_publication', $date_of_publication2);
 	$stmt1->bindParam(':isbn', $isbn2);
 	$stmt1->bindParam(':orgQuan', $quantity2);
@@ -135,25 +145,28 @@ try {
 	$stmtMedia->bindParam(':digitalLink', $digitalLink);
 	$stmtMedia->execute();
 
-	$sql2 = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, :oldID, '', NULL, NULL, '', NULL, :shelfID)";
+	$sql2 = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES (:bookID, :copyNO, :oldID, '', NULL, NULL, '', NULL, :shelfID, :purchaseTime, :purchaseSource, :price)";
 	$stmt2 = $conn->prepare($sql2);
 	$stmt2->bindParam(':bookID', $bookID);
-	$stmt2->bindParam(':oldID', $oldID);
 	$stmt2->bindParam(':shelfID', $shelfID);
+	$stmt2->bindParam(':purchaseTime', $dop);
+	$stmt2->bindParam(':purchaseSource', $source);
+	$stmt2->bindParam(':price', $price);
 
 	$sql3 = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, :oldID)";
 	$stmt3 = $conn->prepare($sql3);
 	$stmt3->bindParam(':adminID', $adminID);
 	$stmt3->bindParam(':bookID', $bookID);
-	$stmt3->bindParam(':oldID', $oldID);
 
 	for ($copyNO = 1; $copyNO <= $quantity2; $copyNO++) {
 		$stmt2->bindParam(':copyNO', $copyNO);
+		$stmt2->bindParam(':oldID', $oldID[$copyNO-1]);
 		$stmt2->execute();
 		echo "\nCopy no " . $copyNO . " added successfully";
 
 		$copyID = $bookID . ' - ' . $copyNO;
 		$stmt3->bindParam(':copyID', $copyID);
+		$stmt3->bindParam(':oldID', $oldID[$copyNO-1]);
 		$stmt3->execute();
 		echo "\nCopy no " . $copyNO . " added to history";
 	}

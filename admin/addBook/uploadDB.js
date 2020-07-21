@@ -40,14 +40,13 @@ function addBook(event) {
 		var book_audio = document.querySelector('input[name="book_audio"]:checked').value;
 		var physical_digital = document.querySelector('input[name="physical_digital"]:checked').value;
 		var dop = $('#dop').val()
-		var dop = new Date(dop).valueOf()/1000;
+		dop = new Date(dop).valueOf()/1000;
 		var source = document.getElementById('source').value;
 		var oldID = [];
 		for (var i=1; i<=quantity; i++) {
 			oldID[i-1] = document.getElementById('oldID'+i).value;
 		}
 		oldID = JSON.stringify(oldID);
-		console.log(oldID);
 
 		var mainCategory1 = '';
 		var mainCategory2 = '';
@@ -77,10 +76,12 @@ function addBook(event) {
 		formData.append('imgValue1', imgValue);
 		formData.append('imgFile', imgFile);
 		formData.append('quantity1', quantity);
-		formData.append('oldID', oldID);
 		formData.append('mediaFile', mediaFile);
 		formData.append('book_audio', book_audio);
 		formData.append('physical_digital', physical_digital);
+		formData.append('dop', dop);
+		formData.append('source', source);
+		formData.append('oldID', oldID);
 
 		$.ajax({
 			type: "POST",

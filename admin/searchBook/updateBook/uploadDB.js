@@ -10,12 +10,27 @@ function updateBook(e) {
     var publisher = getInputVal("updatepublisher");
     var publishedDate = getInputVal("updatepublishedDate");
     var isbn = getInputVal("updateISBN");
-    var money = getInputVal("updatemoney");
     var imgFile = $("#updateimgFile")[0].files[0];
     if (!imgFile) imgFile = null;
     var addQuan = getInputVal("updateaddcopies");
     var pageCount = getInputVal("updatepageCount");
-    var mediaFile = $("#mediaFile")[0].files[0]; //digital
+	var mediaFile = $("#mediaFile")[0].files[0]; //digital
+	var source = '';
+	var dop = '';
+	var oldID = '';
+	var money = '';
+	
+	if(addQuan>0) {
+		source = getInputVal("sourceUpdate");
+		dop = getInputVal("dopUpdate");
+		money = getInputVal("updatemoney");
+		dop = new Date(dop).valueOf()/1000;
+		oldID = [];
+		for(var i=1; i<=addQuan; i++) {
+			oldID[i-1] = getInputVal("oldID"+i);
+		}
+		oldID = JSON.stringify(oldID);
+	}
 
     var updateCategory1 = "";
     var updateCategory2 = "";
@@ -57,10 +72,13 @@ function updateBook(e) {
     formData.append("publishedDate", publishedDate);
     formData.append("isbn", isbn);
     formData.append("pageCount", pageCount);
-    formData.append("money", money);
     formData.append("imgFile", imgFile);
     formData.append("addQuan", addQuan);
     formData.append("mediaFile", mediaFile);
+    formData.append("source", source);
+    formData.append("dop", dop);
+    formData.append("oldID", oldID);
+    formData.append("money", money);
 
     $.ajax({
         type: "POST",

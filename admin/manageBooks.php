@@ -261,12 +261,6 @@ include("session.php");
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="updatemoney" class="col-sm-2 col-form-label">Price</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control update-form" name="updatemoney" id="updatemoney" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="updateimgLink" class="col-sm-2 col-form-label">Image</label>
                                 <div class="col-sm-10">
                                     <img class="mb-2" name="updateimgLink" id="updateimgLink" hidden="true" src="" alt="your image" width="100px" height="100px" />
@@ -370,10 +364,6 @@ include("session.php");
                                     <div class="col-8" id="bookPagesInfo"></div>
                                 </div>
                                 <div class="row no-gutters">
-                                    <div class="col-4 font-weight-bold">Price:</div>
-                                    <div class="col-8" id="bookPriceInfo"></div>
-                                </div>
-                                <div class="row no-gutters">
                                     <div class="col-4 font-weight-bold">Date of publication:</div>
                                     <div class="col-8" id="bookDate_of_publicationInfo"></div>
                                 </div>
@@ -432,7 +422,6 @@ include("session.php");
         var Category4 = [];
         var publisher = [];
         var pages = [];
-        var price = [];
         var imgLink = [];
         var date_of_publication = [];
         var book = [];

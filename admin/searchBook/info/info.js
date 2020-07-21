@@ -53,7 +53,6 @@ function autoFillInfo(i) {
     document.getElementById("bookCategory4Info").textContent = Category4[i];
     document.getElementById("bookPublisherInfo").textContent = publisher[i];
     document.getElementById("bookPagesInfo").textContent = pages[i]; //book
-    document.getElementById("bookPriceInfo").textContent = price[i];
     document.getElementById("bookDate_of_publicationInfo").textContent =
         date_of_publication[i];
     if (book[i] == 1)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2020 at 09:17 PM
+-- Generation Time: Jul 22, 2020 at 02:47 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -54,7 +54,7 @@ CREATE TABLE `chats` (
   `stud_ID` varchar(15) NOT NULL,
   `name` varchar(50) NOT NULL,
   `message` text NOT NULL,
-  `time` bigint(20) NOT NULL DEFAULT current_timestamp()
+  `time` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `copies` (
   `status` text DEFAULT NULL,
   `returnTime` bigint(20) DEFAULT NULL,
   `shelfID` varchar(50) DEFAULT NULL,
-  `purchaseTime` bigint(20) NOT NULL,
+  `purchaseTime` bigint(20) DEFAULT NULL,
   `purchaseSource` text NOT NULL,
   `price` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

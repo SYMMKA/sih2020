@@ -75,7 +75,6 @@ function loadBooks(data) {
         Category4[index] = book.Category4;
         publisher[index] = book.publisher;
         pages[index] = book.pages;
-        price[index] = book.price;
         imgLink[index] = book.imgLink;
         date_of_publication[index] = book.date_of_publication;
         book[index] = book.book;
