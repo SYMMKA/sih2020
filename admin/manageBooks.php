@@ -104,7 +104,7 @@ include("session.php");
                                 <button type="button" class="btn btn-orange btn-block" id="voiceSearchSubmit">search</button>
                             </div>
                         </div>
-                        <div class="col-12 row justify-content-center">
+                        <div class="col-12 row justify-content-center d-none">
                             <button type="button" class="btn btn-orange" id="qrSearchSubmit">hidden</button>
                         </div>
                     </div>
@@ -290,6 +290,8 @@ include("session.php");
                                         <label class="custom-file-label" id="mediaFile">Choose file</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="copyInfo">
                             </div>
                         </div>
                     </div>
