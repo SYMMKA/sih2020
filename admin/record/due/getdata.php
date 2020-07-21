@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../db.php");
 
 
 $query = "SELECT * FROM `issued` WHERE `due` = 1";
