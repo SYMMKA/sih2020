@@ -90,9 +90,10 @@ include('session.php');
                       <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label">User</label>
                         <div class="col-sm-9">
-                          <select class="custom-select" onchange="changeAccess()">
+                          <select class="custom-select" id="userType" onchange="changeAccess()">
                             <option selected id="admin" value="admin">Admin</option>
                             <option id="student" value="student">Student</option>
+                            <option id="teacher" value="teacher">Teacher</option>
                           </select>
                         </div>
                       </div>
@@ -119,12 +120,12 @@ include('session.php');
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" name="studentIDGroup" id="studentIDGroup" hidden>
+                    <div class="col-sm-6" name="userIDGroup" id="userIDGroup" hidden>
                       <div class="container">
                         <div class="form-group row">
-                          <label for="studentID" class="col-sm-3 col-form-label">Student ID</label>
+                          <label for="userID" class="col-sm-3 col-form-label">User ID</label>
                           <div class="col-sm-9">
-                            <select class="selectpicker w-100" name="studentID" id="studentID" multiple data-live-search="true" data-actions-box="true">
+                            <select class="selectpicker w-100" name="userID" id="userID" multiple data-live-search="true" data-actions-box="true">
                             </select>
                           </div>
                         </div>

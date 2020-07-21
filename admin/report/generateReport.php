@@ -15,21 +15,21 @@ if ($_POST['update'] == 1)
 	$action['update'] = $_POST['update'];
 $bookID = $_POST['bookID'];
 $bookID = json_decode($bookID, true);
-$studentID = $_POST['studentID'];
-$studentID = json_decode($studentID, true);
+$userID = $_POST['userID'];
+$userID = json_decode($userID, true);
 $adminID = $_POST['adminID'];
 $adminID = json_decode($adminID, true);
 
 //studentIDquery
-if ($studentID == '')
+if ($userID == '')
 	$studentIDquery = "";
-elseif ($studentID == 'show')
+elseif ($userID == 'show')
 	$studentIDquery = "(`studentID` is NOT NULL)";
 else{
-	$studentIDlength = count($studentID);
+	$studentIDlength = count($userID);
 	$i = 1;
 	$studentIDquery = "(";
-	foreach ($studentID as $student){
+	foreach ($userID as $student){
 		$studentIDquery .= "`studentID` = :studentID".$i;
 		if ($i < $studentIDlength)
 			$studentIDquery .= " OR ";
@@ -99,9 +99,9 @@ if ($adminID != ''){
 	for($i=1; $i<=$adminIDlength; $i++)
 		$stmt->bindParam(':adminID'.$i, $adminID[$i-1]);
 }
-if (($studentID != '') && ($studentID != 'show')){
+if (($userID != '') && ($userID != 'show')){
 	for($i=1; $i<=$studentIDlength; $i++)
-		$stmt->bindParam(':studentID'.$i, $studentID[$i-1]);
+		$stmt->bindParam(':studentID'.$i, $userID[$i-1]);
 }
 $stmt->execute();
 
@@ -109,7 +109,7 @@ while ($row = $stmt->fetchObject()) {
 	$data["id"] = $row->id;
 	$data["copyID"] = $row->copyID;
 	$data["adminID"] = $row->adminID;
-	$data["studentID"] = $row->studentID;
+	$data["userID"] = $row->studentID;
 	$data["action"] = $row->action;
 	$data["time"] = date('d/m/Y H:i', $row->time);
 	$data["bookID"] = $row->bookID;

@@ -3,8 +3,10 @@
 include("../session.php");
 include("../db.php");
 
-$query = "SELECT * FROM `students`";
+$userType = $_POST['userType'];
+$query = "SELECT * FROM `students` WHERE `type` = :userType";
 $stmt = $conn->prepare($query);
+$stmt->bindParam(':userType', $userType);
 $stmt->execute();
 
 while ($result = $stmt->fetchObject()) {

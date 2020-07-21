@@ -4,21 +4,21 @@ var user = "";
 var html = "";
 var table;
 function changeAccess() {
-	document.getElementById("studentIDGroup").hidden = false;
+	document.getElementById("userIDGroup").hidden = false;
 	document.getElementById("checkAdd").disabled = false;
 	document.getElementById("checkDelete").disabled = false;
 	document.getElementById("checkUpdate").disabled = false;
 
-	if (document.getElementById("student").selected == true) {
+	if (document.getElementById("admin").selected == true) {
+		document.getElementById("userIDGroup").hidden = true;
+	} else {
 		document.getElementById("checkAdd").checked = false;
 		document.getElementById("checkDelete").checked = false;
 		document.getElementById("checkUpdate").checked = false;
 		document.getElementById("checkAdd").disabled = true;
 		document.getElementById("checkDelete").disabled = true;
 		document.getElementById("checkUpdate").disabled = true;
-	}
-	if (document.getElementById("admin").selected == true) {
-		document.getElementById("studentIDGroup").hidden = true;
+		loadUserID($('#userType').val());
 	}
 }
 
@@ -29,7 +29,7 @@ function generateReport() {
 	var bookdelete = 0;
 	var update = 0;
 	var bookID = "";
-	var studentID = "";
+	var userID = "";
 	var adminID = "";
 	if (document.getElementById("checkAdd").checked == true) {
 		add = 1;
@@ -50,10 +50,10 @@ function generateReport() {
 	} else {
 		bookID = JSON.stringify($('#bookID').val());
 	}
-	if (document.getElementById("student").selected == true) {
-		studentID = JSON.stringify($('#studentID').val());
-		if (studentID == "") // to show where studentID is not NULL
-			studentID = "show";
+	if (document.getElementById("admin").selected == false) {
+		userID = JSON.stringify($('#userID').val());
+		if (userID == "") // to show where userID is not NULL
+			userID = "show";
 	}
 	if (document.getElementById("admin").selected == true) {
 		adminID = JSON.stringify($('#adminID').val());
@@ -64,8 +64,9 @@ function generateReport() {
 	console.log("bookdelete - " + bookdelete);
 	console.log("update - " + update);
 	console.log("bookID - " + bookID);
-	console.log("student - " + studentID);
+	console.log("user - " + userID);
 	console.log("admin - " + adminID);
+	console.log("user - " + userType);
 
 	var formData = new FormData();
 	formData.append("add", add);
@@ -74,7 +75,7 @@ function generateReport() {
 	formData.append("bookdelete", bookdelete);
 	formData.append("update", update);
 	formData.append("bookID", bookID);
-	formData.append("studentID", studentID);
+	formData.append("userID", userID);
 	formData.append("adminID", adminID);
 	$.ajax({
 		type: "POST",
@@ -92,13 +93,14 @@ function generateReport() {
 						<th scope="col">BookID</th>
 						<th scope="col">CopyID</th>
 						<th scope="col">AdminID</th>
-						<th scope="col">StudentID</th>
+						<th scope="col">UserID</th>
 						<th scope="col">Action</th>
 						<th scope="col">Time</th>
 						<th scope="col">OldID</th>
 						</tr>
 					</thead>
 					<tbody>`;
+				console.log(data);
 				table = JSON.parse(data);
 				console.log(table);
 				table.forEach(function (item, index) {
@@ -113,7 +115,7 @@ function generateReport() {
 							<td>` +
 						item.adminID +
 						`</td>`;
-					if (item.studentID) html += `<td>` + item.studentID + `</td>`;
+					if (item.userID) html += `<td>` + item.userID + `</td>`;
 					else html += `<td> --- </td>`;
 					html +=
 						`
@@ -171,6 +173,7 @@ function loadBookID() {
 		success: function (data) {
 			var data = JSON.parse(data);
 			var i = 0;
+			bookIDoption.options.length = 0;
 			for (var key in data) {
 				bookIDoption.options[i] = new Option(key + " - " + data[key], key);
 				i++;
@@ -182,21 +185,27 @@ function loadBookID() {
 	});
 }
 
-function loadStudentID() {
-	var studentIDoption = document.getElementById("studentID");
+function loadUserID(userType) {
+	var userIDoption = document.getElementById("userID");
+	console.log(userType);
+	var formData = new FormData();
+	formData.append('userType', userType);
 	$.ajax({
 		type: "POST",
-		url: "report/studentID.php",
+		url: "report/userID.php",
+		data: formData,
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
+			console.log(data);
 			var data = JSON.parse(data);
 			var i = 0;
+			userIDoption.options.length = 0;
 			for (var key in data) {
-				studentIDoption.options[i] = new Option(data[key], data[key]);
+				userIDoption.options[i] = new Option(data[key], data[key]);
 				i++;
 			}
-			$('#studentID option').attr("selected","selected");
+			$('#userID option').attr("selected","selected");
 			$(".selectpicker").selectpicker("refresh");
 		},
 		//Other options
@@ -213,6 +222,7 @@ function loadAdminID() {
 		success: function (data) {
 			var data = JSON.parse(data);
 			var i = 0;
+			adminIDoption.options.length = 0;
 			for (var key in data) {
 				adminIDoption.options[i] = new Option(data[key], data[key]);
 				i++;
@@ -226,6 +236,5 @@ function loadAdminID() {
 
 function loadDropDowns() {
 	loadBookID();
-	loadStudentID();
 	loadAdminID();
 }
