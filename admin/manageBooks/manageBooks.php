@@ -37,7 +37,7 @@ try {
 			$data["Category4"] = $row->Category4;
 			$data["publisher"] = $row->publisher;
 			$data["pages"] = $row->pages;
-			$data["price"] = $row->price;
+			$data["price"] = 0;
 			$data["imgLink"] = $row->imgLink;
 			$data["date_of_publication"] = $row->date_of_publication;
 			$data["isbn"] = $row->isbn;

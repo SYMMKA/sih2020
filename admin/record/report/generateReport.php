@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../db.php");
 
 if ($_POST['add'] == 1)
 	$action['add'] = $_POST['add'];
@@ -25,12 +25,12 @@ if ($userID == '')
 	$studentIDquery = "";
 elseif ($userID == 'show')
 	$studentIDquery = "(`studentID` is NOT NULL)";
-else{
+else {
 	$studentIDlength = count($userID);
 	$i = 1;
 	$studentIDquery = "(";
-	foreach ($userID as $student){
-		$studentIDquery .= "`studentID` = :studentID".$i;
+	foreach ($userID as $student) {
+		$studentIDquery .= "`studentID` = :studentID" . $i;
 		if ($i < $studentIDlength)
 			$studentIDquery .= " OR ";
 		$i++;
@@ -39,19 +39,18 @@ else{
 }
 
 //adminIDquery
-if ($adminID != ''){
+if ($adminID != '') {
 	$adminIDlength = count($adminID);
 	$i = 1;
 	$adminIDquery = "(";
-	foreach ($adminID as $admin){
-		$adminIDquery .= "`adminID` = :adminID".$i;
+	foreach ($adminID as $admin) {
+		$adminIDquery .= "`adminID` = :adminID" . $i;
 		if ($i < $adminIDlength)
 			$adminIDquery .= " OR ";
 		$i++;
 	}
 	$adminIDquery .= ")";
-}
-else
+} else
 	$adminIDquery = "";
 
 // actionquery
@@ -67,12 +66,12 @@ foreach ($action as $k => $v) {
 $actionquery .= ")";
 
 //bookID
-if ($bookID != ''){
+if ($bookID != '') {
 	$bookIDlength = count($bookID);
 	$i = 1;
 	$bookIDquery = "(";
-	foreach ($bookID as $book){
-		$bookIDquery .= "`bookID` = :bookID".$i;
+	foreach ($bookID as $book) {
+		$bookIDquery .= "`bookID` = :bookID" . $i;
 		if ($i < $bookIDlength)
 			$bookIDquery .= " OR ";
 		$i++;
@@ -91,17 +90,17 @@ if ($bookIDquery != '')
 
 $stmt = $conn->prepare($query);
 
-if ($bookID != ''){
-	for($i=1; $i<=$bookIDlength; $i++)
-		$stmt->bindParam(':bookID'.$i, $bookID[$i-1]);
+if ($bookID != '') {
+	for ($i = 1; $i <= $bookIDlength; $i++)
+		$stmt->bindParam(':bookID' . $i, $bookID[$i - 1]);
 }
-if ($adminID != ''){
-	for($i=1; $i<=$adminIDlength; $i++)
-		$stmt->bindParam(':adminID'.$i, $adminID[$i-1]);
+if ($adminID != '') {
+	for ($i = 1; $i <= $adminIDlength; $i++)
+		$stmt->bindParam(':adminID' . $i, $adminID[$i - 1]);
 }
-if (($userID != '') && ($userID != 'show')){
-	for($i=1; $i<=$studentIDlength; $i++)
-		$stmt->bindParam(':studentID'.$i, $userID[$i-1]);
+if (($userID != '') && ($userID != 'show')) {
+	for ($i = 1; $i <= $studentIDlength; $i++)
+		$stmt->bindParam(':studentID' . $i, $userID[$i - 1]);
 }
 $stmt->execute();
 

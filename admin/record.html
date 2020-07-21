@@ -203,9 +203,10 @@
                         <div class="card h-100 bg-offwhite">
                             <a
                                 class="card-body btn-blue rounded stretched-link"
+                                id="currentlyIssued"
                             >
                                 <h4 class="font-weight-bold text-white">
-                                    Current Issued
+                                    Currently Issued
                                 </h4>
                             </a>
                         </div>
@@ -225,6 +226,9 @@
                         <div class="card h-100 bg-offwhite">
                             <a
                                 class="card-body btn-blue rounded stretched-link"
+                                id="report"
+                                data-toggle="modal"
+                                data-target=".bd-example-modal-xl"
                             >
                                 <h4 class="font-weight-bold text-white">
                                     Report Table
@@ -243,6 +247,264 @@
                 <div id="tableData"></div>
             </div>
         </section>
+        <section>
+            <div class="container" id="reportTable">
+                <div class="mb-4 pt-4 text-center">
+                    <h1>Currently Issued</h1>
+                </div>
+                <div id="reportDIV"></div>
+            </div>
+        </section>
+        <div
+            class="modal fade bd-example-modal-xl"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myExtraLargeModalLabel"
+            aria-hidden="true"
+        >
+            <div
+                class="modal-dialog modal-xl"
+                role="document"
+                style="max-width: 90vw;"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Report Generation</h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <h1 class="text-center mt-3 mb-5">
+                                        Choose Details
+                                    </h1>
+                                    <form>
+                                        <div
+                                            class="row justify-content-center mb-4"
+                                        >
+                                            <div class="col-sm-6">
+                                                <div class="form-group row">
+                                                    <label
+                                                        for=""
+                                                        class="col-sm-3 col-form-label"
+                                                        >User</label
+                                                    >
+                                                    <div class="col-sm-9">
+                                                        <select
+                                                            class="custom-select"
+                                                            id="userType"
+                                                            onchange="changeAccess()"
+                                                        >
+                                                            <option
+                                                                selected
+                                                                id="admin"
+                                                                value="admin"
+                                                                >Admin</option
+                                                            >
+                                                            <option
+                                                                id="student"
+                                                                value="student"
+                                                                >Student</option
+                                                            >
+                                                            <option
+                                                                id="teacher"
+                                                                value="teacher"
+                                                                >Teacher</option
+                                                            >
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="container">
+                                                    <div class="form-group row">
+                                                        <label
+                                                            for="bookID"
+                                                            class="col-sm-3 col-form-label"
+                                                            >Book ID</label
+                                                        >
+                                                        <div class="col-sm-9">
+                                                            <select
+                                                                class="selectpicker w-100"
+                                                                name="bookID"
+                                                                id="bookID"
+                                                                multiple
+                                                                data-live-search="true"
+                                                                data-actions-box="true"
+                                                            >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="row justify-content-center mb-4"
+                                        >
+                                            <div
+                                                class="col-sm-6"
+                                                name="adminIDGroup"
+                                                id="adminIDGroup"
+                                            >
+                                                <div class="form-group row">
+                                                    <label
+                                                        for="adminID"
+                                                        class="col-sm-3 col-form-label"
+                                                        >Admin ID</label
+                                                    >
+                                                    <div class="col-sm-9">
+                                                        <select
+                                                            class="selectpicker w-100"
+                                                            name="adminID"
+                                                            id="adminID"
+                                                            multiple
+                                                            data-live-search="true"
+                                                            data-actions-box="true"
+                                                        >
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col-sm-6"
+                                                name="userIDGroup"
+                                                id="userIDGroup"
+                                                hidden
+                                            >
+                                                <div class="container">
+                                                    <div class="form-group row">
+                                                        <label
+                                                            for="userID"
+                                                            class="col-sm-3 col-form-label"
+                                                            >User ID</label
+                                                        >
+                                                        <div class="col-sm-9">
+                                                            <select
+                                                                class="selectpicker w-100"
+                                                                name="userID"
+                                                                id="userID"
+                                                                multiple
+                                                                data-live-search="true"
+                                                                data-actions-box="true"
+                                                            >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="row row-cols-1 row-cols-sm-2 row-cols-md-5 mb-3 text-center"
+                                        >
+                                            <div class="col mb-4">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="add"
+                                                        id="checkAdd"
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="checkAdd"
+                                                    >
+                                                        Add
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="delete"
+                                                        id="checkDelete"
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="checkDelete"
+                                                    >
+                                                        Delete
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="update"
+                                                        id="checkUpdate"
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="checkUpdate"
+                                                    >
+                                                        Update
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="issue"
+                                                        id="checkIssue"
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="checkIssue"
+                                                    >
+                                                        Issue
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="return"
+                                                        id="checkReturn"
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="checkReturn"
+                                                    >
+                                                        Return
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button
+                                                type="button"
+                                                id="report"
+                                                onclick="generateReport()"
+                                                class="btn btn-info"
+                                                data-dismiss="modal"
+                                            >
+                                                Generate Report
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Optional JavaScript -->
         <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
         <script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
@@ -250,8 +512,11 @@
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+        <script src="jsPDF-master/dist/jspdf.min.js"></script>
+        <script src="jsPDF-AutoTable-master/dist/jspdf.plugin.autotable.min.js"></script>
         <script src="assets/js/common.js"></script>
         <script src="assets/js/voice-search.js"></script>
         <script src="record/due/payFine.js"></script>
+        <script src="record/report/report.js"></script>
     </body>
 </html>

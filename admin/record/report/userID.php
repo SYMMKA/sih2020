@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../db.php");
 
 $userType = $_POST['userType'];
 $query = "SELECT * FROM `students` WHERE `type` = :userType";

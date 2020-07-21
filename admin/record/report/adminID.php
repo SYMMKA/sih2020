@@ -1,14 +1,13 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../db.php");
 
-$query = "SELECT * FROM `main`";
+$query = "SELECT * FROM `adminlogin`";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
 while ($result = $stmt->fetchObject()) {
-	$bookID = $result->bookID;
-	$return_arr[$bookID] = $result->title;
+	$return_arr[] = $result->userID;
 }
 echo json_encode($return_arr);
