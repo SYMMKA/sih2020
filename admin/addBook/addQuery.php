@@ -5,7 +5,7 @@ $relative = dirname($_SERVER["SCRIPT_NAME"],3) . '/';
 $domain = $_SERVER['HTTP_HOST'] . $relative;
 $prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 $link = $prefix . $domain;
-$imageName = $mediaName = '';
+$imageName = $mediaName = $receiptName =  '';
 
 if ($_POST['title1'])
 	$title2 = $_POST['title1'];
@@ -116,7 +116,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
 
-	$sql1 = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES (:title, :author, :quantity, :Category1, :Category2, :Category3, :Category4, :publisher, :pages, '', :date_of_publication, :isbn, :orgQuan, :digital, :book, '')";
+	$sql1 = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`, `receiptLink`) VALUES (:title, :author, :quantity, :Category1, :Category2, :Category3, :Category4, :publisher, :pages, '', :date_of_publication, :isbn, :orgQuan, :digital, :book, '', '')";
 	$stmt1 = $conn->prepare($sql1);
 	$stmt1->bindParam(':title', $title2);
 	$stmt1->bindParam(':author', $author2);
@@ -138,11 +138,13 @@ try {
 	$bookID = $conn->lastInsertId();
 	$imgLink = insertImage($bookID);
 	$digitalLink = insertDigital($bookID);
-	$sqlMedia = "UPDATE `main` SET `imgLink` = :imgLink, `digitalLink` = :digitalLink WHERE `main`.`bookID` = :bookID";
+	$receiptLink = insertReceipt($bookID);
+	$sqlMedia = "UPDATE `main` SET `imgLink` = :imgLink, `digitalLink` = :digitalLink, `receiptLink` = :receiptLink WHERE `main`.`bookID` = :bookID";
 	$stmtMedia = $conn->prepare($sqlMedia);
 	$stmtMedia->bindParam(':bookID', $bookID);
 	$stmtMedia->bindParam(':imgLink', $imgLink);
 	$stmtMedia->bindParam(':digitalLink', $digitalLink);
+	$stmtMedia->bindParam(':receiptLink', $receiptLink);
 	$stmtMedia->execute();
 
 	$sql2 = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES (:bookID, :copyNO, :oldID, '', NULL, NULL, '', NULL, :shelfID, :purchaseTime, :purchaseSource, :price)";
@@ -174,11 +176,11 @@ try {
 } catch (PDOException $e) {
 	$conn->rollBack();
 	echo "Failed " . $e->getMessage();
-	//deleteMedia();
+	deleteMedia();
 } catch (Exception $e) {
 	$conn->rollBack();
 	echo "Failed " . $e->getMessage();
-	//deleteMedia();
+	deleteMedia();
 }
 
 $conn = null;
@@ -295,6 +297,61 @@ function insertDigital($bookID)
 		}
 		if ($uploadOk == 0)
 			throw new Exception('Media not uploaded');
+		else
+			return $digitalLink;
+	} else
+		return "";
+}
+
+function insertReceipt($bookID)
+{
+	global $link, $receiptName, $relative;
+	if (isset($_FILES["receiptFile"]['tmp_name'])) {
+		$uploadOk = 1;
+		//media file upload for digital
+		if ($_FILES["receiptFile"]["error"] == 0) {
+			/* Location */
+			$target_dir = $_SERVER["DOCUMENT_ROOT"] . $relative . "receipt/";
+			$target_file = $target_dir . basename($_FILES["receiptFile"]["name"]);
+			$receiptFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+			// Check if image file is a actual image or fake image
+
+			$check = filesize($_FILES["receiptFile"]["tmp_name"]);
+			if ($check !== false) {
+				echo "<br>" . "File is not corrupt.";
+				$uploadOk = 1;
+			} else {
+				echo "<br>" . "File is corrupt.";
+				$uploadOk = 0;
+			}
+
+			/* Valid Extensions */
+			$valid_extensions = array("pdf", "epub", "mp3", "wav");
+			/* Check file extension */
+			if (!in_array(strtolower($receiptFileType), $valid_extensions)) {
+				$uploadOk = 0;
+				echo "<br>" . "Wrong file format.";
+			}
+
+			if ($uploadOk == 0) {
+				echo "<br>" . "Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+			} else {
+				$temp = explode(".", $_FILES["receiptFile"]["name"]);
+				$receiptName = $bookID . '.' . end($temp);
+				$receiptDest = $target_dir . $receiptName;
+				if (move_uploaded_file($_FILES["receiptFile"]["tmp_name"], $receiptDest)) {
+					echo "<br>" . "The file " . basename($_FILES["receiptFile"]["name"]) . " has been uploaded.";
+					$digitalLink = $link . "receipt/" . $receiptName;
+				} else {
+					echo "<br>" . "Sorry, there was an error uploading your file.";
+					$uploadOk = 0;
+				}
+			}
+		}
+		if ($uploadOk == 0)
+			throw new Exception('Receipt not uploaded');
 		else
 			return $digitalLink;
 	} else
