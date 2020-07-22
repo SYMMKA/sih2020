@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $("#reportTable").addClass("d-none");
     $("#report").on("click", loadDropDowns);
 });
 
@@ -248,7 +247,18 @@ function loadAdminID() {
 }
 
 function loadDropDowns() {
-    $("#reportTable").removeClass("d-none");
+    loadReportBox();
     loadBookID();
     loadAdminID();
+}
+
+function loadReportBox() {
+    html = `
+           <div class="container">
+                <div class="mb-4 pt-4 text-center">
+                    <h1>Currently Issued</h1>
+                </div>
+                <div id="reportDIV"></div>
+            </div>`;
+    $("#ResultDisplay").html(html);
 }

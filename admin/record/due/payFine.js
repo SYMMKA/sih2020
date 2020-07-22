@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $("#finePayment").addClass("d-none");
     $("#due").on("click", showFineTable);
 });
 
@@ -23,7 +22,7 @@ function updateDueStatus(id) {
 }
 
 function showFineTable() {
-    $("#finePayment").removeClass("d-none");
+    loadDueBox();
     $.ajax({
         type: "POST",
         url: "record/due/getdata.php",
@@ -31,6 +30,7 @@ function showFineTable() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
+            console.log(data);
             if (data) {
                 data = JSON.parse(data);
                 console.log(data);
@@ -97,4 +97,15 @@ function showFineTable() {
         },
         //Other options
     });
+}
+
+function loadDueBox() {
+    html = `<div class="container">
+                <div class="mb-4 pt-4 text-center">
+                    <h1>Fine Payment</h1>
+                </div>
+                <div id="tableData"></div>
+            </div>
+       `;
+    $("#ResultDisplay").html(html);
 }
