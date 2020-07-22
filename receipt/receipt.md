@@ -1,1 +1,0 @@
-Receipt is stored here.

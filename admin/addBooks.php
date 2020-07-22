@@ -397,15 +397,6 @@ include('session.php');
 									<input class="form-control" type="datetime-local" id="dop" name="dop">
 								</div>
 							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Upload File</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="receiptFile" />
-									<div class="invalid-feedback">
-										Import File
-									</div>
-								</div>
-							</div>
 							<div class="mb-2" id="copyInfo">
 							</div>
 						</div>
