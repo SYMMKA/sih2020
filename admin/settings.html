@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 col-sm-2">
+                    <div class="col-4 col-md-2">
                         <div
                             class="nav flex-column nav-pills"
                             id="v-pills-tab"
@@ -209,7 +209,7 @@
                             >
                         </div>
                     </div>
-                    <div class="col-8 col-sm-10">
+                    <div class="col-8 col-md-10">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div
                                 class="tab-pane fade show active"
@@ -746,124 +746,75 @@
                                     <h4 class="p-3 mb-4 bg-light rounded">
                                         Time Table
                                     </h4>
-                                    <div class="form-group row">
-                                        <label
-                                            for="issueAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Sunday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="issueAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="returnAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Monday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="returnAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="addBookAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Tuesday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="addBookAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="updateBookAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Wednesday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="updateBookAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="shelfModifyAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Thursday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="shelfModifyAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="bookShelfAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Friday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="bookShelfAccess"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label
-                                            for="semBranchModifyAccess"
-                                            class="col-sm-4 col-form-label"
-                                            >Saturday</label
-                                        >
-                                        <div class="col-sm-8">
-                                            <input
-                                                class="form-control"
-                                                type="number"
-                                                min="0"
-                                                id="semBranchModifyAccess"
-                                            />
-                                        </div>
+                                    <div class="table-responsive">
+                                       <table class="table table-hover table-bordered">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                <th scope="col">Days</th>
+                                                <th scope="col">Start Time</th>
+                                                <th scope="col">End Time</th>
+                                                <th scope="col">Comment</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row">Monday</th>
+                                                <td><input type="time" class="form-control" name="mondayStartTime" id="mondayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="mondayEndTime" id="mondayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="mondayComment" id="mondayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Tuesday</th>
+                                                <td><input type="time" class="form-control" name="tuesdayStartTime" id="tuesdayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="tuesdayEndTime" id="tuesdayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="tuesdayComment" id="tuesdayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Wednesday</th>
+                                                <td><input type="time" class="form-control" name="wednesdayStartTime" id="wednesdayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="wednesdayEndTime" id="wednesdayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="wednesdayComment" id="wednesdayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Thursday</th>
+                                                <td><input type="time" class="form-control" name="thursdayStartTime" id="thursdayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="thursdayEndTime" id="thursdayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="thursdayComment" id="thursdayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Friday</th>
+                                                <td><input type="time" class="form-control" name="fridayStartTime" id="fridayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="fridayEndTime" id="fridayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="fridayComment" id="fridayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Saturday</th>
+                                                <td><input type="time" class="form-control" name="saturdayStartTime" id="saturdayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="saturdayEndTime" id="saturdayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="saturdayComment" id="saturdayComment"></td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">Sunday</th>
+                                                <td><input type="time" class="form-control" name="sundayStartTime" id="sundayStartTime" ></td>
+                                                <td><input type="time" class="form-control" name="sundayEndTime" id="sundayEndTime" ></td>
+                                                <td><input type="text" class="form-control" name="sundayComment" id="sundayComment"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="p-3 mb-5 bg-light rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
                                                 class="btn btn-danger"
-                                                onclick="orgPrivilegeValues()"
+                                                onclick="orgTimeTableValues()"
                                             >
                                                 Reset
                                             </button>
                                             <button
                                                 type="button"
                                                 class="btn btn-info"
-                                                id="savePrivilege"
+                                                id="saveTimeTable"
                                             >
                                                 Save
                                             </button>
@@ -1462,5 +1413,6 @@
 		<script src="setting/admins/admins.js"></script>
 		<script src="setting/import/import.js"></script>
         <script src="setting/manageUsers/manageUsers.js"></script>
+        <script src="setting/timeTable/timeTable.js"></script>
     </body>
 </html>

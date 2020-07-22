@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2020 at 02:47 AM
+-- Generation Time: Jul 22, 2020 at 08:06 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -109,8 +109,7 @@ INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, 
 (3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
 (4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
 (4, 2, '', '4 - 2', NULL, NULL, '', NULL, 'shelf2', 20200721183417, '', ''),
-(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL, 20200721183417, '', ''),
-(6, 1, '', '6 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', '');
+(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL, 20200721183417, '', '');
 
 --
 -- Triggers `copies`
@@ -164,10 +163,7 @@ INSERT INTO `history` (`id`, `copyID`, `adminID`, `studentID`, `action`, `time`,
 (16, '3 - 2', 'manu21', '14332', 'issue', 1594634925, 3, ''),
 (17, '3 - 4', 'manu21', '14482', 'issue', 1594634933, 3, ''),
 (18, '3 - 4', 'manu21', '14482', 'return', 1594634970, 3, ''),
-(19, '5 - 1', 'manu21', '14482', 'issue', 1594634982, 5, ''),
-(20, '6 - 1', 'admin1', NULL, 'add', 1594671452, 6, ''),
-(21, '-', 'manu21', NULL, 'update', 1594711554, 3, 'oldID'),
-(22, '-', 'manu21', NULL, 'update', 1594711560, 3, 'oldID');
+(19, '5 - 1', 'manu21', '14482', 'issue', 1594634982, 5, '');
 
 -- --------------------------------------------------------
 
@@ -222,20 +218,20 @@ CREATE TABLE `main` (
   `orgQuan` int(11) NOT NULL,
   `digital` tinyint(4) NOT NULL,
   `book` tinyint(4) NOT NULL,
-  `digitalLink` text NOT NULL
+  `digitalLink` text NOT NULL,
+  `receiptLink` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `main`
 --
 
-INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`) VALUES
-(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House India', '296', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, ''),
-(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 3, 'Literature and rhetoric', 'English and Old English literatures and other literatures commonly translated into English', 'Fiction', 'collections, short stories', 'HarperCollins', '448', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 3, 0, 1, ''),
-(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House', '619', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, ''),
-(4, 'Sa Re Ga Ma Pa', 'Jessica Foreman', 2, 'The Arts', 'Music', 'Vocal music', 'Secular forms', 'Independently Published', '', 'http://books.google.com/books/content?id=OR-UzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2020-05-28', '9798649351003', 2, 0, 0, ''),
-(5, 'Python Data Science Handbook', 'Jake VanderPlas', 1, 'Generalities', 'Generalities and computer science', 'Special computer methods', 'Artificial intelligence', '\"O\'Reilly Media, Inc.\"', '548', 'http://books.google.com/books/content?id=6omNDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-11-21', '9781491912133', 1, 0, 1, ''),
-(6, 'test', '', 1, 'Natural sciences and mathematics', 'Life sciences', 'Human races', 'Geographic distribution of races', '', '', '', '', '', 1, 0, 1, '');
+INSERT INTO `main` (`bookID`, `title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`, `receiptLink`) VALUES
+(1, 'Olympus', 'Devdutt Pattanaik', 3, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House India', '296', 'http://books.google.com/books/content?id=QUWqDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-09-20', '9789385990199', 3, 0, 1, '', ''),
+(2, 'Sidney Sheldon’s The Silent Widow', 'Sidney Sheldon,Tilly Bagshawe', 3, 'Literature and rhetoric', 'English and Old English literatures and other literatures commonly translated into English', 'Fiction', 'collections, short stories', 'HarperCollins', '448', 'http://books.google.com/books/content?id=8hJCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2018-06-14', '9780008229665', 3, 0, 1, '', ''),
+(3, 'Inferno', 'Dan Brown', 4, 'Literature and rhetoric', 'American and Canadian literature', 'Fiction', 'collections, short stories', 'Random House', '619', 'http://books.google.com/books/content?id=y_uIAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2014', '9780552169585', 4, 0, 1, '', ''),
+(4, 'Sa Re Ga Ma Pa', 'Jessica Foreman', 2, 'The Arts', 'Music', 'Vocal music', 'Secular forms', 'Independently Published', '', 'http://books.google.com/books/content?id=OR-UzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2020-05-28', '9798649351003', 2, 0, 0, '', ''),
+(5, 'Python Data Science Handbook', 'Jake VanderPlas', 1, 'Generalities', 'Generalities and computer science', 'Special computer methods', 'Artificial intelligence', '\"O\'Reilly Media, Inc.\"', '548', 'http://books.google.com/books/content?id=6omNDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&printsec=frontcover&img=1&zoom=1&source=gbs_api', '2016-11-21', '9781491912133', 1, 0, 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -388,25 +384,24 @@ INSERT INTO `syllabus` (`sem_branchID`, `bookID`) VALUES
 --
 
 CREATE TABLE `timetable` (
-  `time` varchar(50) NOT NULL,
-  `sunday` time NOT NULL,
-  `monday` time NOT NULL,
-  `tuesday` time NOT NULL,
-  `wednesday` time NOT NULL,
-  `thursday` time NOT NULL,
-  `friday` time NOT NULL,
-  `saturday` time NOT NULL
+  `day` varchar(10) NOT NULL,
+  `start` time NOT NULL,
+  `end` time NOT NULL,
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `timetable`
 --
 
-INSERT INTO `timetable` (`time`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`) VALUES
-('breakEnd', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00'),
-('breakStart', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00'),
-('dayEnd', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00'),
-('dayStart', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00');
+INSERT INTO `timetable` (`day`, `start`, `end`, `comment`) VALUES
+('Friday', '00:00:00', '00:00:00', ''),
+('Monday', '00:00:00', '00:00:00', ''),
+('Saturday', '00:00:00', '00:00:00', ''),
+('Sunday', '00:00:00', '00:00:00', ''),
+('Thursday', '00:00:00', '00:00:00', ''),
+('Tuesday', '00:00:00', '00:00:00', ''),
+('Wednesday', '00:00:00', '00:00:00', '');
 
 --
 -- Indexes for dumped tables
@@ -488,7 +483,7 @@ ALTER TABLE `syllabus`
 -- Indexes for table `timetable`
 --
 ALTER TABLE `timetable`
-  ADD PRIMARY KEY (`time`);
+  ADD PRIMARY KEY (`day`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -504,7 +499,7 @@ ALTER TABLE `chats`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `issued`
@@ -516,7 +511,7 @@ ALTER TABLE `issued`
 -- AUTO_INCREMENT for table `main`
 --
 ALTER TABLE `main`
-  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `bookID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sem_branch`

@@ -47,6 +47,7 @@ function addBook(event) {
 			oldID[i-1] = document.getElementById('oldID'+i).value;
 		}
 		oldID = JSON.stringify(oldID);
+		var receiptFile = $('#receiptFile')[0].files[0]; //receipt
 
 		var mainCategory1 = '';
 		var mainCategory2 = '';
@@ -82,6 +83,7 @@ function addBook(event) {
 		formData.append('dop', dop);
 		formData.append('source', source);
 		formData.append('oldID', oldID);
+		formData.append('receiptFile', receiptFile);
 
 		$.ajax({
 			type: "POST",

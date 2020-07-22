@@ -34,7 +34,6 @@ function searchMain() {
             main: 1,
         },
         success: function (data) {
-            console.log(data);
             data = JSON.parse(data);
             loadBooks(data);
         },
