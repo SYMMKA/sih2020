@@ -107,7 +107,7 @@
                                       </button>
                                   </div>
                                   <div class="col-auto">
-                                      <button type="button" class="btn btn-blue" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                      <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#shelf">
                                           <i class="fa fa-plus" aria-hidden="true"></i>
                                       </button>
                                   </div>
