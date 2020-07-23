@@ -14,8 +14,8 @@ try {
         $data['bookID'] = $row->bookID;
         $data['copyNO'] = $row->copyNO;
         $data['stud_ID'] = $row->stud_ID;
-        $data['time'] = $row->time;
-        $data['returnTime'] = $row->returnTime;
+        $data['time'] = date('d/m/Y H:i', $row->time);
+        $data['returnTime'] = date('d/m/Y H:i', $row->returnTime);
         $return[] = $data;
     }
 
