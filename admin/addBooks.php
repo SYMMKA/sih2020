@@ -1,7 +1,6 @@
 <?php
-include('session.php');
+include("session.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,18 +10,28 @@ include('session.php');
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
-	<!--
-       <script
-      src="https://kit.fontawesome.com/97f3c2998d.js"
-      crossorigin="anonymous"
-    ></script> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="./assets/css/common.css" />
+	<link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
+	<link rel="stylesheet" href="assets/node_modules/shards-ui/dist/css/shards.min.css" />
+	<link rel="stylesheet" href="assets/node_modules/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/common.css" />
 </head>
 
 <body>
+	<button type="button" class="btn btn-orange voice-button" style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            ">
+		<i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+	</button>
+	<!-- navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">Library Management System</a>
@@ -30,54 +39,91 @@ include('session.php');
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Home</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+					</li>
+					<li class="nav-item dropdown active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-book" aria-hidden="true"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+							<a class="dropdown-item" href="addBooks.php">Add Books</a>
+							<a class="dropdown-item" href="shelf.php">Shelf</a>
+							<a class="dropdown-item" href="report.php">Report</a>
+							<a class="dropdown-item" href="due.php">Due Page</a>
+							<a class="dropdown-item" href="recommend.php">Syllabus</a>
+						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Add<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Manage</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Shelf </a>
+					<li class="nav-item dropdown active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#"><?= $adminID ?> </a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Change username</a>
+							<a class="dropdown-item" href="#">Change password</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">Logout</button></a>
+						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<section class="container landing-section">
-		<div class="row h-100">
-			<div class="col-12 align-self-end">
-				<div class="mb-4 text-center">
-					<h1 class="display-2">SEARCH BOOKS</h1>
-					<h4>Find books and material to add to your library</h4>
-				</div>
-
-				<form id="search_form" class="row search-form mb-2 align-self-center justify-content-center" method="post" action="addBooks.php" novalidate>
-					<div class="col-sm-6 search-box mb-2">
-						<input class="form-control ml-sm-4" type="search" name="search" id="search" placeholder="Search" aria-label="Search" title="Required Field" required />
-						<div class="invalid-feedback">
-							Required Field
+	<!-- main section -->
+	<section>
+		<div class="container pt-4 mb-4" style="margin-top: 10vh;">
+			<div class="jumbotron shadow bg-green">
+				<div class="row justify-content-center">
+					<div class="row col-12 col-lg-8">
+						<h2 class="heading font-weight-bold">
+							Add Books
+						</h2>
+						<p class="lead">
+							This is a simple hero unit, a simple
+							jumbotron-style component for calling extra
+							attention to featured content or information.
+						</p>
+						<div class="col-12">
+							<form class="row row no-gutters" method="post" action="addBooks.php">
+								<div class="col-12 col-sm-7 col-md-9">
+									<div class="search-form mr-sm-2">
+										<input class="form-control mb-2" ttype="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
+									</div>
+								</div>
+								<div class="col-sm-5 col-md-3 row no-gutters">
+									<div class="col-auto">
+										<button type="submit" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit" required>
+											search
+										</button>
+									</div>
+									<div class="col-auto">
+										<button type="button" class="btn btn-blue" data-toggle="modal" data-target=".bd-example-modal-xl" id="addBooksModal">
+											<i class="fa fa-plus" aria-hidden="true"></i>
+										</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-2">
-						<button class="btn btn-info ml-sm-2" type="submit">
-							Search
-						</button>
-						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-						</button>
+					<div class="col-sm-4 d-none d-lg-block">
+						<img class="img" src="assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="
+                                    height: auto;
+                                    width: 100%;
+                                    max-width: 340px;
+                                " />
 					</div>
-				</form>
-			</div>
-			<div class="col-12 align-self-end text-center pb-5">
-				<button type="button" class="btn btn-outline-dark pl-5 pr-5" onclick="hideResult()">
-					<span>
-						<i class="fa fa-arrow-down" aria-hidden="true"></i>
-					</span>
-				</button>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -87,6 +133,7 @@ include('session.php');
 		$search = '';
 		if (isset($_POST['search']))
 			$search = $_POST['search'];
+
 
 		if ($search) {
 
@@ -180,11 +227,11 @@ include('session.php');
 									</div>
 								</div>
 								<div class="col-md-2 align-self-center justify-content-center p-3">
-									<button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" class="btn btn-info btn-block mb-4" id="<?= $i; ?>" onclick="autoFill(this.id)">
+									<button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" class="btn btn-orange btn-block mb-4" id="<?= $i; ?>" onclick="autoFill(this.id)">
 										Add
 									</button>
 
-									<button type="button" class="btn btn-info btn-block" onclick="window.open('<?= $preview[$i] ?>', '_blank')">
+									<button type="button" class="btn btn-blue btn-block" onclick="window.open('<?= $preview[$i] ?>', '_blank')">
 										Preview
 									</button>
 								</div>
@@ -250,7 +297,7 @@ include('session.php');
 								</div>
 							</fieldset>
 							<div class="row justify-content-center">
-								<div class="col-md-8">
+								<div class="col-md-7">
 									<div class="form-group row">
 										<label for="" class="col-sm-2 col-form-label">Title</label>
 										<div class="col-sm-10">
@@ -306,50 +353,65 @@ include('session.php');
 										</div>
 									</div>
 									<div class="form-group row">
+										<label for="" class="col-sm-2 col-form-label">Source</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="source">
+										</div>
+									</div>
+									<div class="form-group row">
 										<label for="" class="col-sm-2 col-form-label">Cover Image</label>
 										<div class="col-sm-10">
-											<img name="imgLink" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
+											<img name="imgLink" class="mb-2" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
 											<input type="file" class="form-control-file" id="imgFile" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false" />
 											<input type="hidden" name="imgValue" id="imgValue" value="" />
 										</div>
 									</div>
-								</div>
-								<div class="col-md-4">
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">1</label>
+										<label for="" class="col-sm-2 col-form-label">Upload File</label>
 										<div class="col-sm-10">
+											<input type="file" class="form-control-file" id="receiptFile" />
+											<div class="invalid-feedback">
+												Import File
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Category 1</label>
+										<div class="col-sm-9">
 											<select class="form-control" size="1" name="mainCategorySelect1" id="mainCategorySelect1" required>
 												<option value="">-- Select Category--</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">2</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Category 2</label>
+										<div class="col-sm-9">
 											<select class="form-control" size="1" name="mainCategorySelect2" id="mainCategorySelect2" required>
 												<option value="">-- Select Category--</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">3</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Category 3</label>
+										<div class="col-sm-9">
 											<select class="form-control" size="1" name="mainCategorySelect3" id="mainCategorySelect3" required>
 												<option value="">-- Select Category--</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">4</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Category 4</label>
+										<div class="col-sm-9">
 											<select class="form-control" size="1" name="mainCategorySelect4" id="mainCategorySelect4" required>
 												<option value="">-- Select Category--</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">Price</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Price</label>
+										<div class="col-sm-9">
 											<input type="text" class="form-control" name="money" id="money" />
 											<div class="invalid-feedback">
 												Must be a non negative number
@@ -357,8 +419,8 @@ include('session.php');
 										</div>
 									</div>
 									<div class="form-group row" id="pageCountGroup">
-										<label for="" class="col-sm-2 col-form-label">Page Count</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Page Count</label>
+										<div class="col-sm-9">
 											<input type="number" class="form-control" name="pageCount" id="pageCount" placeholder="" min="0" />
 											<div class="invalid-feedback">
 												Must be a non negative number
@@ -366,8 +428,8 @@ include('session.php');
 										</div>
 									</div>
 									<div class="form-group row" id="quantityGroup">
-										<label for="" class="col-sm-2 col-form-label">Quantity</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Quantity</label>
+										<div class="col-sm-9">
 											<input type="number" class="form-control" name="quantity" id="quantity" placeholder="" min="1" required />
 											<div class="invalid-feedback">
 												Must be a positive number
@@ -375,61 +437,48 @@ include('session.php');
 										</div>
 									</div>
 									<div class="form-group row" id="mediaGroup" hidden>
-										<label for="" class="col-sm-2 col-form-label">Upload File</label>
-										<div class="col-sm-10">
+										<label for="" class="col-sm-3 col-form-label">Upload File</label>
+										<div class="col-sm-9">
 											<input type="file" class="form-control-file" id="mediaFile" />
 											<div class="invalid-feedback">
 												Import File
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Source</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="source">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Date of purchase</label>
-								<div class="col-sm-10">
-									<input class="form-control" type="datetime-local" id="dop" name="dop">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Upload File</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="receiptFile" />
-									<div class="invalid-feedback">
-										Import File
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Date of purchase</label>
+										<div class="col-sm-9">
+											<input class="form-control" type="datetime-local" id="dop" name="dop">
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="mb-2" id="copyInfo">
+							<div id="copyInfo">
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" value="Add Book" name="addBook" class="btn btn-info">Add Book</button>
+						<button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+						<button type="button" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange" data-dismiss="modal">Add Book</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<div id="QRpdf"></div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-	<script src="./assets/js/common.js"></script>
-	<script src="./assets/js/voice-search.js"></script>
-	<script src="./assets/js/jquery.qrcode.min.js"></script>
+	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+	<script src="assets/js/common.js"></script>
+	<script src="assets/js/voice-search.js"></script>
+	<script src="assets/js/jquery.qrcode.min.js"></script>
 	<script src="jsPDF-master/dist/jspdf.min.js"></script>
-	<script src="./assets/js/html2canvas.min.js"></script>
+	<script src="assets/js/html2canvas.min.js"></script>
 
 	<script>
 		title = <?php echo json_encode($title); ?>;
@@ -459,8 +508,6 @@ include('session.php');
 			</script>";
 	}
 	?>
-
-	<div id="QRpdf"></div>
 </body>
 
 </html>

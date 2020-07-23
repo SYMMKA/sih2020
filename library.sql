@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2020 at 08:06 PM
+-- Generation Time: Jul 23, 2020 at 03:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -395,13 +395,13 @@ CREATE TABLE `timetable` (
 --
 
 INSERT INTO `timetable` (`day`, `start`, `end`, `comment`) VALUES
-('Friday', '00:00:00', '00:00:00', ''),
-('Monday', '00:00:00', '00:00:00', ''),
+('Friday', '09:00:00', '17:00:00', 'Break 1-2 PM'),
+('Monday', '09:00:00', '17:00:00', 'Break 1-2 PM'),
 ('Saturday', '00:00:00', '00:00:00', ''),
 ('Sunday', '00:00:00', '00:00:00', ''),
-('Thursday', '00:00:00', '00:00:00', ''),
-('Tuesday', '00:00:00', '00:00:00', ''),
-('Wednesday', '00:00:00', '00:00:00', '');
+('Thursday', '09:00:00', '17:00:00', 'Break 1-2 PM'),
+('Tuesday', '09:00:00', '17:00:00', 'Break 1-2 PM'),
+('Wednesday', '09:00:00', '17:00:00', 'Break 1-2 PM');
 
 --
 -- Indexes for dumped tables

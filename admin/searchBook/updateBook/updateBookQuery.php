@@ -228,6 +228,55 @@ if ($row->digital == 0) {
 	}
 }
 
+if (!isset($_FILES["receiptFile"]['tmp_name']))
+	$receiptLink = $row->receiptLink;
+else {
+	if ($_FILES["receiptFile"]["error"] == 0) {
+		/* Location */
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . $relative . "receipt/";
+		$target_file = $target_dir . basename($_FILES["receiptFile"]["name"]);
+		$receiptFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+		// Check if image file is a actual image or fake image
+
+		$check = filesize($_FILES["receiptFile"]["tmp_name"]);
+		if ($check !== false) {
+			echo "<br>" . "File is not corrupt.";
+			$uploadOk = 1;
+		} else {
+			echo "<br>" . "File is corrupt.";
+			$uploadOk = 0;
+		}
+
+		/* Valid Extensions */
+		$valid_extensions = array("pdf", "epub", "mp3", "wav");
+		/* Check file extension */
+		if (!in_array(strtolower($receiptFileType), $valid_extensions)) {
+			$uploadOk = 0;
+			echo "<br>" . "Wrong file format.";
+		}
+
+		if ($uploadOk == 0) {
+			echo "<br>" . "Sorry, your file was not uploaded.";
+			// if everything is ok, try to upload file
+		} else {
+			/* if(file_exists($target_dir.$bookID.".pdf")) {
+			} */
+			$temp = explode(".", $_FILES["receiptFile"]["name"]);
+			$receiptName = $bookID . '.' . end($temp);
+			$receiptDest = $target_dir . $receiptName;
+			if (move_uploaded_file($_FILES["receiptFile"]["tmp_name"], $receiptDest)) {
+				echo "<br>" . "The file " . basename($_FILES["receiptFile"]["name"]) . " has been uploaded.";
+				$receiptLink = $link . "receipt/" . $receiptName;
+				$change = 1;
+			} else {
+				echo "<br>" . "Sorry, there was an error uploading your file.";
+				$uploadOk = 0;
+			}
+		}
+	}
+}
+
 //oldID and shelfID for newly added copies not inserted
 try {
 	// set the PDO error mode to exception

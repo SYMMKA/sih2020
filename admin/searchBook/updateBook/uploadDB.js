@@ -31,6 +31,7 @@ function updateBook(e) {
 		}
 		oldID = JSON.stringify(oldID);
 	}
+	var receiptFile = $('#receiptFile')[0].files[0]; //receipt
 
     var updateCategory1 = "";
     var updateCategory2 = "";
@@ -79,6 +80,7 @@ function updateBook(e) {
     formData.append("dop", dop);
     formData.append("oldID", oldID);
     formData.append("money", money);
+	formData.append('receiptFile', receiptFile);
 
     $.ajax({
         type: "POST",
