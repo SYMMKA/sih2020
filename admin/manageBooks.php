@@ -427,11 +427,11 @@ include("session.php");
         var book = [];
         var digital = [];
     </script>
-    <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+    <script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
     <script src="catName.js"></script>
     <script src="filter.js"></script>
     <script src="searchBook/autoFill.js"></script>
