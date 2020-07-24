@@ -474,7 +474,10 @@ include("session.php");
 			</div>
 		</div>
 	</div>
-	<div id="QRpdf"></div>
+	<div id="QRdiv">
+		<canvas id="QR"></canvas>
+		<div id="QRpdf"></div>
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -486,7 +489,7 @@ include("session.php");
 	<script src="assets/node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 	<script src="assets/js/common.js"></script>
 	<script src="assets/js/voice-search.js"></script>
-	<script src="assets/js/jquery.qrcode.min.js"></script>
+	<script src="assets/node_modules/qrious/dist/qrious.min.js"></script>
 	<script src="jsPDF-master/dist/jspdf.min.js"></script>
 	<script src="assets/js/html2canvas.min.js"></script>
 

@@ -141,7 +141,9 @@ function getInputVal(id) {
 
 function generateQR(data) {
     data = JSON.parse(data);
-    const bookID = data.bookID;
+const bookID = data.bookID;
+	var html = `<h1>QR code</h1>`;
+	$("#QRpdf").html(html);
     data.copyID.forEach((copyID) => {
         var qrData = {
             Type: "Book",
@@ -149,14 +151,16 @@ function generateQR(data) {
             CopyID: copyID,
         };
         qrData = JSON.stringify(qrData);
-        $("#QRpdf").qrcode({
-            //render:"table"
-            width: 96,
-            height: 96,
-            text: qrData,
-        });
+        qr = new QRious({
+			element: document.querySelector('canvas'),
+			foreground: 'black',
+			size: 100,
+			value: qrData
+		});
+		console.log(qr.image);
+		$("#QRpdf").append(qr.image);
         $("#QRpdf").append(copyID);
-    });
+	});
 
     var HTML_Width = $("#QRpdf").width();
     var HTML_Height = $("#QRpdf").height();
@@ -192,5 +196,5 @@ function generateQR(data) {
         }
         doc.save(bookID + ".pdf");
     });
-    $("#QRpdf").hide();
+    $("#QRdiv").hide();
 }

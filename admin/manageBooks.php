@@ -107,6 +107,10 @@ include("session.php");
                         <div class="col-12 row justify-content-center d-none">
                             <button type="button" class="btn btn-orange" id="qrSearchSubmit">hidden</button>
                         </div>
+						<div id="reader" style="width:500px"></div>
+						<div class="col-sm-5 col-md-3">
+							<button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">QR</button>
+						</div>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
                         <img class="img" src="assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="
@@ -455,7 +459,9 @@ include("session.php");
     <script src="searchBook/deleteCopy/uploadDB.js"></script>
     <script src="./assets/js/common.js"></script>
     <script src="./assets/js/voice-search.js"></script>
-    <script src="manageBooks/manageBooks.js"></script>
+	<script src="manageBooks/manageBooks.js"></script>
+	<script src="assets/node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
+	<script src="qrCodeReader.js"></script>
     <script>
         function loadCat() {
             var mainCategorySelect1 = document.getElementById("mainCategorySelect1");

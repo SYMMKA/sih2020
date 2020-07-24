@@ -2,12 +2,12 @@ $(document).ready(function () {
     $("#voiceSearchSubmit").on("click", searchMain);
 });
 
-$(document).ready(function () {
+/* $(document).ready(function () {
     $("#qrSearchSubmit").on("click", searchQR);
-});
+}); */
 
-function searchQR() {
-    var qrsearch = $("#searchByVoice").val();
+function searchQR(qrsearch) {
+	//var qrsearch = $("#searchByVoice").val();
     $.ajax({
         type: "POST",
         url: "manageBooks/manageBooks.php",
