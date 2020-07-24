@@ -1,9 +1,9 @@
 $(document).ready(function () {
-	$("#receipt").on("click", loadSelectBox);
+    $("#receipt").on("click", loadSelectBox);
 });
 
 function loadSelectBox() {
-	html = ` <div class="form-group row justify-content-center pt-5 mb-5">
+    html = ` <div class="form-group row justify-content-center pt-5 mb-5">
 				<label
 					for="receiptBookID"
 					class="col-sm-2 col-form-label font-weight-bold"
@@ -24,46 +24,52 @@ function loadSelectBox() {
             <div id="receiptResult">
             </div>
             `;
-	$("#ResultDisplay").html(html);
-	var receiptBookID = document.getElementById("receiptBookID");
-	$.ajax({
-		type: "POST",
-		url: "record/receipt/bookID.php",
-		contentType: false, // Dont delete this (jQuery 1.6+)
-		processData: false, // Dont delete this
-		success: function (data) {
-			var data = JSON.parse(data);
-			var i = 0;
-			receiptBookID.options.length = 0;
-			for (var key in data) {
-				receiptBookID.options[i] = new Option(
-					key + " - " + data[key], key
-				);
-				i++;
-			}
-			$(".selectpicker").selectpicker("refresh");
-		},
-		//Other options
-	});
-	$(".selectpicker").selectpicker("refresh");
+    $("#ResultDisplay").html(html);
+    var receiptBookID = document.getElementById("receiptBookID");
+    $.ajax({
+        type: "POST",
+        url: "record/receipt/bookID.php",
+        contentType: false, // Dont delete this (jQuery 1.6+)
+        processData: false, // Dont delete this
+        success: function (data) {
+            var data = JSON.parse(data);
+            var i = 0;
+            receiptBookID.options.length = 0;
+            for (var key in data) {
+                receiptBookID.options[i] = new Option(
+                    key + " - " + data[key],
+                    key
+                );
+                i++;
+            }
+            $(".selectpicker").selectpicker("refresh");
+        },
+        //Other options
+    });
+    $(".selectpicker").selectpicker("refresh");
 }
 
 function loadReceiptBox() {
-	var bookID = $('#receiptBookID').val();
-	$.ajax({
-		type: "POST",
-		url: "record/receipt/receipt.php",
-		data: {
-			bookID: bookID,
-		},
-		success: function (data) {
-			data = JSON.parse(data);
-			console.log(data);
-			html = `
+    var bookID = $("#receiptBookID").val();
+    $.ajax({
+        type: "POST",
+        url: "record/receipt/receipt.php",
+        data: {
+            bookID: bookID,
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            html =
+                `
 			<div class="container">
                 <div class="mb-4 pt-4">
-					<h3>`+ data.book.title + `
-                    <a class="btn btn-orange ml-2 float-right" target="_blank" href="` + data.book.receiptLink + `">Download Receipt</a>
+					<h3>` +
+                data.book.title +
+                `
+                    <a class="btn btn-orange ml-2 float-right" target="_blank" href="` +
+                data.book.receiptLink +
+                `">Download Receipt</a>
                     </h3>                    
                 </div>
 				<div id="receiptDIV">
@@ -79,34 +85,35 @@ function loadReceiptBox() {
 								</tr>
 							</thead>
 							<tbody>`;
-			var index = 1;
-			for(var copyID in data.copy) {
-				html +=
-					`<tr>
+            var index = 1;
+            for (var copyID in data.copy) {
+                html +=
+                    `<tr>
 								<th scope="row">` +
-					index +
-					`           </th>
+                    index +
+                    `           </th>
 								<td>` +
-					copyID +
-					`           </td>
+                    copyID +
+                    `           </td>
 								<td>` +
-					data.copy[copyID].purchaseTime +
-					`           </td>
+                    data.copy[copyID].purchaseTime +
+                    `           </td>
 						        <td>` +
-					data.copy[copyID].purchaseSource +
-					`           </td>
+                    data.copy[copyID].purchaseSource +
+                    `           </td>
                                 <td>` +
                     data.copy[copyID].addDB +
-					`</td>
+                    `</td>
 					</tr>`;
-			}
-			html += `
+                index++;
+            }
+            html += `
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>`;
-			$("#receiptResult").html(html);
-		},
-	});
+            $("#receiptResult").html(html);
+        },
+    });
 }

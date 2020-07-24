@@ -29,7 +29,7 @@
     <body>
         <button
             type="button"
-            class="btn btn-info voice-button"
+            class="btn btn-orange voice-button"
             style="
                 width: 60px;
                 height: 60px;
@@ -60,55 +60,130 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.php"
+                                ><i class="fa fa-home" aria-hidden="true"></i
+                            ></a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a
+                                class="nav-link"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                            </a>
+                            <div
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <a class="dropdown-item" href="manageBooks.php"
+                                    >Manage Books</a
+                                >
+                                <a class="dropdown-item" href="addBooks.php"
+                                    >Add Books</a
+                                >
+                                <a class="dropdown-item" href="shelf.php"
+                                    >Shelf</a
+                                >
+                                <a class="dropdown-item" href="report.php"
+                                    >Report</a
+                                >
+                                <a class="dropdown-item" href="due.php"
+                                    >Due Page</a
+                                >
+                                <a class="dropdown-item" href="recommend.php"
+                                    >Syllabus</a
+                                >
+                            </div>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#"
-                                >Add<span class="sr-only">(current)</span></a
+                                ><i class="fa fa-comment" aria-hidden="true"></i
+                            ></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="settings.html"
+                                ><i class="fa fa-cog" aria-hidden="true"></i
+                            ></a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a
+                                class="nav-link"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
                             >
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Manage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Shelf </a>
+                                <i
+                                    class="fa fa-user-circle"
+                                    aria-hidden="true"
+                                ></i>
+                            </a>
+                            <div
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <a class="dropdown-item" href="#"
+                                    ><?= $adminID ?>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"
+                                    >Change username</a
+                                >
+                                <a class="dropdown-item" href="#"
+                                    >Change password</a
+                                >
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"
+                                    ><button class="btn btn-danger btn-block">
+                                        Logout
+                                    </button></a
+                                >
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <section>
-            <div class="container">
-                <div class="container mb-4" style="margin-top: 10vh;">
-                    <div class="jumbotron shadow">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <h2 class="display-4 font-weight-bold">
-                                    Settings
-                                </h2>
-                                <p class="lead">
-                                    This is a simple hero unit, a simple
-                                    jumbotron-style component for calling extra
-                                    attention to featured content or
-                                    information.
-                                </p>
-                            </div>
-                            <div class="col-sm-6 d-none d-lg-block">
-                                <img
-                                    class="img float-right"
-                                    src="assets/FINAL MEDIA/undraw_reading_0re1.svg"
-                                    alt=""
-                                    style="
-                                        height: auto;
-                                        width: 100%;
-                                        max-width: 340px;
-                                    "
-                                />
-                            </div>
+            <div class="container pt-4 mb-4" style="margin-top: 10vh;">
+                <div class="jumbotron shadow bg-green">
+                    <div class="row justify-content-center">
+                        <div class="row col-12 col-lg-8">
+                            <h2 class="heading font-weight-bold">
+                                Settings
+                            </h2>
+                            <p class="lead">
+                                This is a simple hero unit, a simple
+                                jumbotron-style component for calling extra
+                                attention to featured content or information.
+                            </p>
+                        </div>
+                        <div class="col-sm-4 d-none d-lg-block">
+                            <img
+                                class="img"
+                                src="assets/FINAL MEDIA/undraw_reading_0re1.svg"
+                                alt=""
+                                style="
+                                    height: auto;
+                                    width: 100%;
+                                    max-width: 340px;
+                                "
+                            />
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
                 <div class="row">
                     <div class="col-4 col-md-2">
                         <div
@@ -208,7 +283,7 @@
                                 aria-labelledby="general-tab"
                             >
                                 <form>
-                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                    <h4 class="p-3 mb-4 bg-offwhite rounded">
                                         General Settings
                                     </h4>
                                     <div class="form-group row">
@@ -345,8 +420,8 @@
                                                 id="ratingPoint"
                                             />
                                         </div>
-									</div>
-									<div class="form-group row">
+                                    </div>
+                                    <div class="form-group row">
                                         <label
                                             for="teacherIssuePeriod"
                                             class="col-sm-4 col-form-label"
@@ -481,7 +556,7 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="p-3 mb-5 bg-light rounded">
+                                    <div class="p-3 mb-5 bg-offwhite rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
@@ -508,7 +583,7 @@
                                 aria-labelledby="privileges-tab"
                             >
                                 <form>
-                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                    <h4 class="p-3 mb-4 bg-offwhite rounded">
                                         Privileges
                                     </h4>
                                     <div class="form-group row">
@@ -646,7 +721,7 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="p-3 mb-5 bg-light rounded">
+                                    <div class="p-3 mb-5 bg-offwhite rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
@@ -672,16 +747,16 @@
                                 role="tabpanel"
                                 aria-labelledby="genQR-tab"
                             >
-                                <h4 class="p-3 mb-4 bg-light rounded">
+                                <h4 class="p-3 mb-4 bg-offwhite rounded">
                                     Generate QR code
                                 </h4>
                                 <div class="form-group row">
                                     <label
                                         for="bookID"
-                                        class="col-sm-4 col-form-label"
+                                        class="col-sm-3 col-form-label"
                                         >Book ID</label
                                     >
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <select
                                             class="selectpicker w-100"
                                             name="bookID"
@@ -691,6 +766,8 @@
                                             data-actions-box="true"
                                         >
                                         </select>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <button
                                             type="submit"
                                             class="btn btn-info"
@@ -703,10 +780,10 @@
                                 <div class="form-group row">
                                     <label
                                         for="shelfID"
-                                        class="col-sm-4 col-form-label"
+                                        class="col-sm-3 col-form-label"
                                         >Shelf ID</label
                                     >
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <select
                                             class="selectpicker w-100"
                                             name="shelfID"
@@ -716,6 +793,8 @@
                                             data-actions-box="true"
                                         >
                                         </select>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <button
                                             type="submit"
                                             class="btn btn-info"
@@ -733,66 +812,227 @@
                                 aria-labelledby="timeTable-tab"
                             >
                                 <form>
-                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                    <h4 class="p-3 mb-4 bg-offwhite rounded">
                                         Time Table
                                     </h4>
                                     <div class="table-responsive">
-                                       <table class="table table-hover table-bordered">
-                                            <thead class="thead-dark">
+                                        <table
+                                            class="table table-hover table-bordered"
+                                        >
+                                            <thead
+                                                class="thead text-white btn-orange"
+                                            >
                                                 <tr>
-                                                <th scope="col">Days</th>
-                                                <th scope="col">Start Time</th>
-                                                <th scope="col">End Time</th>
-                                                <th scope="col">Comment</th>
+                                                    <th scope="col">Days</th>
+                                                    <th scope="col">
+                                                        Start Time
+                                                    </th>
+                                                    <th scope="col">
+                                                        End Time
+                                                    </th>
+                                                    <th scope="col">Comment</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                <th scope="row">Monday</th>
-                                                <td><input type="time" class="form-control" name="mondayStartTime" id="mondayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="mondayEndTime" id="mondayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="mondayComment" id="mondayComment"></td>
+                                                    <th scope="row">Monday</th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="mondayStartTime"
+                                                            id="mondayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="mondayEndTime"
+                                                            id="mondayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="mondayComment"
+                                                            id="mondayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Tuesday</th>
-                                                <td><input type="time" class="form-control" name="tuesdayStartTime" id="tuesdayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="tuesdayEndTime" id="tuesdayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="tuesdayComment" id="tuesdayComment"></td>
+                                                    <th scope="row">Tuesday</th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="tuesdayStartTime"
+                                                            id="tuesdayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="tuesdayEndTime"
+                                                            id="tuesdayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="tuesdayComment"
+                                                            id="tuesdayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Wednesday</th>
-                                                <td><input type="time" class="form-control" name="wednesdayStartTime" id="wednesdayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="wednesdayEndTime" id="wednesdayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="wednesdayComment" id="wednesdayComment"></td>
+                                                    <th scope="row">
+                                                        Wednesday
+                                                    </th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="wednesdayStartTime"
+                                                            id="wednesdayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="wednesdayEndTime"
+                                                            id="wednesdayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="wednesdayComment"
+                                                            id="wednesdayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Thursday</th>
-                                                <td><input type="time" class="form-control" name="thursdayStartTime" id="thursdayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="thursdayEndTime" id="thursdayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="thursdayComment" id="thursdayComment"></td>
+                                                    <th scope="row">
+                                                        Thursday
+                                                    </th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="thursdayStartTime"
+                                                            id="thursdayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="thursdayEndTime"
+                                                            id="thursdayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="thursdayComment"
+                                                            id="thursdayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Friday</th>
-                                                <td><input type="time" class="form-control" name="fridayStartTime" id="fridayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="fridayEndTime" id="fridayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="fridayComment" id="fridayComment"></td>
+                                                    <th scope="row">Friday</th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="fridayStartTime"
+                                                            id="fridayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="fridayEndTime"
+                                                            id="fridayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="fridayComment"
+                                                            id="fridayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Saturday</th>
-                                                <td><input type="time" class="form-control" name="saturdayStartTime" id="saturdayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="saturdayEndTime" id="saturdayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="saturdayComment" id="saturdayComment"></td>
+                                                    <th scope="row">
+                                                        Saturday
+                                                    </th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="saturdayStartTime"
+                                                            id="saturdayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="saturdayEndTime"
+                                                            id="saturdayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="saturdayComment"
+                                                            id="saturdayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                <th scope="row">Sunday</th>
-                                                <td><input type="time" class="form-control" name="sundayStartTime" id="sundayStartTime" ></td>
-                                                <td><input type="time" class="form-control" name="sundayEndTime" id="sundayEndTime" ></td>
-                                                <td><input type="text" class="form-control" name="sundayComment" id="sundayComment"></td>
+                                                    <th scope="row">Sunday</th>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="sundayStartTime"
+                                                            id="sundayStartTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="time"
+                                                            class="form-control"
+                                                            name="sundayEndTime"
+                                                            id="sundayEndTime"
+                                                        />
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="sundayComment"
+                                                            id="sundayComment"
+                                                        />
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="p-3 mb-5 bg-light rounded">
+                                    <div class="p-3 mb-5 bg-offwhite rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
@@ -819,14 +1059,11 @@
                                 aria-labelledby="admins-tab"
                             >
                                 <form>
-                                    <h4 class="p-3 mb-4 bg-light rounded">
+                                    <h4 class="p-3 mb-4 bg-offwhite rounded">
                                         Admins
                                     </h4>
-                                    <div
-                                        class="form-group row"
-                                        id="adminClearance"
-                                    ></div>
-                                    <div class="p-3 mb-5 bg-light rounded">
+                                    <div id="adminClearance"></div>
+                                    <div class="p-3 mb-5 bg-offwhite rounded">
                                         <div class="text-right">
                                             <button
                                                 type="button"
@@ -852,7 +1089,7 @@
                                 role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab"
                             >
-                                <h4 class="p-3 mb-4 bg-light rounded">
+                                <h4 class="p-3 mb-4 bg-offwhite rounded">
                                     User Settings
                                 </h4>
                                 <div class="form-group row">
@@ -973,7 +1210,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 mb-5 bg-light rounded">
+                                <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
                                         <button
                                             type="submit"
@@ -989,14 +1226,14 @@
                                         </button>
                                     </div>
                                 </div>
-							</div>
-							<div
+                            </div>
+                            <div
                                 class="tab-pane fade"
                                 id="manage"
                                 role="tabpanel"
                                 aria-labelledby="manage-tab"
                             >
-                                <h4 class="p-3 mb-4 bg-light rounded">
+                                <h4 class="p-3 mb-4 bg-offwhite rounded">
                                     Manage User Settings
                                 </h4>
                                 <div class="form-group row">
@@ -1132,8 +1369,8 @@
                                         >
                                         <div class="col-sm-8">
                                             <input
-												type="number"
-												min="0"
+                                                type="number"
+                                                min="0"
                                                 class="form-control"
                                                 id="adminAccess"
                                             />
@@ -1141,47 +1378,47 @@
                                     </div>
                                 </div>
                                 <div id="showAddUser">
-									<div class="form-group row">
-										<label
-											for="stuortea"
-											class="col-sm-4 col-form-label"
-											>Select Operation</label
-										>
-										<div class="col-sm-8">
-											<div
-												class="custom-control custom-radio custom-control-inline"
-											>
-												<input
-													type="radio"
-													id="typeStudent"
-													name="stuortea"
-													class="custom-control-input"
-													value="student"
-												/>
-												<label
-													class="custom-control-label"
-													for="typeStudent"
-													>Student</label
-												>
-											</div>
-											<div
-												class="custom-control custom-radio custom-control-inline"
-											>
-												<input
-													type="radio"
-													id="typeTeacher"
-													name="stuortea"
-													class="custom-control-input"
-													value="teacher"
-												/>
-												<label
-													class="custom-control-label"
-													for="typeTeacher"
-													>Teacher</label
-												>
-											</div>
-										</div>
-									</div>
+                                    <div class="form-group row">
+                                        <label
+                                            for="stuortea"
+                                            class="col-sm-4 col-form-label"
+                                            >Select Operation</label
+                                        >
+                                        <div class="col-sm-8">
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id="typeStudent"
+                                                    name="stuortea"
+                                                    class="custom-control-input"
+                                                    value="student"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="typeStudent"
+                                                    >Student</label
+                                                >
+                                            </div>
+                                            <div
+                                                class="custom-control custom-radio custom-control-inline"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id="typeTeacher"
+                                                    name="stuortea"
+                                                    class="custom-control-input"
+                                                    value="teacher"
+                                                />
+                                                <label
+                                                    class="custom-control-label"
+                                                    for="typeTeacher"
+                                                    >Teacher</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label
                                             for="userID"
@@ -1279,7 +1516,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 mb-5 bg-light rounded">
+                                <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
                                         <button
                                             type="submit"
@@ -1303,25 +1540,25 @@
                                 role="tabpanel"
                                 aria-labelledby="import-tab"
                             >
-                                <h4 class="p-3 mb-4 bg-light rounded">
+                                <h4 class="p-3 mb-4 bg-offwhite rounded">
                                     Import
-								</h4>
-								<div class="form-group row">
-									<label
-										for="bookImport"
-										class="col-sm-4 col-form-label"
-										>Books</label
-									>
-									<div class="col-sm-8">
-										<input type="file" id="bookCSV" />
-										<button
-											id="bookImport"
-											type="submit"
-											class="btn btn-info"
-										>
-											Import Books
-										</button>
-									</div>
+                                </h4>
+                                <div class="form-group row">
+                                    <label
+                                        for="bookImport"
+                                        class="col-sm-4 col-form-label"
+                                        >Books</label
+                                    >
+                                    <div class="col-sm-8">
+                                        <input type="file" id="bookCSV" />
+                                        <button
+                                            id="bookImport"
+                                            type="submit"
+                                            class="btn btn-info"
+                                        >
+                                            Import Books
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <label
@@ -1330,9 +1567,9 @@
                                         >Students</label
                                     >
                                     <div class="col-sm-8">
-										<input type="file" id="studentsCSV" />
-										<button
-											id="studentsImport"
+                                        <input type="file" id="studentsCSV" />
+                                        <button
+                                            id="studentsImport"
                                             type="submit"
                                             class="btn btn-info"
                                         >
@@ -1347,9 +1584,9 @@
                                         >Teachers</label
                                     >
                                     <div class="col-sm-8">
-										<input type="file" id="teachersCSV" />
-										<button
-											id="teachersImport"
+                                        <input type="file" id="teachersCSV" />
+                                        <button
+                                            id="teachersImport"
                                             type="submit"
                                             class="btn btn-info"
                                         >
@@ -1364,9 +1601,9 @@
                                         >Admins</label
                                     >
                                     <div class="col-sm-8">
-										<input type="file" id="adminsCSV" />
-										<button
-											id="adminsImport"
+                                        <input type="file" id="adminsCSV" />
+                                        <button
+                                            id="adminsImport"
                                             type="submit"
                                             class="btn btn-info"
                                         >
@@ -1392,8 +1629,8 @@
         <script src="setting/general/general.js"></script>
         <script src="setting/privileges/privileges.js"></script>
         <script src="setting/genQR/genQR.js"></script>
-		<script src="setting/admins/admins.js"></script>
-		<script src="setting/import/import.js"></script>
+        <script src="setting/admins/admins.js"></script>
+        <script src="setting/import/import.js"></script>
         <script src="setting/manageUsers/manageUsers.js"></script>
         <script src="setting/timeTable/timeTable.js"></script>
     </body>

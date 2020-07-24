@@ -75,3 +75,12 @@ body {
     min-width: 200px;
     margin-right: 15px;
 }
+
+.nav-pills .nav-link {
+    color: #001b58;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #001b58;
+    color: #fff;
+}

@@ -84,7 +84,7 @@
       <div class="jumbotron bg-green shadow">
         <div class="row justify-content-center">
           <div class="row col-12 col-sm-8">
-            <h2 class="display-4 font-weight-bold">
+            <h2 class="heading font-weight-bold">
               Syllabus
             </h2>
             <p class="lead">
@@ -125,8 +125,8 @@
                 ">
       <div class="modal-content" id="modalBodyContent">
       </div>
-      </div>
     </div>
+  </div>
   </div>
   <!-- Modal for new sem branch -->
   <div class="modal fade" id="addNewSemBranch" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

@@ -40,6 +40,8 @@ function showFineTable() {
     <tr>
         <th style="display:none;" scope="col">
             ID</th>
+            <th scope="col">
+            #</th>
         <th scope="col">
             BookID</th>
         <th scope="col">
@@ -62,6 +64,9 @@ function showFineTable() {
                 data.forEach(function (item, index) {
                     html +=
                         `<tr>
+                        <th scope="row">` +
+                        (index + 1) +
+                        `</th>
         <td>` +
                         item.bookID +
                         `</td>
