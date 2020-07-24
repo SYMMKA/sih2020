@@ -10,22 +10,31 @@ include("../db.php");
 <html lang="en">
 
 <head>
-	<title>Add Copy - Shelf</title>
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="./../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="./../assets/node_modules/shards-ui/dist/css/shards.min.css" />
-	<!-- <script
-      src="https://kit.fontawesome.com/97f3c2998d.js"
-      crossorigin="anonymous"
-    ></script> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="./../assets/css/common.css" />
+	<link rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
+	<link rel="stylesheet" href="../assets/node_modules/shards-ui/dist/css/shards.min.css" />
+	<link rel="stylesheet" href="../assets/node_modules/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../assets/css/common.css" />
 </head>
 
 <body>
+	<button type="button" class="btn btn-orange voice-button" style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 2rem;
+                right: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0px 2px 5px #666;
+                z-index: 9999;
+            ">
+		<i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+	</button>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">Library Management System</a>
@@ -34,60 +43,99 @@ include("../db.php");
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Home</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Add</a>
+					<li class="nav-item dropdown active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-book" aria-hidden="true"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../manageBooks.php">Manage Books</a>
+							<a class="dropdown-item" href="../addBooks.php">Add Books</a>
+							<a class="dropdown-item" href="../shelf.php">Shelf</a>
+							<a class="dropdown-item" href="../report.php">Report</a>
+							<a class="dropdown-item" href="../due.php">Due Page</a>
+							<a class="dropdown-item" href="../recommend.php">Syllabus</a>
+						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Manage<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Shelf </a>
+					<li class="nav-item active">
+						<a class="nav-link" href="../settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+					</li>
+					<li class="nav-item dropdown active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#"><?= $adminID ?>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Change username</a>
+							<a class="dropdown-item" href="#">Change password</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">
+									Logout
+								</button></a>
+						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<section class="container landing-section">
-		<div class="row h-100">
-			<div class="col-12 align-self-end">
-				<div class="mb-4 text-center">
-					<h1 class="display-2">SEARCH FROM LIBRARY</h1>
-					<h4>
-						Add books to <?= $shelfID ?>
-					</h4>
+	<section>
+		<div class="container pt-4 mb-4" style="margin-top: 10vh;">
+			<div class="jumbotron shadow bg-green">
+				<div class="row justify-content-center">
+					<div class="row col-12 col-lg-8">
+						<h2 class="heading font-weight-bold">
+							Add Copy
+						</h2>
+						<p class="lead">
+							Add Copies of books to <?= $shelfID ?> by searching books from Library
+						</p>
+						<div class="col-12 ">
+							<form class="row no-gutters" method="post">
+								<div class="col-12 col-sm-7 col-md-9">
+									<div class="search-form mr-sm-2">
+										<input class="form-control mb-2" type="search" name="searchByVoice" id="searchByVoice" placeholder="Search" aria-label="Search" />
+									</div>
+								</div>
+								<div class="col-sm-5 col-md-3 row no-gutters">
+									<div class="col-auto">
+										<button type="submit" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit">
+											search
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-sm-4 d-none d-lg-block">
+						<img class="img" src="../assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="
+                                    height: auto;
+                                    width: 100%;
+                                    max-width: 340px;
+                                " />
+					</div>
 				</div>
-
-				<form novalidate class="row search-form mb-2 align-self-center justify-content-center" method="post">
-					<div class="col-sm-6 search-box mb-2">
-						<input class="form-control ml-sm-4" type="search" name="search" placeholder="Search" aria-label="Search" />
-					</div>
-					<div class="col-sm-6 col-md-2">
-						<button class="btn btn-info btn-block ml-sm-2" type="submit">
-							Search
-						</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-12 align-self-end text-center pb-5">
-				<button type="button" class="btn btn-outline-dark pl-5 pr-5">
-					<span>
-						<i class="fa fa-arrow-down" aria-hidden="true"></i>
-					</span>
-				</button>
 			</div>
 		</div>
 	</section>
+
 	<?php
 	$search = '';
-	if (isset($_POST['search'])) {
-		$search = $_POST['search'];
+	if (isset($_POST['searchByVoice'])) {
+		$search = $_POST['searchByVoice'];
 		$search = "%$search%";
 	?>
 		<section class="container">
-			<h1 class="text-center p-5">Your Shelves</h1>
+			<div class="pt-5 mb-5">
+				<h1>Your Books<a href="../shelf.php" class="btn btn-blue btn-lg float-right">Back to shelf</a></h1>
+
+			</div>
 			<div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6 filter">
 				<div class="col mb-4">
 					<select class="custom-select" size="1" name="mainCategorySelect1" id="mainCategorySelect1">
@@ -124,7 +172,7 @@ include("../db.php");
 					</select>
 				</div>
 			</div>
-			<div class="row row-cols-1 row-cols-md-4">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="result">
 				<?php
 				$sql1 = "SELECT * FROM main Where title LIKE :search";
 				$stmt1 = $conn->prepare($sql1);
@@ -146,14 +194,13 @@ include("../db.php");
 					$Category4[$i] = $row1->Category4;
 					$publisher[$i] = $row1->publisher;
 					$pages[$i] = $row1->pages;
-					$price[$i] = $row1->price;
 					$imgLink[$i] = $row1->imgLink;
 					$date_of_publication[$i] = $row1->date_of_publication;
 					$isbn[$i] = $row1->isbn;
 					$digital[$i] = $row1->digital;
 					$book[$i] = $row1->book;
 					$digitalLink[$i] = $row1->digitalLink;
-					
+
 					$stmt2->bindParam(':bookID', $bookID[$i]);
 					$stmt2->execute();
 					$row2 = $stmt2->fetchObject();
@@ -161,36 +208,36 @@ include("../db.php");
 				?>
 					<div class="col mb-4">
 						<div class="card h-100">
-							<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" style="height: 20vw;" />
-							<div class="card-body" style="padding: 1rem;">
+							<img class="card-img-top" src="<?= $imgLink[$i] ?>" alt="Card image cap" style="height:200px;" />
+							<div class=" card-body" style="padding: 1rem;">
 								<div class="card-text">
 									<div class="row no-gutters">
-										<div class="col-4">Title:</div>
-										<div class="col-8">
+										<div class="col-4 font-weight-bold">Title:</div>
+										<div class="col-8 font-weight-bolder">
 											<?= $title[$i] ?>
 										</div>
 									</div>
 									<div class="row no-gutters">
-										<div class="col-4">Author:</div>
-										<div class="col-8">
+										<div class="col-4 font-weight-bold">Author:</div>
+										<div class="col-8 font-weight-bolder">
 											<?= $author[$i] ?>
 										</div>
 									</div>
 									<div class="row no-gutters">
-										<div class="col-4">ISBN:</div>
-										<div class="col-8">
+										<div class="col-4 font-weight-bold">ISBN:</div>
+										<div class="col-8 font-weight-bolder">
 											<?= $isbn[$i] ?>
 										</div>
 									</div>
 									<div class="row no-gutters">
-										<div class="col-4">BookID:</div>
-										<div class="col-8">
+										<div class="col-4 font-weight-bold">BookID:</div>
+										<div class="col-8 font-weight-bolder">
 											<?= $bookID[$i] ?>
 										</div>
 									</div>
 									<div class="row no-gutters">
-										<div class="col-4">Rating:</div>
-										<div class="col-8">
+										<div class="col-4 font-weight-bold">Rating:</div>
+										<div class="col-8 font-weight-bolder">
 											<?= $star[$i] ?>
 										</div>
 									</div>
@@ -205,7 +252,7 @@ include("../db.php");
 							<div class="card-footer bg-white">
 								<div class="row text-center">
 									<div class="col-12">
-										<button type="button" class="btn btn-info" name="add-copy" id="<?= $i; ?>" onclick="addCopyFill(this.id)" data-toggle="modal" data-target="#addCopy">
+										<button type="button" class="btn btn-orange" name="add-copy" id="<?= $i; ?>" onclick="addCopyFill(this.id)" data-toggle="modal" data-target="#addCopy">
 											Add Copy
 										</button>
 									</div>
@@ -230,12 +277,12 @@ include("../db.php");
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="./../assets/node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="./../assets/node_modules/popper.js/dist/popper.min.js"></script>
-		<script src="./../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="./../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-		<script src="./../assets/js/common.js"></script>
-		<script src="./../assets/js/voice-search.js"></script>
+		<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../assets/node_modules/popper.js/dist/umd/popper-utils.min.js"></script>
+		<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+		<script src="../assets/js/common.js"></script>
+		<script src="../assets/js/voice-search.js"></script>
 		<script src="addCopy/addCopyFill.js"></script>
 		<script src="../catName.js"></script>
 		<script src="../filter.js"></script>
@@ -250,12 +297,12 @@ include("../db.php");
 		</script>
 
 		<script>
-			window.onload = function () {
+			window.onload = function() {
 				var mainCategorySelect1 = document.getElementById("mainCategorySelect1");
 				var mainCategorySelect2 = document.getElementById("mainCategorySelect2");
 				var mainCategorySelect3 = document.getElementById("mainCategorySelect3");
 				var mainCategorySelect4 = document.getElementById("mainCategorySelect4");
-				$.getJSON("../category.json", function(json){
+				$.getJSON("../category.json", function(json) {
 					DDCjson = json;
 					loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
 				});

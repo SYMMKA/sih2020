@@ -17,10 +17,13 @@ function autoFillShelf(i) {
         success: function (data) {
             var issued = (reserved = available = 0);
             var html = "";
-            html += `
+            html +=
+                `
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Shelf - ` +
+                shelfID[i] +
+                `</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="searchMain()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -357,7 +360,7 @@ function loadShelfs(data) {
 }
 
 function loadBox() {
-    html = `<h1 class="text-center pt-4 mb-5">Your Books</h1>
+    html = `<h1 class="text-center pt-4 mb-5">Your Shelves</h1>
                 <div
                     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
                     id="result"

@@ -47,3 +47,21 @@ $("#quantity").change(() => {
         $("#copyInfo").append(html);
     }
 });
+
+$("#imgFile").on("change", imgUpload);
+$(".custom-file-input").on("change", uploadFile);
+
+function imgUpload() {
+    document.getElementById("imgLink").src = window.URL.createObjectURL(
+        this.files[0]
+    );
+    document.getElementById("imgValue").value = "";
+    document.getElementById("imgLink").hidden = false;
+}
+
+function uploadFile(e) {
+    var id = $(this).attr("id");
+    var fileName = document.getElementById(id).files[0].name;
+    var nextSibling = e.target.nextElementSibling;
+    nextSibling.innerText = fileName;
+}

@@ -12,41 +12,6 @@
   <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="./assets/css/common.css" />
-  <style>
-    .btn-orange {
-      background-color: #fe4a49;
-      color: #fff;
-    }
-
-    .btn-orange:hover {
-      background-color: #b13333;
-      color: #fff;
-    }
-
-    .btn-blue {
-      background-color: #001b58;
-      color: #fff;
-    }
-
-    .btn-blue:hover {
-      background-color: #001546;
-      color: #fff;
-    }
-
-    .jumbotron {
-      background-color: #4ad7d1;
-    }
-
-    .text-orange {
-      color: #fe4a49;
-    }
-
-    .card {
-      min-height: 200px;
-      min-width: 200px;
-      margin-right: 15px;
-    }
-  </style>
 </head>
 
 <body>
@@ -64,7 +29,7 @@
     <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
   </button>
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Library Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,23 +38,34 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-comment fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+            <a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item dropdown active">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-book" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Amit Ramani</a>
+              <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+              <a class="dropdown-item" href="addBooks.php">Add Books</a>
+              <a class="dropdown-item" href="shelf.php">Shelf</a>
+              <a class="dropdown-item" href="report.php">Report</a>
+              <a class="dropdown-item" href="due.php">Due Page</a>
+              <a class="dropdown-item" href="recommend.php">Syllabus</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#"><?= $adminID ?>
+              </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Change username</a>
               <a class="dropdown-item" href="#">Change password</a>
@@ -102,11 +78,10 @@
         </ul>
       </div>
     </div>
-  </nav>
-  <!-- landing -->
+  </nav> <!-- landing -->
   <section>
     <div class="container pt-4 mb-4" style="margin-top: 10vh;">
-      <div class="jumbotron shadow">
+      <div class="jumbotron bg-green shadow">
         <div class="row justify-content-center">
           <div class="row col-12 col-sm-8">
             <h2 class="display-4 font-weight-bold">
@@ -200,7 +175,6 @@
   <script src="./assets/js/common.js"></script>
   <script src="./assets/js/voice-search.js"></script>
   <script src="syllabus/recom.js"></script>
-  <script src="syllabus/recom2.js"></script>
 </body>
 
 </html>

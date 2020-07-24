@@ -362,14 +362,20 @@ include("session.php");
 										<label for="" class="col-sm-2 col-form-label">Cover Image</label>
 										<div class="col-sm-10">
 											<img name="imgLink" class="mb-2" id="imgLink" hidden="true" src="" alt="your image" width="100" height="100" />
-											<input type="file" class="form-control-file" id="imgFile" onchange="document.getElementById('imgLink').src = window.URL.createObjectURL(this.files[0]), document.getElementById('imgValue').value = '', document.getElementById('imgLink').hidden= false" />
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="imgFile">
+												<label class="custom-file-label" for="imgFile">Choose file</label>
+											</div>
 											<input type="hidden" name="imgValue" id="imgValue" value="" />
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-2 col-form-label">Upload File</label>
 										<div class="col-sm-10">
-											<input type="file" class="form-control-file" id="receiptFile" />
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="receiptFile">
+												<label class="custom-file-label" for="receiptFile">Choose file</label>
+											</div>
 											<div class="invalid-feedback">
 												Import File
 											</div>
@@ -439,7 +445,10 @@ include("session.php");
 									<div class="form-group row" id="mediaGroup" hidden>
 										<label for="" class="col-sm-3 col-form-label">Upload File</label>
 										<div class="col-sm-9">
-											<input type="file" class="form-control-file" id="mediaFile" />
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="mediaFile">
+												<label class="custom-file-label" for="mediaFile">Choose file</label>
+											</div>
 											<div class="invalid-feedback">
 												Import File
 											</div>
@@ -474,6 +483,7 @@ include("session.php");
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+	<script src="assets/node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 	<script src="assets/js/common.js"></script>
 	<script src="assets/js/voice-search.js"></script>
 	<script src="assets/js/jquery.qrcode.min.js"></script>
