@@ -33,7 +33,6 @@ while ($row2 = $stmt2->fetchObject()) {
 	$data["Category4"] = $row3->Category4;
 	$data["publisher"] = $row3->publisher;
 	$data["pages"] = $row3->pages;
-	$data["price"] = $row3->price;
 	$data["imgLink"] = $row3->imgLink;
 	$data["date_of_publication"] = $row3->date_of_publication;
 	$data["isbn"] = $row3->isbn;

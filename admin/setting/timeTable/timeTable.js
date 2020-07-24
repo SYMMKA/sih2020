@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    orgTimeTableValues()
     $("#saveTimeTable").on("click", function(){
         var mondayStartTime = $("#mondayStartTime").val()
         var tuesdayStartTime = $("#tuesdayStartTime").val()

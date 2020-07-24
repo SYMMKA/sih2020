@@ -148,64 +148,8 @@
                     max-height: 100vh !important;
                     max-width: 90vw !important;
                 ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modalBodyContent">
-          <div class="row">
-            <div class="col-md-8 col-lg-10">
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4" style="height: 500px; overflow-y: scroll;">
-                <div class="col mb-4">
-                  <div class="card">
-                    <img class="card-img-top" src="./assets/node_modules/shards-ui/dist/images/demo/stock-photos/1.jpg" alt="Card image cap" />
-                    <div class="card-body text-center">
-                      <h4 class="card-title">
-                        Book Name
-                      </h4>
-                      <p class="card-text">
-                        Book ID
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-              <div>
-                <h3>Add Books</h3>
-                <select class="selectpicker mb-3 w-100" title="Add Books" data-style="btn-blue">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-                </select>
-                <button type="button" class="btn btn-orange btn-block mb-5">
-                  Add
-                </button>
-                <h3>Delete Books</h3>
-                <select class="selectpicker mb-3 w-100" title="Delete Books" data-style="btn-blue">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-                </select>
-                <button type="button" class="btn btn-orange btn-block mb-5">
-                  Remove
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-blue" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-orange" data-dismiss="modal">
-            Save
-          </button>
-        </div>
+      <div class="modal-content" id="modalBodyContent">
+      </div>
       </div>
     </div>
   </div>

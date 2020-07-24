@@ -297,12 +297,14 @@ include("db.php");
                 <select class="selectpicker w-100" name="" id="blockList" multiple data-live-search="true" data-actions-box="true">
                 </select>
               </div>
+			  <button class="btn btn-blue" id="unblockUser">Unblock</button>
 
               <div class="">
                 <label for="notBlockList">Not Blocked</label>
                 <select class="selectpicker w-100" name="" id="notBlockList" multiple data-live-search="true" data-actions-box="true">
                 </select>
               </div>
+			  <button class="btn btn-blue" id="blockUser">Block</button>
             </div>
           </div>
         </div>

@@ -8,7 +8,14 @@ $stmt = $conn->prepare($query);
 $stmt->execute();
 
 while ($result = $stmt->fetchObject()) {
-    $stud_ID = $result->stud_ID;
-    $return_arr[$stud_ID] = $result->name;
+	$stud_ID = $result->stud_ID;
+	$return_arr[$stud_ID] = $result->name;
 }
-echo json_encode($return_arr);
+
+// Encoding array in JSON format
+if (!isset($return_arr))
+	echo FALSE;
+else
+	echo json_encode($return_arr);
+$conn = null;
+exit;
