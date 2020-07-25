@@ -45,18 +45,15 @@ function showCategory() {
 						<option value="">-- Select Category--</option>
 					</select>
 				</div>
-
 				
-					<button class="btn btn-info" name="cancelCategory" id="cancelCategory" onclick="hideCategory()">
-						Cancel
-					</button>
+				<button class="btn btn-info" name="cancelCategory" id="cancelCategory" onclick="hideCategory()">
+					Cancel
+				</button>
 
 			</div>
 		</div>
                `;
 	document.getElementById("category").innerHTML = html;
-	document.getElementById("catDisplay").value = "true";
-	document.getElementById("category").hidden = false;
 		
 	var updateCategorySelect1 = document.getElementById("updateCategorySelect1");
 	var updateCategorySelect2 = document.getElementById("updateCategorySelect2");
@@ -148,8 +145,7 @@ function loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySel
 }
 
 function hideCategory() {
-	document.getElementById("category").innerHTML = "";
-	document.getElementById("catDisplay").value = "false";
+	document.getElementById("categoryDisplay").innerHTML = "";
 }
 
 function mainCategorySelect1Change (mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {

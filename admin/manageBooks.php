@@ -258,16 +258,15 @@ include("session.php");
                             <div class="form-group row">
                                 <label for="updateCategory" class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-10">
-                                    <button type="button" class="btn btn-orange" name="updateCategory" id="updateCategory">
+                                    <button type="button" class="btn btn-orange" name="updateCategory" id="updateCategory" onclick="displayCategory()">
                                         click here
                                     </button>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" id="categoryDisplay" hidden>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10" id="category"></div>
                             </div>
-                            <input type="hidden" value="false" id="catDisplay" />
                             <div class="form-group row">
                                 <label for="updatepublisher" class="col-sm-2 col-form-label">Publisher</label>
                                 <div class="col-sm-10">

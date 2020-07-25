@@ -1,7 +1,6 @@
 function autoFillUpdateBook(i) {
-    i = parseInt(i);
-
-    $("#updateCategory").on("click", fillUpdateCat);
+	i = parseInt(i);
+	fillUpdateCat();
 
     function fillUpdateCat() {
 		showCategory();
@@ -119,3 +118,7 @@ $("#updateaddcopies").change(() => {
 		}
 	}
 });
+
+function displayCategory() {
+	document.getElementById("categoryDisplay").hidden = false
+}
