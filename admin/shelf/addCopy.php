@@ -42,9 +42,10 @@ include("../db.php");
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+						<a class="nav-link" href="../home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,37 +55,60 @@ include("../db.php");
 							<a class="dropdown-item" href="../manageBooks.php">Manage Books</a>
 							<a class="dropdown-item" href="../addBooks.php">Add Books</a>
 							<a class="dropdown-item" href="../shelf.php">Shelf</a>
-							<a class="dropdown-item" href="../report.php">Report</a>
-							<a class="dropdown-item" href="../due.php">Due Page</a>
+							<a class="dropdown-item" href="../record.php">Record</a>
 							<a class="dropdown-item" href="../recommend.php">Syllabus</a>
 						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
+						<a class="nav-link" href="../chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="../settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+						<a class="nav-link" href="../settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-user-circle" aria-hidden="true"></i>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#"><?= $adminID ?>
-							</a>
+							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Change username</a>
-							<a class="dropdown-item" href="#">Change password</a>
+							<a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
+							<a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">
-									Logout
-								</button></a>
+							<a class="dropdown-item" href="../logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<!-- change password -->
+	<div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Change Password</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="form-group row">
+							<label for="inputPass" class="col-sm-2 col-form-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPass" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-orange" data-dismiss="modal" id="savePass">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<section>
 		<div class="container pt-4 mb-4" style="margin-top: 10vh;">
 			<div class="jumbotron shadow bg-green">
@@ -282,11 +306,34 @@ include("../db.php");
 		<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="../assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 		<script src="../assets/js/common.js"></script>
+		<script src="changeCred/changeCred.js"></script>
 		<script src="../assets/js/voice-search.js"></script>
 		<script src="addCopy/addCopyFill.js"></script>
 		<script src="../catName.js"></script>
 		<script src="../filter.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#savePass").on("click", changePass);
+			});
 
+			function changePass() {
+				password = $("#inputPass").val();
+				$.ajax({
+					type: "POST",
+					url: "../changeCred/account.php",
+					data: {
+						password: password,
+					},
+					success: function(data) {
+						if (data != "success") alert(data);
+						location.reload();
+					},
+					error: function(data) {
+						alert(data);
+					},
+				});
+			}
+		</script>
 		<script>
 			title = <?php echo json_encode($title); ?>;
 			author = <?php echo json_encode($author); ?>;
