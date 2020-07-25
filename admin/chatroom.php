@@ -29,39 +29,15 @@ include("db.php");
       --right-msg-bg: #579ffb;
     }
 
-    html {
-      box-sizing: border-box;
-    }
-
-    *,
-    *:before,
-    *:after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-image: var(--body-bg);
-      font-family: Helvetica, sans-serif;
-    }
-
     .msger {
       display: flex;
       flex-flow: column wrap;
       justify-content: space-between;
       width: 100%;
-      max-width: 867px;
-      margin: 25px 10px;
-      height: calc(100% - 50px);
+      height: 88vh;
       border: var(--border);
       border-radius: 5px;
       background: var(--msger-bg);
-      box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
     }
 
     .msger-header {
@@ -162,7 +138,6 @@ include("db.php");
 
     .msger-inputarea * {
       padding: 10px;
-      border: none;
       border-radius: 3px;
       font-size: 1em;
     }
@@ -170,19 +145,6 @@ include("db.php");
     .msger-input {
       flex: 1;
       background: #ddd;
-    }
-
-    .msger-send-btn {
-      margin-left: 10px;
-      background: rgb(0, 196, 65);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.23s;
-    }
-
-    .msger-send-btn:hover {
-      background: rgb(0, 180, 50);
     }
   </style>
 </head>
@@ -213,19 +175,18 @@ include("db.php");
     </div>
   </nav>
 
-
-  <div class="container" style="padding-top: 150px;">
-    <section class="msger">
-      <header class="msger-header">
-        <div class="msger-header-title">
-          CHATROOM
-        </div>
+  <div class="container-fluid" style="padding-top: 10vh;">
+    <div class="msger">
+      <div class="msger-header">
+        <h3 class="msger-header-title font-weight-bold mb-0">
+          Chatroom
+        </h3>
         <div class="msger-header-options">
           <span><button type="button" class="btn btn-blue" data-toggle="modal" data-target="#block">Block</button></span>
         </div>
-      </header>
+      </div>
       <textarea name="" id="adminID" hidden><?= $_SESSION['adminID'] ?></textarea>
-      <main class="msger-chat" id="chatDB">
+      <div class="msger-chat" id="chatDB">
         <?php
         $query = "SELECT * FROM `chats`";
         $stmt = $conn->prepare($query);
@@ -268,12 +229,12 @@ include("db.php");
           $i++;
         }
         ?>
-      </main>
-      <form class="msger-inputarea">
-        <input id="message-to-send" type="text" class="msger-input" placeholder="Enter your message...">
-        <button type="button" class="msger-send-btn" onclick="sendMsg()" id="send">Send</button>
-      </form>
-    </section>
+      </div>
+      <div class="msger-inputarea">
+        <input id="message-to-send" type="text" class="msger-input form-control" placeholder="Enter your message...">
+        <button type="button" class="btn btn-success ml-2" onclick="sendMsg()" id="send">Send</button>
+      </div>
+    </div>
 
     <!-- BLOCK MODAL -->
     <div name="block" id="block" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -292,30 +253,37 @@ include("db.php");
           <div class="container-fluid">
             <div class="row justify-content-center">
               <!--SELECT PICKER----------------->
-              <div class="">
-                <label for="blockList">Blocked</label>
-                <select class="selectpicker w-100" name="" id="blockList" multiple data-live-search="true" data-actions-box="true">
-                </select>
+              <div class="col-12 row mb-4">
+                <label class="col-form-label col-sm-3" for="blockList">Blocked</label>
+                <div class="col-sm-6">
+                  <select class="selectpicker w-100" name="" id="blockList" multiple data-live-search="true" data-actions-box="true">
+                  </select>
+                </div>
+                <div class="col-sm-3">
+                  <button class="btn btn-blue btn-block" id="unblockUser">Unblock</button>
+                </div>
               </div>
-			  <button class="btn btn-blue" id="unblockUser">Unblock</button>
-
-              <div class="">
-                <label for="notBlockList">Not Blocked</label>
-                <select class="selectpicker w-100" name="" id="notBlockList" multiple data-live-search="true" data-actions-box="true">
-                </select>
+              <div class="col-12 row">
+                <label class="col-form-label col-sm-3" for="notBlockList">Not Blocked</label>
+                <div class="col-sm-6">
+                  <select class="selectpicker w-100" name="" id="notBlockList" multiple data-live-search="true" data-actions-box="true">
+                  </select>
+                </div>
+                <div class="col-sm-3">
+                  <button class="btn btn-blue btn-block" id="blockUser">Block</button>
+                </div>
               </div>
-			  <button class="btn btn-blue" id="blockUser">Block</button>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-info" id="" data-dismiss="modal">
-          Save Changes
-        </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-info" id="" data-dismiss="modal">
+            Save Changes
+          </button>
+        </div>
       </div>
     </div>
   </div>
