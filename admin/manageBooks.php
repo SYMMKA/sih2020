@@ -104,12 +104,9 @@ include("session.php");
                                 <button type="button" class="btn btn-orange btn-block" id="voiceSearchSubmit">search</button>
                             </div>
                         </div>
-                        <div class="col-12 row justify-content-center d-none">
-                            <button type="button" class="btn btn-orange" id="qrSearchSubmit">hidden</button>
-                        </div>
 						<div id="reader" style="width:500px"></div>
 						<div class="col-sm-5 col-md-3">
-							<button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">QR</button>
+							<button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
 						</div>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">

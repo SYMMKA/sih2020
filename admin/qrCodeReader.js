@@ -33,12 +33,16 @@ function startQRcode() {
 		},
 		qrCodeMessage => {
 			// do something when code is read. For example:
-			stopQRcode();
 			console.log(`QR Code detected: ${qrCodeMessage}`);
-			var bookInfo = JSON.parse(qrCodeMessage);
-			var bookID = bookInfo.BookID;
-			console.log(bookID);
-			searchQR(bookID);
+			var qrInfo = JSON.parse(qrCodeMessage);
+			if(qrInfo.BookID || qrInfo.ShelfID) {
+				stopQRcode();
+				if(qrInfo.BookID)
+					var ID = qrInfo.BookID;
+				else if(qrInfo.ShelfID)
+					var ID = qrInfo.ShelfID;
+				searchQR(ID);
+			}
 		},
 		errorMessage => {
 			// parse error, ideally ignore it. For example:

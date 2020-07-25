@@ -2,12 +2,7 @@ $(document).ready(function () {
     $("#voiceSearchSubmit").on("click", searchMain);
 });
 
-/* $(document).ready(function () {
-    $("#qrSearchSubmit").on("click", searchQR);
-}); */
-
 function searchQR(qrsearch) {
-	//var qrsearch = $("#searchByVoice").val();
     $.ajax({
         type: "POST",
         url: "manageBooks/manageBooks.php",
@@ -16,10 +11,14 @@ function searchQR(qrsearch) {
             qr: 1,
         },
         success: function (data) {
-            data = JSON.parse(data);
-            loadBooks(data);
-            autoFillBook(0);
-            $("#displayCopy").modal();
+			if(data) {
+				console.log(data);
+				data = JSON.parse(data);
+				loadBooks(data);
+				autoFillBook(0);
+				$("#displayCopy").modal();
+			} else
+				alert("Book does not exist!");
         },
     });
 }

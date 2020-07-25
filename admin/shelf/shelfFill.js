@@ -274,9 +274,8 @@ function deleteShelf(i) {
     });
 }
 
-function searchQR() {
+function searchQR(qrsearch) {
     loadBox();
-    var qrsearch = $("#searchByVoice").val();
     $.ajax({
         type: "POST",
         url: "shelf/showShelf.php",
@@ -285,11 +284,13 @@ function searchQR() {
             qr: 1,
         },
         success: function (data) {
-            console.log(data);
-            data = JSON.parse(data);
-            loadShelfs(data);
-            autoFillShelf(0);
-            $("#shelf").modal();
+			if(data) {
+				data = JSON.parse(data);
+				loadShelfs(data);
+				autoFillShelf(0);
+				$("#shelf").modal();
+			} else
+				alert("Shelf does not exist!");
         },
     });
 }

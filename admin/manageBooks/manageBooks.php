@@ -52,7 +52,10 @@ try {
 			$return_arr[] = $data;
 		}
 	}
-	echo json_encode($return_arr);
+	if (!isset($return_arr))
+		echo FALSE;
+	else
+		echo json_encode($return_arr);
 	exit;
 } catch (PDOException $e) {
 	exit($e);
