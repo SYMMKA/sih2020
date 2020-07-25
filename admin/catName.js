@@ -152,6 +152,68 @@ function hideCategory() {
 	document.getElementById("catDisplay").value = "false";
 }
 
+function mainCategorySelect1Change (mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
+	mainCategorySelect2.length = 1; // remove all options bar first
+	mainCategorySelect3.length = 1; // remove all options bar first
+	mainCategorySelect4.length = 1; // remove all options bar first
+	if (mainCategorySelect1.selectedIndex < 1) {
+		return; // done
+	}
+
+	if (!DDCjson[mainCategorySelect1.value].subordinates) {
+		// hides sub category if not available
+		mainCategorySelect2.disabled = true;
+		mainCategorySelect3.disabled = true;
+		mainCategorySelect4.disabled = true;
+	} else {
+		mainCategorySelect2.disabled = false;
+		mainCategorySelect3.disabled = false;
+		mainCategorySelect4.disabled = false;
+
+		c1(mainCategorySelect1, mainCategorySelect2);
+		console.log(mainCategorySelect1.selectedIndex);
+	}
+};
+
+function mainCategorySelect2Change (mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
+	mainCategorySelect3.length = 1; // remove all options bar first
+	mainCategorySelect4.length = 1; // remove all options bar first
+	if (mainCategorySelect2.selectedIndex < 1) {
+		return; // done
+	}
+
+	if (
+		!DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates
+	) {
+		// hides sub category if not available
+		mainCategorySelect3.disabled = true;
+		mainCategorySelect4.disabled = true;
+	} else {
+		mainCategorySelect3.disabled = false;
+		mainCategorySelect4.disabled = false;
+		c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
+	}
+};
+
+function mainCategorySelect3Change(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
+	mainCategorySelect4.length = 1; // remove all options bar first
+
+	if (mainCategorySelect3.selectedIndex < 1) {
+		return; // done
+	}
+
+	if (
+		!DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
+			.subordinates[mainCategorySelect3.value].subordinates
+	) {
+		// hides sub category if not available
+		mainCategorySelect4.disabled = true;
+	} else {
+		mainCategorySelect4.disabled = false;
+		c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
+	}
+};
+
 function c1(mainCategorySelect1, mainCategorySelect2) {
 	for (
 		var mainCategory = 0;
