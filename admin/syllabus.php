@@ -102,7 +102,8 @@
         </div>
       </div>
     </div>
-  </div> <!-- landing -->
+  </div>
+  <!-- landing -->
   <section>
     <div class="container pt-4 mb-4" style="margin-top: 10vh;">
       <div class="jumbotron bg-green shadow">
