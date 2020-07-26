@@ -10,23 +10,19 @@ include("db.php");
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
-  <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
-  <!-- <script
-    src="https://kit.fontawesome.com/97f3c2998d.js"
-    crossorigin="anonymous"
-  ></script> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="./assets/css/common.css" />
+  <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/shards-ui/dist/css/shards.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/common.css" />
   <!-- <link rel="stylesheet" href="./assets/css/chat.sass" /> -->
   <style>
     :root {
       --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       --msger-bg: #fff;
       --border: 2px solid #ddd;
-      --left-msg-bg: #ececec;
-      --right-msg-bg: #579ffb;
+      --left-msg-bg: #f6f4f2;
+      --right-msg-bg: #fe4a49;
     }
 
     .msger {
@@ -35,8 +31,7 @@ include("db.php");
       justify-content: space-between;
       width: 100%;
       height: 88vh;
-      border: var(--border);
-      border-radius: 5px;
+      border-radius: 10px;
       background: var(--msger-bg);
     }
 
@@ -45,14 +40,17 @@ include("db.php");
       justify-content: space-between;
       padding: 10px;
       border-bottom: var(--border);
-      background: #eee;
+      background: #fe4a49;
       color: #666;
+      border-radius: 10px;
     }
 
     .msger-chat {
       flex: 1;
       overflow-y: auto;
-      padding: 10px;
+      padding: 20px;
+      background-color: #4ad7d1;
+      margin-top: -10px;
     }
 
     .msger-chat::-webkit-scrollbar {
@@ -132,7 +130,6 @@ include("db.php");
     .msger-inputarea {
       display: flex;
       padding: 10px;
-      border-top: var(--border);
       background: #eee;
     }
 
@@ -144,7 +141,7 @@ include("db.php");
 
     .msger-input {
       flex: 1;
-      background: #ddd;
+      background: #fff;
     }
   </style>
 </head>
@@ -171,7 +168,7 @@ include("db.php");
               <a class="dropdown-item" href="addBooks.php">Add Books</a>
               <a class="dropdown-item" href="shelf.php">Shelf</a>
               <a class="dropdown-item" href="record.php">Record</a>
-              <a class="dropdown-item" href="recommend.php">Syllabus</a>
+              <a class="dropdown-item" href="syllabus.php">Syllabus</a>
             </div>
           </li>
           <li class="nav-item active">
@@ -233,7 +230,7 @@ include("db.php");
   <div class="container-fluid" style="padding-top: 10vh;">
     <div class="msger">
       <div class="msger-header">
-        <h3 class="msger-header-title font-weight-bold mb-0">
+        <h3 class="msger-header-title font-weight-bold text-white">
           Chatroom
         </h3>
         <div class="msger-header-options">
@@ -287,7 +284,7 @@ include("db.php");
       </div>
       <div class="msger-inputarea">
         <input id="message-to-send" type="text" class="msger-input form-control" placeholder="Enter your message...">
-        <button type="button" class="btn btn-success ml-2" onclick="sendMsg()" id="send">Send</button>
+        <button type="button" class="btn btn-orange ml-2" onclick="sendMsg()" id="send">Send</button>
       </div>
     </div>
 

@@ -18,11 +18,11 @@ $adminLevelstmt->bindParam(':adminID', $adminID);
 $adminLevelstmt->execute();
 $adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
 
-if($access > $adminLevel){
-	$conn = null;
-	session_start();
+if ($access > $adminLevel) {
+    $conn = null;
+    session_start();
     $_SESSION['AccessError'] = "WARNING: Access not granted.";
-	header("Location: home.php");
+    header("Location: home.php");
 }
 ?>
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ if($access > $adminLevel){
                             <a class="dropdown-item" href="addBooks.php">Add Books</a>
                             <a class="dropdown-item" href="shelf.php">Shelf</a>
                             <a class="dropdown-item" href="record.php">Record</a>
-                            <a class="dropdown-item" href="recommend.php">Syllabus</a>
+                            <a class="dropdown-item" href="syllabus.php">Syllabus</a>
                         </div>
                     </li>
                     <li class="nav-item active">

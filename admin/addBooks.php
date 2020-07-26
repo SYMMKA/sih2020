@@ -53,7 +53,7 @@ include("session.php");
 							<a class="dropdown-item" href="addBooks.php">Add Books</a>
 							<a class="dropdown-item" href="shelf.php">Shelf</a>
 							<a class="dropdown-item" href="record.php">Record</a>
-							<a class="dropdown-item" href="recommend.php">Syllabus</a>
+							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
 						</div>
 					</li>
 					<li class="nav-item active">
