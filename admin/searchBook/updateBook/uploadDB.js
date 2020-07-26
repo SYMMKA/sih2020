@@ -14,51 +14,45 @@ function updateBook(e) {
     if (!imgFile) imgFile = null;
     var addQuan = getInputVal("updateaddcopies");
     var pageCount = getInputVal("updatepageCount");
-	var mediaFile = $("#mediaFile")[0].files[0]; //digital
-	var source = '';
-	var dop = '';
-	var oldID = '';
-	var money = '';
-	
-	if(addQuan>0) {
-		source = getInputVal("sourceUpdate");
-		dop = getInputVal("dopUpdate");
-		money = getInputVal("updatemoney");
-		dop = new Date(dop).valueOf()/1000;
-		oldID = [];
-		for(var i=1; i<=addQuan; i++) {
-			oldID[i-1] = getInputVal("oldID"+i);
-		}
-		oldID = JSON.stringify(oldID);
-	}
-	var receiptFile = $('#receiptFile')[0].files[0]; //receipt
+    var mediaFile = $("#mediaFile")[0].files[0]; //digital
+    var source = "";
+    var dop = "";
+    var oldID = "";
+    var money = "";
+
+    if (addQuan > 0) {
+        source = getInputVal("sourceUpdate");
+        dop = getInputVal("dopUpdate");
+        money = getInputVal("updatemoney");
+        dop = new Date(dop).valueOf() / 1000;
+        oldID = [];
+        for (var i = 1; i <= addQuan; i++) {
+            oldID[i - 1] = getInputVal("oldID" + i);
+        }
+        oldID = JSON.stringify(oldID);
+    }
+    var receiptFile = $("#receiptFile")[0].files[0]; //receipt
 
     var updateCategory1 = "";
     var updateCategory2 = "";
     var updateCategory3 = "";
     var updateCategory4 = "";
-    if (getInputVal("catDisplay") == "true") {
-        if (updateCategorySelect1.value)
-            updateCategory1 =
-                updateCategorySelect1.options[
-                    updateCategorySelect1.selectedIndex
-                ].text;
-        if (updateCategorySelect2.value)
-            updateCategory2 =
-                updateCategorySelect2.options[
-                    updateCategorySelect2.selectedIndex
-                ].text;
-        if (updateCategorySelect3.value)
-            updateCategory3 =
-                updateCategorySelect3.options[
-                    updateCategorySelect3.selectedIndex
-                ].text;
-        if (updateCategorySelect4.value)
-            updateCategory4 =
-                updateCategorySelect4.options[
-                    updateCategorySelect4.selectedIndex
-                ].text;
-    }
+    if (updateCategorySelect1.value)
+        updateCategory1 =
+            updateCategorySelect1.options[updateCategorySelect1.selectedIndex]
+                .text;
+    if (updateCategorySelect2.value)
+        updateCategory2 =
+            updateCategorySelect2.options[updateCategorySelect2.selectedIndex]
+                .text;
+    if (updateCategorySelect3.value)
+        updateCategory3 =
+            updateCategorySelect3.options[updateCategorySelect3.selectedIndex]
+                .text;
+    if (updateCategorySelect4.value)
+        updateCategory4 =
+            updateCategorySelect4.options[updateCategorySelect4.selectedIndex]
+                .text;
     //console.log(updateCategory4);
 
     var formData = new FormData();
@@ -80,7 +74,7 @@ function updateBook(e) {
     formData.append("dop", dop);
     formData.append("oldID", oldID);
     formData.append("money", money);
-	formData.append('receiptFile', receiptFile);
+    formData.append("receiptFile", receiptFile);
 
     $.ajax({
         type: "POST",

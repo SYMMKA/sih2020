@@ -150,30 +150,85 @@ include("db.php");
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" style="background-color: transparent;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Library Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Add</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+              <a class="dropdown-item" href="addBooks.php">Add Books</a>
+              <a class="dropdown-item" href="shelf.php">Shelf</a>
+              <a class="dropdown-item" href="record.php">Record</a>
+              <a class="dropdown-item" href="recommend.php">Syllabus</a>
+            </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Shelf <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
+              <div class="dropdown-divider"></div>
+              <a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <!-- change password -->
+  <div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="form-group row">
+              <label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPass1" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPass2" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-orange" data-dismiss="modal" id="savePass">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container-fluid" style="padding-top: 10vh;">
     <div class="msger">

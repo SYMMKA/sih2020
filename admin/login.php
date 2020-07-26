@@ -56,9 +56,6 @@
                                 <button class="btn btn-lg btn-orange btn-block text-uppercase font-weight-bold mb-2" type="button" id="loginButton">
                                     Sign in
                                 </button>
-                                <div class="text-center">
-                                    <a class="small text-white" href="#">Forgot password?</a>
-                                </div>
                             </div>
                         </div>
                     </div>

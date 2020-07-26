@@ -112,7 +112,10 @@ function addBook(event) {
                 processData: false, // Dont delete this
                 success: function (data) {
                     console.log(data);
-                    generateQR(data);
+                    var type = "Book";
+                    $("#typeQR").val(type);
+                    $("#qrIDs").val(data);
+                    $("#qrForm").submit();
                 },
                 //Other options
             });
@@ -137,64 +140,4 @@ function addBook(event) {
 // Function to get form values
 function getInputVal(id) {
     return document.getElementById(id).value;
-}
-
-function generateQR(data) {
-    data = JSON.parse(data);
-const bookID = data.bookID;
-	var html = `<h1>QR code</h1>`;
-	$("#QRpdf").html(html);
-    data.copyID.forEach((copyID) => {
-        var qrData = {
-            Type: "Book",
-            BookID: bookID,
-            CopyID: copyID,
-        };
-        qrData = JSON.stringify(qrData);
-        qr = new QRious({
-			element: document.querySelector('canvas'),
-			foreground: 'black',
-			size: 100,
-			value: qrData
-		});
-		console.log(qr.image);
-		$("#QRpdf").append(qr.image);
-        $("#QRpdf").append(copyID);
-	});
-
-    var HTML_Width = $("#QRpdf").width();
-    var HTML_Height = $("#QRpdf").height();
-    var top_left_margin = 15;
-    var PDF_Width = HTML_Width + top_left_margin * 2;
-    var PDF_Height = PDF_Width * 1.5 + top_left_margin * 2;
-    var canvas_image_width = HTML_Width;
-    var canvas_image_height = HTML_Height;
-
-    var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-
-    html2canvas($("#QRpdf")[0]).then(function (canvas) {
-        var imgData = canvas.toDataURL("image/png", 1.0);
-        var doc = new jsPDF("p", "pt", [PDF_Width, PDF_Height]);
-        doc.addImage(
-            imgData,
-            "PNG",
-            top_left_margin,
-            top_left_margin,
-            canvas_image_width,
-            canvas_image_height
-        );
-        for (var i = 1; i <= totalPDFPages; i++) {
-            doc.addPage(PDF_Width, PDF_Height);
-            doc.addImage(
-                imgData,
-                "PNG",
-                top_left_margin,
-                -(PDF_Height * i) + top_left_margin * 4,
-                canvas_image_width,
-                canvas_image_height
-            );
-        }
-        doc.save(bookID + ".pdf");
-    });
-    $("#QRdiv").hide();
 }

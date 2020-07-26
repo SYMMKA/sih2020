@@ -69,8 +69,7 @@ include("session.php");
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
-							<a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+							<a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
 						</div>
@@ -92,9 +91,15 @@ include("session.php");
 				<div class="modal-body">
 					<div class="container">
 						<div class="form-group row">
-							<label for="inputPass" class="col-sm-2 col-form-label">Password</label>
-							<div class="col-sm-10">
-								<input type="password" class="form-control" id="inputPass" required>
+							<label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass1" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass2" required>
 							</div>
 						</div>
 					</div>
@@ -496,6 +501,10 @@ include("session.php");
 						<button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
 						<button type="button" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange" data-dismiss="modal">Add Book</button>
 					</div>
+				</form>
+				<form id="qrForm" method="post" action="genQR.php">
+					<input type="hidden" id="typeQR" name="typeQR" />
+					<input type="hidden" id="qrIDs" name="qrIDs" />
 				</form>
 			</div>
 		</div>
