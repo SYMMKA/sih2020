@@ -753,37 +753,60 @@ if ($access > $adminLevel) {
                                 Import
                             </h4>
                             <div class="form-group row">
-                                <label for="bookImport" class="col-sm-4 col-form-label">Books</label>
-                                <div class="col-sm-8">
-                                    <input type="file" id="bookCSV" />
-                                    <button id="bookImport" type="submit" class="btn btn-info">
+                                <label for="bookImport" class="col-sm-3 col-form-label">Books</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="bookCSV">
+                                        <label class="custom-file-label" for="bookCSV">Choose file</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <button id="bookImport" type="submit" class="btn btn-info btn-block">
                                         Import Books
                                     </button>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="studentsImport" class="col-sm-4 col-form-label">Students</label>
-                                <div class="col-sm-8">
-                                    <input type="file" id="studentsCSV" />
-                                    <button id="studentsImport" type="submit" class="btn btn-info">
+                                <label for="studentsImport" class="col-sm-3 col-form-label">Students</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="studentsCSV">
+                                        <label class="custom-file-label" for="studentsCSV">Choose file</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <button id="studentsImport" type="submit" class="btn btn-info btn-block">
                                         Import Students
                                     </button>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="teachersImport" class="col-sm-4 col-form-label">Teachers</label>
-                                <div class="col-sm-8">
-                                    <input type="file" id="teachersCSV" />
-                                    <button id="teachersImport" type="submit" class="btn btn-info">
+                                <label for="teachersImport" class="col-sm-3 col-form-label">Teachers</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="teachersCSV">
+                                        <label class="custom-file-label" for="teachersCSV">Choose file</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <button id="teachersImport" type="submit" class="btn btn-info btn-block">
                                         Import Teachers
                                     </button>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="adminsImport" class="col-sm-4 col-form-label">Admins</label>
-                                <div class="col-sm-8">
-                                    <input type="file" id="adminsCSV" />
-                                    <button id="adminsImport" type="submit" class="btn btn-info">
+                                <label for="adminsImport" class="col-sm-3 col-form-label">Admins</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="adminsCSV">
+                                        <label class="custom-file-label" for="adminsCSV">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button id="adminsImport" type="submit" class="btn btn-info btn-block">
                                         Import Admins
                                     </button>
                                 </div>
@@ -796,11 +819,12 @@ if ($access > $adminLevel) {
     </section>
     <!-- Optional JavaScript -->
     <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
-    <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+    <script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="assets/node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+    <script src="assets/node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script src="./assets/js/common.js"></script>
     <script src="./assets/js/voice-search.js"></script>
     <script src="changeCred/changeCred.js"></script>
