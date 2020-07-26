@@ -124,28 +124,31 @@
   							attention to featured content or information.
   						</p>
   						<div class="col-12 row no-gutters">
-  							<div class="col-12 col-sm-7 col-md-9">
+  							<div class="col-12 col-sm-7 col-md-8">
   								<div class="search-form mr-sm-2">
   									<input class="form-control mb-2" type="search" name="searchByVoice" id="searchByVoice" placeholder="Search" aria-label="Search" />
+  									<div id="reader"></div>
   								</div>
   							</div>
-  							<div class="col-sm-5 col-md-3 row no-gutters">
+  							<div class="col-sm-5 col-md-4 row no-gutters">
   								<div class="col-auto">
   									<button type="button" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit">
   										search
   									</button>
   								</div>
   								<div class="col-auto">
-  									<button type="button" class="btn btn-blue" data-toggle="modal" data-target="#shelf">
+  									<button type="button" class="btn btn-blue mr-2 mb-2" data-toggle="modal" data-target="#shelf">
   										<i class="fa fa-plus" aria-hidden="true"></i>
+  									</button>
+  								</div>
+  								<div class="col-auto">
+  									<button type="button" value="stop" class="btn btn-success mb-2" id="qrread">
+  										<i class="fa fa-qrcode" aria-hidden="true"></i>
   									</button>
   								</div>
   							</div>
   						</div>
-  						<div id="reader" style="width:500px"></div>
-  						<div class="col-sm-5 col-md-3">
-  							<button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
-  						</div>
+
   					</div>
   					<div class="col-sm-4 d-none d-lg-block">
   						<img class="img" src="assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="

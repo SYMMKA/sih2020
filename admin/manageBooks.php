@@ -126,13 +126,23 @@ include("session.php");
                             attention to featured content or information.
                         </p>
                         <div class="col-12 row">
-                            <div class="col-12 col-sm-7 col-md-9">
+                            <div class="col-12 col-sm-7 col-md-8">
                                 <div class="search-form">
                                     <input class="form-control mb-2" type="search" name="searchByVoice" id="searchByVoice" placeholder="Search" aria-label="Search">
+                                    <div id="reader"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-5 col-md-3">
-                                <button type="button" class="btn btn-orange btn-block" id="voiceSearchSubmit">search</button>
+                            <div class="col-sm-5 col-md-4">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit">
+                                        search
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" value="stop" class="btn btn-success mb-2" id="qrread">
+                                        <i class="fa fa-qrcode" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div id="reader" style="width:500px"></div>
