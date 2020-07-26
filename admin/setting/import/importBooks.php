@@ -46,14 +46,26 @@ if (isset($_FILES['bookCSV'])) {
 						$pages = $line[$column['pages']];
 					else
 						$pages = '';
-					if (isset($column['price']))
-						$price = $line[$column['price']];
-					else
-						$price = '';
 					if (isset($column['date_of_publication']))
 						$date_of_publication = $line[$column['date_of_publication']];
 					else
 						$date_of_publication = '';
+					if (isset($column['price']))
+						$price = $line[$column['price']];
+					else
+						$price = '';
+					if (isset($column['oldID']))
+						$oldID = $line[$column['oldID']];
+					else
+						$oldID = '';
+					if (isset($column['purchaseTime']))
+						$purchaseTime = $line[$column['purchaseTime']];
+					else
+						$purchaseTime = '';
+					if (isset($column['purchaseSource']))
+						$purchaseSource = $line[$column['purchaseSource']];
+					else
+						$purchaseSource = '';
 
 					$sqlDuplicate = "SELECT * FROM `main` WHERE CONCAT(`title`,`author`,`isbn`) = CONCAT(:title,:author,:isbn)";
 					$stmtDuplicate = $conn->prepare($sqlDuplicate);
@@ -79,10 +91,14 @@ if (isset($_FILES['bookCSV'])) {
 						// Insert book in the database
 						$stmtMain->execute();
 
-						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, :copyNO, '', '', NULL, NULL, '', NULL, NULL)";
+						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES (:bookID, :copyNO, :oldID, '', NULL, NULL, '', NULL, NULL, :purchaseTime, :purchaseSource, :price)";
 						$stmtCopies = $conn->prepare($sqlCopies);
 						$stmtCopies->bindParam(':bookID', $bookID);
 						$stmtCopies->bindParam(':copyNO', $orgQuan);
+						$stmtCopies->bindParam(':oldID', $oldID);
+						$stmtCopies->bindParam(':purchaseTime', $purchaseTime);
+						$stmtCopies->bindParam(':purchaseSource', $purchaseSource);
+						$stmtCopies->bindParam(':price', $price);
 						// oldID left
 						$stmtCopies->execute();
 
@@ -96,14 +112,13 @@ if (isset($_FILES['bookCSV'])) {
 						$stmthistory->execute();
 					} else {
 						// add new book
-						$sqlMain = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `price`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`) VALUES (:title, :author, '1', :Category1, :Category2, :Category3, :Category4, :publisher, :pages, :price, '', :date_of_publication, :isbn, '1', '', '1')";
+						$sqlMain = "INSERT INTO `main` (`title`, `author`, `quantity`, `Category1`, `Category2`, `Category3`, `Category4`, `publisher`, `pages`, `imgLink`, `date_of_publication`, `isbn`, `orgQuan`, `digital`, `book`, `digitalLink`, `receiptLink`) VALUES (:title, :author, '1', :Category1, :Category2, :Category3, :Category4, :publisher, :pages, '', :date_of_publication, :isbn, '1', '0', '1', '', '')";
 						$stmtMain = $conn->prepare($sqlMain);
 						$stmtMain->bindParam(':title', $title);
 						$stmtMain->bindParam(':author', $author);
 						$stmtMain->bindParam(':isbn', $isbn);
 						$stmtMain->bindParam(':publisher', $publisher);
 						$stmtMain->bindParam(':pages', $pages);
-						$stmtMain->bindParam(':price', $price);
 						$stmtMain->bindParam(':date_of_publication', $date_of_publication);
 
 						$domain = $_SERVER['HTTP_HOST'] . '/sih2020/web';
@@ -150,18 +165,22 @@ if (isset($_FILES['bookCSV'])) {
 
 						// add copy
 						$bookID = $conn->lastInsertId();
-						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`) VALUES (:bookID, '1', '', '', NULL, NULL, '', NULL, NULL)";
+						$sqlCopies = "INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES (:bookID, '1', :oldID, '', NULL, NULL, '', NULL, NULL, :purchaseTime, :purchaseSource, :price)";
 						$stmtCopies = $conn->prepare($sqlCopies);
 						$stmtCopies->bindParam(':bookID', $bookID);
+						$stmtCopies->bindParam(':oldID', $oldID);
+						$stmtCopies->bindParam(':purchaseTime', $purchaseTime);
+						$stmtCopies->bindParam(':purchaseSource', $purchaseSource);
+						$stmtCopies->bindParam(':price', $price);
 						//oldID left
 						$stmtCopies->execute();
 
-						$sqlhistory = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, '')";
+						$sqlhistory = "INSERT INTO `history` (`copyID`, `adminID`, `studentID`, `action`, `time`, `bookID`, `oldID`) VALUES (:copyID, :adminID, NULL, 'add', UNIX_TIMESTAMP(), :bookID, :oldID)";
 						$copyID = $bookID.' - 1'; // first copy
 						$stmthistory = $conn->prepare($sqlhistory);
 						$stmthistory->bindParam(':adminID', $adminID);
 						$stmthistory->bindParam(':bookID', $bookID);
-						//$stmthistory->bindParam(':oldID', $oldID);
+						$stmthistory->bindParam(':oldID', $oldID);
 						$stmthistory->bindParam(':copyID', $copyID);
 						$stmthistory->execute();
 					}
