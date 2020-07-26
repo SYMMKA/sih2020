@@ -11,11 +11,13 @@ $(document).ready(function () {
 		var semBranchModifyAccess = $("#semBranchModifyAccess").val();
 		var bookSemBranchAccess = $("#bookSemBranchAccess").val();
 		var settingsAccess = $("#settingsAccess").val();
+		var settingsAdminAccess = $("#settingsAdminAccess").val();
 		if (
 			(addBookAccess != "" &&
 			issueAccess != "" &&
 			bookShelfAccess != "" &&
 			settingsAccess != "" &&
+			settingsAdminAccess != "" &&
 			updateBookAccess != "" &&
 			returnAccess != "" &&
 			semBranchModifyAccess != "" &&
@@ -31,6 +33,7 @@ $(document).ready(function () {
 					issueAccess: issueAccess,
 					bookShelfAccess: bookShelfAccess,
 					settingsAccess: settingsAccess,
+					settingsAdminAccess: settingsAdminAccess,
 					updateBookAccess: updateBookAccess,
 					returnAccess: returnAccess,
 					semBranchModifyAccess: semBranchModifyAccess,
@@ -38,7 +41,8 @@ $(document).ready(function () {
 					bookSemBranchAccess: bookSemBranchAccess,
 				},
 				success: function (data) {
-					alert(data);
+					if(data)
+						alert(data);
 				},
 				error: function (error) {
 					alert(error);
@@ -65,6 +69,7 @@ function orgPrivilegeValues(){
 			$("#semBranchModifyAccess").val(data.semBranchModifyAccess);
 			$("#bookSemBranchAccess").val(data.bookSemBranchAccess);
 			$("#settingsAccess").val(data.settingsAccess);
+			$("#settingsAdminAccess").val(data.settingsAdminAccess);
 		}
 	});
 }

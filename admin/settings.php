@@ -1,3 +1,30 @@
+<?php
+//include connection file 
+include("session.php");
+include("db.php");
+
+$adminID = $_SESSION['adminID'];
+
+// check clearance level required
+$accessSQL = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'settingsAccess'";
+$accessstmt = $conn->prepare($accessSQL);
+$accessstmt->execute();
+$access = (int)$accessstmt->fetchObject()->value;
+
+// check admin clearance level
+$adminLevelSQL = "SELECT `clearance` FROM `adminlogin` WHERE `adminlogin`.`userID` = :adminID ";
+$adminLevelstmt = $conn->prepare($adminLevelSQL);
+$adminLevelstmt->bindParam(':adminID', $adminID);
+$adminLevelstmt->execute();
+$adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
+
+if($access > $adminLevel){
+	$conn = null;
+	session_start();
+    $_SESSION['AccessError'] = "WARNING: Access not granted.";
+	header("Location: home.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -276,55 +303,61 @@
                                 <div class="form-group row">
                                     <label for="issueAccess" class="col-sm-4 col-form-label">Issue Access</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="issueAccess" />
+                                        <input class="form-control" type="number" min="1" id="issueAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="returnAccess" class="col-sm-4 col-form-label">Reserve Access</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="returnAccess" />
+                                        <input class="form-control" type="number" min="1" id="returnAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="addBookAccess" class="col-sm-4 col-form-label">Add Book</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="addBookAccess" />
+                                        <input class="form-control" type="number" min="1" id="addBookAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="updateBookAccess" class="col-sm-4 col-form-label">Update Book</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="updateBookAccess" />
+                                        <input class="form-control" type="number" min="1" id="updateBookAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="shelfModifyAccess" class="col-sm-4 col-form-label">Shelf Modify</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="shelfModifyAccess" />
+                                        <input class="form-control" type="number" min="1" id="shelfModifyAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="bookShelfAccess" class="col-sm-4 col-form-label">Books in Shelf</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="bookShelfAccess" />
+                                        <input class="form-control" type="number" min="1" id="bookShelfAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="semBranchModifyAccess" class="col-sm-4 col-form-label">Sem-Branch</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="semBranchModifyAccess" />
+                                        <input class="form-control" type="number" min="1" id="semBranchModifyAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="bookSemBranchAccess" class="col-sm-4 col-form-label">Recommend Books</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="bookSemBranchAccess" />
+                                        <input class="form-control" type="number" min="1" id="bookSemBranchAccess" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="settingsAccess" class="col-sm-4 col-form-label">Settings</label>
+                                    <label for="settingsAccess" class="col-sm-4 col-form-label">Settings Page</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" type="number" min="0" id="settingsAccess" />
+                                        <input class="form-control" type="number" min="1" id="settingsAccess" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="settingsAccess" class="col-sm-4 col-form-label">Settings Admin</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" type="number" min="1" id="settingsAdminAccess" />
                                     </div>
                                 </div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">

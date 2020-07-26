@@ -101,7 +101,8 @@ $(document).ready(function () {
 				contentType: false, // Dont delete this (jQuery 1.6+)
 				processData: false, // Dont delete this
 				success: function (data) {
-					console.log(data);
+					if(data)
+						alert(data);
 				},
 				error: function (error) {
 					alert(error);
@@ -157,7 +158,8 @@ $(document).ready(function () {
 					contentType: false, // Dont delete this (jQuery 1.6+)
 					processData: false, // Dont delete this
 					success: function (data) {
-						console.log(data);
+						if(data)
+							alert(data);
 					},
 					error: function (error) {
 						alert(error);

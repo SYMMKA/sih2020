@@ -7,6 +7,7 @@ $addBookAccessParam = 'addBookAccess';
 $issueAccessParam = 'issueAccess';
 $bookShelfAccessParam = 'bookShelfAccess';
 $settingsAccessParam = 'settingsAccess';
+$settingsAdminAccessParam = 'settingsAdminAccess';
 $updateBookAccessParam = 'updateBookAccess';
 $returnAccessParam = 'returnAccess';
 $semBranchModifyAccessParam = 'semBranchModifyAccess';
@@ -35,6 +36,11 @@ $stmt->bindParam(':parameter', $settingsAccessParam);
 $stmt->execute();
 $settingsAccess = $stmt->fetchObject()->value;
 $return['settingsAccess'] = $settingsAccess;
+
+$stmt->bindParam(':parameter', $settingsAdminAccessParam);
+$stmt->execute();
+$settingsAdminAccess = $stmt->fetchObject()->value;
+$return['settingsAdminAccess'] = $settingsAdminAccess;
 
 $stmt->bindParam(':parameter', $updateBookAccessParam);
 $stmt->execute();
