@@ -72,4 +72,6 @@ if (isset($_FILES['studentsCSV'])) {
 	echo $qstring;
 }
 
+$conn = null;
+
 ?>

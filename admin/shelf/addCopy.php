@@ -234,6 +234,8 @@ include("../db.php");
 					$stmt2->execute();
 					$row2 = $stmt2->fetchObject();
 					$star[$i] = $row2->STAR;
+
+					$conn = null;
 				?>
 					<div class="col mb-4">
 						<div class="card h-100">

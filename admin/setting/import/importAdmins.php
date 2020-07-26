@@ -98,4 +98,6 @@ if (isset($_FILES['adminsCSV'])) {
 	echo $qstring;
 }
 
+$conn = null;
+
 ?>

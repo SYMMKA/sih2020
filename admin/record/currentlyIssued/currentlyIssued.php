@@ -19,8 +19,8 @@ try {
         $return[] = $data;
     }
 
-
     exit(json_encode($return));
 } catch (PDOException $e) {
     exit($e);
 }
+$conn = null;

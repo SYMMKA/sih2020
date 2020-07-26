@@ -13,3 +13,5 @@ while ($result = $stmt->fetchObject()) {
     $return_arr[$branch][$sem] = $result->sem_branchID;
 }
 echo json_encode($return_arr);
+
+$conn = null;

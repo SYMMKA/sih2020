@@ -11,3 +11,5 @@ while ($result = $stmt->fetchObject()) {
 	$return_arr[] = $result->userID;
 }
 echo json_encode($return_arr);
+
+$conn = null;
