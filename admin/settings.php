@@ -288,6 +288,12 @@ if ($access > $adminLevel) {
                                         <input class="form-control" type="number" min="0" id="teacherRatingPoint" />
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="UPIaddress" class="col-sm-4 col-form-label">UPI Address</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" type="text" id="UPIaddress" />
+                                    </div>
+                                </div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
                                         <button type="button" class="btn btn-danger" onclick="orgGeneralValues()">
@@ -405,7 +411,7 @@ if ($access > $adminLevel) {
                                     </button>
                                 </div>
                             </div>
-                            <form id="qrForm" method="post" action="genQR.php">
+                            <form id="qrForm" method="post" action="genQR.php" target="_blank">
                                 <input type="hidden" id="typeQR" name="typeQR" />
                                 <input type="hidden" id="qrIDs" name="qrIDs" />
                             </form>

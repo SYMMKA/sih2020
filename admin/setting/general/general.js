@@ -12,6 +12,7 @@ $(document).ready(function () {
 		var returnPoint = $("#returnPoint").val();
 		var duePoint = $("#duePoint").val();
 		var ratingPoint = $("#ratingPoint").val();
+		var UPIaddress = $("#UPIaddress").val();
 
 		//teacher
 		var teacherIssuePeriod = $("#teacherIssuePeriod").val();
@@ -23,6 +24,7 @@ $(document).ready(function () {
 		var teacherReturnPoint = $("#teacherReturnPoint").val();
 		var teacherDuePoint = $("#teacherDuePoint").val();
 		var teacherRatingPoint = $("#teacherRatingPoint").val();
+		var UPIaddress = $("#UPIaddress").val();
 		if (
 			(issueLimit != "" &&
 			issuePeriod != "" &&
@@ -41,7 +43,8 @@ $(document).ready(function () {
 			teacherIssuePoint != "" &&
 			teacherReturnPoint != "" &&
 			teacherDuePoint != "" &&
-			teacherRatingPoint != "")
+			teacherRatingPoint != "" &&
+			UPIaddress != "")
 		) {
 			$.ajax({
 				url: "setting/general/general.php",
@@ -66,6 +69,7 @@ $(document).ready(function () {
 					teacherReturnPoint: teacherReturnPoint,
 					teacherDuePoint: teacherDuePoint,
 					teacherRatingPoint: teacherRatingPoint,
+					UPIaddress: UPIaddress,
 				},
 				success: function (data) {
 					alert(data);
@@ -108,6 +112,9 @@ function orgGeneralValues(){
 			$("#teacherReturnPoint").val(data.teacherReturnPoint);
 			$("#teacherDuePoint").val(data.teacherDuePoint);
 			$("#teacherRatingPoint").val(data.teacherRatingPoint);
+
+			// UPI for payment
+			$("#UPIaddress").val(data.UPIaddress);
 		}
 	});
 }

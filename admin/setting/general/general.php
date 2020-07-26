@@ -60,6 +60,10 @@ $teacherDuePointParam = 'teacherDuePoint';
 $teacherRatingPoint = $_POST['teacherRatingPoint'];
 $teacherRatingPointParam = 'teacherRatingPoint';
 
+// UPI for payment
+$UPIaddress = $_POST['UPIaddress'];
+$UPIaddressParam = 'UPIaddress';
+
 try {
 	$sql = "UPDATE `setting` SET `value` = :val WHERE `setting`.`parameter` = :parameter";
 	$stmt = $conn->prepare($sql);
@@ -136,6 +140,11 @@ try {
 
 	$stmt->bindParam(':val', $teacherRatingPoint);
 	$stmt->bindParam(':parameter', $teacherRatingPointParam);
+	$stmt->execute();
+
+	// UPI for payment
+	$stmt->bindParam(':val', $UPIaddress);
+	$stmt->bindParam(':parameter', $UPIaddressParam);
 	$stmt->execute();
 
 	exit('success');

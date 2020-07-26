@@ -502,7 +502,7 @@ include("session.php");
 						<button type="button" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange" data-dismiss="modal">Add Book</button>
 					</div>
 				</form>
-				<form id="qrForm" method="post" action="genQR.php">
+				<form id="qrForm" method="post" action="genQR.php" target="_blank">
 					<input type="hidden" id="typeQR" name="typeQR" />
 					<input type="hidden" id="qrIDs" name="qrIDs" />
 				</form>

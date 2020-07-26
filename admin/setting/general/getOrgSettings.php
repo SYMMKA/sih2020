@@ -23,6 +23,8 @@ $teacherReserveNumParam = 'teacherReserveNum';
 $teacherReservePeriodParam = 'teacherReservePeriod';
 $teacherReturnPointParam = 'teacherReturnPoint';
 
+$UPIaddressParam = 'UPIaddress';
+
 $sql = "SELECT `value` FROM `setting` WHERE `parameter` = :parameter";
 $stmt = $conn->prepare($sql);
 
@@ -117,6 +119,12 @@ $stmt->bindParam(':parameter', $teacherReturnPointParam);
 $stmt->execute();
 $teacherReturnPoint = $stmt->fetchObject()->value;
 $return['teacherReturnPoint'] = $teacherReturnPoint;
+
+// UPi for payment
+$stmt->bindParam(':parameter', $UPIaddressParam);
+$stmt->execute();
+$UPIaddress = $stmt->fetchObject()->value;
+$return['UPIaddress'] = $UPIaddress;
 
 echo json_encode($return);
 $conn = null;

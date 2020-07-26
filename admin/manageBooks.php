@@ -434,7 +434,7 @@ include("session.php");
                                     </div>
                                 </div>
                             </div>
-                            <form id="qrForm" method="post" action="genQR.php">
+                            <form id="qrForm" method="post" action="genQR.php" target="_blank">
                                 <input type="hidden" id="typeQR" name="typeQR" />
                                 <input type="hidden" id="qrIDs" name="qrIDs" />
                             </form>
