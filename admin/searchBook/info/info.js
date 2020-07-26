@@ -77,15 +77,23 @@ function autoFillInfo(i) {
 }
 
 $("#genQRcode").click(() => {
-    var copyIDObj = $("#copyIDQR").val();
-    var bookID = $("#bookIDInfo").text();
-    copyIDObj.forEach((copyID) => {
-        var qrData = {
-            Type: "Book",
-            BookID: bookID,
-            CopyID: copyID,
-        };
-        qrData = JSON.stringify(qrData);
-        console.log(qrData);
+	var copyIDs = JSON.stringify($("#copyIDQR").val());
+	var bookID = parseInt($("#bookIDInfo").text());
+	var formData = new FormData();
+	formData.append('copyIDs', copyIDs);
+	formData.append('bookID', bookID);
+	$.ajax({
+        type: "POST",
+        url: "searchBook/info/qr.php",
+        data: formData,
+        contentType: false, // Dont delete this (jQuery 1.6+)
+        processData: false, // Dont delete this
+        success: function (data) {
+			var type = "Book";
+			$('#typeQR').val(type);
+			$('#qrIDs').val(data);
+			$('#qrForm').submit();
+        },
+        //Other options
     });
 });
