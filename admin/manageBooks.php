@@ -125,14 +125,14 @@ include("session.php");
                             jumbotron-style component for calling extra
                             attention to featured content or information.
                         </p>
-                        <div class="col-12 row">
+                        <div class="col-12 row no-gutters">
                             <div class="col-12 col-sm-7 col-md-8">
-                                <div class="search-form">
+                                <div class="search-form  mr-sm-2">
                                     <input class="form-control mb-2" type="search" name="searchByVoice" id="searchByVoice" placeholder="Search" aria-label="Search">
                                     <div id="reader"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-5 col-md-4">
+                            <div class="col-sm-5 col-md-4 row no-gutters">
                                 <div class="col-auto">
                                     <button type="button" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit">
                                         search
@@ -144,10 +144,6 @@ include("session.php");
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                        <div id="reader" style="width:500px"></div>
-                        <div class="col-sm-5 col-md-3">
-                            <button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
                         </div>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
