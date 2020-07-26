@@ -52,34 +52,60 @@ include("session.php");
                             <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
                             <a class="dropdown-item" href="addBooks.php">Add Books</a>
                             <a class="dropdown-item" href="shelf.php">Shelf</a>
-                            <a class="dropdown-item" href="report.php">Report</a>
-                            <a class="dropdown-item" href="due.php">Due Page</a>
+                            <a class="dropdown-item" href="record.php">Record</a>
                             <a class="dropdown-item" href="recommend.php">Syllabus</a>
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><?= $adminID ?> </a>
+                            <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Change username</a>
-                            <a class="dropdown-item" href="#">Change password</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><button class="btn btn-danger btn-block">Logout</button></a>
+                            <a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- change password -->
+    <div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="form-group row">
+                            <label for="inputPass" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputPass" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-orange" data-dismiss="modal" id="savePass">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- main section -->
     <section>
         <div class="container pt-4 mb-4" style="margin-top: 10vh;">
@@ -104,10 +130,10 @@ include("session.php");
                                 <button type="button" class="btn btn-orange btn-block" id="voiceSearchSubmit">search</button>
                             </div>
                         </div>
-						<div id="reader" style="width:500px"></div>
-						<div class="col-sm-5 col-md-3">
-							<button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
-						</div>
+                        <div id="reader" style="width:500px"></div>
+                        <div class="col-sm-5 col-md-3">
+                            <button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
+                        </div>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
                         <img class="img" src="assets/FINAL MEDIA/undraw_reading_0re1.svg" alt="" style="
@@ -232,16 +258,15 @@ include("session.php");
                             <div class="form-group row">
                                 <label for="updateCategory" class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-10">
-                                    <button type="button" class="btn btn-orange" name="updateCategory" id="updateCategory">
+                                    <button type="button" class="btn btn-orange" name="updateCategory" id="updateCategory" onclick="displayCategory()">
                                         click here
                                     </button>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" id="categoryDisplay" hidden>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10" id="category"></div>
                             </div>
-                            <input type="hidden" value="false" id="catDisplay" />
                             <div class="form-group row">
                                 <label for="updatepublisher" class="col-sm-2 col-form-label">Publisher</label>
                                 <div class="col-sm-10">
@@ -285,16 +310,16 @@ include("session.php");
                                         <label class="custom-file-label" id="mediaFile">Choose file</label>
                                     </div>
                                 </div>
-							</div>
-							<div class="form-group row">
-								<label for="" class="col-sm-2 col-form-label">Receipt</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="receiptFile" />
-									<div class="invalid-feedback">
-										Import File
-									</div>
-								</div>
-							</div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Receipt</label>
+                                <div class="col-sm-10">
+                                    <input type="file" class="form-control-file" id="receiptFile" />
+                                    <div class="invalid-feedback">
+                                        Import File
+                                    </div>
+                                </div>
+                            </div>
                             <div id="copyInfo">
                             </div>
                         </div>
@@ -406,6 +431,10 @@ include("session.php");
                                     </div>
                                 </div>
                             </div>
+                            <form id="qrForm" method="post" action="genQR.php">
+                                <input type="hidden" id="typeQR" name="typeQR" />
+                                <input type="hidden" id="qrIDs" name="qrIDs" />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -455,10 +484,11 @@ include("session.php");
     <script src="searchBook/updateBook/uploadDB.js"></script>
     <script src="searchBook/deleteCopy/uploadDB.js"></script>
     <script src="./assets/js/common.js"></script>
+    <script src="changeCred/changeCred.js"></script>
     <script src="./assets/js/voice-search.js"></script>
-	<script src="manageBooks/manageBooks.js"></script>
-	<script src="assets/node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
-	<script src="qrCodeReader.js"></script>
+    <script src="manageBooks/manageBooks.js"></script>
+    <script src="assets/node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="qrCodeReader.js"></script>
     <script>
         function loadCat() {
             var mainCategorySelect1 = document.getElementById("mainCategorySelect1");

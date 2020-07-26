@@ -1,22 +1,38 @@
 function autoFillUpdateBook(i) {
-    i = parseInt(i);
-
-    $("#updateCategory").on("click", fillUpdateCat);
+	i = parseInt(i);
+	fillUpdateCat();
 
     function fillUpdateCat() {
-        showCategory();
-        document.getElementById("updateCategorySelect1").options[
-            updateCategorySelect1.selectedIndex
-        ].text = Category1[i];
-        document.getElementById("updateCategorySelect2").options[
-            updateCategorySelect1.selectedIndex
-        ].text = Category2[i];
-        document.getElementById("updateCategorySelect3").options[
-            updateCategorySelect1.selectedIndex
-        ].text = Category3[i];
-        document.getElementById("updateCategorySelect4").options[
-            updateCategorySelect1.selectedIndex
-        ].text = Category4[i];
+		showCategory();
+		setTimeout( ()=> {
+			updateCategorySelect1 = document.getElementById('updateCategorySelect1');
+			updateCategorySelect2 = document.getElementById('updateCategorySelect2');
+			updateCategorySelect3 = document.getElementById('updateCategorySelect3');
+			updateCategorySelect4 = document.getElementById('updateCategorySelect4');
+			$('#updateCategorySelect1').find('option').each(function () {
+				if ($(this).text() == Category1[i]) {
+					$('#updateCategorySelect1').val($(this).val());
+					mainCategorySelect1Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
+				}
+			});
+			$('#updateCategorySelect2').find('option').each(function () {
+				if ($(this).text() == Category2[i]) {
+					$('#updateCategorySelect2').val($(this).val());
+					mainCategorySelect2Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
+				}
+			});
+			$('#updateCategorySelect3').find('option').each(function () {
+				if ($(this).text() == Category3[i]) {
+					$('#updateCategorySelect3').val($(this).val());
+					mainCategorySelect3Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
+				}
+			});
+			$('#updateCategorySelect4').find('option').each(function () {
+				if ($(this).text() == Category4[i]) {
+					$('#updateCategorySelect4').val($(this).val());
+				}
+			});
+		},200);
     }
 
     document.getElementById("booktitleUpdate").textContent = title[i];
@@ -102,3 +118,7 @@ $("#updateaddcopies").change(() => {
 		}
 	}
 });
+
+function displayCategory() {
+	document.getElementById("categoryDisplay").hidden = false
+}

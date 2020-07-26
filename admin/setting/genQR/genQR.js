@@ -53,20 +53,10 @@ function bookQR(){
 			contentType: false, // Dont delete this (jQuery 1.6+)
 			processData: false, // Dont delete this
 			success: function (data) {
-				var qrData;
-				var data = JSON.parse(data);
-				for(var bookID in data){
-					data[bookID].forEach(copyID => {
-						qrData = {
-							"Type": "Book",
-							"BookID": bookID,
-							"CopyID": copyID
-						};
-						qrData = JSON.stringify(qrData);
-						// QR code
-						console.log(qrData);
-					});
-				}
+				var type = "Book";
+				$('#typeQR').val(type);
+				$('#qrIDs').val(data);
+				$('#qrForm').submit();
 			}
 		});
 	}
@@ -76,16 +66,11 @@ function shelfQR(){
 	if (document.getElementById("shelfID").value == "") {
 		alert("Select atleast one shelf");
 	} else {
-		var shelfID = $('#shelfID').val();
-		var qrData;
-		shelfID.forEach(element => {
-			qrData = {
-				"Type": "Shelf",
-				"ShelfID": element
-			};
-			qrData = JSON.stringify(qrData);
-			// QR code
-			console.log(qrData);
-		});
+		var shelfIDs = $('#shelfID').val();
+		var shelfIDs = JSON.stringify(shelfIDs);
+		var type = "Shelf";
+		$('#typeQR').val(type);
+		$('#qrIDs').val(shelfIDs);
+		$('#qrForm').submit();
 	}
 }
