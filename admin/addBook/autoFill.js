@@ -14,12 +14,6 @@ function autoFill(i) {
         document.getElementById("imgLink").hidden = false;
     }
     searchDDC(); // autoload ddc columns
-    hideResult();
-}
-
-function hideResult() {
-    $("#searchResults").toggle();
-    window.scrollTo(0, $("#addForm").offset().top);
 }
 
 $("#quantity").change(() => {

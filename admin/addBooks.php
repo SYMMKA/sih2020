@@ -127,7 +127,7 @@ include("session.php");
 							<form class="row row no-gutters" method="post" action="addBooks.php">
 								<div class="col-12 col-sm-7 col-md-9">
 									<div class="search-form mr-sm-2">
-										<input class="form-control mb-2" ttype="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
+										<input class="form-control mb-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
 									</div>
 								</div>
 								<div class="col-sm-5 col-md-3 row no-gutters">
@@ -523,9 +523,6 @@ include("session.php");
 	<script src="assets/js/common.js"></script>
 	<script src="changeCred/changeCred.js"></script>
 	<script src="assets/js/voice-search.js"></script>
-	<script src="assets/node_modules/qrious/dist/qrious.min.js"></script>
-	<script src="jsPDF-master/dist/jspdf.min.js"></script>
-	<script src="assets/js/html2canvas.min.js"></script>
 
 	<script>
 		title = <?php echo json_encode($title); ?>;
@@ -545,13 +542,13 @@ include("session.php");
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-
+	<script src="addBook/navigation.js"></script>
 	<?php
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
 		echo "<script>
 				document.getElementById('search').value = '" . $searchq . "';
-				document.getElementById('search_form').submit();
+				document.getElementById('voiceSearchSubmit').click();
 			</script>";
 	}
 	?>
