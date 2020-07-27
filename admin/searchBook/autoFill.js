@@ -37,7 +37,7 @@ function autoFillBook(i) {
                 data.forEach(function (item, index) {
                     html += `
                 <div class="col mb-4">
-                        <div class="card h-75">`;
+                        <div class="card h-100">`;
                     html +=
                         ` <div class="card-body" style="padding: 1rem;">
                             <h5 class="card-title text-center"><strong>Copy No: </strong>` +
