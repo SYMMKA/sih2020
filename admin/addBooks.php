@@ -118,12 +118,10 @@ include("session.php");
 				<div class="row justify-content-center">
 					<div class="row col-12 col-lg-8">
 						<h2 class="heading font-weight-bold">
-							Add Books
+							Add Assets
 						</h2>
 						<p class="lead">
-							This is a simple hero unit, a simple
-							jumbotron-style component for calling extra
-							attention to featured content or information.
+							Find books and material to add to your library here.
 						</p>
 						<div class="col-12">
 							<form class="row row no-gutters" method="post" action="addBooks.php">

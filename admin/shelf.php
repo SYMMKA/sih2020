@@ -48,9 +48,9 @@
   							<i class="fa fa-book" aria-hidden="true"></i>
   						</a>
   						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-  							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
-  							<a class="dropdown-item" href="addBooks.php">Add Books</a>
-  							<a class="dropdown-item" href="shelf.php">Shelf</a>
+  							<a class="dropdown-item" href="manageBooks.php">Manage</a>
+  							<a class="dropdown-item" href="addBooks.php">Add</a>
+  							<a class="dropdown-item" href="shelf.php">Shelves</a>
   							<a class="dropdown-item" href="record.php">Record</a>
   							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
   						</div>
@@ -116,12 +116,10 @@
   				<div class="row justify-content-center">
   					<div class="row col-12 col-lg-8">
   						<h2 class="heading font-weight-bold">
-  							Manage Shelf
+  							Shelves
   						</h2>
   						<p class="lead">
-  							This is a simple hero unit, a simple
-  							jumbotron-style component for calling extra
-  							attention to featured content or information.
+  							Create, update and manage all your shelves here.
   						</p>
   						<div class="col-12 row no-gutters">
   							<div class="col-12 col-sm-7 col-md-8">

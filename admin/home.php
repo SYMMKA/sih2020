@@ -56,9 +56,9 @@ if (isset($_SESSION['AccessError'])) {
 							<i class="fa fa-book" aria-hidden="true"></i>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
-							<a class="dropdown-item" href="addBooks.php">Add Books</a>
-							<a class="dropdown-item" href="shelf.php">Shelf</a>
+							<a class="dropdown-item" href="manageBooks.php">Manage</a>
+							<a class="dropdown-item" href="addBooks.php">Add</a>
+							<a class="dropdown-item" href="shelf.php">Shelves</a>
 							<a class="dropdown-item" href="record.php">Record</a>
 							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
 						</div>
@@ -124,11 +124,10 @@ if (isset($_SESSION['AccessError'])) {
 			<div class="container h-100 pb-5">
 				<div class="row h-100 align-items-center pb-5">
 					<div class="col-12 col-lg-8">
-						<h1 class="display-5">Hi! <?= $adminID ?> </h1>
+						<h1 class="display-5">Hi <?= $adminID ?>! </h1>
 						<hr class="my-4">
 						<h1 class="display-3 font-weight-bold heading">AlphaByte</h1>
-						<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-							attention to featured content or information.</p>
+						<p class="lead">Let's start this new day with our new way of library management.</p>
 						<div class="row">
 							<div class="col">
 								<a class="btn btn-orange btn-lg mr-sm-2" href="#" role="button">Docs</a>

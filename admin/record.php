@@ -48,7 +48,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
                             <a class="dropdown-item" href="addBooks.php">Add Books</a>
-                            <a class="dropdown-item" href="shelf.php">Shelf</a>
+                            <a class="dropdown-item" href="shelf.php">Shelves</a>
                             <a class="dropdown-item" href="record.php">Record</a>
                             <a class="dropdown-item" href="syllabus.php">Syllabus</a>
                         </div>
@@ -117,9 +117,7 @@
                             Records
                         </h2>
                         <p class="lead">
-                            This is a simple hero unit, a simple
-                            jumbotron-style component for calling extra
-                            attention to featured content or information.
+                            Keep track of bills, dues and activities in your library here.
                         </p>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
@@ -286,7 +284,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="button" id="report" onclick="generateReport()" class="btn btn-info" data-dismiss="modal">
+                                        <button type="button" id="report" onclick="generateReport()" class="btn btn-orange" data-dismiss="modal">
                                             Generate Report
                                         </button>
                                     </div>

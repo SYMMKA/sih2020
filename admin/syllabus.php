@@ -46,9 +46,9 @@
               <i class="fa fa-book" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
-              <a class="dropdown-item" href="addBooks.php">Add Books</a>
-              <a class="dropdown-item" href="shelf.php">Shelf</a>
+              <a class="dropdown-item" href="manageBooks.php">Manage</a>
+              <a class="dropdown-item" href="addBooks.php">Add</a>
+              <a class="dropdown-item" href="shelf.php">Shelves</a>
               <a class="dropdown-item" href="record.php">Record</a>
               <a class="dropdown-item" href="syllabus.php">Syllabus</a>
             </div>
@@ -115,12 +115,10 @@
         <div class="row justify-content-center">
           <div class="row col-12 col-sm-8">
             <h2 class="heading font-weight-bold">
-              Syllabus
+              Update Syllabus
             </h2>
             <p class="lead">
-              This is a simple hero unit, a simple
-              jumbotron-style component for calling extra
-              attention to featured content or information.
+              Create, edit, update your branches and the respective syllabi here.
             </p>
             <div class="col-12">
               <select class="selectpicker mb-2" id="branch" title="Branch" data-style="btn-blue">

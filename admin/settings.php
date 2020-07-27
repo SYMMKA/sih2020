@@ -71,9 +71,9 @@ if ($access > $adminLevel) {
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
-                            <a class="dropdown-item" href="addBooks.php">Add Books</a>
-                            <a class="dropdown-item" href="shelf.php">Shelf</a>
+                            <a class="dropdown-item" href="manageBooks.php">Manage</a>
+                            <a class="dropdown-item" href="addBooks.php">Add</a>
+                            <a class="dropdown-item" href="shelf.php">Shelves</a>
                             <a class="dropdown-item" href="record.php">Record</a>
                             <a class="dropdown-item" href="syllabus.php">Syllabus</a>
                         </div>
@@ -139,12 +139,10 @@ if ($access > $adminLevel) {
                 <div class="row justify-content-center">
                     <div class="row col-12 col-lg-8">
                         <h2 class="heading font-weight-bold">
-                            Settings
+                            Settings.
                         </h2>
                         <p class="lead">
-                            This is a simple hero unit, a simple
-                            jumbotron-style component for calling extra
-                            attention to featured content or information.
+                            Customize AlphaByte as per your library needs here.
                         </p>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
@@ -168,7 +166,6 @@ if ($access > $adminLevel) {
                         <a class="nav-link" id="timeTable-tab" data-toggle="pill" href="#timeTable" role="tab" aria-controls="timeTable" aria-selected="false">Time Table</a>
                         <a class="nav-link" id="genQR-tab" data-toggle="pill" href="#genQR" role="tab" aria-controls="genQR" aria-selected="false">Generate QR</a>
                         <a class="nav-link" id="admin-tab" data-toggle="pill" href="#admins" role="tab" aria-controls="admins" aria-selected="false">Admins</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">User</a>
                         <a class="nav-link" id="manage-tab" data-toggle="pill" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage Users</a>
                         <a class="nav-link" id="import-tab" data-toggle="pill" href="#import" role="tab" aria-controls="import" aria-selected="false">Import</a>
                     </div>
@@ -296,10 +293,10 @@ if ($access > $adminLevel) {
                                 </div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-danger" onclick="orgGeneralValues()">
+                                        <button type="button" class="btn btn-blue" onclick="orgGeneralValues()">
                                             Reset
                                         </button>
-                                        <button type="button" class="btn btn-info" id="saveGeneral">
+                                        <button type="button" class="btn btn-orange" id="saveGeneral">
                                             Save
                                         </button>
                                     </div>
@@ -373,10 +370,10 @@ if ($access > $adminLevel) {
                                 </div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-danger" onclick="orgPrivilegeValues()">
+                                        <button type="button" class="btn btn-blue" onclick="orgPrivilegeValues()">
                                             Reset
                                         </button>
-                                        <button type="button" class="btn btn-info" id="savePrivilege">
+                                        <button type="button" class="btn btn-orange" id="savePrivilege">
                                             Save
                                         </button>
                                     </div>
@@ -394,7 +391,7 @@ if ($access > $adminLevel) {
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-info" onclick="bookQR()">
+                                    <button type="submit" class="btn btn-orange" onclick="bookQR()">
                                         Generate
                                     </button>
                                 </div>
@@ -406,7 +403,7 @@ if ($access > $adminLevel) {
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-info" onclick="shelfQR()">
+                                    <button type="submit" class="btn btn-orange" onclick="shelfQR()">
                                         Generate
                                     </button>
                                 </div>
@@ -531,10 +528,10 @@ if ($access > $adminLevel) {
                                 </div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-danger" onclick="orgTimeTableValues()">
+                                        <button type="button" class="btn btn-blue" onclick="orgTimeTableValues()">
                                             Reset
                                         </button>
-                                        <button type="button" class="btn btn-info" id="saveTimeTable">
+                                        <button type="button" class="btn btn-orange" id="saveTimeTable">
                                             Save
                                         </button>
                                     </div>
@@ -549,64 +546,17 @@ if ($access > $adminLevel) {
                                 <div id="adminClearance"></div>
                                 <div class="p-3 mb-5 bg-offwhite rounded">
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-danger" onclick="orgAdminValues()">
+                                        <button type="button" class="btn btn-blue" onclick="orgAdminValues()">
                                             Reset
                                         </button>
-                                        <button type="button" class="btn btn-info" id="saveAdmins">
+                                        <button type="button" class="btn btn-orange" id="saveAdmins">
                                             Save
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <h4 class="p-3 mb-4 bg-offwhite rounded">
-                                User Settings
-                            </h4>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-4 col-form-label">Change Email</label>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="inputEmail" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputUname" class="col-sm-4 col-form-label">Change Username</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputUname" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-4 col-form-label">Change Password</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="inputPassword" />
-                                </div>
-                            </div>
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <legend class="col-form-label col-sm-4 pt-0">
-                                        Radios
-                                    </legend>
-                                    <div class="col-sm-8">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
-                                            <label class="form-check-label" for="gridRadios1">
-                                                First radio
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Second radio
-                                            </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled />
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Third disabled radio
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                        
                             </fieldset>
                             <div class="form-group row">
                                 <div class="col-sm-4">Checkbox</div>
@@ -621,10 +571,10 @@ if ($access > $adminLevel) {
                             </div>
                             <div class="p-3 mb-5 bg-offwhite rounded">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-blue">
                                         Reset
                                     </button>
-                                    <button type="submit" class="btn btn-info">
+                                    <button type="submit" class="btn btn-orange">
                                         Save
                                     </button>
                                 </div>
@@ -745,10 +695,10 @@ if ($access > $adminLevel) {
                             </div>
                             <div class="p-3 mb-5 bg-offwhite rounded">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-blue">
                                         Reset
                                     </button>
-                                    <button type="submit" class="btn btn-info" id="saveManageUser">
+                                    <button type="submit" class="btn btn-orange" id="saveManageUser">
                                         Save
                                     </button>
                                 </div>
@@ -768,7 +718,7 @@ if ($access > $adminLevel) {
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <button id="bookImport" type="submit" class="btn btn-info btn-block">
+                                    <button id="bookImport" type="submit" class="btn btn-orange btn-block">
                                         Import Books
                                     </button>
                                 </div>
@@ -783,7 +733,7 @@ if ($access > $adminLevel) {
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <button id="studentsImport" type="submit" class="btn btn-info btn-block">
+                                    <button id="studentsImport" type="submit" class="btn btn-orange btn-block">
                                         Import Students
                                     </button>
                                 </div>
@@ -798,7 +748,7 @@ if ($access > $adminLevel) {
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <button id="teachersImport" type="submit" class="btn btn-info btn-block">
+                                    <button id="teachersImport" type="submit" class="btn btn-orange btn-block">
                                         Import Teachers
                                     </button>
                                 </div>
@@ -812,7 +762,7 @@ if ($access > $adminLevel) {
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button id="adminsImport" type="submit" class="btn btn-info btn-block">
+                                    <button id="adminsImport" type="submit" class="btn btn-orange btn-block">
                                         Import Admins
                                     </button>
                                 </div>

@@ -31,9 +31,7 @@
                                         AlphaByte
                                     </h1>
                                     <h5 class="text-white mb-4 font-weight-light">
-                                        Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit.
-                                        Cupiditate aliquid,
+                                    Home to the original information superhighway, the Dewey Decimal System.
                                     </h5>
                                 </div>
                                 <div class="form-label-group">

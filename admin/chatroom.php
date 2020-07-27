@@ -329,10 +329,10 @@ include("db.php");
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button type="button" class="btn btn-blue" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-info" id="" data-dismiss="modal">
+          <button type="button" class="btn btn-orange" id="" data-dismiss="modal">
             Save Changes
           </button>
         </div>
