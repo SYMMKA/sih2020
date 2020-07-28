@@ -16,7 +16,6 @@ $(function () {
 
     function sendChatMessage(message) {
         $("#loading").show();
-
         talkToDialogFlowApi(message);
         generateMessage(message, "user");
     }

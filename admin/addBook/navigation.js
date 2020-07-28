@@ -4,35 +4,17 @@ $(function () {
 
     var initializeSession = function () {
         $(".chat-logs").empty();
+        //uniqueSessionId = getUniqueChatSessionId();
         startGreeting();
-        enableInput();
+        setInterval(function () {
+            enableInput();
+        }, 1000);
+
         $("#loading").hide();
     };
 
-    function startGreeting() {
-        var status = location.search.substring(1);
-        if (status == "chat") {
-            var message = `Hi, Welcome to alphaByte.<br>
-			           Which book do you want to add ?<br><br>`;
-            for (var i = 1; i <= lastID; i++)
-                message +=
-                    `<button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" onclick="autoFill(` +
-                    (i - 1) +
-                    `)" class="btn btn-primary btn-sm mb-1 mr-1 chat_voiceAssistant" style="width:80px">Book ` +
-                    i +
-                    `</button>`;
-            generateMessage(message, "bot");
-            $(".chat_voiceAssistant").on("click", function () {
-                var message = "Book selected!!!";
-                //generateMessage(message, "user");
-                generateMessage(message, "bot");
-            });
-        }
-    }
-
     function sendChatMessage(message) {
         $("#loading").show();
-
         talkToDialogFlowApi(message);
         generateMessage(message, "user");
     }
@@ -68,6 +50,26 @@ $(function () {
                 },
                 1000
             );
+    }
+
+    function startGreeting() {
+        var status = location.search.substring(1);
+        if (status == "chat") {
+            var message = `Which book do you want to add ?<br><br>`;
+            for (var i = 1; i <= lastID; i++)
+                message +=
+                    `<button type="button" data-open="modal" data-target=".bd-example-modal-xl" onclick="autoFill(` +
+                    (i - 1) +
+                    `)" class="btn btn-primary btn-sm mb-1 mr-1 chat_voiceAssistant" style="width:80px">Book ` +
+                    i +
+                    `</button>`;
+            generateMessage(message, "bot");
+            $(".chat_voiceAssistant").on("click", function () {
+                var message = "book opened";
+                //generateMessage(message, "user");
+                generateMessage(message, "bot");
+            });
+        }
     }
 
     var goto = ["goto", "go", "navigate", "open", "start"];
@@ -124,6 +126,9 @@ $(function () {
     ];
 
     function talkToDialogFlowApi(message) {
+        $("#loading").hide();
+        enableInput();
+        var status = location.search.substring(1);
         mess_arr = message.toLowerCase().trim().split(" ");
         console.log(mess_arr);
         var all = [];
@@ -149,13 +154,31 @@ $(function () {
         )
             openPage(mess_arr);
         if (search.indexOf(mess_arr[0]) == 0) searchBook(mess_arr);
+        if (status == "chat") openBookModal(mess_arr);
+
         // autofill open book
         //if (message.toLowerCase().indexOf("book") == 0) console.log("good");
         // close form
         // page navigation
     }
 
+    function openBookModal(bookArr) {
+        console.log("openBookModal");
+        $(".bd-example-modal-xl").modal("show");
+        if (bookArr.includes("1")) autoFill("0");
+        if (bookArr.includes("2")) autoFill("1");
+        if (bookArr.includes("3")) autoFill("2");
+        if (bookArr.includes("4")) autoFill("3");
+        if (bookArr.includes("5")) autoFill("4");
+        if (bookArr.includes("6")) autoFill("5");
+        if (bookArr.includes("7")) autoFill("6");
+        if (bookArr.includes("8")) autoFill("7");
+        if (bookArr.includes("9")) autoFill("8");
+        generateMessage("book opened", "bot");
+    }
+
     function searchBook(searchArr) {
+        console.log("searchBook");
         var n = searchArr.lastIndexOf("in");
         if (n == -1) {
             var search = searchArr.slice(1, searchArr.length).join(" ");
@@ -190,6 +213,7 @@ $(function () {
     }
 
     function openPage(arr) {
+        console.log("openPage");
         console.log(arr.filter((value) => home.includes(value)));
         if (arr.filter((value) => home.includes(value)).length) {
             window.location.href = "home.php";
@@ -225,6 +249,11 @@ $(function () {
         $("#micSpan").show();
     };
 
+    var disableInput = function () {
+        $("#chatBotForm").children().prop("disabled", true);
+        $("#micSpan").hide();
+    };
+
     $(document).delegate(".chat-btn", "click", function () {
         var msg = $(this).attr("chat-value");
         enableInput();
@@ -233,7 +262,8 @@ $(function () {
         generateMessage(msg, "user");
     });
 
-    $("#chat-circle").click(function () {
+    $("#chat-circle, #tip-tool").click(function () {
+        $(".tool_tip").remove();
         $("#chat-circle").toggle("scale");
         $(".chat-box").toggle("scale");
         $(".chat-logs")
@@ -274,6 +304,7 @@ $(function () {
             recognition.stop();
             recognition = null;
         }
+
         updateRec();
     }
 
@@ -309,6 +340,28 @@ $(function () {
     function updateRec() {
         $("#mic").text(recognition ? "stop" : "mic");
     }
+
+    // function getUniqueChatSessionId() {
+    //     var s4 = function () {
+    //         return Math.floor((1 + Math.random()) * 0x10000)
+    //             .toString(16)
+    //             .substring(1);
+    //     };
+    //     return (
+    //         s4() +
+    //         s4() +
+    //         "-" +
+    //         s4() +
+    //         "-" +
+    //         s4() +
+    //         "-" +
+    //         s4() +
+    //         "-" +
+    //         s4() +
+    //         s4() +
+    //         s4()
+    //     );
+    // }
 
     initializeSession();
 });
