@@ -422,7 +422,7 @@ include("session.php");
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-2 col-form-label">Upload File</label>
+										<label for="" class="col-sm-2 col-form-label">Upload Bill</label>
 										<div class="col-sm-10">
 											<div class="custom-file">
 												<input type="file" class="custom-file-input" id="receiptFile">
@@ -567,6 +567,7 @@ include("session.php");
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
 	<script src="addBook/navigation.js"></script>
+	<script src="assets/js/assistant.js"></script>
 	<?php
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];

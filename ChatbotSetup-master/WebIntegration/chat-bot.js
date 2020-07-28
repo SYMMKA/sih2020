@@ -103,12 +103,7 @@ $(function () {
         generateMessage(msg, "user");
     });
 
-    $("#tip-close").click(function () {
-        $(".tool_tip").remove();
-    });
-
     $("#chat-circle, #tip-tool").click(function () {
-        $(".tool_tip").remove();
         $("#chat-circle").toggle("scale");
         $(".chat-box").toggle("scale");
         $(".chat-logs")
