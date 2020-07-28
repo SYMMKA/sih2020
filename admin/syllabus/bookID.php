@@ -12,3 +12,5 @@ while ($result = $stmt->fetchObject()) {
     $return_arr[$bookID] = $result->title;
 }
 echo json_encode($return_arr);
+
+$conn = null;

@@ -31,9 +31,7 @@
                                         AlphaByte
                                     </h1>
                                     <h5 class="text-white mb-4 font-weight-light">
-                                        Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit.
-                                        Cupiditate aliquid,
+                                    Home to the original information superhighway, the Dewey Decimal System.
                                     </h5>
                                 </div>
                                 <div class="form-label-group">
@@ -56,9 +54,6 @@
                                 <button class="btn btn-lg btn-orange btn-block text-uppercase font-weight-bold mb-2" type="button" id="loginButton">
                                     Sign in
                                 </button>
-                                <div class="text-center">
-                                    <a class="small text-white" href="#">Forgot password?</a>
-                                </div>
                             </div>
                         </div>
                     </div>

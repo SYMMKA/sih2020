@@ -10,23 +10,19 @@ include("db.php");
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
-  <link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
-  <!-- <script
-    src="https://kit.fontawesome.com/97f3c2998d.js"
-    crossorigin="anonymous"
-  ></script> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="./assets/css/common.css" />
+  <link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/shards-ui/dist/css/shards.min.css" />
+  <link rel="stylesheet" href="assets/node_modules/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/common.css" />
   <!-- <link rel="stylesheet" href="./assets/css/chat.sass" /> -->
   <style>
     :root {
       --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       --msger-bg: #fff;
       --border: 2px solid #ddd;
-      --left-msg-bg: #ececec;
-      --right-msg-bg: #579ffb;
+      --left-msg-bg: #f6f4f2;
+      --right-msg-bg: #fe4a49;
     }
 
     .msger {
@@ -35,8 +31,7 @@ include("db.php");
       justify-content: space-between;
       width: 100%;
       height: 88vh;
-      border: var(--border);
-      border-radius: 5px;
+      border-radius: 10px;
       background: var(--msger-bg);
     }
 
@@ -45,14 +40,17 @@ include("db.php");
       justify-content: space-between;
       padding: 10px;
       border-bottom: var(--border);
-      background: #eee;
+      background: #fe4a49;
       color: #666;
+      border-radius: 10px;
     }
 
     .msger-chat {
       flex: 1;
       overflow-y: auto;
-      padding: 10px;
+      padding: 20px;
+      background-color: #4ad7d1;
+      margin-top: -10px;
     }
 
     .msger-chat::-webkit-scrollbar {
@@ -132,7 +130,6 @@ include("db.php");
     .msger-inputarea {
       display: flex;
       padding: 10px;
-      border-top: var(--border);
       background: #eee;
     }
 
@@ -144,41 +141,96 @@ include("db.php");
 
     .msger-input {
       flex: 1;
-      background: #ddd;
+      background: #fff;
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" style="background-color: transparent;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Library Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Add</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+              <a class="dropdown-item" href="addBooks.php">Add Books</a>
+              <a class="dropdown-item" href="shelf.php">Shelf</a>
+              <a class="dropdown-item" href="record.php">Record</a>
+              <a class="dropdown-item" href="syllabus.php">Syllabus</a>
+            </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Shelf <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
+              <div class="dropdown-divider"></div>
+              <a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <!-- change password -->
+  <div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="form-group row">
+              <label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPass1" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPass2" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-orange" data-dismiss="modal" id="savePass">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container-fluid" style="padding-top: 10vh;">
     <div class="msger">
       <div class="msger-header">
-        <h3 class="msger-header-title font-weight-bold mb-0">
+        <h3 class="msger-header-title font-weight-bold text-white">
           Chatroom
         </h3>
         <div class="msger-header-options">
@@ -232,7 +284,7 @@ include("db.php");
       </div>
       <div class="msger-inputarea">
         <input id="message-to-send" type="text" class="msger-input form-control" placeholder="Enter your message...">
-        <button type="button" class="btn btn-success ml-2" onclick="sendMsg()" id="send">Send</button>
+        <button type="button" class="btn btn-orange ml-2" onclick="sendMsg()" id="send">Send</button>
       </div>
     </div>
 
@@ -277,10 +329,10 @@ include("db.php");
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button type="button" class="btn btn-blue" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-info" id="" data-dismiss="modal">
+          <button type="button" class="btn btn-orange" id="" data-dismiss="modal">
             Save Changes
           </button>
         </div>

@@ -49,11 +49,11 @@ include("session.php");
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
-                            <a class="dropdown-item" href="addBooks.php">Add Books</a>
-                            <a class="dropdown-item" href="shelf.php">Shelf</a>
+                            <a class="dropdown-item" href="manageBooks.php">Manage</a>
+                            <a class="dropdown-item" href="addBooks.php">Add</a>
+                            <a class="dropdown-item" href="shelf.php">Shelves</a>
                             <a class="dropdown-item" href="record.php">Record</a>
-                            <a class="dropdown-item" href="recommend.php">Syllabus</a>
+                            <a class="dropdown-item" href="syllabus.php">Syllabus</a>
                         </div>
                     </li>
                     <li class="nav-item active">
@@ -69,8 +69,7 @@ include("session.php");
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+                            <a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
                         </div>
@@ -92,9 +91,15 @@ include("session.php");
                 <div class="modal-body">
                     <div class="container">
                         <div class="form-group row">
-                            <label for="inputPass" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPass" required>
+                            <label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPass1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPass2" required>
                             </div>
                         </div>
                     </div>
@@ -113,26 +118,30 @@ include("session.php");
                 <div class="row justify-content-center">
                     <div class="row col-12 col-lg-8">
                         <h2 class="heading font-weight-bold">
-                            Manage Books
+                            Manage Assets.
                         </h2>
                         <p class="lead">
-                            This is a simple hero unit, a simple
-                            jumbotron-style component for calling extra
-                            attention to featured content or information.
+                            Issue, return, delete and update your library assets here.
                         </p>
-                        <div class="col-12 row">
-                            <div class="col-12 col-sm-7 col-md-9">
-                                <div class="search-form">
+                        <div class="col-12 row no-gutters">
+                            <div class="col-12 col-sm-7 col-md-8">
+                                <div class="search-form  mr-sm-2">
                                     <input class="form-control mb-2" type="search" name="searchByVoice" id="searchByVoice" placeholder="Search" aria-label="Search">
+                                    <div id="reader"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-5 col-md-3">
-                                <button type="button" class="btn btn-orange btn-block" id="voiceSearchSubmit">search</button>
+                            <div class="col-sm-5 col-md-4 row no-gutters">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-orange mr-2 mb-2" id="voiceSearchSubmit">
+                                        search
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" value="stop" class="btn btn-success mb-2" id="qrread">
+                                        <i class="fa fa-qrcode" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div id="reader" style="width:500px"></div>
-                        <div class="col-sm-5 col-md-3">
-                            <button type="button" value="stop" class="btn btn-orange btn-block" id="qrread">Scan</button>
                         </div>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
@@ -255,15 +264,7 @@ include("session.php");
                                     <input type="text" class="form-control update-form" name="updateISBN" id="updateISBN" />
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="updateCategory" class="col-sm-2 col-form-label">Category</label>
-                                <div class="col-sm-10">
-                                    <button type="button" class="btn btn-orange" name="updateCategory" id="updateCategory" onclick="displayCategory()">
-                                        click here
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-group row" id="categoryDisplay" hidden>
+                            <div class="form-group row" id="categoryDisplay">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10" id="category"></div>
                             </div>
@@ -431,7 +432,7 @@ include("session.php");
                                     </div>
                                 </div>
                             </div>
-                            <form id="qrForm" method="post" action="genQR.php">
+                            <form id="qrForm" method="post" action="genQR.php" target="_blank">
                                 <input type="hidden" id="typeQR" name="typeQR" />
                                 <input type="hidden" id="qrIDs" name="qrIDs" />
                             </form>

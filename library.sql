@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2020 at 03:47 PM
+-- Generation Time: Jul 26, 2020 at 08:06 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -69,7 +69,9 @@ INSERT INTO `chats` (`id`, `stud_ID`, `name`, `message`, `time`) VALUES
 (30, 'null ', 'shraddha ', 'hola', 1594473693),
 (34, '14332', 'shraddha', 'helooooo', 1594473824),
 (38, '14332', 'shraddha', 'good eve', 1594474114),
-(41, 'null ', 'shraddha ', 'for widgets that always build the same way given a particular configuration and ambient state.', 1594474494);
+(41, 'null ', 'shraddha ', 'for widgets that always build the same way given a particular configuration and ambient state.', 1594474494),
+(42, 'manu21', 'Manu', 'hola amigo', 1595605350),
+(43, 'manu21', 'Manu', 'adios', 1595619018);
 
 -- --------------------------------------------------------
 
@@ -97,19 +99,19 @@ CREATE TABLE `copies` (
 --
 
 INSERT INTO `copies` (`bookID`, `copyNO`, `oldID`, `copyID`, `stud_ID`, `time`, `status`, `returnTime`, `shelfID`, `purchaseTime`, `purchaseSource`, `price`) VALUES
-(1, 1, '', '1 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
-(1, 2, '', '1 - 2', NULL, NULL, '', NULL, 'shelf2', 20200721183417, '', ''),
-(1, 3, '', '1 - 3', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
-(2, 1, '', '2 - 1', '14332', 1594634908, 'issued', 1595239708, 'shelf2', 20200721183417, '', ''),
-(2, 2, '', '2 - 2', '14482', 1594634844, 'issued', 1595239644, 'shelf1', 20200721183417, '', ''),
-(2, 3, '', '2 - 3', NULL, NULL, '', NULL, 'shelf1', 20200721183417, '', ''),
-(3, 1, '', '3 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
-(3, 2, '', '3 - 2', '14332', 1594634925, 'issued', 1595239725, 'shelf2', 20200721183417, '', ''),
-(3, 3, '', '3 - 3', NULL, NULL, '', NULL, 'shelf1', 20200721183417, '', ''),
-(3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
-(4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL, 20200721183417, '', ''),
-(4, 2, '', '4 - 2', NULL, NULL, '', NULL, 'shelf2', 20200721183417, '', ''),
-(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL, 20200721183417, '', '');
+(1, 1, '', '1 - 1', NULL, NULL, '', NULL, NULL, 1594634404, '', ''),
+(1, 2, '', '1 - 2', NULL, NULL, '', NULL, 'shelf2', 1594634404, 'Ganesh', ''),
+(1, 3, '', '1 - 3', NULL, NULL, '', NULL, NULL, 1594634404, '', ''),
+(2, 1, '', '2 - 1', '14332', 1594634908, 'issued', 1595239708, 'shelf2', 1594634404, '', ''),
+(2, 2, '', '2 - 2', '14482', 1594634844, 'issued', 1595239644, 'shelf1', 1594634404, '', ''),
+(2, 3, '', '2 - 3', NULL, NULL, '', NULL, 'shelf1', 1594634404, '', ''),
+(3, 1, '', '3 - 1', NULL, NULL, '', NULL, NULL, 1594634404, '', ''),
+(3, 2, '', '3 - 2', '14332', 1594634925, 'issued', 1595239725, 'shelf2', 1594634404, '', ''),
+(3, 3, '', '3 - 3', NULL, NULL, '', NULL, 'shelf1', 1594634404, '', ''),
+(3, 4, '', '3 - 4', NULL, NULL, '', NULL, NULL, 1594634404, '', ''),
+(4, 1, '', '4 - 1', NULL, NULL, '', NULL, NULL, 1594634404, '', ''),
+(4, 2, '', '4 - 2', NULL, NULL, '', NULL, 'shelf2', 1594634404, '', ''),
+(5, 1, '', '5 - 1', '14482', 1594634982, 'issued', 1595239782, NULL, 1594634404, '', '');
 
 --
 -- Triggers `copies`
@@ -294,6 +296,7 @@ INSERT INTO `setting` (`parameter`, `value`) VALUES
 ('returnPoint', '5'),
 ('semBranchModifyAccess', '2'),
 ('settingsAccess', '2'),
+('settingsAdminAccess ', '3'),
 ('shelfModifyAccess', '2'),
 ('teacherDueFine', '1'),
 ('teacherDuePoint', '2'),
@@ -304,7 +307,8 @@ INSERT INTO `setting` (`parameter`, `value`) VALUES
 ('teacherReserveNum', '4'),
 ('teacherReservePeriod', '4'),
 ('teacherReturnPoint', '10'),
-('updateBookAccess', '2');
+('updateBookAccess', '2'),
+('UPIaddress', '');
 
 -- --------------------------------------------------------
 
@@ -370,11 +374,11 @@ INSERT INTO `syllabus` (`sem_branchID`, `bookID`) VALUES
 (2, 1),
 (3, 2),
 (4, 3),
+(5, 2),
 (5, 4),
 (6, 2),
 (7, 3),
 (8, 5),
-(9, 1),
 (9, 2);
 
 -- --------------------------------------------------------
@@ -493,7 +497,7 @@ ALTER TABLE `timetable`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `history`

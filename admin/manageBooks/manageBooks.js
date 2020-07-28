@@ -11,14 +11,13 @@ function searchQR(qrsearch) {
             qr: 1,
         },
         success: function (data) {
-			if(data) {
-				console.log(data);
-				data = JSON.parse(data);
-				loadBooks(data);
-				autoFillBook(0);
-				$("#displayCopy").modal();
-			} else
-				alert("Book does not exist!");
+            if (data) {
+                console.log(data);
+                data = JSON.parse(data);
+                loadBooks(data);
+                autoFillBook(0);
+                $("#displayCopy").modal();
+            } else alert("Book does not exist!");
         },
     });
 }
@@ -81,11 +80,63 @@ function loadBooks(data) {
                 <div class="card h-100">`;
         if (book.imgLink != "") {
             html +=
-                `<img class="card-img-top" src="` +
+                ` <div class="img-overlay">
+                            <img class="image" src="` +
                 book.imgLink +
-                ` " alt="" style="height:200px;" />`;
+                ` " alt="" style="height:200px; width:100%" />
+                            <div class="middle">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary mb-2 mr-0 mr-xl-2"
+                                    name="info-book" id=" ` +
+                index +
+                `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo"
+                                >
+                                    <i
+                                        class="fa fa-info-circle fa-cus"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-danger mb-2"
+                                >
+                                    <i
+                                        class="fa fa-trash fa-cus"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                `;
         } else {
-            html += `<img class="card-img-top" src="https://placehold.co/200x255" alt="" style="height:200px;" />`;
+            html +=
+                `<div class="img-overlay">
+                            <img class="image" src="https://placehold.co/200x255" alt="" style="height:200px; width:100%" />
+                            <div class="middle">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary mb-2 mr-0 mr-xl-2"
+                                    name="info-book" id=" ` +
+                index +
+                `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo"
+                                >
+                                    <i
+                                        class="fa fa-info-circle fa-cus"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-danger mb-2"
+                                >
+                                    <i
+                                        class="fa fa-trash fa-cus"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>`;
         }
         html +=
             `		
@@ -143,12 +194,7 @@ function loadBooks(data) {
                     </div>
                     <div class="card-footer bg-white">
                         <div class="row justify-content-center">
-                            <div class="col-12">
-                                <button type="button" class="btn btn-info btn-block btn-sm" name="info-book" id=" ` +
-            index +
-            `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo">
-                                    Info
-                                </button>`;
+                            <div class="col-12">`;
 
         if (book.digital != 0) {
             html +=

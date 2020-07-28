@@ -53,7 +53,7 @@ include("session.php");
 							<a class="dropdown-item" href="addBooks.php">Add Books</a>
 							<a class="dropdown-item" href="shelf.php">Shelf</a>
 							<a class="dropdown-item" href="record.php">Record</a>
-							<a class="dropdown-item" href="recommend.php">Syllabus</a>
+							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
 						</div>
 					</li>
 					<li class="nav-item active">
@@ -69,8 +69,7 @@ include("session.php");
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
-							<a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+							<a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
 						</div>
@@ -92,9 +91,15 @@ include("session.php");
 				<div class="modal-body">
 					<div class="container">
 						<div class="form-group row">
-							<label for="inputPass" class="col-sm-2 col-form-label">Password</label>
-							<div class="col-sm-10">
-								<input type="password" class="form-control" id="inputPass" required>
+							<label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass1" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass2" required>
 							</div>
 						</div>
 					</div>
@@ -113,18 +118,16 @@ include("session.php");
 				<div class="row justify-content-center">
 					<div class="row col-12 col-lg-8">
 						<h2 class="heading font-weight-bold">
-							Add Books
+							Add Assets
 						</h2>
 						<p class="lead">
-							This is a simple hero unit, a simple
-							jumbotron-style component for calling extra
-							attention to featured content or information.
+							Find books and material to add to your library here.
 						</p>
 						<div class="col-12">
 							<form class="row row no-gutters" method="post" action="addBooks.php">
 								<div class="col-12 col-sm-7 col-md-9">
 									<div class="search-form mr-sm-2">
-										<input class="form-control mb-2" ttype="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
+										<input class="form-control mb-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
 									</div>
 								</div>
 								<div class="col-sm-5 col-md-3 row no-gutters">
@@ -497,6 +500,10 @@ include("session.php");
 						<button type="button" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange" data-dismiss="modal">Add Book</button>
 					</div>
 				</form>
+				<form id="qrForm" method="post" action="genQR.php" target="_blank">
+					<input type="hidden" id="typeQR" name="typeQR" />
+					<input type="hidden" id="qrIDs" name="qrIDs" />
+				</form>
 			</div>
 		</div>
 	</div>
@@ -516,9 +523,6 @@ include("session.php");
 	<script src="assets/js/common.js"></script>
 	<script src="changeCred/changeCred.js"></script>
 	<script src="assets/js/voice-search.js"></script>
-	<script src="assets/node_modules/qrious/dist/qrious.min.js"></script>
-	<script src="jsPDF-master/dist/jspdf.min.js"></script>
-	<script src="assets/js/html2canvas.min.js"></script>
 
 	<script>
 		title = <?php echo json_encode($title); ?>;
@@ -538,13 +542,13 @@ include("session.php");
 	<script src="addBook/mediaType.js"></script>
 	<script src="autoDDC.js"></script>
 	<script src="addBook/uploadDB.js"></script>
-
+	<script src="addBook/navigation.js"></script>
 	<?php
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
 		echo "<script>
 				document.getElementById('search').value = '" . $searchq . "';
-				document.getElementById('search_form').submit();
+				document.getElementById('voiceSearchSubmit').click();
 			</script>";
 	}
 	?>

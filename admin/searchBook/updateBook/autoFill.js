@@ -1,38 +1,69 @@
 function autoFillUpdateBook(i) {
-	i = parseInt(i);
-	fillUpdateCat();
+    i = parseInt(i);
+    fillUpdateCat();
 
     function fillUpdateCat() {
-		showCategory();
-		setTimeout( ()=> {
-			updateCategorySelect1 = document.getElementById('updateCategorySelect1');
-			updateCategorySelect2 = document.getElementById('updateCategorySelect2');
-			updateCategorySelect3 = document.getElementById('updateCategorySelect3');
-			updateCategorySelect4 = document.getElementById('updateCategorySelect4');
-			$('#updateCategorySelect1').find('option').each(function () {
-				if ($(this).text() == Category1[i]) {
-					$('#updateCategorySelect1').val($(this).val());
-					mainCategorySelect1Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
-				}
-			});
-			$('#updateCategorySelect2').find('option').each(function () {
-				if ($(this).text() == Category2[i]) {
-					$('#updateCategorySelect2').val($(this).val());
-					mainCategorySelect2Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
-				}
-			});
-			$('#updateCategorySelect3').find('option').each(function () {
-				if ($(this).text() == Category3[i]) {
-					$('#updateCategorySelect3').val($(this).val());
-					mainCategorySelect3Change(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
-				}
-			});
-			$('#updateCategorySelect4').find('option').each(function () {
-				if ($(this).text() == Category4[i]) {
-					$('#updateCategorySelect4').val($(this).val());
-				}
-			});
-		},200);
+        showCategory();
+        setTimeout(() => {
+            updateCategorySelect1 = document.getElementById(
+                "updateCategorySelect1"
+            );
+            updateCategorySelect2 = document.getElementById(
+                "updateCategorySelect2"
+            );
+            updateCategorySelect3 = document.getElementById(
+                "updateCategorySelect3"
+            );
+            updateCategorySelect4 = document.getElementById(
+                "updateCategorySelect4"
+            );
+            $("#updateCategorySelect1")
+                .find("option")
+                .each(function () {
+                    if ($(this).text() == Category1[i]) {
+                        $("#updateCategorySelect1").val($(this).val());
+                        mainCategorySelect1Change(
+                            updateCategorySelect1,
+                            updateCategorySelect2,
+                            updateCategorySelect3,
+                            updateCategorySelect4
+                        );
+                    }
+                });
+            $("#updateCategorySelect2")
+                .find("option")
+                .each(function () {
+                    if ($(this).text() == Category2[i]) {
+                        $("#updateCategorySelect2").val($(this).val());
+                        mainCategorySelect2Change(
+                            updateCategorySelect1,
+                            updateCategorySelect2,
+                            updateCategorySelect3,
+                            updateCategorySelect4
+                        );
+                    }
+                });
+            $("#updateCategorySelect3")
+                .find("option")
+                .each(function () {
+                    if ($(this).text() == Category3[i]) {
+                        $("#updateCategorySelect3").val($(this).val());
+                        mainCategorySelect3Change(
+                            updateCategorySelect1,
+                            updateCategorySelect2,
+                            updateCategorySelect3,
+                            updateCategorySelect4
+                        );
+                    }
+                });
+            $("#updateCategorySelect4")
+                .find("option")
+                .each(function () {
+                    if ($(this).text() == Category4[i]) {
+                        $("#updateCategorySelect4").val($(this).val());
+                    }
+                });
+        }, 200);
     }
 
     document.getElementById("booktitleUpdate").textContent = title[i];
@@ -43,7 +74,8 @@ function autoFillUpdateBook(i) {
     document.getElementById("updateTitle").value = title[i];
     document.getElementById("updateAuthor").value = author[i];
     document.getElementById("updatepublisher").value = publisher[i];
-    document.getElementById("updatepublishedDate").value = date_of_publication[i];
+    document.getElementById("updatepublishedDate").value =
+        date_of_publication[i];
     document.getElementById("updateISBN").value = isbn[i];
     document.getElementById("updatepageCount").value = pages[i];
 
@@ -79,9 +111,9 @@ $("#updateaddcopies").change(() => {
     // Clear previous contents of the container
     while (container.hasChildNodes()) {
         container.removeChild(container.lastChild);
-	}
-	if(quantity>0) {
-		html1 = `<div class="form-group row">
+    }
+    if (quantity > 0) {
+        html1 = `<div class="form-group row">
 					<label for="sourceUpdate" class="col-sm-2 col-form-label">Source</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="sourceUpdate">
@@ -100,25 +132,21 @@ $("#updateaddcopies").change(() => {
 					</div>
 				</div>
 				`;
-		$("#copyInfo").append(html1);
-		for (i = 1; i <= quantity; i++) {
-			var html2 =
-				`
+        $("#copyInfo").append(html1);
+        for (i = 1; i <= quantity; i++) {
+            var html2 =
+                `
 			<div class="form-group row">
 				<label for="" class="col-sm-2 col-form-label">Old ID of Copy No: ` +
-				i +
-				`</label>
+                i +
+                `</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="oldID` +
-				i +
-				`">
+                i +
+                `">
 				</div>
 			</div>`;
-			$("#copyInfo").append(html2);
-		}
-	}
+            $("#copyInfo").append(html2);
+        }
+    }
 });
-
-function displayCategory() {
-	document.getElementById("categoryDisplay").hidden = false
-}

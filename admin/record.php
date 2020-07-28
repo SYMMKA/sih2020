@@ -48,9 +48,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
                             <a class="dropdown-item" href="addBooks.php">Add Books</a>
-                            <a class="dropdown-item" href="shelf.php">Shelf</a>
+                            <a class="dropdown-item" href="shelf.php">Shelves</a>
                             <a class="dropdown-item" href="record.php">Record</a>
-                            <a class="dropdown-item" href="recommend.php">Syllabus</a>
+                            <a class="dropdown-item" href="syllabus.php">Syllabus</a>
                         </div>
                     </li>
                     <li class="nav-item active">
@@ -66,8 +66,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#changeUsername">Change username</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
+                            <a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
                         </div>
@@ -89,9 +88,15 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="form-group row">
-                            <label for="inputPass" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPass" required>
+                            <label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPass1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPass2" required>
                             </div>
                         </div>
                     </div>
@@ -112,9 +117,7 @@
                             Records
                         </h2>
                         <p class="lead">
-                            This is a simple hero unit, a simple
-                            jumbotron-style component for calling extra
-                            attention to featured content or information.
+                            Keep track of bills, dues and activities in your library here.
                         </p>
                     </div>
                     <div class="col-sm-4 d-none d-lg-block">
@@ -281,7 +284,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="button" id="report" onclick="generateReport()" class="btn btn-info" data-dismiss="modal">
+                                        <button type="button" id="report" onclick="generateReport()" class="btn btn-orange" data-dismiss="modal">
                                             Generate Report
                                         </button>
                                     </div>

@@ -204,6 +204,7 @@ if (isset($_FILES['bookCSV'])) {
 	// Redirect to the listing page
 	//header("Location: importCSV.php" . $qstring);
 	echo $qstring;
+	$conn = null;
 }
 
 function autoCAT($ddc){

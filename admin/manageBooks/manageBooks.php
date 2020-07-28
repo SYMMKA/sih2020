@@ -56,7 +56,10 @@ try {
 		echo FALSE;
 	else
 		echo json_encode($return_arr);
+	
+	$conn = null;
 	exit;
 } catch (PDOException $e) {
 	exit($e);
+	$conn = null;
 }

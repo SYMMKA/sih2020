@@ -13,3 +13,5 @@ while ($result = $stmt->fetchObject()) {
 	$return_arr[] = $result->stud_ID;
 }
 echo json_encode($return_arr);
+
+$conn = null;

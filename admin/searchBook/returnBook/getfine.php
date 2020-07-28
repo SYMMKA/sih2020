@@ -69,3 +69,5 @@ $return['dueFine'] = $dueFine;
 $return['point'] = $point;
 $return['duePointFineRatio'] = $duePointFineRatio;
 echo json_encode($return);
+
+$conn = null;

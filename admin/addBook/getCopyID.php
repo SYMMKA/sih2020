@@ -14,14 +14,13 @@ $stmt1->bindParam(':author', $author);
 $stmt1->bindParam(':isbn', $isbn);
 $stmt1->execute();
 $bookID = $stmt1->fetchObject()->bookID;
-$return['bookID'] = $bookID;
 
 $query2 = "SELECT `copyID` FROM `copies` WHERE `bookID` = :bookID";
 $stmt2 = $conn->prepare($query2);
 $stmt2->bindParam(':bookID', $bookID);
 $stmt2->execute();
-while($result = $stmt2->fetchObject()){
-	$return['copyID'][] = $result->copyID;
+while ($result = $stmt2->fetchObject()) {
+	$return[$bookID][] = $result->copyID;
 }
 
 echo json_encode($return);

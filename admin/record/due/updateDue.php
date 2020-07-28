@@ -11,5 +11,6 @@ $query = "UPDATE `issued` SET `due`=0 WHERE `id`='$id'";
 //echo $query;
 $stmt = $conn->prepare($query);
 $stmt->execute();
+
 $conn = null;
 exit;

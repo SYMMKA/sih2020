@@ -21,5 +21,6 @@ $stmt2->bindParam(':fname', $fname);
 $stmt2->bindParam(':mess', $message);
 $stmt2->execute();
 echo $message;
+
 $conn = null;
 exit;

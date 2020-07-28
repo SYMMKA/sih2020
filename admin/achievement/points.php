@@ -4,7 +4,7 @@ include("../session.php");
 include("../db.php");
 
 
-$query = "SELECT * FROM `students` ORDER BY `points` DESC";
+$query = "SELECT * FROM `students` WHERE `type` = 'student' ORDER BY `points` DESC";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 

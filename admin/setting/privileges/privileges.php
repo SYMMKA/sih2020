@@ -1,6 +1,28 @@
 <?php
 //include connection file 
+include("../../session.php");
 include("../../db.php");
+
+$adminID = $_SESSION['adminID'];
+
+// check clearance level required
+$accessSQL = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'settingsAdminAccess'";
+$accessstmt = $conn->prepare($accessSQL);
+$accessstmt->execute();
+$access = (int)$accessstmt->fetchObject()->value;
+
+// check admin clearance level
+$adminLevelSQL = "SELECT `clearance` FROM `adminlogin` WHERE `adminlogin`.`userID` = :adminID ";
+$adminLevelstmt = $conn->prepare($adminLevelSQL);
+$adminLevelstmt->bindParam(':adminID', $adminID);
+$adminLevelstmt->execute();
+$adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
+
+if($access > $adminLevel){
+	echo "\nAccess not granted";
+	$conn = null;
+	exit;
+}
 
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -15,6 +37,9 @@ $bookShelfAccessParam = 'bookShelfAccess';
 
 $settingsAccess = $_POST['settingsAccess'];
 $settingsAccessParam = 'settingsAccess';
+
+$settingsAdminAccess = $_POST['settingsAdminAccess'];
+$settingsAdminAccessParam = 'settingsAdminAccess';
 
 $updateBookAccess = $_POST['updateBookAccess'];
 $updateBookAccessParam = 'updateBookAccess';
@@ -51,6 +76,10 @@ try {
 	$stmt->bindParam(':parameter', $settingsAccessParam);
 	$stmt->execute();
 
+	$stmt->bindParam(':val', $settingsAdminAccess);
+	$stmt->bindParam(':parameter', $settingsAdminAccessParam);
+	$stmt->execute();
+
 	$stmt->bindParam(':val', $updateBookAccess);
 	$stmt->bindParam(':parameter', $updateBookAccessParam);
 	$stmt->execute();
@@ -71,7 +100,8 @@ try {
 	$stmt->bindParam(':parameter', $bookSemBranchAccessParam);
 	$stmt->execute();
 
-	exit('success');
 } catch (PDOException $e) {
 	exit($e);
 }
+
+$conn = null;

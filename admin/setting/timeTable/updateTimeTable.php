@@ -53,3 +53,5 @@ try{
 catch(PDOException $e) {
     exit($e);
 }
+
+$conn = null;

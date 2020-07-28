@@ -1,5 +1,5 @@
 function showCategory() {
-	var html = `
+    var html = `
 		<div class="row">
 			<div class="col-12">
 				<div id="mainCat1">
@@ -45,245 +45,307 @@ function showCategory() {
 						<option value="">-- Select Category--</option>
 					</select>
 				</div>
-				
-				<button class="btn btn-info" name="cancelCategory" id="cancelCategory" onclick="hideCategory()">
-					Cancel
-				</button>
-
 			</div>
 		</div>
                `;
-	document.getElementById("category").innerHTML = html;
-		
-	var updateCategorySelect1 = document.getElementById("updateCategorySelect1");
-	var updateCategorySelect2 = document.getElementById("updateCategorySelect2");
-	var updateCategorySelect3 = document.getElementById("updateCategorySelect3");
-	var updateCategorySelect4 = document.getElementById("updateCategorySelect4");
-	loadCategory(updateCategorySelect1, updateCategorySelect2, updateCategorySelect3, updateCategorySelect4);
+    document.getElementById("category").innerHTML = html;
+
+    var updateCategorySelect1 = document.getElementById(
+        "updateCategorySelect1"
+    );
+    var updateCategorySelect2 = document.getElementById(
+        "updateCategorySelect2"
+    );
+    var updateCategorySelect3 = document.getElementById(
+        "updateCategorySelect3"
+    );
+    var updateCategorySelect4 = document.getElementById(
+        "updateCategorySelect4"
+    );
+    loadCategory(
+        updateCategorySelect1,
+        updateCategorySelect2,
+        updateCategorySelect3,
+        updateCategorySelect4
+    );
 }
 
 var DDCjson = "";
-function loadCategory(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	$.getJSON("category.json", function(json){
-		DDCjson = json;
-		loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
-	});
+function loadCategory(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    $.getJSON("category.json", function (json) {
+        DDCjson = json;
+        loadCategory1(
+            mainCategorySelect1,
+            mainCategorySelect2,
+            mainCategorySelect3,
+            mainCategorySelect4
+        );
+    });
 }
 
-function loadCategory1(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	//Load main categories
-	mainCategorySelect1.length = 1
-	for (var mainCategory = 0; mainCategory < DDCjson.length; mainCategory++) {
-		mainCategorySelect1.options[
-			mainCategorySelect1.options.length
-		] = new Option(DDCjson[mainCategory].description, mainCategory);
-	}
+function loadCategory1(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    //Load main categories
+    mainCategorySelect1.length = 1;
+    for (var mainCategory = 0; mainCategory < DDCjson.length; mainCategory++) {
+        mainCategorySelect1.options[
+            mainCategorySelect1.options.length
+        ] = new Option(DDCjson[mainCategory].description, mainCategory);
+    }
 
-	//Main Category1 Changed
-	mainCategorySelect1.onchange = function () {
-		mainCategorySelect2.length = 1; // remove all options bar first
-		mainCategorySelect3.length = 1; // remove all options bar first
-		mainCategorySelect4.length = 1; // remove all options bar first
-		if (this.selectedIndex < 1) {
-			return; // done
-		}
+    //Main Category1 Changed
+    mainCategorySelect1.onchange = function () {
+        mainCategorySelect2.length = 1; // remove all options bar first
+        mainCategorySelect3.length = 1; // remove all options bar first
+        mainCategorySelect4.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) {
+            return; // done
+        }
 
-		if (!DDCjson[this.value].subordinates) {
-			// hides sub category if not available
-			mainCategorySelect2.disabled = true;
-			mainCategorySelect3.disabled = true;
-			mainCategorySelect4.disabled = true;
-		} else {
-			mainCategorySelect2.disabled = false;
-			mainCategorySelect3.disabled = false;
-			mainCategorySelect4.disabled = false;
+        if (!DDCjson[this.value].subordinates) {
+            // hides sub category if not available
+            mainCategorySelect2.disabled = true;
+            mainCategorySelect3.disabled = true;
+            mainCategorySelect4.disabled = true;
+        } else {
+            mainCategorySelect2.disabled = false;
+            mainCategorySelect3.disabled = false;
+            mainCategorySelect4.disabled = false;
 
-			c1(mainCategorySelect1, mainCategorySelect2);
-		}
-	};
-	//Main Category2 Changed
-	mainCategorySelect2.onchange = function () {
-		mainCategorySelect3.length = 1; // remove all options bar first
-		mainCategorySelect4.length = 1; // remove all options bar first
-		if (this.selectedIndex < 1) {
-			return; // done
-		}
+            c1(mainCategorySelect1, mainCategorySelect2);
+        }
+    };
+    //Main Category2 Changed
+    mainCategorySelect2.onchange = function () {
+        mainCategorySelect3.length = 1; // remove all options bar first
+        mainCategorySelect4.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) {
+            return; // done
+        }
 
-		if (
-			!DDCjson[mainCategorySelect1.value].subordinates[this.value].subordinates
-		) {
-			// hides sub category if not available
-			mainCategorySelect3.disabled = true;
-			mainCategorySelect4.disabled = true;
-		} else {
-			mainCategorySelect3.disabled = false;
-			mainCategorySelect4.disabled = false;
-			c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
-		}
-	};
-	//Main Category3 Changed
-	mainCategorySelect3.onchange = function () {
-		mainCategorySelect4.length = 1; // remove all options bar first
+        if (
+            !DDCjson[mainCategorySelect1.value].subordinates[this.value]
+                .subordinates
+        ) {
+            // hides sub category if not available
+            mainCategorySelect3.disabled = true;
+            mainCategorySelect4.disabled = true;
+        } else {
+            mainCategorySelect3.disabled = false;
+            mainCategorySelect4.disabled = false;
+            c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
+        }
+    };
+    //Main Category3 Changed
+    mainCategorySelect3.onchange = function () {
+        mainCategorySelect4.length = 1; // remove all options bar first
 
-		if (this.selectedIndex < 1) {
-			return; // done
-		}
+        if (this.selectedIndex < 1) {
+            return; // done
+        }
 
-		if (
-			!DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-				.subordinates[this.value].subordinates
-		) {
-			// hides sub category if not available
-			mainCategorySelect4.disabled = true;
-		} else {
-			mainCategorySelect4.disabled = false;
-			c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
-		}
-	};
+        if (
+            !DDCjson[mainCategorySelect1.value].subordinates[
+                mainCategorySelect2.value
+            ].subordinates[this.value].subordinates
+        ) {
+            // hides sub category if not available
+            mainCategorySelect4.disabled = true;
+        } else {
+            mainCategorySelect4.disabled = false;
+            c3(
+                mainCategorySelect1,
+                mainCategorySelect2,
+                mainCategorySelect3,
+                mainCategorySelect4
+            );
+        }
+    };
 
-	mainCategorySelect4.onchange = function () { };
+    mainCategorySelect4.onchange = function () {};
 }
 
-function hideCategory() {
-	document.getElementById("categoryDisplay").innerHTML = "";
+function mainCategorySelect1Change(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    mainCategorySelect2.length = 1; // remove all options bar first
+    mainCategorySelect3.length = 1; // remove all options bar first
+    mainCategorySelect4.length = 1; // remove all options bar first
+    if (mainCategorySelect1.selectedIndex < 1) {
+        return; // done
+    }
+
+    if (!DDCjson[mainCategorySelect1.value].subordinates) {
+        // hides sub category if not available
+        mainCategorySelect2.disabled = true;
+        mainCategorySelect3.disabled = true;
+        mainCategorySelect4.disabled = true;
+    } else {
+        mainCategorySelect2.disabled = false;
+        mainCategorySelect3.disabled = false;
+        mainCategorySelect4.disabled = false;
+
+        c1(mainCategorySelect1, mainCategorySelect2);
+        console.log(mainCategorySelect1.selectedIndex);
+    }
 }
 
-function mainCategorySelect1Change (mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	mainCategorySelect2.length = 1; // remove all options bar first
-	mainCategorySelect3.length = 1; // remove all options bar first
-	mainCategorySelect4.length = 1; // remove all options bar first
-	if (mainCategorySelect1.selectedIndex < 1) {
-		return; // done
-	}
+function mainCategorySelect2Change(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    mainCategorySelect3.length = 1; // remove all options bar first
+    mainCategorySelect4.length = 1; // remove all options bar first
+    if (mainCategorySelect2.selectedIndex < 1) {
+        return; // done
+    }
 
-	if (!DDCjson[mainCategorySelect1.value].subordinates) {
-		// hides sub category if not available
-		mainCategorySelect2.disabled = true;
-		mainCategorySelect3.disabled = true;
-		mainCategorySelect4.disabled = true;
-	} else {
-		mainCategorySelect2.disabled = false;
-		mainCategorySelect3.disabled = false;
-		mainCategorySelect4.disabled = false;
+    if (
+        !DDCjson[mainCategorySelect1.value].subordinates[
+            mainCategorySelect2.value
+        ].subordinates
+    ) {
+        // hides sub category if not available
+        mainCategorySelect3.disabled = true;
+        mainCategorySelect4.disabled = true;
+    } else {
+        mainCategorySelect3.disabled = false;
+        mainCategorySelect4.disabled = false;
+        c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
+    }
+}
 
-		c1(mainCategorySelect1, mainCategorySelect2);
-		console.log(mainCategorySelect1.selectedIndex);
-	}
-};
+function mainCategorySelect3Change(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    mainCategorySelect4.length = 1; // remove all options bar first
 
-function mainCategorySelect2Change (mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	mainCategorySelect3.length = 1; // remove all options bar first
-	mainCategorySelect4.length = 1; // remove all options bar first
-	if (mainCategorySelect2.selectedIndex < 1) {
-		return; // done
-	}
+    if (mainCategorySelect3.selectedIndex < 1) {
+        return; // done
+    }
 
-	if (
-		!DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates
-	) {
-		// hides sub category if not available
-		mainCategorySelect3.disabled = true;
-		mainCategorySelect4.disabled = true;
-	} else {
-		mainCategorySelect3.disabled = false;
-		mainCategorySelect4.disabled = false;
-		c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3);
-	}
-};
-
-function mainCategorySelect3Change(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	mainCategorySelect4.length = 1; // remove all options bar first
-
-	if (mainCategorySelect3.selectedIndex < 1) {
-		return; // done
-	}
-
-	if (
-		!DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-			.subordinates[mainCategorySelect3.value].subordinates
-	) {
-		// hides sub category if not available
-		mainCategorySelect4.disabled = true;
-	} else {
-		mainCategorySelect4.disabled = false;
-		c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4);
-	}
-};
+    if (
+        !DDCjson[mainCategorySelect1.value].subordinates[
+            mainCategorySelect2.value
+        ].subordinates[mainCategorySelect3.value].subordinates
+    ) {
+        // hides sub category if not available
+        mainCategorySelect4.disabled = true;
+    } else {
+        mainCategorySelect4.disabled = false;
+        c3(
+            mainCategorySelect1,
+            mainCategorySelect2,
+            mainCategorySelect3,
+            mainCategorySelect4
+        );
+    }
+}
 
 function c1(mainCategorySelect1, mainCategorySelect2) {
-	for (
-		var mainCategory = 0;
-		mainCategory < DDCjson[mainCategorySelect1.value].subordinates.length;
-		mainCategory++
-	) {
-		var description =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategory].description;
+    for (
+        var mainCategory = 0;
+        mainCategory < DDCjson[mainCategorySelect1.value].subordinates.length;
+        mainCategory++
+    ) {
+        var description =
+            DDCjson[mainCategorySelect1.value].subordinates[mainCategory]
+                .description;
 
-		var number =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategory].number;
-		number = number[number.length - 2];
+        var number =
+            DDCjson[mainCategorySelect1.value].subordinates[mainCategory]
+                .number;
+        number = number[number.length - 2];
 
-		if (description != "") {
-			mainCategorySelect2.options[
-				mainCategorySelect2.options.length
-			] = new Option(description, number);
-		}
-	}
+        if (description != "") {
+            mainCategorySelect2.options[
+                mainCategorySelect2.options.length
+            ] = new Option(description, number);
+        }
+    }
 }
 
 function c2(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3) {
-	for (
-		var mainCategory = 0;
-		mainCategory <
-		DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-			.subordinates.length;
-		mainCategory++
-	) {
-		//var index = parseFloat(DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].number);
-		//index = Math.floor(index % 10);
-		var description =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-				.subordinates[mainCategory].description;
+    for (
+        var mainCategory = 0;
+        mainCategory <
+        DDCjson[mainCategorySelect1.value].subordinates[
+            mainCategorySelect2.value
+        ].subordinates.length;
+        mainCategory++
+    ) {
+        //var index = parseFloat(DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategory].number);
+        //index = Math.floor(index % 10);
+        var description =
+            DDCjson[mainCategorySelect1.value].subordinates[
+                mainCategorySelect2.value
+            ].subordinates[mainCategory].description;
 
-		var number =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-				.subordinates[mainCategory].number;
-		number = number[number.length - 1];
+        var number =
+            DDCjson[mainCategorySelect1.value].subordinates[
+                mainCategorySelect2.value
+            ].subordinates[mainCategory].number;
+        number = number[number.length - 1];
 
-		if (description != "") {
-			mainCategorySelect3.options[
-				mainCategorySelect3.options.length
-			] = new Option(description, number);
-		}
-	}
+        if (description != "") {
+            mainCategorySelect3.options[
+                mainCategorySelect3.options.length
+            ] = new Option(description, number);
+        }
+    }
 }
 
-function c3(mainCategorySelect1, mainCategorySelect2, mainCategorySelect3, mainCategorySelect4) {
-	for (
-		var mainCategory = 0;
-		mainCategory <
-		DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-			.subordinates[mainCategorySelect3.value].subordinates.length;
-		mainCategory++
-	) {
-		//var index = parseFloat(DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].number);
-		//index = Math.floor((index % 1) / .1);
+function c3(
+    mainCategorySelect1,
+    mainCategorySelect2,
+    mainCategorySelect3,
+    mainCategorySelect4
+) {
+    for (
+        var mainCategory = 0;
+        mainCategory <
+        DDCjson[mainCategorySelect1.value].subordinates[
+            mainCategorySelect2.value
+        ].subordinates[mainCategorySelect3.value].subordinates.length;
+        mainCategory++
+    ) {
+        //var index = parseFloat(DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value].subordinates[mainCategorySelect3.value].subordinates[mainCategory].number);
+        //index = Math.floor((index % 1) / .1);
 
-		var description =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-				.subordinates[mainCategorySelect3.value].subordinates[mainCategory]
-				.description;
+        var description =
+            DDCjson[mainCategorySelect1.value].subordinates[
+                mainCategorySelect2.value
+            ].subordinates[mainCategorySelect3.value].subordinates[mainCategory]
+                .description;
 
-		var number =
-			DDCjson[mainCategorySelect1.value].subordinates[mainCategorySelect2.value]
-				.subordinates[mainCategorySelect3.value].subordinates[mainCategory]
-				.number;
-		number = number[number.length - 1];
+        var number =
+            DDCjson[mainCategorySelect1.value].subordinates[
+                mainCategorySelect2.value
+            ].subordinates[mainCategorySelect3.value].subordinates[mainCategory]
+                .number;
+        number = number[number.length - 1];
 
-		if (description != "") {
-			mainCategorySelect4.options[
-				mainCategorySelect4.options.length
-			] = new Option(description, number);
-		}
-	}
+        if (description != "") {
+            mainCategorySelect4.options[
+                mainCategorySelect4.options.length
+            ] = new Option(description, number);
+        }
+    }
 }
