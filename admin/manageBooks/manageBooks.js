@@ -12,7 +12,6 @@ function searchQR(qrsearch) {
         },
         success: function (data) {
             if (data) {
-                console.log(data);
                 data = JSON.parse(data);
                 loadBooks(data);
                 autoFillBook(0);
@@ -32,8 +31,10 @@ function searchMain() {
             main: 1,
         },
         success: function (data) {
-            data = JSON.parse(data);
-            loadBooks(data);
+            if (data) {
+                data = JSON.parse(data);
+                loadBooks(data);
+            } else console.log("Empty");
         },
     });
 }

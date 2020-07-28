@@ -15,22 +15,45 @@ include("session.php");
 	<link rel="stylesheet" href="assets/node_modules/shards-ui/dist/css/shards.min.css" />
 	<link rel="stylesheet" href="assets/node_modules/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/common.css" />
+	<link rel="stylesheet" href="assets/css/chat.css" />
 </head>
 
 <body>
-	<button type="button" class="btn btn-orange voice-button" style="
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                position: fixed;
-                bottom: 2rem;
-                right: 1.5rem;
-                cursor: pointer;
-                box-shadow: 0px 2px 5px #666;
-                z-index: 9999;
-            ">
+
+	<div id="chat-circle" class="btn btn-raised">
+		<div id="chat-overlay"></div>
 		<i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-	</button>
+	</div>
+
+	<div class="chat-box">
+		<div class="chat-box-header">
+			<strong>Buddy</strong>
+			<span class="chat-box-toggle">
+				<i class="fa fa-close" title="close" style="margin-top: -12px;"></i>
+			</span>
+			<span class="chat-header-refresh" id="refresh"><i class="fa fa-refresh" title="startover"></i></span>
+		</div>
+		<div class="chat-box-body">
+			<div class="chat-box-overlay"></div>
+			<div class="chat-logs"></div>
+		</div>
+		<div id="loading" style="position: fixed; bottom: 60px; margin-top: 30px; margin-left: 10px">
+			<div class="spinner-border" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+		<div class="chat-input">
+			<form id="chatBotForm">
+				<input type="text" id="chat-input" autofocus placeholder="Send a question or response..." />
+				<button type="submit" class="chat-submit" id="chat-submit">
+					<span id="micSpan">
+						<i class="fa fa-microphone" style="color: black;" id="mic"></i>
+						<!-- <i class="material-icons">send</i> -->
+					</span>
+				</button>
+			</form>
+		</div>
+	</div>
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
 		<div class="container">
@@ -124,7 +147,7 @@ include("session.php");
 							Find books and material to add to your library here.
 						</p>
 						<div class="col-12">
-							<form class="row row no-gutters" method="post" action="addBooks.php">
+							<form class="row row no-gutters" method="post" action="addBooks.php?chat">
 								<div class="col-12 col-sm-7 col-md-9">
 									<div class="search-form mr-sm-2">
 										<input class="form-control mb-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
@@ -535,6 +558,7 @@ include("session.php");
 		money = <?php echo json_encode($money); ?>;
 		imgLink = <?php echo json_encode($imgLink); ?>;
 		preview = <?php echo json_encode($preview); ?>;
+		lastID = <?php echo $i - 1; ?>;
 	</script>
 
 	<script src="catName.js"></script>

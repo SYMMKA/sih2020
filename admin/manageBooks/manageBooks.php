@@ -13,7 +13,7 @@ try {
 			$sql = "SELECT * FROM main Where bookID = :search";
 		} else if (isset($_POST['main'])) {
 			$search = "%$search%";
-			$sql = "SELECT * FROM main Where title OR bookID LIKE :search";
+			$sql = "SELECT * FROM main Where title LIKE :search";
 		} else {
 			exit('error');
 		}
@@ -56,7 +56,7 @@ try {
 		echo FALSE;
 	else
 		echo json_encode($return_arr);
-	
+
 	$conn = null;
 	exit;
 } catch (PDOException $e) {
