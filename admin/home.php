@@ -174,8 +174,8 @@ if (isset($_SESSION['AccessError'])) {
 						<p class="lead">Let's start this new day with our new way of library management.</p>
 						<div class="row">
 							<div class="col">
-								<a class="btn btn-orange btn-lg mr-sm-2" href="#" role="button">Docs</a>
-								<a class="btn btn-blue btn-lg" href="#" role="button">Setting</a>
+								<a class="btn btn-orange btn-lg mr-sm-2" href="#" role="button"><i class="fa fa-question mr-2" aria-hidden="true"></i>Read Docs</a>
+								<a class="btn btn-blue btn-lg" href="#" role="button"><i class="fa fa-cog mr-2" aria-hidden="true"></i> Settings</a>
 							</div>
 						</div>
 					</div>
@@ -192,6 +192,7 @@ if (isset($_SESSION['AccessError'])) {
 	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
 	<script src="assets/js/common.js"></script>
 	<script src="assets/js/voice-search.js"></script>

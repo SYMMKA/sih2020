@@ -205,13 +205,13 @@ if ($access > $adminLevel) {
             <div class="row">
                 <div class="col-4 col-md-2">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
-                        <a class="nav-link" id="privileges-tab" data-toggle="pill" href="#privileges" role="tab" aria-controls="privileges" aria-selected="false">Privileges</a>
-                        <a class="nav-link" id="timeTable-tab" data-toggle="pill" href="#timeTable" role="tab" aria-controls="timeTable" aria-selected="false">Time Table</a>
-                        <a class="nav-link" id="genQR-tab" data-toggle="pill" href="#genQR" role="tab" aria-controls="genQR" aria-selected="false">Generate QR</a>
-                        <a class="nav-link" id="admin-tab" data-toggle="pill" href="#admins" role="tab" aria-controls="admins" aria-selected="false">Admins</a>
-                        <a class="nav-link" id="manage-tab" data-toggle="pill" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage Users</a>
-                        <a class="nav-link" id="import-tab" data-toggle="pill" href="#import" role="tab" aria-controls="import" aria-selected="false">Import</a>
+                        <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                        <a class="nav-link" id="privileges-tab" data-toggle="tab" href="#privileges" role="tab" aria-controls="privileges" aria-selected="false">Privileges</a>
+                        <a class="nav-link" id="timeTable-tab" data-toggle="tab" href="#timeTable" role="tab" aria-controls="timeTable" aria-selected="false">Time Table</a>
+                        <a class="nav-link" id="genQR-tab" data-toggle="tab" href="#genQR" role="tab" aria-controls="genQR" aria-selected="false">Generate QR</a>
+                        <a class="nav-link" id="admin-tab" data-toggle="tab" href="#admins" role="tab" aria-controls="admins" aria-selected="false">Admins</a>
+                        <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage Users</a>
+                        <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false">Import</a>
                     </div>
                 </div>
                 <div class="col-8 col-md-10">
@@ -221,6 +221,9 @@ if ($access > $adminLevel) {
                                 <h4 class="p-3 mb-4 bg-offwhite rounded">
                                     General Settings
                                 </h4>
+                                <h5 class="font-weight-bold mb-4 bg-light p-2 rounded">
+                                    For Students
+                                </h5>
                                 <div class="form-group row">
                                     <label for="issuePeriod" class="col-sm-4 col-form-label">Issue Period</label>
                                     <div class="col-sm-8">
@@ -275,8 +278,11 @@ if ($access > $adminLevel) {
                                         <input class="form-control" type="number" min="0" id="ratingPoint" />
                                     </div>
                                 </div>
+                                <h5 class="font-weight-bold mb-4 bg-light p-2 rounded">
+                                    For Teachers
+                                </h5>
                                 <div class="form-group row">
-                                    <label for="teacherIssuePeriod" class="col-sm-4 col-form-label">Teacher Issue Period</label>
+                                    <label for="teacherIssuePeriod" class="col-sm-4 col-form-label">Issue Period</label>
                                     <div class="col-sm-8">
                                         <input class="form-control" type="number" min="0" id="teacherIssuePeriod" />
                                     </div>
@@ -329,6 +335,9 @@ if ($access > $adminLevel) {
                                         <input class="form-control" type="number" min="0" id="teacherRatingPoint" />
                                     </div>
                                 </div>
+                                <h5 class="font-weight-bold mb-4 bg-light p-2 rounded">
+                                    For Due Payment
+                                </h5>
                                 <div class="form-group row">
                                     <label for="UPIaddress" class="col-sm-4 col-form-label">UPI Address</label>
                                     <div class="col-sm-8">
@@ -600,221 +609,197 @@ if ($access > $adminLevel) {
                                 </div>
                             </form>
                         </div>
-
-                        </fieldset>
-                        <div class="form-group row">
-                            <div class="col-sm-4">Checkbox</div>
-                            <div class="col-sm-8">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Example checkbox
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-5 bg-offwhite rounded">
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-blue">
-                                    Reset
-                                </button>
-                                <button type="submit" class="btn btn-orange">
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
-                        <h4 class="p-3 mb-4 bg-offwhite rounded">
-                            Manage User Settings
-                        </h4>
-                        <div class="form-group row">
-                            <label for="adminoruser" class="col-sm-4 col-form-label">Select User</label>
-                            <div class="col-sm-8">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeAdmin" name="adminoruser" class="custom-control-input" value="admin" />
-                                    <label class="custom-control-label" for="typeAdmin">Admin</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeuser" name="adminoruser" class="custom-control-input" value="user" />
-                                    <label class="custom-control-label" for="typeuser">User</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="addordelete" class="col-sm-4 col-form-label">Select Operation</label>
-                            <div class="col-sm-8">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeAdd" name="addordelete" class="custom-control-input" value="add" />
-                                    <label class="custom-control-label" for="typeAdd">Add</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeDelete" name="addordelete" class="custom-control-input" value="delete" />
-                                    <label class="custom-control-label" for="typeDelete">Delete</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="showAddAdmin">
+                        <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+                            <h4 class="p-3 mb-4 bg-offwhite rounded">
+                                Manage User Settings
+                            </h4>
                             <div class="form-group row">
-                                <label for="adminID" class="col-sm-4 col-form-label">Admin ID</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="adminID" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="adminFirstName" class="col-sm-4 col-form-label">First Name</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="adminFirstName" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="adminLastName" class="col-sm-4 col-form-label">Last Name</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="adminLastName" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="adminLastName" class="col-sm-4 col-form-label">Admin Access</label>
-                                <div class="col-sm-8">
-                                    <input type="number" min="0" class="form-control" id="adminAccess" />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="showAddUser">
-                            <div class="form-group row">
-                                <label for="stuortea" class="col-sm-4 col-form-label">Select Operation</label>
+                                <label for="adminoruser" class="col-sm-4 col-form-label">Select User</label>
                                 <div class="col-sm-8">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="typeStudent" name="stuortea" class="custom-control-input" value="student" />
-                                        <label class="custom-control-label" for="typeStudent">Student</label>
+                                        <input type="radio" id="typeAdmin" name="adminoruser" class="custom-control-input" value="admin" />
+                                        <label class="custom-control-label" for="typeAdmin">Admin</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="typeTeacher" name="stuortea" class="custom-control-input" value="teacher" />
-                                        <label class="custom-control-label" for="typeTeacher">Teacher</label>
+                                        <input type="radio" id="typeuser" name="adminoruser" class="custom-control-input" value="user" />
+                                        <label class="custom-control-label" for="typeuser">User</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="userID" class="col-sm-4 col-form-label">User ID</label>
+                                <label for="addordelete" class="col-sm-4 col-form-label">Select Operation</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="userID" />
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="typeAdd" name="addordelete" class="custom-control-input" value="add" />
+                                        <label class="custom-control-label" for="typeAdd">Add</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="typeDelete" name="addordelete" class="custom-control-input" value="delete" />
+                                        <label class="custom-control-label" for="typeDelete">Delete</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="userName" class="col-sm-4 col-form-label">First Name</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="userName" />
+                            <div id="showAddAdmin">
+                                <div class="form-group row">
+                                    <label for="adminID" class="col-sm-4 col-form-label">Admin ID</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="adminID" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="adminFirstName" class="col-sm-4 col-form-label">First Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="adminFirstName" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="adminLastName" class="col-sm-4 col-form-label">Last Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="adminLastName" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="adminLastName" class="col-sm-4 col-form-label">Admin Access</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" min="0" class="form-control" id="adminAccess" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="userEmail" class="col-sm-4 col-form-label">E-Mail</label>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="userEmail" />
+                            <div id="showAddUser">
+                                <div class="form-group row">
+                                    <label for="stuortea" class="col-sm-4 col-form-label">Select Operation</label>
+                                    <div class="col-sm-8">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="typeStudent" name="stuortea" class="custom-control-input" value="student" />
+                                            <label class="custom-control-label" for="typeStudent">Student</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="typeTeacher" name="stuortea" class="custom-control-input" value="teacher" />
+                                            <label class="custom-control-label" for="typeTeacher">Teacher</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="userID" class="col-sm-4 col-form-label">User ID</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="userID" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="userName" class="col-sm-4 col-form-label">First Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="userName" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="userEmail" class="col-sm-4 col-form-label">E-Mail</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" id="userEmail" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="userMobile" class="col-sm-4 col-form-label">Mobile</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="userMobile" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="userMobile" class="col-sm-4 col-form-label">Mobile</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="userMobile" />
+                            <div id="showDeleteAdmin">
+                                <div class="form-group row">
+                                    <label for="deleteAdmin" class="col-sm-4 col-form-label">Select Admin</label>
+                                    <div class="col-sm-8">
+                                        <select class="selectpicker" title="Select admins to delete " id="deleteAdmin" multiple data-live-search="true" data-actions-box="true">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="showDeleteUser">
+                                <div class="form-group row">
+                                    <label for="deleteUser" class="col-sm-4 col-form-label">Select User</label>
+                                    <div class="col-sm-8">
+                                        <select class="selectpicker" title="Select users to delete " id="deleteUser" multiple data-live-search="true" data-actions-box="true">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 mb-5 bg-offwhite rounded">
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-blue">
+                                        Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-orange" id="saveManageUser">
+                                        Save
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div id="showDeleteAdmin">
+                        <div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
+                            <h4 class="p-3 mb-4 bg-offwhite rounded">
+                                Import
+                            </h4>
                             <div class="form-group row">
-                                <label for="deleteAdmin" class="col-sm-4 col-form-label">Select Admin</label>
-                                <div class="col-sm-8">
-                                    <select class="selectpicker" title="Select admins to delete " id="deleteAdmin" multiple data-live-search="true" data-actions-box="true">
-                                    </select>
+                                <label for="bookImport" class="col-sm-3 col-form-label">Books</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="bookCSV">
+                                        <label class="custom-file-label" for="bookCSV">Choose file</label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div id="showDeleteUser">
-                            <div class="form-group row">
-                                <label for="deleteUser" class="col-sm-4 col-form-label">Select User</label>
-                                <div class="col-sm-8">
-                                    <select class="selectpicker" title="Select users to delete " id="deleteUser" multiple data-live-search="true" data-actions-box="true">
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-5 bg-offwhite rounded">
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-blue">
-                                    Reset
-                                </button>
-                                <button type="submit" class="btn btn-orange" id="saveManageUser">
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="import-tab">
-                        <h4 class="p-3 mb-4 bg-offwhite rounded">
-                            Import
-                        </h4>
-                        <div class="form-group row">
-                            <label for="bookImport" class="col-sm-3 col-form-label">Books</label>
-                            <div class="col-sm-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="bookCSV">
-                                    <label class="custom-file-label" for="bookCSV">Choose file</label>
-                                </div>
-                            </div>
 
-                            <div class="col-sm-3">
-                                <button id="bookImport" type="submit" class="btn btn-orange btn-block">
-                                    Import Books
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="studentsImport" class="col-sm-3 col-form-label">Students</label>
-                            <div class="col-sm-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="studentsCSV">
-                                    <label class="custom-file-label" for="studentsCSV">Choose file</label>
+                                <div class="col-sm-3">
+                                    <button id="bookImport" type="submit" class="btn btn-orange btn-block">
+                                        Import Books
+                                    </button>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="studentsImport" class="col-sm-3 col-form-label">Students</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="studentsCSV">
+                                        <label class="custom-file-label" for="studentsCSV">Choose file</label>
+                                    </div>
+                                </div>
 
-                            <div class="col-sm-3">
-                                <button id="studentsImport" type="submit" class="btn btn-orange btn-block">
-                                    Import Students
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="teachersImport" class="col-sm-3 col-form-label">Teachers</label>
-                            <div class="col-sm-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="teachersCSV">
-                                    <label class="custom-file-label" for="teachersCSV">Choose file</label>
+                                <div class="col-sm-3">
+                                    <button id="studentsImport" type="submit" class="btn btn-orange btn-block">
+                                        Import Students
+                                    </button>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="teachersImport" class="col-sm-3 col-form-label">Teachers</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="teachersCSV">
+                                        <label class="custom-file-label" for="teachersCSV">Choose file</label>
+                                    </div>
+                                </div>
 
-                            <div class="col-sm-3">
-                                <button id="teachersImport" type="submit" class="btn btn-orange btn-block">
-                                    Import Teachers
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="adminsImport" class="col-sm-3 col-form-label">Admins</label>
-                            <div class="col-sm-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="adminsCSV">
-                                    <label class="custom-file-label" for="adminsCSV">Choose file</label>
+                                <div class="col-sm-3">
+                                    <button id="teachersImport" type="submit" class="btn btn-orange btn-block">
+                                        Import Teachers
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <button id="adminsImport" type="submit" class="btn btn-orange btn-block">
-                                    Import Admins
-                                </button>
+                            <div class="form-group row">
+                                <label for="adminsImport" class="col-sm-3 col-form-label">Admins</label>
+                                <div class="col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="adminsCSV">
+                                        <label class="custom-file-label" for="adminsCSV">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button id="adminsImport" type="submit" class="btn btn-orange btn-block">
+                                        Import Admins
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- Optional JavaScript -->

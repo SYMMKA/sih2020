@@ -51,11 +51,20 @@ function generateMessage(msg, type) {
         );
 }
 
-var goto = ["goto", "go", "navigate", "open", "start"];
+var goto = ["goto", "go", "navigate", "open", "start", "find"];
 var search = ["search", "find"];
 var home = ["home", "index", "homepage"];
-var add = ["add", "addbook", "addbooks", "ad", "addd"];
-var manage = ["manage", "searchbook", "edit", "library"];
+var add = ["add", "addbook", "addbooks", "ad", "addd", "address"];
+var manage = [
+    "manage",
+    "searchbook",
+    "edit",
+    "library",
+    "issue",
+    "return",
+    "manager",
+    "management",
+];
 var shelf = ["shelves", "shelf", "rack", "racks"];
 var settings = ["settings", "setting", "change", "update"];
 var logout = ["logout", "log", "sign", "signout", "exit"];
@@ -103,17 +112,41 @@ var help = [
     "documentation",
     "documentations",
 ];
-var general = ["general"];
+var general = [
+    "general",
+    "issue",
+    "reserve",
+    "due",
+    "fine",
+    "rating",
+    "point",
+    "points",
+];
+var privileges = ["privilege", "privileges", "clearance", "access"];
+var timeTable = ["time", "table", "schedule"];
+var generateQR = ["qr", "qrcode", "q"];
+var admins = ["admin"];
+var manageUsers = ["user"];
+var importAny = ["import"];
 
 function talkToDialogFlowApi(message) {
     $("#loading").hide();
     enableInput();
     var status = location.search.substring(1);
-    mess_arr = message.toLowerCase().trim().split(" ");
+    var mess_arr = message.toLowerCase().trim().split(" ");
     console.log(mess_arr);
+    var settingsAll = [];
+    settingsAll = settingsAll.concat(
+        general,
+        privileges,
+        timeTable,
+        generateQR,
+        admins,
+        manageUsers,
+        importAny
+    );
     var all = [];
     all = all.concat(
-        goto,
         search,
         home,
         add,
@@ -127,16 +160,27 @@ function talkToDialogFlowApi(message) {
         syllabus,
         help
     );
-    console.log(all);
     if (
+        window.location.href.substring(
+            window.location.href.lastIndexOf("/") + 1
+        ) == "settings.php" &&
+        settingsAll.filter((value) => mess_arr.includes(value)).length
+    )
+        settingsFunction(mess_arr);
+    else if (search.indexOf(mess_arr[0]) == 0) searchBook(mess_arr);
+    else if (status == "chat") openBookModal(mess_arr);
+    else if (
         goto.filter((value) => mess_arr.includes(value)).length ||
         all.includes(mess_arr[0])
     )
         openPage(mess_arr);
-    if (search.indexOf(mess_arr[0]) == 0) searchBook(mess_arr);
-    if (status == "chat") openBookModal(mess_arr);
-    if (general.filter((value) => mess_arr.includes(value)))
-        openGeneral(mess_arr);
+    else {
+        // error response
+        setTimeout(() => {
+            generateMessage("Pardon!", "bot");
+            startRecognition();
+        }, 1000);
+    }
 
     // autofill open book
     //if (message.toLowerCase().indexOf("book") == 0) console.log("good");
@@ -146,6 +190,7 @@ function talkToDialogFlowApi(message) {
 
 function searchBook(searchArr) {
     console.log("searchBook");
+    //if(searchArr.length < 1)
     var n = searchArr.lastIndexOf("in");
     if (n == -1) {
         var search = searchArr.slice(1, searchArr.length).join(" ");
@@ -164,6 +209,10 @@ function searchBook(searchArr) {
                 break;
             default:
                 // error response
+                setTimeout(() => {
+                    generateMessage("Pardon!", "bot");
+                    startRecognition();
+                }, 1000);
                 break;
         }
     } else {
@@ -175,6 +224,12 @@ function searchBook(searchArr) {
             window.location.href = "manageBooks.php?q=" + search + "";
         } else if (last.filter((value) => shelf.includes(value)).length) {
             window.location.href = "shelf.php?q=" + search + "";
+        } else {
+            // error response
+            setTimeout(() => {
+                generateMessage("Pardon!", "bot");
+                startRecognition();
+            }, 1000);
         }
     }
 }
@@ -206,7 +261,10 @@ function openPage(arr) {
         window.location.href = "logout.php";
     } else {
         // error response
-        console.log("chatbot failed");
+        setTimeout(() => {
+            generateMessage("Pardon!", "bot");
+            startRecognition();
+        }, 1000);
     }
 }
 
@@ -230,6 +288,7 @@ $(document).delegate(".chat-btn", "click", function () {
 });
 
 $("#chat-circle").click(function () {
+    // voice button
     $("#chat-circle").toggle("scale");
     $(".chat-box").toggle("scale");
     $(".chat-logs")
@@ -240,12 +299,14 @@ $("#chat-circle").click(function () {
             },
             1000
         );
+    startRecognition();
 });
 
 $(".chat-box-toggle").click(function () {
-    //
+    // X close
     $("#chat-circle").toggle("scale");
     $(".chat-box").toggle("scale");
+    stopRecognition();
 });
 
 $("#chat-submit").click(function (e) {
@@ -292,7 +353,7 @@ function startRecognition() {
     recognition.onend = function () {
         stopRecognition();
     };
-    recognition.lang = "en-US";
+    recognition.lang = "en-IN";
     recognition.start();
 }
 
