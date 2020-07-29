@@ -33,7 +33,10 @@ while ($row2 = $stmt2->fetchObject()) {
 	$data["Category4"] = $row3->Category4;
 	$data["publisher"] = $row3->publisher;
 	$data["pages"] = $row3->pages;
-	$data["imgLink"] = $row3->imgLink;
+	if ($row3->imgLink == "")
+		$data["imgLink"] = "https://placehold.co/200x255";
+	else
+		$data["imgLink"] = $row3->imgLink;
 	$data["date_of_publication"] = $row3->date_of_publication;
 	$data["isbn"] = $row3->isbn;
 

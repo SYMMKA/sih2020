@@ -82,6 +82,10 @@ function autoFillUpdateBook(i) {
     if (imgLink[i]) {
         document.getElementById("bookimgLinkUpdate").src = imgLink[i];
         document.getElementById("bookimgLinkUpdate").hidden = false;
+    } else {
+        document.getElementById("bookimgLinkUpdate").src =
+            "https://placehold.co/200x255";
+        document.getElementById("bookimgLinkUpdate").hidden = false;
     }
 
     if (book[i] == 1) document.getElementById("pageCountGroup").hidden = false;

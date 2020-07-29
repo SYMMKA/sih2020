@@ -157,11 +157,19 @@ include("db.php");
 
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+            <a class="nav-link" href="home.php">
+              <div class="d-flex">
+                <i class="fa fa-home mr-3 mr-lg-0" aria-hidden="true"></i>
+                <h6 class="d-block d-lg-none mb-0">Home</h6>
+              </div>
+            </a>
           </li>
           <li class="nav-item dropdown active">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-book" aria-hidden="true"></i>
+              <div class="d-flex">
+                <i class="fa fa-book mr-3 mr-lg-0" aria-hidden="true"></i>
+                <h6 class="d-block d-lg-none mb-0">Library</h6>
+              </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="manageBooks.php">Manage Books</a>
@@ -172,14 +180,27 @@ include("db.php");
             </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+            <a class="nav-link" href="chatroom.php">
+              <div class="d-flex">
+                <i class="fa fa-comment mr-3 mr-lg-0" aria-hidden="true"></i>
+                <h6 class="d-block d-lg-none mb-0">Chatroom</h6>
+              </div>
+            </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            <a class="nav-link" href="settings.php">
+              <div class="d-flex">
+                <i class="fa fa-cog mr-3 mr-lg-0" aria-hidden="true"></i>
+                <h6 class="d-block d-lg-none mb-0">Settings</h6>
+              </div>
+            </a>
           </li>
           <li class="nav-item dropdown active">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              <div class="d-flex">
+                <i class="fa fa-user-circle mr-3 mr-lg-0" aria-hidden="true"></i>
+                <h6 class="d-block d-lg-none mb-0">My Profile</h6>
+              </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>

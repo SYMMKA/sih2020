@@ -15,22 +15,45 @@
   	<link rel="stylesheet" href="assets/node_modules/shards-ui/dist/css/shards.min.css" />
   	<link rel="stylesheet" href="assets/node_modules/font-awesome/css/font-awesome.min.css" />
   	<link rel="stylesheet" href="assets/css/common.css" />
+  	<link rel="stylesheet" href="assets/css/chat.css" />
+
   </head>
 
   <body>
-  	<button type="button" class="btn btn-orange voice-button" style="
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                position: fixed;
-                bottom: 2rem;
-                right: 1.5rem;
-                cursor: pointer;
-                box-shadow: 0px 2px 5px #666;
-                z-index: 9999;
-            ">
+  	<!-- chatbot code here -->
+  	<div id="chat-circle" class="btn btn-raised">
+  		<div id="chat-overlay"></div>
   		<i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-  	</button>
+  	</div>
+  	<div class="chat-box">
+  		<div class="chat-box-header">
+  			<strong>Buddy</strong>
+  			<span class="chat-box-toggle">
+  				<i class="fa fa-close" title="close" style="margin-top: -12px;"></i>
+  			</span>
+  			<span class="chat-header-refresh" id="refresh"><i class="fa fa-refresh" title="startover"></i></span>
+  		</div>
+  		<div class="chat-box-body">
+  			<div class="chat-box-overlay"></div>
+  			<div class="chat-logs"></div>
+  		</div>
+  		<div id="loading" style="position: fixed; bottom: 60px; margin-top: 30px; margin-left: 10px">
+  			<div class="spinner-border" role="status">
+  				<span class="sr-only">Loading...</span>
+  			</div>
+  		</div>
+  		<div class="chat-input">
+  			<form id="chatBotForm">
+  				<input type="text" id="chat-input" autofocus placeholder="Send a question or response..." />
+  				<button type="submit" class="chat-submit" id="chat-submit">
+  					<span id="micSpan">
+  						<i class="fa fa-microphone" style="color: black;" id="mic"></i>
+  						<!-- <i class="material-icons">send</i> -->
+  					</span>
+  				</button>
+  			</form>
+  		</div>
+  	</div>
   	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
   		<div class="container">
   			<a class="navbar-brand" href="#">Library Management System</a>
@@ -41,29 +64,50 @@
 
   				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
   					<li class="nav-item active">
-  						<a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+  						<a class="nav-link" href="home.php">
+  							<div class="d-flex">
+  								<i class="fa fa-home mr-3 mr-lg-0" aria-hidden="true"></i>
+  								<h6 class="d-block d-lg-none mb-0">Home</h6>
+  							</div>
+  						</a>
   					</li>
   					<li class="nav-item dropdown active">
   						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  							<i class="fa fa-book" aria-hidden="true"></i>
+  							<div class="d-flex">
+  								<i class="fa fa-book mr-3 mr-lg-0" aria-hidden="true"></i>
+  								<h6 class="d-block d-lg-none mb-0">Library</h6>
+  							</div>
   						</a>
   						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-  							<a class="dropdown-item" href="manageBooks.php">Manage</a>
-  							<a class="dropdown-item" href="addBooks.php">Add</a>
-  							<a class="dropdown-item" href="shelf.php">Shelves</a>
+  							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+  							<a class="dropdown-item" href="addBooks.php">Add Books</a>
+  							<a class="dropdown-item" href="shelf.php">Shelf</a>
   							<a class="dropdown-item" href="record.php">Record</a>
   							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
   						</div>
   					</li>
   					<li class="nav-item active">
-  						<a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+  						<a class="nav-link" href="chatroom.php">
+  							<div class="d-flex">
+  								<i class="fa fa-comment mr-3 mr-lg-0" aria-hidden="true"></i>
+  								<h6 class="d-block d-lg-none mb-0">Chatroom</h6>
+  							</div>
+  						</a>
   					</li>
   					<li class="nav-item active">
-  						<a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+  						<a class="nav-link" href="settings.php">
+  							<div class="d-flex">
+  								<i class="fa fa-cog mr-3 mr-lg-0" aria-hidden="true"></i>
+  								<h6 class="d-block d-lg-none mb-0">Settings</h6>
+  							</div>
+  						</a>
   					</li>
   					<li class="nav-item dropdown active">
   						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  							<i class="fa fa-user-circle" aria-hidden="true"></i>
+  							<div class="d-flex">
+  								<i class="fa fa-user-circle mr-3 mr-lg-0" aria-hidden="true"></i>
+  								<h6 class="d-block d-lg-none mb-0">My Profile</h6>
+  							</div>
   						</a>
   						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
   							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
@@ -216,6 +260,8 @@
   	<script src="assets/js/common.js"></script>
   	<script src="changeCred/changeCred.js"></script>
   	<script src="assets/js/voice-search.js"></script>
+  	<script src="shelf/navigation.js"></script>
+  	<script src="assets/js/assistant.js"></script>
   	<script src="shelf/shelfFill.js"></script>
   	<script src="assets/node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
   	<script src="qrCodeReader.js"></script>

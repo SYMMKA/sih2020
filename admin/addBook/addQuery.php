@@ -1,7 +1,7 @@
 <?php
 include('../session.php');
 include("../db.php");
-$relative = dirname($_SERVER["SCRIPT_NAME"],3) . '/';
+$relative = dirname($_SERVER["SCRIPT_NAME"], 3) . '/';
 $domain = $_SERVER['HTTP_HOST'] . $relative;
 $prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 $link = $prefix . $domain;
@@ -54,8 +54,7 @@ $physical_digital = $_POST['physical_digital'];
 if ($book_audio == "audio") {
 	$book = 0;
 	$pageCount2 = '';
-}
-else {
+} else {
 	$book = 1;
 	if ($_POST['pageCount1']) //book
 		$pageCount2 = $_POST['pageCount1'];
@@ -105,7 +104,7 @@ $adminLevelstmt->bindParam(':adminID', $adminID);
 $adminLevelstmt->execute();
 $adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
 
-if($access > $adminLevel){
+if ($access > $adminLevel) {
 	echo "\nAccess not granted";
 	$conn = null;
 	exit;
@@ -162,17 +161,18 @@ try {
 
 	for ($copyNO = 1; $copyNO <= $quantity2; $copyNO++) {
 		$stmt2->bindParam(':copyNO', $copyNO);
-		$stmt2->bindParam(':oldID', $oldID[$copyNO-1]);
+		$stmt2->bindParam(':oldID', $oldID[$copyNO - 1]);
 		$stmt2->execute();
 		echo "\nCopy no " . $copyNO . " added successfully";
 
 		$copyID = $bookID . ' - ' . $copyNO;
 		$stmt3->bindParam(':copyID', $copyID);
-		$stmt3->bindParam(':oldID', $oldID[$copyNO-1]);
+		$stmt3->bindParam(':oldID', $oldID[$copyNO - 1]);
 		$stmt3->execute();
 		echo "\nCopy no " . $copyNO . " added to history";
 	}
 	$conn->commit();
+	exit("success");
 } catch (PDOException $e) {
 	$conn->rollBack();
 	echo "Failed " . $e->getMessage();
@@ -231,7 +231,7 @@ function insertImage($bookID)
 			} else {
 				$temp = explode(".", $_FILES["imgFile"]["name"]);
 				$imageName = $bookID . '.' . end($temp);
-				$imageDest= $target_dir . $imageName;
+				$imageDest = $target_dir . $imageName;
 				if (move_uploaded_file($_FILES["imgFile"]["tmp_name"], $imageDest)) {
 					echo "<br>" . "The file " . basename($_FILES["imgFile"]["name"]) . " has been uploaded.";
 					$imgValue2 = $link . "bookImage/" . $imageName;

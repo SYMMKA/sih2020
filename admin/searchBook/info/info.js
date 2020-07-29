@@ -64,6 +64,10 @@ function autoFillInfo(i) {
     if (imgLink[i]) {
         document.getElementById("bookimgLinkInfo").src = imgLink[i];
         document.getElementById("bookimgLinkInfo").hidden = false;
+    } else {
+        document.getElementById("bookimgLinkInfo").src =
+            "https://placehold.co/200x255";
+        document.getElementById("bookimgLinkInfo").hidden = false;
     }
     if (parseInt(book[i]) == 1)
         document.getElementById("groupPagesInfo").hidden = false;
@@ -77,22 +81,22 @@ function autoFillInfo(i) {
 }
 
 $("#genQRcode").click(() => {
-	var copyIDs = JSON.stringify($("#copyIDQR").val());
-	var bookID = parseInt($("#bookIDInfo").text());
-	var formData = new FormData();
-	formData.append('copyIDs', copyIDs);
-	formData.append('bookID', bookID);
-	$.ajax({
+    var copyIDs = JSON.stringify($("#copyIDQR").val());
+    var bookID = parseInt($("#bookIDInfo").text());
+    var formData = new FormData();
+    formData.append("copyIDs", copyIDs);
+    formData.append("bookID", bookID);
+    $.ajax({
         type: "POST",
         url: "searchBook/info/qr.php",
         data: formData,
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-			var type = "Book";
-			$('#typeQR').val(type);
-			$('#qrIDs').val(data);
-			$('#qrForm').submit();
+            var type = "Book";
+            $("#typeQR").val(type);
+            $("#qrIDs").val(data);
+            $("#qrForm").submit();
         },
         //Other options
     });

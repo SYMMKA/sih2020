@@ -26,7 +26,10 @@ while ($row1 = $stmt1->fetchObject()) {
 	$stmt2->execute();
 	$row2 = $stmt2->fetchObject();
 	$data["title"] = $row2->title;
-	$data["imgLink"] = $row2->imgLink;
+	if ($row2->imgLink == "")
+		$data["imgLink"] = "https://placehold.co/200x255";
+	else
+		$data["imgLink"] = $row2->imgLink;
 	$data["isbn"] = $row2->isbn;
 
 	$return_arr[] = $data;

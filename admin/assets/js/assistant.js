@@ -103,6 +103,7 @@ var help = [
     "documentation",
     "documentations",
 ];
+var general = ["general"];
 
 function talkToDialogFlowApi(message) {
     $("#loading").hide();
@@ -134,6 +135,8 @@ function talkToDialogFlowApi(message) {
         openPage(mess_arr);
     if (search.indexOf(mess_arr[0]) == 0) searchBook(mess_arr);
     if (status == "chat") openBookModal(mess_arr);
+    if (general.filter((value) => mess_arr.includes(value)))
+        openGeneral(mess_arr);
 
     // autofill open book
     //if (message.toLowerCase().indexOf("book") == 0) console.log("good");

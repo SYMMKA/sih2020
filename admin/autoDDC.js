@@ -41,7 +41,7 @@ function searchDDC() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
+            if (data != "No DDC") $("#ddcNO").val(data);
             var ddc = data;
             fillDDC(ddc);
         },

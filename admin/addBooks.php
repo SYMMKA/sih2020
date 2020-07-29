@@ -19,12 +19,11 @@ include("session.php");
 </head>
 
 <body>
-
+	<!-- chatbot code here -->
 	<div id="chat-circle" class="btn btn-raised">
 		<div id="chat-overlay"></div>
 		<i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
 	</div>
-
 	<div class="chat-box">
 		<div class="chat-box-header">
 			<strong>Buddy</strong>
@@ -65,11 +64,19 @@ include("session.php");
 
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+						<a class="nav-link" href="home.php">
+							<div class="d-flex">
+								<i class="fa fa-home mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Home</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-book" aria-hidden="true"></i>
+							<div class="d-flex">
+								<i class="fa fa-book mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Library</h6>
+							</div>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
@@ -80,14 +87,27 @@ include("session.php");
 						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+						<a class="nav-link" href="chatroom.php">
+							<div class="d-flex">
+								<i class="fa fa-comment mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Chatroom</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+						<a class="nav-link" href="settings.php">
+							<div class="d-flex">
+								<i class="fa fa-cog mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Settings</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-user-circle" aria-hidden="true"></i>
+							<div class="d-flex">
+								<i class="fa fa-user-circle mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">My Profile</h6>
+							</div>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
@@ -279,6 +299,7 @@ include("session.php");
 									</div>
 								</div>
 								<div class="col-md-2 align-self-center justify-content-center p-3">
+									<h1 class="display-2 text-center"><?= $i + 1 ?></h1>
 									<button type="button" data-toggle="modal" data-target=".bd-example-modal-xl" class="btn btn-orange btn-block mb-4" id="<?= $i; ?>" onclick="autoFill(this.id)">
 										Add
 									</button>
@@ -305,7 +326,7 @@ include("session.php");
 	<div class="modal fade bd-example-modal-xl" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document" style="max-height:100vh !important; max-width:90vw !important;">
 			<div class="modal-content">
-				<form id="addBookForm" novalidate>
+				<form id="addBookForm">
 					<div class="modal-header">
 						<h5 class="modal-title">Details</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -520,7 +541,7 @@ include("session.php");
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
-						<button type="button" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange" data-dismiss="modal">Add Book</button>
+						<button type="submit" value="Add Book" id="submitAddBookForm" name="addBook" class="btn btn-orange">Add Book</button>
 					</div>
 				</form>
 				<form id="qrForm" method="post" action="genQR.php" target="_blank">

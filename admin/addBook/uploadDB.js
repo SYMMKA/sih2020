@@ -2,26 +2,12 @@
 // var searchBookForm = document.getElementById("search_form");
 // searchBookForm.addEventListener("submit", searchBook, false);
 
-var addBookForm = document.getElementById("submitAddBookForm");
-addBookForm.addEventListener("click", addBook);
-
-// Validate and Search
-// function searchBook(event) {
-//     if (searchBookForm.checkValidity() === false) {
-//         event.preventDefault();
-//         event.stopPropagation();
-//     }
-//     searchBookForm.classList.add("was-validated");
-// }
+var addBookForm = document.getElementById("addBookForm");
+addBookForm.addEventListener("submit", addBook);
 
 // Validate and Submit form
 function addBook(event) {
-    // if (addBookForm.checkValidity() === false) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    // } else {
-    //     event.preventDefault();
-
+    event.preventDefault();
     // Get values
     var title = getInputVal("title");
     var author = getInputVal("author");
@@ -98,6 +84,13 @@ function addBook(event) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
+            if (data.substring(data.length - 7) != "success") {
+                alert(data);
+            } else {
+                $(".bd-example-modal-xl").modal("hide");
+                // Clear form
+                document.getElementById("addBookForm").reset();
+            }
             console.log(data);
             var formCopyID = new FormData();
             formCopyID.append("title", title);
@@ -131,8 +124,6 @@ function addBook(event) {
 			document.querySelector('.alert').style.display = 'none';
 		}, 1500); */
 
-    // Clear form
-    //document.getElementById("addBookForm").reset();
     // }
     // addBookForm.classList.add("was-validated");
 }

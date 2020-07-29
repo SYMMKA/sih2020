@@ -45,36 +45,57 @@ include("../db.php");
 
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="../home.php"><i class="fa fa-home" aria-hidden="true"></i></a>
+						<a class="nav-link" href="home.php">
+							<div class="d-flex">
+								<i class="fa fa-home mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Home</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-book" aria-hidden="true"></i>
+							<div class="d-flex">
+								<i class="fa fa-book mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Library</h6>
+							</div>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="../manageBooks.php">Manage Books</a>
-							<a class="dropdown-item" href="../addBooks.php">Add Books</a>
-							<a class="dropdown-item" href="../shelf.php">Shelf</a>
-							<a class="dropdown-item" href="../record.php">Record</a>
-							<a class="dropdown-item" href="../syllabus.php">Syllabus</a>
+							<a class="dropdown-item" href="manageBooks.php">Manage Books</a>
+							<a class="dropdown-item" href="addBooks.php">Add Books</a>
+							<a class="dropdown-item" href="shelf.php">Shelf</a>
+							<a class="dropdown-item" href="record.php">Record</a>
+							<a class="dropdown-item" href="syllabus.php">Syllabus</a>
 						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="../chatroom.php"><i class="fa fa-comment" aria-hidden="true"></i></a>
+						<a class="nav-link" href="chatroom.php">
+							<div class="d-flex">
+								<i class="fa fa-comment mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Chatroom</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="../settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+						<a class="nav-link" href="settings.php">
+							<div class="d-flex">
+								<i class="fa fa-cog mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Settings</h6>
+							</div>
+						</a>
 					</li>
 					<li class="nav-item dropdown active">
 						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-user-circle" aria-hidden="true"></i>
+							<div class="d-flex">
+								<i class="fa fa-user-circle mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">My Profile</h6>
+							</div>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item font-weight-bold" href="#"><?= $adminID ?> </a>
 							<div class="dropdown-divider"></div>
 							<a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change password</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="../logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
+							<a class="dropdown-item" href="logout.php"><button class="btn btn-danger btn-block">Logout</button></a>
 						</div>
 					</li>
 				</ul>
@@ -223,7 +244,10 @@ include("../db.php");
 					$Category4[$i] = $row1->Category4;
 					$publisher[$i] = $row1->publisher;
 					$pages[$i] = $row1->pages;
-					$imgLink[$i] = $row1->imgLink;
+					if ($row1->imgLink == "")
+						$imgLink[$i] = "https://placehold.co/200x255";
+					else
+						$imgLink[$i] = $row1->imgLink;
 					$date_of_publication[$i] = $row1->date_of_publication;
 					$isbn[$i] = $row1->isbn;
 					$digital[$i] = $row1->digital;

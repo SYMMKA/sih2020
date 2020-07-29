@@ -77,21 +77,22 @@ function loadBooks(data) {
         date_of_publication[index] = book.date_of_publication;
         book[index] = book.book;
         digital[index] = book.digital;
-        html += `<div class="col mb-4 search-card">
+        html += `<div class="col mb-4 search-card"> 
                 <div class="card h-100">`;
-        if (book.imgLink != "") {
-            html +=
-                ` <div class="img-overlay">
-                            <img class="image" src="` +
-                book.imgLink +
-                ` " alt="" style="height:200px; width:100%" />
-                            <div class="middle">
+        html += ` <div class="img-overlay">
+                            
+                            <img class="image" src="`;
+        if (book.imgLink != "") html += book.imgLink + ` "`;
+        else html += `https://placehold.co/200x255" `;
+        html +=
+            `alt="" style="height:200px; width:100%" />
+                <div class="middle">
                                 <button
                                     type="button"
                                     class="btn btn-outline-primary mb-2 mr-0 mr-xl-2"
                                     name="info-book" id=" ` +
-                index +
-                `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo"
+            index +
+            `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo"
                                 >
                                     <i
                                         class="fa fa-info-circle fa-cus"
@@ -101,6 +102,9 @@ function loadBooks(data) {
                                 <button
                                     type="button"
                                     class="btn btn-outline-danger mb-2"
+                                    onclick="deleteBookConfirm(` +
+            book.bookID +
+            `)"
                                 >
                                     <i
                                         class="fa fa-trash fa-cus"
@@ -110,35 +114,6 @@ function loadBooks(data) {
                             </div>
                         </div>
                 `;
-        } else {
-            html +=
-                `<div class="img-overlay">
-                            <img class="image" src="https://placehold.co/200x255" alt="" style="height:200px; width:100%" />
-                            <div class="middle">
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-primary mb-2 mr-0 mr-xl-2"
-                                    name="info-book" id=" ` +
-                index +
-                `" onclick="autoFillInfo(this.id)" data-toggle="modal" data-target="#moreInfo"
-                                >
-                                    <i
-                                        class="fa fa-info-circle fa-cus"
-                                        aria-hidden="true"
-                                    ></i>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-danger mb-2"
-                                >
-                                    <i
-                                        class="fa fa-trash fa-cus"
-                                        aria-hidden="true"
-                                    ></i>
-                                </button>
-                            </div>
-                        </div>`;
-        }
         html +=
             `		
                     <div class="card-body">
@@ -226,5 +201,24 @@ function loadBooks(data) {
             `;
 
         $("#result").html(html);
+    });
+}
+
+function deleteBookConfirm(bookID) {
+    $.ajax({
+        type: "POST",
+        url: "manageBooks/deleteBookConfirm.php",
+        data: {
+            bookID: bookID,
+        },
+        success: function (data) {
+            console.log(data);
+            if (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                console.log(data.issueCount);
+                console.log(data.reserveCount);
+            }
+        },
     });
 }
