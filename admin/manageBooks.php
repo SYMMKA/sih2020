@@ -162,7 +162,7 @@ include("session.php");
                 <div class="row justify-content-center">
                     <div class="row col-12 col-lg-8">
                         <h2 class="heading font-weight-bold">
-                            Manage Assets.
+                            Manage Books
                         </h2>
                         <p class="lead">
                             Issue, return, delete and update your library assets here.
@@ -486,6 +486,28 @@ include("session.php");
                 <div class="modal-footer">
                     <button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-orange">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- delete modal -->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="deleteBookModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alert</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="deleteModalText">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteBookButton">Delete</button>
                 </div>
             </div>
         </div>

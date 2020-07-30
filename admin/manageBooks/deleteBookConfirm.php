@@ -17,7 +17,7 @@ try {
     $stmt2 = $conn->prepare($sql2);
     $stmt2->bindParam(':bookID', $bookID);
     $stmt2->execute();
-    $count['reserveCount'] = $stmt1->rowCount();
+    $count['reserveCount'] = $stmt2->rowCount();
 
     echo json_encode($count);
     exit;

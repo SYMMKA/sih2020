@@ -161,7 +161,7 @@ include("session.php");
 				<div class="row justify-content-center">
 					<div class="row col-12 col-lg-8">
 						<h2 class="heading font-weight-bold">
-							Add Assets
+							Add Books
 						</h2>
 						<p class="lead">
 							Find books and material to add to your library here.
