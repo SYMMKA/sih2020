@@ -5,7 +5,8 @@ const SpeechRecognition =
 if (SpeechRecognition) {
     if (document.querySelector(".search-form") != null) {
         const searchForm = document.querySelector(".search-form");
-        const input = searchForm.querySelector("#searchByVoice"); // <=> document.querySelector("#search-form input");
+        const input = searchForm.querySelector("#searchByVoice");
+        const input_form = searchForm.querySelector("#search"); // <=> document.querySelector("#search-form input");
 
         const recognition = new SpeechRecognition();
 
@@ -31,7 +32,7 @@ if (SpeechRecognition) {
         function startSpeechRecognition() {
             micIcon.classList.remove("fa-microphone");
             micIcon.classList.add("fa-microphone-slash");
-            input.focus();
+            input_form.focus();
             console.log("Voice activated, SPEAK");
         }
 
@@ -39,7 +40,7 @@ if (SpeechRecognition) {
         function endSpeechRecognition() {
             micIcon.classList.remove("fa-microphone-slash");
             micIcon.classList.add("fa-microphone");
-            input.focus();
+            input_form.focus();
             console.log("Speech recognition service disconnected");
         }
 
@@ -47,8 +48,8 @@ if (SpeechRecognition) {
         function resultOfSpeechRecognition(event) {
             const transcript = event.results[0][0].transcript;
             console.log(transcript);
-            input.value = transcript;
-            input.focus();
+            input_form.value = transcript;
+            input_form.focus();
             // setTimeout(() => {
             //   searchForm.submit();
             // }, 500);
