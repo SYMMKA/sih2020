@@ -24,7 +24,7 @@
   </div>
   <div class="chat-box">
     <div class="chat-box-header">
-      <strong>Buddy</strong>
+      <strong>AlphaBot</strong>
       <span class="chat-box-toggle">
         <i class="fa fa-close" title="close" style="margin-top: -12px;"></i>
       </span>
@@ -188,7 +188,6 @@
     <div class="container" id="syllabusDiv">
     </div>
   </section>
-
   <!-- Modal for books -->
   <div class="modal fade" id="modelForBooks" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" style="

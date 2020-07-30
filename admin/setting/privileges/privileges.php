@@ -18,7 +18,7 @@ $adminLevelstmt->bindParam(':adminID', $adminID);
 $adminLevelstmt->execute();
 $adminLevel = (int)$adminLevelstmt->fetchObject()->clearance;
 
-if($access > $adminLevel){
+if ($access > $adminLevel) {
 	echo "\nAccess not granted";
 	$conn = null;
 	exit;
@@ -100,6 +100,7 @@ try {
 	$stmt->bindParam(':parameter', $bookSemBranchAccessParam);
 	$stmt->execute();
 
+	exit("success");
 } catch (PDOException $e) {
 	exit($e);
 }

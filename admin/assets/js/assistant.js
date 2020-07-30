@@ -323,7 +323,7 @@ $("#refresh").click(function () {
     initializeSession();
 });
 
-$("#mic").click(function (event) {
+$("#chat-submit").click(function (event) {
     switchRecognition();
 });
 
@@ -366,7 +366,14 @@ function switchRecognition() {
 }
 
 function updateRec() {
-    $("#mic").text(recognition ? "stop" : "mic");
+    if (recognition)
+        $("#mic")
+            .removeClass("fa fa-microphone")
+            .addClass("fa fa-microphone-slash");
+    else
+        $("#mic")
+            .removeClass("fa fa-microphone-slash")
+            .addClass("fa fa-microphone");
 }
 
 initializeSession();

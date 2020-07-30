@@ -26,7 +26,7 @@ include("session.php");
 	</div>
 	<div class="chat-box">
 		<div class="chat-box-header">
-			<strong>Buddy</strong>
+			<strong class="font-weight-bold">AlphaBot</strong>
 			<span class="chat-box-toggle">
 				<i class="fa fa-close" title="close" style="margin-top: -12px;"></i>
 			</span>
@@ -46,7 +46,7 @@ include("session.php");
 				<input type="text" id="chat-input" autofocus placeholder="Send a question or response..." />
 				<button type="submit" class="chat-submit" id="chat-submit">
 					<span id="micSpan">
-						<i class="fa fa-microphone" style="color: black;" id="mic"></i>
+						<i class="" style="color: black;" id="mic"></i>
 						<!-- <i class="material-icons">send</i> -->
 					</span>
 				</button>

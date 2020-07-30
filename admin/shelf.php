@@ -27,7 +27,7 @@
   	</div>
   	<div class="chat-box">
   		<div class="chat-box-header">
-  			<strong>Buddy</strong>
+  			<strong>AlphaBot</strong>
   			<span class="chat-box-toggle">
   				<i class="fa fa-close" title="close" style="margin-top: -12px;"></i>
   			</span>
