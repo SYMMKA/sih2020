@@ -54,7 +54,7 @@ if($dueLeft > 0){
 }
 
 // total books issued currently by the user
-$totalIssuedQuery = "SELECT * FROM `copies` WHERE `copies`.`stud_ID` = :st_ID";
+$totalIssuedQuery = "SELECT * FROM `copies` WHERE `copies`.`stud_ID` = :st_ID and  `copies`.`status` = 'issued'";
 $totalIssuedstmt = $conn->prepare($totalIssuedQuery);
 $totalIssuedstmt->bindParam(':st_ID', $st_ID);
 $totalIssuedstmt->execute();
