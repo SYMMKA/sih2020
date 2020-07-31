@@ -69,7 +69,7 @@ function loadReceiptBox() {
                 `
                     <a class="btn btn-orange ml-2 float-right" target="_blank" href="` +
                 data.book.receiptLink +
-                `">Download Receipt</a>
+                `">Download Bill</a>
                     </h3>                    
                 </div>
 				<div id="receiptDIV">

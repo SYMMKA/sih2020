@@ -22,9 +22,7 @@ function addSemBranch() {
             contentType: false, // Dont delete this (jQuery 1.6+)
             processData: false, // Dont delete this
             success: function (data) {
-                console.log(data);
-                data = JSON.parse(data);
-                console.log(data);
+                if (data != "success") alert(data);
                 loadSemBranch();
             },
             //Other options
