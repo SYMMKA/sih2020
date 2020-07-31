@@ -200,7 +200,7 @@ include("session.php");
                     <div class="card h-100">
                         <a class="card-body btn-blue rounded stretched-link" id="receipt">
                             <h4 class="font-weight-bold text-white">
-                                Receipt Details
+                                Billing Details
                             </h4>
                         </a>
                     </div>
