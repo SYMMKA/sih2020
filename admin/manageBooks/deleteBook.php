@@ -13,7 +13,7 @@ try {
     $stmt->execute();
 
     $conn = null;
-    exit;
+    exit("success");
 } catch (PDOException $e) {
     exit($e);
     $conn = null;

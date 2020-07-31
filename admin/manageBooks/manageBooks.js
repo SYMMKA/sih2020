@@ -215,20 +215,35 @@ function deleteBookConfirm(bookID) {
         success: function (data) {
             if (data) {
                 data = JSON.parse(data);
-				console.log(data.issueCount);
+                console.log(data.issueCount);
                 console.log(data.reserveCount);
-                html = ` <h6>` + data.issueCount+` users have issued this book</h6>
-                        <h6>`+ data.reserveCount+` users have reserved this book</h6>
+                html =
+                    ` <h6>` +
+                    data.issueCount +
+                    ` users have issued this book</h6>
+                        <h6>` +
+                    data.reserveCount +
+                    ` users have reserved this book</h6>
                         <h6>Are you sure you want to delete this book ?</h6>`;
-                $('#deleteModalText').html(html);
+                $("#deleteModalText").html(html);
                 $("#deleteBookButton").on("click", deleteBook(bookID));
             }
         },
     });
 }
 
-
-
 function deleteBook(bookID) {
-    console.log("delete");
+    $.ajax({
+        type: "POST",
+        url: "manageBooks/deleteBook.php",
+        data: {
+            bookID: bookID,
+        },
+        success: function (data) {
+            if (data != "success") {
+                alert(data);
+            }
+            searchMain();
+        },
+    });
 }
