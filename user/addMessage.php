@@ -13,10 +13,10 @@ if(@$_GET['message'] && @$_GET['stud_ID'] && @$_GET['name'])
     $sql1 = "SELECT `block` FROM `students` where `students`.`stud_ID`='$stud_ID'";
     $stmt1 = $conn->prepare($sql1);
     $stmt1->execute();
-    $block= ($stmt1->fetchObject()->value);
-    echo $block;
+    $block= $stmt1->fetchColumn();
 
-    if($block!=1)
+
+    if($block!="1")
     {
     $sql = "INSERT INTO `chats`(`stud_ID`, `name`, `message`, `time`) VALUES ('$stud_ID','$name','$message','$time')";
     $stmt = $conn->prepare($sql);
