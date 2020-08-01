@@ -14,9 +14,12 @@ while ($row = $stmt->fetchObject()) {
 	$data["oldID"] = $row->oldID;
 	$data["stud_ID"] = $row->stud_ID;
 	$data["status"] = $row->status;
-	$data["time"] = $row->time;
-	$data["returnTime"] = $row->returnTime;
-	$data["currentTime"] = time();
+	$data["time"]
+		= date('d/m/Y H:i', $row->time);
+	$data["returnTime"] =
+		date('d/m/Y H:i', $row->returnTime);
+	$data["currentTime"] =
+		date('d/m/Y H:i', time());
 	$return_arr[] = $data;
 }
 

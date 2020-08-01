@@ -207,7 +207,7 @@ if ($access > $adminLevel) {
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
                         <a class="nav-link" id="privileges-tab" data-toggle="tab" href="#privileges" role="tab" aria-controls="privileges" aria-selected="false">Privileges</a>
-                        <a class="nav-link" id="timeTable-tab" data-toggle="tab" href="#timeTable" role="tab" aria-controls="timeTable" aria-selected="false">Time Table</a>
+                        <a class="nav-link" id="timeTable-tab" data-toggle="tab" href="#timeTable" role="tab" aria-controls="timeTable" aria-selected="false">Timings</a>
                         <a class="nav-link" id="genQR-tab" data-toggle="tab" href="#genQR" role="tab" aria-controls="genQR" aria-selected="false">Generate QR</a>
                         <a class="nav-link" id="admin-tab" data-toggle="tab" href="#admins" role="tab" aria-controls="admins" aria-selected="false">Admins</a>
                         <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage Users</a>
@@ -469,7 +469,7 @@ if ($access > $adminLevel) {
                         <div class="tab-pane fade" id="timeTable" role="tabpanel" aria-labelledby="timeTable-tab">
                             <form>
                                 <h4 class="p-3 mb-4 bg-offwhite rounded">
-                                    Time Table
+                                    Timings
                                 </h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered">

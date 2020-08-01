@@ -54,7 +54,7 @@ function generateMessage(msg, type) {
 var goto = ["goto", "go", "navigate", "open", "start", "find"];
 var search = ["search", "find"];
 var home = ["home", "index", "homepage"];
-var add = ["add", "addbook", "addbooks", "ad", "addd", "address"];
+var add = ["add", "addbook", "addbooks", "ad", "addd", "address", "advik", "advics", "adword", "adwords"];
 var manage = [
     "manage",
     "searchbook",
@@ -123,11 +123,12 @@ var general = [
     "points",
 ];
 var privileges = ["privilege", "privileges", "clearance", "access"];
-var timeTable = ["time", "table", "schedule"];
-var generateQR = ["qr", "qrcode", "q"];
-var admins = ["admin"];
-var manageUsers = ["user"];
-var importAny = ["import"];
+var timeTable = ["time", "table", "schedule", "timing", "timings"];
+var generateQR = ["qr", "qrcode", "q", "are"];
+var admins = ["admin", "admins"];
+var manageUsers = ["user", "users"];
+var importAny = ["import", "importing"];
+var openBook = ["1","one", "2","two", "3","three", "4","four", "5","five", "6","six", "7","seven", "8","eight", "9","nine", "10","ten"];
 
 function talkToDialogFlowApi(message) {
     $("#loading").hide();
@@ -168,7 +169,7 @@ function talkToDialogFlowApi(message) {
     )
         settingsFunction(mess_arr);
     else if (search.indexOf(mess_arr[0]) == 0) searchBook(mess_arr);
-    else if (status == "chat") openBookModal(mess_arr);
+    else if ( (status == "chat") && (openBook.filter((value) => mess_arr.includes(value)).length) ) openBookModal(mess_arr);
     else if (
         goto.filter((value) => mess_arr.includes(value)).length ||
         all.includes(mess_arr[0])
