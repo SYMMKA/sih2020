@@ -226,24 +226,22 @@ function deleteBookConfirm(bookID) {
                     ` users have reserved this book</h6>
                         <h6>Are you sure you want to delete this book ?</h6>`;
                 $("#deleteModalText").html(html);
-                $("#deleteBookButton").on("click", deleteBook(bookID));
+                $("#deleteBookButton").on("click", function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "manageBooks/deleteBook.php",
+                        data: {
+                            bookID: bookID,
+                        },
+                        success: function (data) {
+                            if (data != "success") {
+                                alert(data);
+                            }
+                            searchMain();
+                        },
+                    });
+                });
             }
-        },
-    });
-}
-
-function deleteBook(bookID) {
-    $.ajax({
-        type: "POST",
-        url: "manageBooks/deleteBook.php",
-        data: {
-            bookID: bookID,
-        },
-        success: function (data) {
-            if (data != "success") {
-                alert(data);
-            }
-            searchMain();
         },
     });
 }
