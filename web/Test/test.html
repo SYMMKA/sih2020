@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> </title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+    </head>
+    <body style="background-color: #001730;">
+        <div class="container pt-4 mb-4">
+            <div class="mb-5">
+                <h5 class="text-white float-left">Issue Form</h5>
+                <h5 class="text-white float-right">Copy ID: 2-2</h5>
+                <h5 class="text-white float-right mr-5">Book ID: 2-2</h5>
+            </div>
+
+            <div class="form-group row mb-4">
+                <label for="" class="col-sm-3 col-form-label text-white"
+                    >Student ID</label
+                >
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="" />
+                </div>
+            </div>
+
+            <div class="pb-5">
+                <button type="button" class="btn btn-info float-right">
+                    Issue Book
+                </button>
+            </div>
+        </div>
+        <div class="container pt-5 mb-5">
+            <div class="mb-5">
+                <h5 class="text-white float-left">Return Form</h5>
+                <h5 class="text-white float-right">Book ID: 2-2</h5>
+            </div>
+            <div class="form-group row mb-4">
+                <label for="" class="col-sm-3 col-form-label text-white"
+                    >Student ID</label
+                >
+                <div class="col-sm-9">
+                    <select class="form-control" id="">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pb-5">
+                <button type="button" class="btn btn-secondary float-right">
+                    Add Extra Fine
+                </button>
+            </div>
+
+            <div class="table-responsive pt-4 mb-4">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Fine Type</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: white; color: black;">
+                        <tr>
+                            <td scope="col">
+                                Normal Fine
+                                <i
+                                    class="fa fa-info-circle ml-2"
+                                    data-toggle="tooltip"
+                                    title="This is fine is calculated when book is received after due date"
+                                ></i>
+                            </td>
+                            <td>12344</td>
+                        </tr>
+                        <tr>
+                            <td scope="col">
+                                Extra Fine
+                                <i
+                                    class="fa fa-info-circle ml-2"
+                                    data-toggle="tooltip"
+                                    title="This is fine is calculated when book is lost or damaged"
+                                ></i>
+                            </td>
+                            <td>12344</td>
+                        </tr>
+                        <th scope="col">
+                            Total Fine
+                            <i
+                                class="fa fa-info-circle ml-2"
+                                data-toggle="tooltip"
+                                title="This is fine is calculated by adding Normal and Extra Fine"
+                            ></i>
+                        </th>
+                        <th>12344</th>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pb-5">
+                <button type="button" class="btn btn-info float-right">
+                    Pay & Return
+                </button>
+            </div>
+        </div>
+        <div class="container pt-4 mb-4" id="springerHere"></div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            $("body").tooltip({ selector: "[data-toggle=tooltip]" });
+        </script>
+        <script>
+            $("#submitButton").on("click", function () {
+                var q = encodeURI($("#externalLink").val());
+
+                var link =
+                    "http://api.springernature.com/metadata/json?q=title:" +
+                    q +
+                    "&api_key=483e9a0b6fef85946168e7bd308d3ad5";
+                console.log(link);
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "test.php",
+                        data: {
+                            link: link,
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+                            result = data.records;
+                            html = `<div class="row" >`;
+                            result.forEach(function (book, index) {
+                                html +=
+                                    `
+                                 <div class="col-12 mb-4">
+                    <div
+                        class="card mb-3 ml-auto mr-auto"
+                        style="max-width: 950px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img
+                                    src="https://placehold.co/200x255"
+                                    class="card-img"
+                                    alt="..."
+                                    style="max-height: 300px; width: 100%;"
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        Title: ` +
+                                    book.title +
+                                    `
+                                    </h6>
+                                    <p>
+                                        Author: `;
+                                for (author in book.creators) {
+                                    html += author + `,`;
+                                }
+                                html +=
+                                    `
+                                        <br />Genre: ` +
+                                    book.genre +
+                                    `
+                                        <br />Publisher: ` +
+                                    book.publisher +
+                                    `
+                                        <br />Published Date: ` +
+                                    book.publicationDate +
+                                    ` <br />`;
+                                if (book.contentType == "Journal")
+                                    html += `ISSN: ` + book.issn;
+                                else html += `ISBN: ` + book.isbn;
+                                html +=
+                                    `<br />Publication
+                                        Name: ` +
+                                    book.publicationName +
+                                    `
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-2 align-self-center justify-content-center p-3"
+                            >
+                                <h1 class="display-2 text-center pb-5">
+                                    ` +
+                                    index +
+                                    `
+                                </h1>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary btn-block mb-4"
+                                >
+                                    Add
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary btn-block"
+                                >
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                        `;
+                            });
+                            html += `</div>`;
+                            $("#springerHere").html(html);
+                        },
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

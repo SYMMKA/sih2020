@@ -1,0 +1,45 @@
+<?php
+include("db.php");
+
+if (isset($_POST['stud_ID'])) {
+
+
+    $stud_ID =  $_POST['stud_ID'];
+
+
+
+    $sql = "SELECT * FROM `notify_me` where `notify_me`.`stud_ID` = '$stud_ID'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+
+    function sendNotification($stud_ID, $bookID, $conn)
+    {
+        $reserveNumQuery = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'reservePeriod'";
+        $reserveNumstmt = $conn->prepare($reserveNumQuery);
+        $reserveNumstmt->execute();
+        $reserve_time = $reserveNumstmt->fetchObject()->value;
+
+
+
+        $Sql_Query = "SELECT * FROM `copies` where bookID=$bookID and (status='' or (status='reserved' and UNIX_TIMESTAMP()-returnTime>$reserve_time))";
+        $stmt = $conn->prepare($Sql_Query);
+        $stmt->execute();
+        $count1 = $stmt->rowCount();
+        echo $count1;
+
+        if ($count1 > 0) {
+            echo "send mail";
+        } else {
+            echo "NO_BOOKS_AVAILABLE";
+        }
+    }
+
+
+
+    while ($row = $stmt->fetchObject()) {
+        sendNotification($stud_ID, $row->bookID, $conn);
+    }
+}
+
+$conn = null;
