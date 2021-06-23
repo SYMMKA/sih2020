@@ -26,18 +26,18 @@ can be scanned from mobile to track books (issued or in library) belonging to th
 database will store all book information.
 
 ### 2. Admin Interaction
-Firebase authentication and Realtime Database will be used for designing login sessions for admin and users and storing other useful information.
+SQL Database is used for designing login sessions for admin and users and storing other useful information.
 Admin profiles will be authenticated to view, add, delete and modify the database and monitor all activity in the management system. Users will be
 verified with phone authentication (OTP verification). Books can be issued to users by admin by scanning a QR code printed on library cards of
 students. Books can also be issued by recognizing book title using OCR. A non-relational database (Firebase) is used along with a relational
 database (MySQL) to store data for issued books, returned books and all other book information for efficient categorization.
 
 ### 3. User Interaction
-Registered user profiles will have personalised dashboards where they will be able to check availability of required books, status of books already
-issued, reserve books, wishlist books (if all copies are issued) and suggest to add new books. Reserved books will have to be physically issued within a
+Registered user profiles have personalised dashboards where they will be able to check availability of required books, status of books already
+issued, reserve books, wishlist books (if all copies are issued) and suggest to add new books. Reserved books have to be physically issued within a
 few hours as reservation will have an expiry time. Users will be notified of the wishlisted books if they are available and also be updated if new edition
-of existing books are brought in. Automatic Emails/notification to remind issue deadlines and fines due will also be sent to registered users.
-If the user has an issued book overdue, attempt for reservation of new book will be blocked and will be redirected to fine payment page. Users can pay
+of existing books are brought in. Automatic Emails/notification to remind issue deadlines and fines due are also sent to registered users.
+If the user has an issued book overdue, attempt for reservation of new book will be blocked and they will be redirected to fine payment page. Users can pay
 their fines through an online payment gateway.
 
 ### 4. Student Rewarding System
