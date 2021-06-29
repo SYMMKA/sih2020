@@ -1,30 +1,31 @@
 # Getting Started : Web for Admin
 
-Welcome to AlphaByte! This is where we help you get acquainted with all the features so that you can use them to manage your library with ease. Here, you’ll find a step by step guide on how to use all the features available.
+Welcome to AlphaByte! This is where we help you get acquainted with all the features so that you can use them to manage your library with ease. Here, you’ll find a step by step guide on how to use all the features available.You can come back to this section whenever required by clicking on [the help icon](images/image1.png "image_tooltip") on the top right of the screen.
 
 Here are some quick steps you can take to make sure you successfully set up your library with AlphaByte to take maximum advantage of the platform. We've included support links for each step in case you need any further explanation of how something works.
 
 1. [Set up an admin hierarchy](#adminfunctionclearance) and add each admin individually or [import admin details](#importadmindetails) quickly with a csv file.
 2. Add books and assets using [mass import](#importbooks) via settings or [individually](#addnewmaterial) via the add page. As you add new assets to the library, a unique QR code is generated for each copy of the item. Print and apply these QR codes to the respective items. This will enable you to perform quick scan searches on the items in future.
-3. Register issuers (students or teachers) with [mass import](#importuserdetails) or add new issuers [individually]().
-4. Set up shelves
-5. 
+3. Register issuers (students or teachers) with [mass import](#importuserdetails) or add new issuers [individually](#addnewuser).
+4. Set up [virtual shelves](#virtualshelves) to reflect your physical shelf organization. Print and apply QR codes for each shelf to successfully keep track of all items on each shelf.
+5. Checkout the [records section](#records) for report generation and you're all set. 
+6. Go ahead and announce in the [chatroom](#chatroom) that you're ready to roll out books.
 
 
 
-## Home Explained
+<!-- ## Home Explained
 
 On the homescreen you will find a shortcut to every page you need.
 
 _ss of the home page._
 ![alt_text](images/image1.png "image_tooltip")
-
+ -->
 
 
 ## Your Profile
 
 Click on 
-![alt_text](images/image1.png "image_tooltip")
+![profie icon](images/image1.png "image_tooltip")
 on the upper right corner of the screen. From here you can change your password or logout of your account. 
 
 
@@ -33,24 +34,24 @@ on the upper right corner of the screen. From here you can change your password 
 To change your password :
 
 1. Click on CHANGE PASSWORD situated above the logout button.
-![alt_text](images/image2.png "image_tooltip")
+![profile dropdown ss](images/image2.png "image_tooltip")
 2. A small form opens up. 
-![alt_text](images/image3.png "image_tooltip")
+![change password form](images/image3.png "image_tooltip")
 3. Enter your new password and confirm your password by entering the same again.
 4. Click on “save changes” to save your changed password or “cancel” in case you change your mind.
 
 
-
+<a name="voicenav"></a>
 ## Voice Navigation
 
 
 ### How to use voice navigation?
 We offer you complete voice navigation throughout the website with just one click on
-![alt_text](images/image1.png "image_tooltip")
+![mic icon](images/image1.png "image_tooltip")
 You’ll find it in the lower right corner of your screen on every page to enable you to voice navigate in and out of everywhere. To use it successfully:
 
 1. Click on
-![alt_text](images/image2.png "image_tooltip")
+![mic icon](images/image2.png "image_tooltip")
 . Make sure your microphone is on and working.
 2. Frame your command and say it. It is wise to use keywords relevant to the site and your task to be done. 
 
@@ -59,11 +60,11 @@ You’ll find it in the lower right corner of your screen on every page to enabl
 
 Saying “Search Python Programming book in add assets page”  or “Search for Python Programming book from the internet” will result in opening the ADD ASSETS page with the search results for “Python Programming book” as shown below.
 
-![alt_text](images/image3.png "image_tooltip")
+![search result ss](images/image3.png "image_tooltip")
 
 The voice assistant will help you further in accomplishing tasks vocally.
 
-![alt_text](images/image4.png "image_tooltip")
+![buddy: voice assistant ss](images/image4.png "image_tooltip")
 
 
 
@@ -73,19 +74,20 @@ Searching any book or shelf or asset in your library can be done in the followin
 
 ### Voice search.
 
-To use the speech recognition click on 
-![alt_text](images/image1.png "image_tooltip")
+To use the speech recognition feature click on 
+![search mic icon](images/image1.png "image_tooltip")
 on the search bar.
 
 Click on 
-![alt_text](images/image2.png "image_tooltip")
+![search mic icon](images/image2.png "image_tooltip")
  and say the name of the book/ author name/ ISBN number/ BookID/ CopyID into your device’s microphone.  For other assets specify similar appropriate parameters to search.
 
+More on how to use voice navigation [here](#voicenav).
 
 ### Manual type search.
 
 To perform type search click on the space provided for typing_ _on the search bar.
-![alt_text](images/image3.png "image_tooltip")
+![search mic icon](images/image3.png "image_tooltip")
 
 Simply type in the name of the book/ author name/ ISBN number/ BookID/ CopyID to find the book in your library. For other assets use similar appropriate parameters to search.
 
@@ -96,7 +98,7 @@ To use the scanner click on
 ![alt_text](images/image4.png "image_tooltip")
 _ _beside the SEARCH button.
 
-You can scan the QR code on the asset ( if attached previously, during addition of the book to the library) or on the shelf (if applied previously, during creation of the shelf) to quickly find all information regarding that shelf or asset. 
+You can scan the [QR code](#printQRcode) on the asset ( if attached previously, during addition of the book to the library) or on the shelf (if applied previously, during creation of the shelf) to quickly find all information regarding that shelf or asset. 
 
 
 
@@ -206,6 +208,7 @@ You can add extra fine for any physical damage made to the books.
 Click Pay & Return button if fine is paid or Return and Pay later button if not paid.
 
 
+<a name="printQRcode"></a>
 ### How to Print QR codes?
 
 If QR Code is damaged or lost for any of the books, you can print them again from the MANAGE page
@@ -238,6 +241,8 @@ _Records and history of the copies you delete will still remain. You will still 
 
 
 
+
+<a name="virtualshelves"></a>
 ## Your Virtual Shelves.
 You can manage your Physical Shelves Virtually in the system.
 Click on the SHELF tab present in the NavBar at the top right corner of your screen.
@@ -338,8 +343,10 @@ _Ss of general settings here._
 3. Click on the input box next to the parameter you would like to change.
 
 
+
 ### Managing User
 
+<a name="#addnewuser"></a>
 #### New User 
 
 1. To register a new user, go to MANAGE USER tab placed in the right side of SETTINGS page
@@ -452,7 +459,7 @@ You can use this feature to generate QR Codes of a set of books or shelves.
   3. Click on SAVE button to save changes.
 
 
-
+<a name="#records"></a>
 ## Records
 This page helps you keep track of bills, dues and activities in your library.
 To access this page click on 
@@ -560,7 +567,7 @@ A PDF of this RECEIPT can be downloaded and can be accessed in the Downloads Sec
    ![alt_text](images/image7.png "image_tooltip")
 
 
-
+<a name="chatroom"></a>
 ## Chatroom
 
 
