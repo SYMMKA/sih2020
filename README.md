@@ -23,14 +23,14 @@ recognition as an input for forms, continuous dictation and control.
 
 ## Installation
 This project has 2 parts and specific directions to install and start using these parts can be found at the following link:
-1. Web: [WEB README]()
-2. App: [APP README]()
+1. [WEB README](https://github.com/SYMMKA/sih2020/blob/master/web/README.md)
+2. [APP README](https://github.com/SYMMKA/sih2020/blob/master/app/README.md)
 
 ## Usage
-The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC]().
+The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/web/WEB%20USAGE.md).
 
 The app can be used by any and all issuers of the library. It is an interface that eases interaction with the library for all users who are sanctioned to use the library.
-For detailed directions and help on how to use the website, refer [APP USAGE DOC]().
+For detailed directions and help on how to use the website, refer [APP USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/app/APP%20USAGE.md).
 
 
 <!-- ## Contribution -->
