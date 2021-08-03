@@ -1,5 +1,6 @@
-# DS165_NeonGenesis
-SIH 2020
+# AlphaByte : A Modern Library Management System
+**DS165_NeonGenesis**
+Smart India Hackathon 2020
 
 ## Problem Statement
 **Library Software for Andaman College**
@@ -13,35 +14,30 @@ Link to problem statement : https://www.sih.gov.in/sih2020PS/MjA=/U29mdHdhcmU=/R
 
 ## Our Solution
 Alphaβyte is a web and app based, voice navigated library management system that offers voice enabled search of books from the internet and
-automatic categorization of books or CDs or magazines new to the library, according to the Dewey Decimal Classification System (most widely used
-and standardised classification of knowledge). Google books API is used to extract information of books using REST APIs. Information related to book can be searched from the internet and autofilled for faster data entry. 
-Voice based search is done by using Web Speech API. It enables developers to use scripting to generate text-to-speech output and to use speech
+automatic categorization of books or CDs or magazines new to the library, according to the [Dewey Decimal Classification System](https://www.oclc.org/en/dewey.html). 
+- Google books API is used to extract information of books using REST APIs. 
+- Information related to book can be searched from the internet and autofilled for faster data entry. 
+- Voice based search is done by using [Web Speech API](https://www.google.com/intl/en/chrome/demos/speech.html). It enables developers to use scripting to generate text-to-speech output and to use speech
 recognition as an input for forms, continuous dictation and control.
 
-### 1. Management
-A sample of the books displayed as search result can be previewed and downloaded. E-books, audiobooks and papers published by the college can
-be manually added. A unique printable qr code [catID+unique title and author ID+copy number] for each copy of a book added to the library, are
-generated. This will help us identify and keep track of each book efficiently. Also unique printable qr code [catID] for each shelf is generated which
-can be scanned from mobile to track books (issued or in library) belonging to that particular shelf. Relational (MySQL) and non-relational (NoSQL)
-database will store all book information.
 
-### 2. Admin Interaction
-SQL Database is used for designing login sessions for admin and users and storing other useful information.
-Admin profiles will be authenticated to view, add, delete and modify the database and monitor all activity in the management system. Users will be
-verified with phone authentication (OTP verification). Books can be issued to users by admin by scanning a QR code printed on library cards of
-students. Books can also be issued by recognizing book title using OCR. A non-relational database (Firebase) is used along with a relational
-database (MySQL) to store data for issued books, returned books and all other book information for efficient categorization.
+## Installation
+This project has 2 parts and specific directions to install and start using these parts can be found at the following link:
+1. Web: [WEB README]()
+2. App: [APP README]()
 
-### 3. User Interaction
-Registered user profiles have personalised dashboards where they will be able to check availability of required books, status of books already
-issued, reserve books, wishlist books (if all copies are issued) and suggest to add new books. Reserved books have to be physically issued within a
-few hours as reservation will have an expiry time. Users will be notified of the wishlisted books if they are available and also be updated if new edition
-of existing books are brought in. Automatic Emails/notification to remind issue deadlines and fines due are also sent to registered users.
-If the user has an issued book overdue, attempt for reservation of new book will be blocked and they will be redirected to fine payment page. Users can pay
-their fines through an online payment gateway.
+## Usage
+The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC]().
 
-### 4. Student Rewarding System
-To make this system more interactive and interesting for students, users & admin will have a personalised dashboard where a graphical report of their
-interactions with the library will be generated and they will be rewarded with points and batches for various achievements. A leader board on both
-website and application will display the top students based on these points and badges. For enhanced interactions and easy flow of information, a
-common chat section for all users and admin will also be created. Users can also provide suggestions and feedback to the admin in feedback section.
+The app can be used by any and all issuers of the library. It is an interface that eases interaction with the library for all users who are sanctioned to use the library.
+For detailed directions and help on how to use the website, refer [APP USAGE DOC]().
+
+
+<!-- ## Contribution -->
+
+
+<!-- ## Credits -->
+
+<!-- 
+## Copyright and Licenses
+This project is open source under the MIT license. For more information refer [LICENSE document]() -->
