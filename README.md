@@ -56,12 +56,12 @@ We would love your input!
 
 ## Credits
 
-Team Leader: [Manjunath Naik](https://github.com/Manu1ND)
-[Amit Ramani](https://github.com/Ichigo27)
-[Mugdha Basak](https://github.com/basakmugdha)
-[Shraddha Pawar](https://github.com/shraddhavijay)
-[Kaushik Satra](https://github.com/Kaushik70)
-[Yousha Gharpure](https://github.com/youshaaaa)
+  - Team Leader: [Manjunath Naik](https://github.com/Manu1ND)
+  - [Amit Ramani](https://github.com/Ichigo27)
+  - [Mugdha Basak](https://github.com/basakmugdha)
+  - [Shraddha Pawar](https://github.com/shraddhavijay)
+  - [Kaushik Satra](https://github.com/Kaushik70)
+  - [Yousha Gharpure](https://github.com/youshaaaa)
 
 
 <!-- 
