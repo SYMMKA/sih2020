@@ -2,18 +2,11 @@
 **An modern library management system**
 
 ## About 
+As per the traditional library management system, the students or the end users of the library have to physically approach the library every time and then search for their required book. Hence this task is very tedious for the end users as it might decrease their overall urge to pursue knowledge. Thus this mobile application is an effort to ease their interaction with the library.
 
-As per the traditional library management system, the students or the end users of the library have to physically approach the library every time and then search for their required book. Hence this task is very tedious for the end users as it might decrease their overall urge to pursue knowledge. Thus this mobile application is an efficient solution for this problem and is specially designed for the end users through which they can
+![10](https://user-images.githubusercontent.com/51905437/128193990-99fe1375-d65d-463b-89ef-9bad390b5e8f.png)
+![11](https://user-images.githubusercontent.com/51905437/128194010-b77ae30a-c2fa-441c-94ef-429c8c75b8d9.png)
 
-   - Check the books available in the library without being physically present in the library.
-   - Reserve a book in advance and get it issued later within the given time frame, by visiting the library.
-   - Get important information regarding the book details by simply scanning the QR code through the app.
-   - Pay penalty/fine using the UPI feature.
-   - Get the library updated timings through the timetable.
-   - Connect to other Users and Librarians directly through the Open Chat feature.
-   - Read and download the E-Books provided by the library.
-   - Get notified via emails for every transaction with the library.
-   - Check out the leaderboard and increase the overall urge to read more.
 
 
 ## Installation
@@ -48,6 +41,17 @@ App Installation:
 
 
 ## Usage
+This app is specially designed for the end users through which they can
 
-The app can be used by any and all issuers of the library. It is an interface that eases interaction with the library for all users who are sanctioned to use the library. For detailed directions and help on how to use the website, refer [APP USAGE](https://github.com/SYMMKA/sih2020/blob/master/app/APP%20USAGE.md) document.
+   - Check the books available in the library without being physically present in the library.
+   - Reserve a book in advance and get it issued later within the given time frame, by visiting the library.
+   - Get important information regarding the book details by simply scanning the QR code through the app.
+   - Pay penalty/fine using the UPI feature.
+   - Get the library updated timings through the timetable.
+   - Connect to other Users and Librarians directly through the Open Chat feature.
+   - Read and download the E-Books provided by the library.
+   - Get notified via emails for every transaction with the library.
+   - Check out the leaderboard and increase the overall urge to read more.
+
+For detailed directions and help on how to use the website, refer [APP USAGE](https://github.com/SYMMKA/sih2020/blob/master/app/APP%20USAGE.md) document.
 
