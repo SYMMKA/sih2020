@@ -85,4 +85,4 @@ For App:
 
 
 ## Copyright and Licenses
-This project is open source under the MIT license. For more information refer [LICENSE] document(https://github.com/SYMMKA/sih2020/edit/master/LICENSE.txt)
+This project is open source under the [MIT license](https://opensource.org/licenses/MIT). For more information refer [LICENSE](https://github.com/SYMMKA/sih2020/edit/master/LICENSE.txt) document
