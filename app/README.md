@@ -1,5 +1,5 @@
 # AlphaByte: App for Users
-**An modern library management system**
+**Personal Library Navigator**
 
 ## About 
 As per the traditional library management system, the students or the end users of the library have to physically approach the library every time and then search for their required book. Hence this task is very tedious for the end users as it might decrease their overall urge to pursue knowledge. Thus this mobile application is an effort to ease their interaction with the library.
