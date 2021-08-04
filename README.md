@@ -9,12 +9,6 @@ Also as issuers and users, we know that finding the right resources from a huge 
 As a solution we created AlphaByte, a voice based library management system, not only to digitize management but also to simplify and enhance everyone’s interaction with the library
 
 
-<!-- ## Problem Statement
-**Library Software for Andaman College**
-
-Computerization of Library Activities and Book Transactions.
-
-Design a library management system for Andaman college that has voice-based search of books and automatic categorization of books in genres based on title. The system should search from the internet and get information about the book and put them into appropriate categories based on title, authors and information collected online. -->
 
 ![2](https://user-images.githubusercontent.com/51905437/128184397-152773ff-2261-43b6-95b5-373fdcd17f78.png)
 
@@ -42,17 +36,17 @@ This project has 2 parts and specific directions to install and start using them
 1. [WEB README](https://github.com/SYMMKA/sih2020/blob/master/web/README.md#installation)
 2. [APP README](https://github.com/SYMMKA/sih2020/blob/master/app/README.md#installation)
 
-## Usage
 
+## Usage
 The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/web/WEB%20USAGE.md).
 
 The app can be used by any and all issuers of the library. It is an interface that eases interaction with the library for all users who are sanctioned to use the library.
 For detailed directions and help on how to use the website, refer [APP USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/app/APP%20USAGE.md).
-<!-- 
+
 
 ## Contributing to AlphaByte
 We would love your input! 
- -->
+For detailed guidelines on how to contribute in this project, refer [CONTRIBUTION](https://github.com/SYMMKA/sih2020/edit/master/CONTRIBUTIONS.md) document
 
 ## Credits
 
@@ -63,7 +57,32 @@ We would love your input!
   - [Kaushik Satra](https://github.com/Kaushik70)
   - [Yousha Gharpure](https://github.com/youshaaaa)
 
+Our project has the following third party dependencies:
 
-<!-- 
+For Web:
+ - [jsPDF](https://github.com/MrRio/jsPDF/blob/master/LICENSE)
+
+ - [jsPDF-AutoTable](https://github.com/simonbengtsson/jsPDF-AutoTable/blob/master/LICENSE.txt)
+
+ - [OCLC Classify](http://classify.oclc.org/classify2/)
+
+ - [Google books API](https://developers.google.com/books/terms)
+
+ - [Springer](https://dev.springernature.com/)
+
+ - [qrious](https://github.com/neocotic/qrious/blob/master/LICENSE.md) (for generating QR code in web)
+ 
+ - [Html5-QRCode](https://github.com/mebjas/html5-qrcode/blob/master/LICENSE) (QR code reader for web)
+ 
+For App:
+ - [Upi pay](https://pub.dev/packages/upi_pay)
+ 
+ - [Qr scanner](https://pub.dev/packages/qr_code_scanner)
+
+ - [Speech to text](https://pub.dev/packages/speech_to_text)
+
+ - [Tabular display widget](https://pub.dev/packages/json_table)
+
+
 ## Copyright and Licenses
-This project is open source under the MIT license. For more information refer [LICENSE] document() -->
+This project is open source under the MIT license. For more information refer [LICENSE] document(https://github.com/SYMMKA/sih2020/edit/master/LICENSE.txt)
