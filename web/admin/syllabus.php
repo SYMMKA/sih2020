@@ -87,7 +87,7 @@
             </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="docs.html" data-toggle="tooltip" data-placement="bottom" title="Read Docs">
+            <a class="nav-link" href="https://github.com/SYMMKA/sih2020#readme" data-toggle="tooltip" data-placement="bottom" title="Read Docs">
               <div class="d-flex">
                 <i class="fa fa-question mr-3 mr-lg-0" aria-hidden="true"></i>
                 <h6 class="d-block d-lg-none mb-0">Read Docs</h6>

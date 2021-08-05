@@ -99,7 +99,7 @@ if (isset($_SESSION['AccessError'])) {
 						</div>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="docs.html" data-toggle="tooltip" data-placement="bottom" title="Read Docs">
+						<a class="nav-link" href="https://github.com/SYMMKA/sih2020#readme" data-toggle="tooltip" data-placement="bottom" title="Read Docs">
 							<div class="d-flex">
 								<i class="fa fa-question mr-3 mr-lg-0" aria-hidden="true"></i>
 								<h6 class="d-block d-lg-none mb-0">Read Docs</h6>
@@ -257,7 +257,7 @@ if (isset($_SESSION['AccessError'])) {
 					<div class="col mb-4">
 						<div class="card btn-green">
 							<div class="card-body">
-								<a class="stretched-link" href="docs.html"></a>
+								<a class="stretched-link" href="https://github.com/SYMMKA/sih2020#readme"></a>
 								<h5 class="card-title text-center">Read Docs</h5>
 							</div>
 						</div>
