@@ -438,7 +438,7 @@ Existing Database should be in CSV format with some compulsory columns.
 
 ### Print QR codes in bulk.
 
-You can use this feature to generate QR Codes of a set of books or shelves.
+You can use this feature to generate QR codes of a set of books or shelves.
 1. Click on the GENERATE QR tab in the settings page.
 2. Select the books or shelves for which you want to generate codes here.
 
@@ -456,7 +456,7 @@ You can use this feature to generate QR Codes of a set of books or shelves.
 
 #### What is admin function clearance?
 
- Different levels of hierarchy can be created and assigned to admins. These different levels can then be set to limited or extended access to management functions in the library. One such example of a hierarchical admin clearance system is given below:
+ Different levels of hierarchy can be created and assigned to admins. These different levels can then be set to limit or extend access to management functions in the library. One such example of a hierarchical admin clearance system is given below:
   <ol>
     <li>Level 1 admin can only ISSUE or RETURN a book</li>
     <li>Level 2 admin can can ADD or REMOVE BOOKS from database along with all the features that level 1
