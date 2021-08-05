@@ -71,7 +71,7 @@ The voice assistant will help you further in accomplishing tasks vocally.
 ![buddy: voice assistant ss](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.008.png)
 
 
-
+<a name="#search"></a>
 ## Search
 Searching any book or shelf or asset in your library can be done in the following three ways
 
@@ -118,7 +118,7 @@ You can also use voice navigation to do the same.
 Addition of a new material available on the internet can be easily done by following the steps given below.
 
 #### 1. Finding the book you want
-1. Once in the ADD ASSETS page, voice search or type search the book you want in the search bar. ( For more guidance on searching checkout the search section of this document)
+1. Once in the ADD ASSETS page, voice search or type search the book you want in the search bar. For more guidance on searching checkout the [search section](#search) of this document)
 2. Based on your search, a list of books will be displayed.
 ![alt_text](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.013.jpeg)
 
@@ -325,6 +325,8 @@ You can create new branches and upload the books and materials in your library t
 2. On the Right Side of the card opened click on the Select Book(s) dropdown button.
 3. Search the book you would like to add from the database.
 
+
+<a name="#settings"></a>
 ## Customize via settings.
 
 Click on ![](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.029.png) in the NavBar on the top right of your screen to open the settings page. Here you can easily customize AlphaByte according to your library needs.
@@ -546,7 +548,7 @@ Click on the REPORT TABLE button in the Records page
 
 Reports can be generated periodically as well by changing the REPORT GENERATION DURATION in SETTINGS tab.
 
-Check [CUSTOMIZE VIA SETTINGS]() segment in this user doc for more information on that.
+Check [CUSTOMIZE VIA SETTINGS](#settings) segment in this user doc for more information on that.
 
 A PDF of the generated report can be downloaded by clicking on the _Download PDF button_ in the lower left corner of the page and can be accessed in the Downloads Section of your PC.
 
@@ -614,7 +616,7 @@ Here you can view a list of all the students enrolled to your library in the des
 ![](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.052.jpeg)
 
 The leaderboard let’s you find out your regular and sincere users. You can decide how many points to award or deduct for various interactions of the user with the library in the settings.
-For more details on point settings, check out the “customize via settings” section of this document.
+For more details on point settings, check out the [customize via settings](#settings) section of this document.
 
 
 
