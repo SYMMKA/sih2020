@@ -38,9 +38,13 @@ on the upper right corner of the screen. From here you can change your password 
 To change your password :
 
 1. Click on CHANGE PASSWORD situated above the logout button.
+
 ![profile dropdown ss](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.004.png)
+
 2. A small form opens up. 
+
 ![change password form](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.005.jpeg)
+
 3. Enter your new password and confirm your password by entering the same again.
 4. Click on “save changes” to save your changed password or “cancel” in case you change your mind.
 
@@ -120,6 +124,7 @@ Addition of a new material available on the internet can be easily done by follo
 #### 1. Finding the book you want
 1. Once in the ADD ASSETS page, voice search or type search the book you want in the search bar. For more guidance on searching checkout the [search section](#search) of this document)
 2. Based on your search, a list of books will be displayed.
+
 ![alt_text](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.013.jpeg)
 
 
@@ -206,6 +211,7 @@ After Clicking on the RETURN button, fine calculation will be presented below.
 Users can choose to pay fines now or later.
 Due Fines can be seen on the RECORD page (Check documentation of Record page for more details)
 You can add extra fine for any physical damage made to the books.
+
 ![](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.021.jpeg)
  
 Click Pay & Return button if fine is paid or Return and Pay later button if not paid.
