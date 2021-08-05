@@ -541,7 +541,7 @@ Click on the REPORT TABLE button in the Records page
 
 #### Report through a specific time period
 
-1. Report can be generated for a specific time period by selecting a start and end time in the specified format (dd/mm/yyyy hh:mm)
+1. Report can be generated for a specific time period by selecting a start and end time.
 2. If time is not specified, it will show all records of selected criteria.
 3. If only End time is specified, all records from the first record(of that criteria) to the end time will be displayed.
 4. If only Start time is specified, all records from the specified  time to the last record(of that criteria) will be displayed.
