@@ -134,7 +134,6 @@ function addCopy(copyID, i) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             addCopyFill(i);
         },
     });
@@ -150,7 +149,6 @@ function removeCopy(copyID, i) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             addCopyFill(i);
         },
         //Other options

@@ -18,13 +18,13 @@ function drawIssueChart() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
+            
             data = JSON.parse(data);
-            console.log(data);
             //making array
             arrIssued = [["Title", "Count"]]; // Define an array and assign columns for the chart.
             for (i in data) {
-                console.log(data[i].count);
-                console.log(data[i].title);
+                
+                
                 arrIssued.push([data[i].title, parseInt(data[i].count)]);
             }
 
@@ -53,13 +53,13 @@ function notifyMeChart() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
+            
             data = JSON.parse(data);
-            console.log(data);
             //making array
             arrNotifyMe = [["Title", "Count"]]; // Define an array and assign columns for the chart.
             for (i in data) {
-                console.log(data[i].count);
-                console.log(data[i].title);
+                
+                
                 arrNotifyMe.push([data[i].title, parseInt(data[i].count)]);
             }
 
@@ -90,12 +90,12 @@ function requestChart() {
         processData: false, // Dont delete this
         success: function (data) {
             data = JSON.parse(data);
-            console.log(data);
+            
             //making array
             arrRequest = [["Title", "Count"]]; // Define an array and assign columns for the chart.
             for (i in data) {
-                console.log(data[i].count);
-                console.log(data[i].title);
+                
+                
                 arrRequest.push([data[i].title, parseInt(data[i].count)]);
             }
 

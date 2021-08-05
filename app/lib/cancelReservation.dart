@@ -95,7 +95,12 @@ class _CancelReservationState extends State<CancelReservation> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Your Reservations"),
+          title: Text(
+            'Your Reservations',
+            style: TextStyle(color: Color(0xff001730)),
+          ),
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Color(0xff001730)),
         ),
         body: state == 0
             ? Container(

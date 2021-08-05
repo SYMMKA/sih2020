@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sihapp/ModelBookPreview.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'ModelAvailableCopies.dart';
 import 'constants.dart';
 
@@ -119,55 +120,71 @@ class _EbooksState extends State<Ebooks> {
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
         ),
-        child: Card(
+        child:
+        GestureDetector(
+          onTap: (){
+            if(x%2==0)
+              {
+               launch('http://africau.edu/images/default/sample.pdf');
+              }
+            else
+              {
+                launch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
+              }
+          },
+          child:Card(
 
-            elevation: 2,
-            margin: EdgeInsets.all(10),
-            semanticContainer: true,
-            color: Colors.amberAccent.shade50,
-            child: Container(
+              elevation: 2,
+              margin: EdgeInsets.all(10),
+              semanticContainer: true,
+              color: Colors.amberAccent.shade50,
+              child: Container(
 
-                child:Column(
-                  children: <Widget>[
+                  child:Column(
+                    children: <Widget>[
 
-                    Container(
-                      height: 120.0,
-                      decoration: BoxDecoration(
+                      Container(
+                        height: 120.0,
+                        decoration: BoxDecoration(
                           image: DecorationImage(image: NetworkImage( searchType?_catResult[x].imgLink :_searchResult[x].imgLink),
                               fit: BoxFit.fitWidth
                           ),
 
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20)),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20)),
 
+                        ),
                       ),
-                    ),
 
 
-                    Text(
-                      searchType?_catResult[x].title: _searchResult[x].title,
-                      overflow: TextOverflow.clip,
-                      maxLines: 1,
-                      softWrap: false,
-                      style: TextStyle(fontSize: 12),
-                    ),
+                      Text(
+                        searchType?_catResult[x].title: _searchResult[x].title,
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
+                        softWrap: false,
+                        style: TextStyle(fontSize: 12),
+                      ),
 
-                    Text(
-                      searchType?_catResult[x].author: _searchResult[x].author,
-                      overflow: TextOverflow.clip,
-                      maxLines: 1,
-                      softWrap: false,
-                      style: TextStyle(fontSize: 12),
-                    ),
+                      Text(
+                        searchType?_catResult[x].author: _searchResult[x].author,
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
+                        softWrap: false,
+                        style: TextStyle(fontSize: 12),
+                      ),
 
 
-                  ],
-                )
-            )
+
+                    ],
+                  )
+              )
+          ) ,
         )
+
+
     );
   }
 

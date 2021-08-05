@@ -59,7 +59,7 @@ function loadReceiptBox() {
         },
         success: function (data) {
             data = JSON.parse(data);
-            console.log(data);
+            
             html =
                 `
 			<div class="container">

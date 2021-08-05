@@ -55,9 +55,6 @@ function autoFillBook(i) {
                                 </div>
                             </div>`;
                     var reservedBy = "";
-                    // console.log(item.returnTime);
-                    // console.log(item.currentTime);
-                    // console.log(item.returnTime > item.currentTime);
                     if (
                         item.status == "reserved" &&
                         item.returnTime > item.currentTime

@@ -53,7 +53,7 @@ function updateBook(e) {
         updateCategory4 =
             updateCategorySelect4.options[updateCategorySelect4.selectedIndex]
                 .text;
-    //console.log(updateCategory4);
+    //
 
     var formData = new FormData();
     formData.append("bookID", bookID);
@@ -84,7 +84,7 @@ function updateBook(e) {
         processData: false, // Dont delete this
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
+            
             searchMain();
             resetUpdateForm();
         },

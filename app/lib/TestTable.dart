@@ -80,6 +80,8 @@ class _TestTableState extends State<TestTable> {
 
   Future<List> getPosts() async {
     http.Response response = await http.get(rootUrl+'libraryCard.php?stud_ID='+stud_ID);
+
+
     activities =  jsonDecode(response.body);
     debugPrint(response.body);
     return activities;

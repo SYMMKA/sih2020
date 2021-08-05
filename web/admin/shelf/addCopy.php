@@ -3,8 +3,8 @@ if (isset($_GET['shelfID'])) {
 	$shelfID = $_GET['shelfID'];
 }
 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -157,8 +157,12 @@ class _ViewActivityState extends State<ViewActivity> {
       key: _key,
 
       appBar: AppBar(
-        title: Text("Book Details"),
-        backgroundColor: Colors.black,
+        title: Text(
+          'Your Issued Book',
+          style: TextStyle(color: Color(0xff001730)),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Color(0xff001730)),
       ),
 
       body: Container(

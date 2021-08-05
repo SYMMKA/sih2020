@@ -1,6 +1,6 @@
 <?php
-include("../../session.php");
-include("../../db.php");
+include("../../../session.php");
+include("../../../database.php");
 
 $sql = "SELECT * FROM `timetable`";
 $stmt = $conn->prepare($sql);

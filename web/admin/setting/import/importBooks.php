@@ -1,6 +1,6 @@
 <?php
-include('../../session.php');
-include('../../db.php');
+include('../../../session.php');
+include('../../../database.php');
 $adminID = $_SESSION['adminID'];
 
 $DDCstr = file_get_contents("../../category.json");

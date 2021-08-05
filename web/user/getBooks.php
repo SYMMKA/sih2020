@@ -1,6 +1,6 @@
 <?php
 //include connection file 
-include("db.php");
+include("../database.php");
 
 $sem_branchID = $_POST['sem_branchID'];
 

@@ -19,7 +19,7 @@ function removeCopy(e) {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
-			console.log(data);
+			
 			autoFillBook(elementID);
 		}
 	});

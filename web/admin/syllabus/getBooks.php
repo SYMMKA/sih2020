@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 $sem_branchID = $_POST['sem_branchID'];
 

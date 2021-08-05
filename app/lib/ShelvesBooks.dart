@@ -274,7 +274,8 @@ class _ShelvesBooksState extends State<ShelvesBooks> {
       appBar: new AppBar(
 
         title: new Text('Books of '+widget.shelfid),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Color(0xff001730)),
         elevation: 0.0,
       ),
       body: new Column(

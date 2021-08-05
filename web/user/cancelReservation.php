@@ -1,7 +1,5 @@
-
 <?php
-
-include("db.php");
+include("../database.php");
 
 if(@$_POST['copyID'] && @$_POST['stud_ID'])
 {

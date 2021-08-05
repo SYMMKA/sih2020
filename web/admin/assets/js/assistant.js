@@ -167,7 +167,7 @@ function talkToDialogFlowApi(message) {
     $("#loading").hide();
     enableInput();
     var mess_arr = message.toLowerCase().trim().split(" ");
-    console.log(mess_arr);
+    
     var settingsAll = [];
     settingsAll = settingsAll.concat(
         general,
@@ -220,13 +220,13 @@ function talkToDialogFlowApi(message) {
     }
 
     // autofill open book
-    //if (message.toLowerCase().indexOf("book") == 0) console.log("good");
+    //if (message.toLowerCase().indexOf("book") == 0) 
     // close form
     // page navigation
 }
 
 function searchBook(searchArr) {
-    console.log("searchBook");
+    
     //if(searchArr.length < 1)
     var n = searchArr.lastIndexOf("in");
     if (n == -1) {
@@ -272,8 +272,8 @@ function searchBook(searchArr) {
 }
 
 function openPage(arr) {
-    console.log("openPage");
-    console.log(arr.filter((value) => home.includes(value)));
+    
+    
     if (arr.filter((value) => home.includes(value)).length) {
         window.location.href = "home.php";
     } else if (arr.filter((value) => manage.includes(value)).length) {
@@ -381,9 +381,9 @@ function startRecognition() {
     recognition.onresult = function (event) {
         var text = "";
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            text += event.results[i][0].transcript;
+            text += event.results[i][0].transcript.replace('.', "");
         }
-        console.log(text);
+        
         sendChatMessage(text);
         stopRecognition();
     };

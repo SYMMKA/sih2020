@@ -1,9 +1,5 @@
-
 <?php
-
-
-include("db.php");
-
+include("../database.php");
 
 $sql = "SELECT * FROM chats ";
 $stmt = $conn->prepare($sql);
@@ -11,7 +7,6 @@ $stmt->execute();
 
 
 while ($row = $stmt->fetchObject()) {
-   
 	$data["id"] = $row->id;
 	$data["stud_ID"] = $row->id;
 	$data["name"] = $row->name;
@@ -28,6 +23,3 @@ else
 
 $conn = null;
 exit;
-
-
-?>

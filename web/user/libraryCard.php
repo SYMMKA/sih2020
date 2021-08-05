@@ -1,9 +1,5 @@
-
-
-
 <?php
-
-include("db.php");
+include("../database.php");
 
 if ($_GET['stud_ID']) {
 
@@ -47,8 +43,6 @@ if ($_GET['stud_ID']) {
 		$data["currentTime"] = time();
 		$bookID = $row1->bookID;
 
-
-
 		$stmt2->bindParam(':bookID', $bookID);
 		$stmt2->execute();
 		$row2 = $stmt2->fetchObject();
@@ -73,7 +67,6 @@ if ($_GET['stud_ID']) {
 	if (isset($return_arr)) {
 		echo json_encode($return_arr);
 	} else {
-
 		$data["star"] = "";
 		$data["fine"] = "";
 		$data["due"] = "";
@@ -94,7 +87,6 @@ if ($_GET['stud_ID']) {
 		$return_arr[] = $data;
 		echo json_encode($return_arr);
 	}
-
 
 	$conn = null;
 	exit;

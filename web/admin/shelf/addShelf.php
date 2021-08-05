@@ -1,6 +1,6 @@
 <?php
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 if ($_POST['shelfID'])
 	$shelfID = $_POST['shelfID'];

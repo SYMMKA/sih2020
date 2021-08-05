@@ -1,6 +1,6 @@
 <?php
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 $shelfID = $_POST['shelfID'];
 $sql1 = "SELECT * FROM copies WHERE `copies`.`shelfID` = :shelfID";

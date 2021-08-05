@@ -74,7 +74,7 @@ $(document).ready(function () {
 			loadUser();
 			$("#showDeleteUser").removeClass("d-none");
 		} else {
-			console.log("error");
+			
 		}
 	});
 
@@ -132,7 +132,6 @@ $(document).ready(function () {
 					contentType: false, // Dont delete this (jQuery 1.6+)
 					processData: false, // Dont delete this
 					success: function (data) {
-						console.log(data);
 					},
 					error: function (error) {
 						alert(error);
@@ -166,7 +165,7 @@ $(document).ready(function () {
 					},
 				});
 			} else {
-				console.log("Select atleast one admin to delete");
+				alert("Select atleast one admin to delete");
 			}
 		} else if (
 			$("input[name=adminoruser]:checked").val() ==
@@ -184,15 +183,14 @@ $(document).ready(function () {
 					data: formData,
 					contentType: false, // Dont delete this (jQuery 1.6+)
 					processData: false, // Dont delete this
-					success: function (data) {
-						console.log(data);
+					success: function (data) {	
 					},
 					error: function (error) {
 						alert(error);
 					},
 				});
 			} else {
-				console.log("Select atleast one user to delete");
+				alert("Select atleast one user to delete");
 			}
 		} else {
 			console.log("error");

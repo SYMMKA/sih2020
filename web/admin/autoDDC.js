@@ -27,7 +27,6 @@ window.onload = function () {
 function searchDDC() {
     var title = document.getElementById("title");
     var isbn = document.getElementById("isbn");
-    console.log(title.value);
 
     var formData = new FormData();
     formData.append("title", title.value);

@@ -5,7 +5,7 @@ setInterval(function () {
 	var adminID = document.getElementById("adminID").value;
 	var message = document.getElementsByClassName("msg-bubble");
 	var lastid = message[message.length - 1].id;
-	console.log(lastid);
+	
 	var formData = new FormData();
 	formData.append("lastid", lastid);
 	$.ajax({
@@ -17,7 +17,7 @@ setInterval(function () {
 		success: function (data) {
 			if (data) {
 				var html = "";
-				console.log(data);
+				
 				data = JSON.parse(data);
 				data.forEach(function (item, index) {
 					if (adminID == item.stud_ID) {
@@ -86,7 +86,7 @@ function sendMsg() {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
-			console.log(data);
+			
 		},
 	});
 }

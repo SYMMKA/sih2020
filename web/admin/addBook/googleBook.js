@@ -16,7 +16,7 @@ $(document).ready(function () {
                     </div>
                     <h4 class="text-center mb-5">Showing Results for '`+ search + `'</h4>
 					<div class="row row-cols-1">`;
-					console.log(data);
+					
 				if (data != 'Failed') {
 					data = JSON.parse(data);
 					title = data.title;
@@ -77,7 +77,7 @@ $(document).ready(function () {
 					html += `
 					<div class="mb-4 text-center">This is cache of Add Books Page for searching "`+ search + `". The current page could have changed in the meantime.</div>`;
 				for (var i = 0; i < length; i++) {
-					console.log(title[i]);
+					
 					html += `<div class="col">
 							<div class="card mb-3 ml-auto mr-auto" style="max-width: 950px;">
 									<div class="row no-gutters">

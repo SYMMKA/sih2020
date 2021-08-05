@@ -171,7 +171,7 @@ function changeFineType() {
         document.getElementById("extraFine").textContent = parseFloat(lost);
     }
     document.getElementById("fineType").innerHTML = xyz;
-    //console.log(document.getElementById("extraFine").textContent);
+    //
 }
 
 function percentFineCalc() {
@@ -193,11 +193,11 @@ function percentFineCalc() {
   ); */
     var intt = parseInt(price);
     var fine = intt * percentNumber * 0.01;
-    console.log(fine);
+    
     document.getElementById("extraFine").textContent = fine;
     /* var abcc = document.getElementById("extraFine").textContent;
-  console.log(parseInt(abcc));
-  console.log(isNaN(document.getElementById("extraFine").textContent)); */
+  
+   */
 }
 
 function addFine() {

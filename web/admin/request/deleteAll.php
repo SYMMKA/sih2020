@@ -1,6 +1,6 @@
 <?php
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

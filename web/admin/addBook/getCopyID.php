@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 $title = $_POST['title'];
 $author = $_POST['author'];

@@ -80,9 +80,12 @@ class ForgotPassPageState extends State<ForgotPassPage>
     return new Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text("Settings"),
-          //centerTitle: true,
-          backgroundColor: Colors.black,
+          title: Text(
+            'Settings',
+            style: TextStyle(color: Color(0xff001730)),
+          ),
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Color(0xff001730)),
         ),
         body: new Container(
             color: Colors.white,

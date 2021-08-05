@@ -7,6 +7,7 @@ import 'package:sihapp/TestTable.dart';
 import 'package:sihapp/chatScreen.dart';
 import 'package:sihapp/constants.dart';
 import 'package:sihapp/googleBooks.dart';
+import 'package:sihapp/leaderBoard.dart';
 import 'package:sihapp/qrScanner.dart';
 import 'package:sihapp/test.dart';
 import 'package:sihapp/Settings.dart';
@@ -29,7 +30,7 @@ class HomeTest extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Color(0xff001730),
+        primaryColor: Color(0xff4AD7D1),
         accentColor: Color(0xff4AD7D1),
 
         // Define the default font family.
@@ -118,7 +119,7 @@ class HomePageTestState extends State<HomePageTest> {
     SearchTabs(),
     new TestTable(),
     ChatScreen(),
-    new GoogleBooks(),
+    //new GoogleBooks(),
     new TestTable(),
   ];
 
@@ -278,11 +279,42 @@ class HomePageTestState extends State<HomePageTest> {
                       Text(" Library Timings")
                     ]),
                     onTap: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) =>
+//                                TimeTable(),
+//                        ),
+//                      );
+                    }),
+
+
+                ListTile(
+                    title: Row(children: <Widget>[
+                      Icon(Icons.people),
+                      Text(" Leader Board")
+                    ]),
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                TimeTable(),
+                                LeaderBoard(),
+                        ),
+                      );
+                    }),
+
+                ListTile(
+                    title: Row(children: <Widget>[
+                      Icon(Icons.add_comment),
+                      Text(" Request for Books")
+                    ]),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              GoogleBooks(),
                         ),
                       );
                     }),
@@ -290,7 +322,7 @@ class HomePageTestState extends State<HomePageTest> {
 
 
                 SizedBox(
-                  height: MediaQuery.of(context).size.height/5,
+                  height: MediaQuery.of(context).size.height/6.2,
                 ),
 
 
@@ -339,8 +371,8 @@ class HomePageTestState extends State<HomePageTest> {
 //          BottomNavigationBarItem(
 //              icon: Icon(Icons.calendar_today), title: Text('Timings')),
 
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_shopping_cart), title: Text('Suggest WishList')),
+//          BottomNavigationBarItem(
+//              icon: Icon(Icons.add_shopping_cart), title: Text('Request')),
         ],
         currentIndex: selectedIndex,
         onTap: onItemTapped,

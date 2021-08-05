@@ -17,8 +17,8 @@ function startGreeting() {
 }
 
 function openBookModal(bookArr) {
-    console.log(bookArr);
-    console.log("openBookModal");
+    
+    
     var num = ["1", "one", "2", "two", "3", "three", "4", "four", "5", "five", "6", "six", "7", "seven", "8", "eight", "9", "nine", "10", "ten"];
     if (num.filter((value) => bookArr.includes(value)).length) {
         if (bookArr.includes("1") || bookArr.includes("one")) autoFill("0");

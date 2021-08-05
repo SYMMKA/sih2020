@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../../session.php");
-include("../../db.php");
+include("../../../session.php");
+include("../../../database.php");
 
 $adminsIDs = $_POST['adminIDs'];
 $adminsIDs = json_decode($adminsIDs, true);

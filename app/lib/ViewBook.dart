@@ -96,10 +96,13 @@ class _ViewBookState extends State<ViewBook> {
       key: _key,
 
       appBar: AppBar(
-        title: Text("Book Details"),
-        backgroundColor: Colors.black,
+        title: Text(
+          'Scanned Book',
+          style: TextStyle(color: Color(0xff001730)),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Color(0xff001730)),
       ),
-
       body: Container(
           padding: EdgeInsets.all(15),
           child: ListView(

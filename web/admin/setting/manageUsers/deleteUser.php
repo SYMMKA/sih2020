@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../../session.php");
-include("../../db.php");
+include("../../../session.php");
+include("../../../database.php");
 
 $deleteUser = $_POST['deleteUser'];
 $deleteUser = json_decode($deleteUser, true);

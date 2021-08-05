@@ -1,12 +1,10 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "library";
 // Create connection
 $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-
 
 $sql1 = "SELECT * FROM shelf";
 $stmt1 = $conn->prepare($sql1);
@@ -15,7 +13,6 @@ $stmt1->execute();
 
 $sql2 = "SELECT * FROM copies WHERE `copies`.`shelfID` = :shelfID";
 $stmt2 = $conn->prepare($sql2);
-
 
 while ($row1 = $stmt1->fetchObject()) {
     $data["shelfID"] = $row1->shelfID;
@@ -36,6 +33,3 @@ else
 
 $conn = null;
 exit;
-
-
-?>

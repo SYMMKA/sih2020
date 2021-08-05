@@ -44,7 +44,6 @@ function deleteBranch(id) {
             contentType: false, // Dont delete this (jQuery 1.6+)
             processData: false, // Dont delete this
             success: function (data) {
-                console.log(data);
                 loadSemBranch();
             },
             //Other options
@@ -55,7 +54,6 @@ function deleteBranch(id) {
 // add book to sem-branch
 function addBook(sem_branchID, branch, sem) {
     var bookIDs = JSON.stringify($("#addBookID").val());
-    console.log(bookIDs);
     var formData = new FormData();
     formData.append("bookIDs", bookIDs);
     formData.append("sem_branchID", sem_branchID);
@@ -66,7 +64,6 @@ function addBook(sem_branchID, branch, sem) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             sem_branchModal(sem_branchID, branch, sem);
         },
     });
@@ -85,7 +82,7 @@ function deleteFromSection(sem_branchID, branch, sem) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
+            
             sem_branchModal(sem_branchID, branch, sem);
         },
     });

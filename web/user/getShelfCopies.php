@@ -1,7 +1,5 @@
 <?php
-
-
-include("db.php");
+include("../database.php");
 
 if($_GET['shelfID'])
 {

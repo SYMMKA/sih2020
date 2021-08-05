@@ -91,7 +91,7 @@ function addBook(event) {
                 // Clear form
                 document.getElementById("addBookForm").reset();
             }
-            console.log(data);
+            
             var formCopyID = new FormData();
             formCopyID.append("title", title);
             formCopyID.append("author", author);
@@ -104,7 +104,7 @@ function addBook(event) {
                 contentType: false, // Dont delete this (jQuery 1.6+)
                 processData: false, // Dont delete this
                 success: function (data) {
-                    console.log(data);
+                    
                     var type = "Book";
                     $("#typeQR").val(type);
                     $("#qrIDs").val(data);

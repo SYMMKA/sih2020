@@ -1,5 +1,5 @@
 <?php
-include("session.php");
+include("../session.php");
 use GuzzleHttp\Exception\GuzzleException;
 ?>
 <!DOCTYPE html>
@@ -517,8 +517,10 @@ use GuzzleHttp\Exception\GuzzleException;
 	if (isset($_GET['q'])) {
 		$searchq = $_GET['q'];
 		echo "<script>
-				document.getElementById('search').value = '" . $searchq . "';
-				document.getElementById('voiceSearchSubmit').click();
+				$(document).ready(() => {
+					document.getElementById('search').value = '" . $searchq . "';
+					document.getElementById('voiceSearchSubmit').click();
+				});
 			</script>";
 	}
 	?>

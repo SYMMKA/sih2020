@@ -1,19 +1,12 @@
-
 <?php
-
-
-include("db.php");
-
+include("../database.php");
 
 $sql = "SELECT * FROM timetable ORDER BY id ASC ";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
-
 while ($row = $stmt->fetchObject()) {
-
-
 	$data["day"] = $row->day;
     $data["comment"] = $row->comment;
 
@@ -33,8 +26,6 @@ while ($row = $stmt->fetchObject()) {
 	{
 		$data["end"] = $row->end;
 	}
-
-
     $return_arr[] = $data;
 }
 
@@ -42,6 +33,3 @@ if (!isset($return_arr))
 	echo FALSE;
 else
 	echo json_encode($return_arr);
-
-
-?>

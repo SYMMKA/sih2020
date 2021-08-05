@@ -1,5 +1,5 @@
 <?php
-include("../session.php");
+include("../../session.php");
 $search = $_POST['search'];
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -85,7 +85,7 @@ try {
 		keys.forEach( (key) => {
 			var cachedSearch = key.slice(10).split(' ');
 			if(search.filter((value) => cachedSearch.includes(value)).length) {
-				console.log(JSON.parse(localStorage.getItem(key)));
+				
 			};
 		});
 	"; */

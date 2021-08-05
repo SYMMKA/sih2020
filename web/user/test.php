@@ -1,6 +1,5 @@
 <?php
 
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -47,8 +46,6 @@ echo FALSE;
 else
 echo json_encode($return_arr);  */
 
-
-
 $sql = "SELECT * FROM main ";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':search', $search);
@@ -90,6 +87,3 @@ else
 
 $conn = null;
 exit;
-
-
-?>

@@ -1,5 +1,5 @@
   <?php
-	include("session.php");
+	include("../session.php");
 	?>
   <!DOCTYPE html>
   <html lang="en">

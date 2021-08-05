@@ -1,5 +1,7 @@
+<!-- // Springer -->
+
 <?php
-include("session.php");
+include("../session.php");
 
 ?>
 <!doctype html>
@@ -488,7 +490,7 @@ include("session.php");
         echo '<script>
     $("#searchByVoice").val("' . $q . '");
     setTimeout(function(){ $("#voiceSearchSubmit").click()}, 100);
-    console.log("data");</script>';
+    </script>';
     }
     ?>
     <script>
@@ -498,7 +500,6 @@ include("session.php");
                 "http://api.springernature.com/metadata/json?q=title:" +
                 q +
                 "&api_key=483e9a0b6fef85946168e7bd308d3ad5";
-            console.log(link);
             $(document).ready(function() {
                 $.ajax({
                     type: "POST",
@@ -508,7 +509,6 @@ include("session.php");
                     },
                     success: function(data) {
                         data = JSON.parse(data);
-                        console.log(data);
                         result = data.records;
                         html = `<div class="row" >`;
 
@@ -607,9 +607,7 @@ include("session.php");
         });
 
         function autoFillSpringer(i) {
-            console.log(title[i])
-            document.getElementById("title").value = title[i];
-            console.log(publisherDate);
+            document.getElementById("title").value = title[i]
             document.getElementById("author").value = author[i];
             document.getElementById("publisher").value = publisher[i];
             document.getElementById("publishedDate").value = publisherDate[i];

@@ -198,7 +198,6 @@ function mainCategorySelect1Change(
         mainCategorySelect4.disabled = false;
 
         c1(mainCategorySelect1, mainCategorySelect2);
-        console.log(mainCategorySelect1.selectedIndex);
     }
 }
 

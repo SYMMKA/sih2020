@@ -97,7 +97,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
       Container(
           width: MediaQuery.of(context).size.width,
           child:Card(
-              elevation: 4,
+              elevation: 0,
               margin: EdgeInsets.only(bottom: 15),
               semanticContainer: true,
               //color: Colors.amberAccent.shade50,
@@ -141,8 +141,12 @@ class _LeaderBoardState extends State<LeaderBoard> {
             return Scaffold(
 
               appBar: AppBar(
-                title: Text("Leaderboard Page"),
-
+                title: Text(
+                  'The Leader Board',
+                  style: TextStyle(color: Color(0xff001730)),
+                ),
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(color: Color(0xff001730)),
               ),
               body: SingleChildScrollView(
                 padding: EdgeInsets.all(16.0),
@@ -150,7 +154,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   child: toggle
                       ? Column(
                     children: [
-                      pageHeader(),
+                      //pageHeader(),
                       JsonTable(
                         json,
                         columns:columns,

@@ -1,5 +1,5 @@
 <?php
-include("session.php");
+include("../session.php");
 if (isset($_SESSION['AccessError'])) {
 	echo "<script type='text/javascript'>
             alert('" . $_SESSION['AccessError'] . "');
@@ -207,22 +207,25 @@ if (isset($_SESSION['AccessError'])) {
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="shelf.php"></a>
 								<h5 class="card-title text-center">Shelf</h5>
 							</div>
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="record.php"></a>
 								<h5 class="card-title text-center">Records</h5>
 							</div>
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="syllabus.php"></a>
 								<h5 class="card-title text-center">Syllabus</h5>
 							</div>
 						</div>
@@ -244,22 +247,25 @@ if (isset($_SESSION['AccessError'])) {
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="chatroom.php"></a>
 								<h5 class="card-title text-center">Chatroom</h5>
 							</div>
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="docs.html"></a>
 								<h5 class="card-title text-center">Read Docs</h5>
 							</div>
 						</div>
 					</div>
 					<div class="col mb-4">
-						<div class="card btn-green stretched-link">
+						<div class="card btn-green">
 							<div class="card-body">
+								<a class="stretched-link" href="settings.php"></a>
 								<h5 class="card-title text-center">Settings</h5>
 							</div>
 						</div>

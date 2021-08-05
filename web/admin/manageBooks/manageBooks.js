@@ -34,7 +34,7 @@ function searchMain() {
             if (data) {
                 data = JSON.parse(data);
                 loadBooks(data);
-            } else console.log("Empty");
+            } else 
         },
     });
 }
@@ -215,8 +215,8 @@ function deleteBookConfirm(bookID) {
         success: function (data) {
             if (data) {
                 data = JSON.parse(data);
-                console.log(data.issueCount);
-                console.log(data.reserveCount);
+                
+                
                 html =
                     ` <h6>` +
                     data.issueCount +

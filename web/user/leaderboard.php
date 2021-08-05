@@ -1,7 +1,5 @@
 <?php
-
-include("db.php");
-
+include("../database.php");
 
 $sql1 = "SELECT * FROM students ORDER BY points DESC;";
 $stmt1 = $conn->prepare($sql1);

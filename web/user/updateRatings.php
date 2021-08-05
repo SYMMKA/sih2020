@@ -1,6 +1,5 @@
-
 <?php
-include("db.php");
+include("../database.php");
 
 if (@$_POST['copyID'] && @$_POST['stud_ID'] && @$_POST['star'] && @$_POST['type']) {
 
@@ -9,8 +8,6 @@ if (@$_POST['copyID'] && @$_POST['stud_ID'] && @$_POST['star'] && @$_POST['type'
     @$star = $_POST['star'];
     @$type = $_POST['type'];
 
-
-
     if ($type == "student")
         $getPointsQuery = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'ratingPoint'";
     else
@@ -18,7 +15,6 @@ if (@$_POST['copyID'] && @$_POST['stud_ID'] && @$_POST['star'] && @$_POST['type'
     $getPointsstmt = $conn->prepare($getPointsQuery);
     $getPointsstmt->execute();
     $points = $getPointsstmt->fetchObject()->value;
-
 
     $sql = "UPDATE `issued` SET `star`= $star WHERE `stud_ID`='$stud_ID' and `copyID`='$copyID'";
     $stmt = $conn->prepare($sql);
@@ -34,6 +30,4 @@ if (@$_POST['copyID'] && @$_POST['stud_ID'] && @$_POST['star'] && @$_POST['type'
         echo "Update_Failed";
     }
 }
-
-
 ?>

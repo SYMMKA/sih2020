@@ -127,40 +127,40 @@ class _GoogleBooksState extends State<GoogleBooks> {
   }
 
 
-  Widget pageHeader()
-  {
-    return
-      Container(
-          width: MediaQuery.of(context).size.width,
-          child:Container(
-              color: Colors.white,
-              //color: Colors.amberAccent.shade50,
-              child: Container(
-                  padding: EdgeInsets.all(15),
-
-                  child: Column(
-                    children: <Widget>[
-
-                      Text(
-                        'Request for new books',
-                        textAlign: TextAlign.center,
-
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-
-                      SizedBox(
-                        height: 10,
-                      ),
-
-                    ],
-                  )
-              )
-          )
-      );
-
-  }
+//  Widget pageHeader()
+//  {
+//    return
+//      Container(
+//          width: MediaQuery.of(context).size.width,
+//          child:Container(
+//              color: Colors.white,
+//              //color: Colors.amberAccent.shade50,
+//              child: Container(
+//                  padding: EdgeInsets.all(15),
+//
+//                  child: Column(
+//                    children: <Widget>[
+//
+//                      Text(
+//                        'Request for new books',
+//                        textAlign: TextAlign.center,
+//
+//                        style: TextStyle(
+//                            fontSize: 18,
+//                            fontWeight: FontWeight.bold),
+//                      ),
+//
+//                      SizedBox(
+//                        height: 10,
+//                      ),
+//
+//                    ],
+//                  )
+//              )
+//          )
+//      );
+//
+//  }
 
   Future<bool> checkUrlExistance(String url) async
   {
@@ -507,7 +507,7 @@ class _GoogleBooksState extends State<GoogleBooks> {
     return ListView(
 
       children: <Widget>[
-        pageHeader(),
+        //pageHeader(),
         Container(
           //height: 400,
           //color: Colors.green,
@@ -654,6 +654,15 @@ class _GoogleBooksState extends State<GoogleBooks> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Request for Books',
+          style: TextStyle(color: Color(0xff001730)),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Color(0xff001730)),
+      ),
+
       body :body(),
     );
   }

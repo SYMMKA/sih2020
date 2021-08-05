@@ -1,5 +1,5 @@
 <?php
-include("session.php");
+include("../session.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -620,7 +620,7 @@ include("session.php");
     if (isset($_GET['q'])) {
         $searchq = $_GET['q'];
         echo "<script>
-                console.log('" . $searchq . "');
+                
                 document.getElementById('searchByVoice').value = '" . $searchq . "';
                 searchMain();
 		     </script>";

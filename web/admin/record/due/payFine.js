@@ -14,7 +14,7 @@ function updateDueStatus(id) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
+            
             showFineTable();
         },
         //Other options
@@ -30,10 +30,10 @@ function showFineTable() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
+            
             if (data) {
                 data = JSON.parse(data);
-                console.log(data);
+                
                 var html = `<div class="table-responsive"><table id="issuedTable" class="table table-bordered table-hover">
     <caption>Click pay when payment is recieved</caption>
     <thead>

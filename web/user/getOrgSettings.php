@@ -1,6 +1,5 @@
 <?php
-
-include("db.php");
+include("../database.php");
 
 $dueFineParam = 'dueFine';
 $duePointParam = 'duePoint';

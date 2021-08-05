@@ -1,6 +1,6 @@
 <?php
 //include connection file 
-include("db.php");
+include("../database.php");
 
 $query = "SELECT * FROM `sem_branch`";
 $stmt = $conn->prepare($query);

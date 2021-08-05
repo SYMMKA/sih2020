@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("session.php");
-include("db.php");
+include("../session.php");
+include("../database.php");
 
 $adminID = $_SESSION['adminID'];
 
@@ -193,7 +193,7 @@ if ($access > $adminLevel) {
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <h2 class="heading font-weight-bold mb-4">
-                            Settings.
+                            Settings
                         </h2>
                         <p class="lead">
                             Customize AlphaByte as per your library needs here.

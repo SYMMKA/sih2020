@@ -1,6 +1,6 @@
 <?php
-include('../session.php');
-include("../db.php");
+include('../../session.php');
+include("../../database.php");
 $relative = dirname($_SERVER["SCRIPT_NAME"], 3) . '/';
 $domain = $_SERVER['HTTP_HOST'] . $relative;
 $prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';

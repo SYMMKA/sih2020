@@ -1,6 +1,6 @@
 <?php
-include('../../session.php');
-include('../../db.php');
+include('../../../session.php');
+include('../../../database.php');
 
 if (isset($_FILES['studentsCSV'])) {
 

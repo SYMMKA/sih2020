@@ -58,14 +58,12 @@ $qrIDs = $_POST['qrIDs'];
 						"CopyID": copyID
 					};
 					qrData = JSON.stringify(qrData);
-					console.log(qrData);
 					qr = new QRious({
 						element: document.querySelector('canvas'),
 						foreground: 'black',
 						size: 100,
 						value: qrData
 					});
-					console.log(qr.image);
 					var coldiv = document.createElement('div');
 					coldiv.className = 'col border border-dark';
 					var qrdiv = document.createElement('div');
@@ -89,14 +87,12 @@ $qrIDs = $_POST['qrIDs'];
 					"ShelfID": shelfID
 				};
 				qrData = JSON.stringify(qrData);
-				console.log(qrData);
 				qr = new QRious({
 					element: document.querySelector('canvas'),
 					foreground: 'black',
 					size: 100,
 					value: qrData
 				});
-				console.log(qr.image);
 				var coldiv = document.createElement('div');
 				coldiv.className = 'col border border-dark';
 				var qrdiv = document.createElement('div');

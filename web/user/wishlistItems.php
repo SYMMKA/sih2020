@@ -1,6 +1,5 @@
 <?php
-include("db.php");
-
+include("../database.php");
 
 if (isset($_POST['stud_ID'])) {
     $stud_ID = $_POST['stud_ID'];
@@ -9,15 +8,12 @@ if (isset($_POST['stud_ID'])) {
         $operation = $_POST['operation'];
 
         if ($operation == "fetch") {
-
             $sql = "SELECT * FROM `notify_me` where `notify_me`.`stud_ID` = '$stud_ID'";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
 
             $sql2 = "SELECT * FROM main WHERE `main`.`bookID` = :bookID";
             $stmt2 = $conn->prepare($sql2);
-
-
 
             $reserveNumQuery = "SELECT `value` FROM `setting` WHERE `setting`.`parameter` = 'reservePeriod'";
             $reserveNumstmt = $conn->prepare($reserveNumQuery);
@@ -27,8 +23,6 @@ if (isset($_POST['stud_ID'])) {
 
             $Sql_Query = "SELECT * FROM `copies` where bookID=:bookID and (status='' or (status='reserved' and UNIX_TIMESTAMP()-returnTime>$reserve_time))";
             $stmt3 = $conn->prepare($Sql_Query);
-           
-
 
             while ($row = $stmt->fetchObject()) {
                 $data["bookID"] = $row->bookID;
@@ -41,13 +35,12 @@ if (isset($_POST['stud_ID'])) {
                 $data["title"] = $row2->title;
                 $data["author"] = $row2->author;
                 $data["publisher"] = $row2->publisher;
-               
 
                 $stmt3->bindParam(':bookID', $bookID);
                 $stmt3->execute();
                 $data["noOfBooks"] = $stmt3->rowCount();
 
-                if($stmt3->rowCount()>0)
+                if ($stmt3->rowCount() > 0)
                     $data["status"] = "1";
                 else
                     $data["status"] = "0";

@@ -1,6 +1,6 @@
 <?php
-include("../../session.php");
-include("../../db.php");
+include("../../../session.php");
+include("../../../database.php");
 
 $bookID = $_POST['bookID'];
 $sql = "SELECT * FROM copies WHERE `copies`.`bookID` = :bookID";

@@ -233,7 +233,6 @@ function removeCopy(copyID, i) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             autoFillShelf(i);
             searchMain();
         },
@@ -252,7 +251,6 @@ function addShelf() {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             searchMain();
         },
     });
@@ -268,7 +266,6 @@ function deleteShelf(i) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
             searchMain();
         },
     });
@@ -306,7 +303,6 @@ function searchMain() {
             main: 1,
         },
         success: function (data) {
-            console.log(data);
             data = JSON.parse(data);
             loadShelfs(data);
         },

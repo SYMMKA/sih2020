@@ -1,233 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- CSS Dependencies -->
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/node_modules/shards-ui/dist/css/shards.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/common.css" />
-  </head>
-  <body>
-    <button
-      type="button"
-      class="btn btn-info voice-button"
-      style="
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        position: fixed;
-        bottom: 2rem;
-        right: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0px 2px 5px #666;
-        z-index: 9999;
-      "
-    >
-      <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-    </button>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Library Management System</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Add<span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Manage</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shelf </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section>
-      <div class="container-fluid" style="margin-top: 10vh;">
-        <div class="row">
-          <div class="col-4 col-sm-2">
-            <div
-              class="nav flex-column nav-pills"
-              id="v-pills-tab"
-              role="tablist"
-              aria-orientation="vertical"
-            >
-              <a
-                class="nav-link active"
-                id="v-pills-home-tab"
-                ="pill"
-                href="#v-pills-home"
-                role="tab"
-                aria-controls="v-pills-home"
-                aria-selected="true"
-                >Home</a
-              >
-              <a
-                class="nav-link"
-                id="v-pills-profile-tab"
-                data-toggle="pill"
-                href="#v-pills-profile"
-                role="tab"
-                aria-controls="v-pills-profile"
-                aria-selected="false"
-                >Add</a
-              >
-              <a
-                class="nav-link"
-                id="v-pills-messages-tab"
-                data-toggle="pill"
-                href="#v-pills-messages"
-                role="tab"
-                aria-controls="v-pills-messages"
-                aria-selected="false"
-                >Manage</a
-              >
-              <a
-                class="nav-link"
-                id="v-pills-settings-tab"
-                data-toggle="pill"
-                href="#v-pills-settings"
-                role="tab"
-                aria-controls="v-pills-settings"
-                aria-selected="false"
-                >Shelf</a
-              >
-            </div>
-          </div>
-          <div
-            class="col-8 col-sm-10"
-            style="height: 90vh; overflow-y: scroll;"
-          >
-            <div class="tab-content" id="v-pills-tabContent">
-              <div
-                class="tab-pane fade show active"
-                id="v-pills-home"
-                role="tabpanel"
-                aria-labelledby="v-pills-home-tab"
-              >
-                <h3>Getting Started</h3>
-                <p>Welcome to AlphaByte! This is where we help you get acquainted
-                with all the features so that you can use them to successfully 
-                manage your library with ease. Here, you’ll find a step by step 
-                guide on how to use all the features available here. You can come 
-                back here as and when required by clicking on the DOC button on 
-                the homepage.</p>
-                <img src="" alt="screenshot of homepage">
-                <p>So let’s dive in and discover everything AlphaByte has to offer.</p>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- CSS Dependencies -->
+	<link rel="stylesheet" href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./assets/node_modules/shards-ui/dist/css/shards.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./assets/css/common.css" />
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+		<div class="container">
+			<a class="navbar-brand font-weight-bold" href="#">LIBRARY MANAGEMENT SYSTEM</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="home.php" data-toggle="tooltip" data-placement="bottom" title="Home">
+							<div class="d-flex">
+								<i class="fa fa-home mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Home</h6>
+							</div>
+						</a>
+					</li>
+					<li class="nav-item dropdown active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" title="Library">
+							<div class="d-flex">
+								<i class="fa fa-book mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Library</h6>
+							</div>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="manageBooks.php" title="Manage Books">Manage Books</a>
+							<a class="dropdown-item" href="addBooks.php" title="Add Books">Add Books</a>
+							<a class="dropdown-item" href="shelf.php" title="Shelf">Shelf</a>
+							<a class="dropdown-item" href="record.php" title="Records">Records</a>
+							<a class="dropdown-item" href="syllabus.php" title="Syllabus">Syllabus</a>
+							<a class="dropdown-item" href="achievement.php" title="achievements">Achievements</a>
+							<a class="dropdown-item" href="request.html" title="Book Requests">Book Requests</a>
+						</div>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="docs.html" data-toggle="tooltip" data-placement="bottom"
+							title="Read Docs">
+							<div class="d-flex">
+								<i class="fa fa-question mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Read Docs</h6>
+							</div>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="chatroom.php" data-toggle="tooltip" data-placement="bottom"
+							title="Chatroom">
+							<div class="d-flex">
+								<i class="fa fa-comment mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Chatroom</h6>
+							</div>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="settings.php" data-toggle="tooltip" data-placement="bottom"
+							title="Settings">
+							<div class="d-flex">
+								<i class="fa fa-cog mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">Settings</h6>
+							</div>
+						</a>
+					</li>
+					<li class="nav-item dropdown  active">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							title="Profile" aria-haspopup="true" aria-expanded="false">
+							<div class="d-flex">
+								<i class="fa fa-user-circle mr-3 mr-lg-0" aria-hidden="true"></i>
+								<h6 class="d-block d-lg-none mb-0">My Profile</h6>
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item font-weight-bold" href="#">
+								<?= $adminID ?>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="btn dropdown-item" data-toggle="modal" data-target="#changePassword">Change
+								password</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="logout.php"><button
+									class="btn btn-danger btn-block">Logout</button></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- change password -->
+	<div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Change Password</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="form-group row">
+							<label for="inputPass1" class="col-sm-3 col-form-label">New Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass1" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="inputPass2" class="col-sm-3 col-form-label">Confirm Password</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="inputPass2" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-blue" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-orange" data-dismiss="modal" id="savePass">Save
+						changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section>
+		<div class="container-fluid" style="margin-top: 10vh;">
+			<div class="row">
+				<div class="col-4 col-sm-2">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+							role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+							role="tab" aria-controls="v-pills-profile" aria-selected="false">Add</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+							role="tab" aria-controls="v-pills-messages" aria-selected="false">Manage</a>
+						<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+							role="tab" aria-controls="v-pills-settings" aria-selected="false">Shelf</a>
+					</div>
+				</div>
+				<div class="col-8 col-sm-10" style="height: 90vh; overflow-y: scroll;">
+					<div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+							aria-labelledby="v-pills-home-tab">
+							<h3>Getting Started</h3>
+							<p>Welcome to AlphaByte! This is where we help you get acquainted
+								with all the features so that you can use them to successfully
+								manage your library with ease. Here, you’ll find a step by step
+								guide on how to use all the features available here. You can come
+								back here as and when required by clicking on the DOC button on
+								the homepage.</p>
+							<img src="" alt="screenshot of homepage">
+							<p>So let’s dive in and discover everything AlphaByte has to offer.</p>
 
 
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                <h1>Adding new material to your library</h1>
-                <p> To add new material to your library go to the ADD ASSETS page 
-                by clicking on the book icon in NavBar in the top right of your screen</p>
-                <img src="" alt="ss of nav library dd open">
-                <p>You can also use voice navigation to do the same. </p>
-                <h2>Adding new material from the internet</h2>
-                Addition of a new material available on the internet can be easily done 
-                by following the steps given below.
-                <h3>Finding the book you want </h3>
-                <p>
-                  <ol>
-                    <li>Once in the ADD ASSETS page, voice search or type search the 
-                      book you want in the search bar. ( For more guidance on searching 
-                      checkout the search section of this document)
-                    </li>
-                    <li>Based on your search, a list of books will be displayed.
-                    </li>
-                    <img src="" alt="ss of search results">
-                    <li>You can preview some of the initial contents of these books by clicking on the PREVIEW button.
-                    </li>
-                    <li>Click on the ADD button next to the book you want to add in the library </li>
-                  </ol>
-                </p>
-                <h3> Filling the form </h3>
-                <p>
-                  <ol>
-                    <li>Once you click on ADD, a form will open with auto-filled details of the book fetched from the internet.
-                    </li>
-                    <li>The categories, DDC number and BookID will automatically be generated by AlphaByte.
-                    </li>
-                    <img src="" alt="ss of categories selected">
-                    <li>You can change the details as you feel apt by clicking on the input box next to it.
-                    </li>
-                    <img src="" alt="ss of the form">
-                    <li>The highlighted parameters are optional and are for your convenience. You can choose to (not) fill them as per your library needs.
-                    </li>
-                    <li>Click the SUBMIT button to add your new asset to the database</li>
-                  </ol>
-                </p>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque
-                mollitia doloribus odit eligendi voluptatum facere modi fuga
-                reiciendis ducimus iusto, consequatur recusandae incidunt neque
-                quae amet nesciunt quis aut reprehenderit!
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
-              >
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis,
-                amet qui! Eligendi enim, necessitatibus, assumenda illo,
-                pariatur earum ipsam alias nam sed sit recusandae! Earum tempora
-                necessitatibus quo illo saepe!
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Optional JavaScript -->
-    <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
-    <script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
-    <script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
-    <script src="./assets/js/common.js"></script>
-    <script src="./assets/js/voice-search.js"></script>
-  </body>
+						</div>
+						<div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+							aria-labelledby="v-pills-profile-tab">
+							<h1>Adding new material to your library</h1>
+							<p> To add new material to your library go to the ADD ASSETS page
+								by clicking on the book icon in NavBar in the top right of your screen</p>
+							<img src="" alt="ss of nav library dd open">
+							<p>You can also use voice navigation to do the same. </p>
+							<h2>Adding new material from the internet</h2>
+							Addition of a new material available on the internet can be easily done
+							by following the steps given below.
+							<h3>Finding the book you want </h3>
+							<p>
+							<ol>
+								<li>Once in the ADD ASSETS page, voice search or type search the
+									book you want in the search bar. ( For more guidance on searching
+									checkout the search section of this document)
+								</li>
+								<li>Based on your search, a list of books will be displayed.
+								</li>
+								<img src="" alt="ss of search results">
+								<li>You can preview some of the initial contents of these books by clicking on the
+									PREVIEW button.
+								</li>
+								<li>Click on the ADD button next to the book you want to add in the library </li>
+							</ol>
+							</p>
+							<h3> Filling the form </h3>
+							<p>
+							<ol>
+								<li>Once you click on ADD, a form will open with auto-filled details of the book fetched
+									from the
+									internet.
+								</li>
+								<li>The categories, DDC number and BookID will automatically be generated by AlphaByte.
+								</li>
+								<img src="" alt="ss of categories selected">
+								<li>You can change the details as you feel apt by clicking on the input box next to it.
+								</li>
+								<img src="" alt="ss of the form">
+								<li>The highlighted parameters are optional and are for your convenience. You can choose
+									to (not) fill
+									them as per your library needs.
+								</li>
+								<li>Click the SUBMIT button to add your new asset to the database</li>
+							</ol>
+							</p>
+						</div>
+						<div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+							aria-labelledby="v-pills-messages-tab">
+							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque
+							mollitia doloribus odit eligendi voluptatum facere modi fuga
+							reiciendis ducimus iusto, consequatur recusandae incidunt neque
+							quae amet nesciunt quis aut reprehenderit!
+						</div>
+						<div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+							aria-labelledby="v-pills-settings-tab">
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis,
+							amet qui! Eligendi enim, necessitatibus, assumenda illo,
+							pariatur earum ipsam alias nam sed sit recusandae! Earum tempora
+							necessitatibus quo illo saepe!
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Optional JavaScript -->
+	<!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
+	<script src="./assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="./assets/node_modules/popper.js/dist/popper.min.js"></script>
+	<script src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./assets/node_modules/shards-ui/dist/js/shards.min.js"></script>
+	<script src="./assets/js/common.js"></script>
+	<script src="./assets/js/voice-search.js"></script>
+</body>
+
 </html>

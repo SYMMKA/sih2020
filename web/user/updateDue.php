@@ -1,6 +1,6 @@
 <?php
 //include connection file 
-include("db.php");
+include("../database.php");
 
 if ( @$_POST['stud_ID'] && @$_POST['copyID'])
 {

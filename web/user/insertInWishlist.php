@@ -1,9 +1,5 @@
-
 <?php
-
-
-include("db.php");
-
+include("../database.php");
 
 if (isset($_POST['stud_ID']) && isset($_POST['bookID'])) {
     $bookID = $_POST['bookID'];

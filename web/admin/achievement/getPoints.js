@@ -7,7 +7,7 @@ $.ajax({
   success: function (data) {
     if (data) {
       data = JSON.parse(data);
-      console.log(data);
+      
       var html = `<div class="table-responsive"><table data-sortable id="leaderboard" class="table table-bordered table-hover">
       <caption>Leaderboard</caption>
       <thead>

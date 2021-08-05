@@ -1,8 +1,8 @@
 function autoFillInfo(i) {
     i = parseInt(i);
-    console.log(i);
-    console.log(bookID);
-    console.log(bookID[i]);
+    
+    
+    
     var issued = (reserved = available = 0);
     var formdata = new FormData();
     formdata.append("bookID", bookID[i]);

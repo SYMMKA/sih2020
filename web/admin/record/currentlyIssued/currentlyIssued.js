@@ -11,7 +11,7 @@ function loadNotReturned() {
             currentlyIssued: 1,
         },
         success: function (data) {
-            console.log(data);
+            
             data = JSON.parse(data);
             html = `<div class="table-responsive">
                         <table class="table">

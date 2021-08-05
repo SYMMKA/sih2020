@@ -33,7 +33,7 @@ if (SpeechRecognition) {
             micIcon.classList.remove("fa-microphone");
             micIcon.classList.add("fa-microphone-slash");
             input_form.focus();
-            console.log("Voice activated, SPEAK");
+            
         }
 
         recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
@@ -41,14 +41,14 @@ if (SpeechRecognition) {
             micIcon.classList.remove("fa-microphone-slash");
             micIcon.classList.add("fa-microphone");
             input_form.focus();
-            console.log("Speech recognition service disconnected");
+            
         }
 
         recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
         function resultOfSpeechRecognition(event) {
             const transcript = event.results[0][0].transcript;
-            console.log(transcript);
-            input_form.value = transcript;
+            
+            input_form.value = transcript.replace('.', "");
             input_form.focus();
             // setTimeout(() => {
             //   searchForm.submit();
@@ -56,6 +56,6 @@ if (SpeechRecognition) {
         }
     }
 } else {
-    console.log("Your Browser does not support speech Recognition");
+    
     info.textContent = "Your Browser does not support Speech Recognition";
 }

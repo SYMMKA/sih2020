@@ -37,8 +37,12 @@ class _QRViewExampleState extends State<QRViewExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Scan Page"),
-
+        title: Text(
+          'Qr Code Scanner',
+          style: TextStyle(color: Color(0xff001730)),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Color(0xff001730)),
       ),
       body: Column(
         children: <Widget>[

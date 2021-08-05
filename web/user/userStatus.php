@@ -1,6 +1,6 @@
 <?php
 
-include("db.php");
+include("../database.php");
 
 $sql1 = "SELECT * FROM issued ";
 $stmt1 = $conn->prepare($sql1);
@@ -8,7 +8,6 @@ $stmt1->execute();
 
 $sql2 = "SELECT * FROM students WHERE `students`.`stud_ID` = :stud_ID";
 $stmt2 = $conn->prepare($sql2);
-
 
 while ($row1 = $stmt1->fetchObject()) {
 
@@ -40,8 +39,6 @@ while ($row1 = $stmt1->fetchObject()) {
         $sqlupdate1 = "UPDATE `students` SET `points`= '$points' WHERE `stud_ID`='$stud_ID' ";
         $stmtupdate1 = $conn->prepare($sqlupdate1);
         $stmtupdate1->execute();
-
-
     } 
     else if ($currentTime == $issueTime) {
         $points = $points + 20;
@@ -49,8 +46,6 @@ while ($row1 = $stmt1->fetchObject()) {
         $stmtupdate2 = $conn->prepare($sqlupdate2);
         $stmtupdate2->execute();
     }
-
-
     $return_arr[] = $data;
 }
 

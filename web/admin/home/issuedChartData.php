@@ -1,6 +1,6 @@
 <?php
-include("../session.php");
-include("../db.php");
+include("../../session.php");
+include("../../database.php");
 
 $query = "SELECT * , COUNT(*) AS count FROM issued GROUP BY bookID ORDER BY COUNT(*) DESC LIMIT 5";
 $stmt = $conn->prepare($query);

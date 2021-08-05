@@ -33,8 +33,8 @@ function returnBook(e) {
         contentType: false, // Dont delete this (jQuery 1.6+)
         processData: false, // Dont delete this
         success: function (data) {
-            console.log(data);
-            console.log(copyID);
+            
+            
             var res = data.substr(data.length - 7, data.length);
             if ((res = "success")) {
                 $.ajax({
@@ -44,7 +44,7 @@ function returnBook(e) {
                         copyID: copyID,
                     },
                     success: function (data2) {
-                        console.log(data2);
+                        
                     },
                 });
             }

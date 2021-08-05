@@ -1,7 +1,7 @@
 <?php
 //include connection file 
-include("../../session.php");
-include("../../db.php");
+include("../../../session.php");
+include("../../../database.php");
 
 if ($_POST['add'] == 1)
 	$action['add'] = $_POST['add'];
@@ -70,6 +70,10 @@ if ($endTime != '') {
 }
 
 // actionquery
+if(!isset($action)) {
+	echo -1;
+	exit;
+}
 $actionlength = count($action);
 $i = 1;
 $actionquery = "(";
