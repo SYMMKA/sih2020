@@ -52,5 +52,5 @@ Our contributors love thorough bug reports. Really.
 
 ## Use a Consistent Coding Style
 
-- 2 spaces for indentation rather than tabs
+- 4 spaces for indentation rather than tabs
 - [Comment ](https://qvault.io/clean-code/code-comments/)wherever necessary

@@ -33,20 +33,20 @@ The following diagram summarizes major functionalities and design of the project
 
 ## Installation
 This project has 2 parts and specific directions to install and start using them can be found at the following link:
-1. [WEB README](https://github.com/SYMMKA/sih2020/blob/master/web/README.md#installation)
-2. [APP README](https://github.com/SYMMKA/sih2020/blob/master/app/README.md#installation)
+1. [WEB README](/web/README.md#installation)
+2. [APP README](/app/README.md#installation)
 
 
 ## Usage
-The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/web/WEB%20USAGE.md).
+The website is ideally meant to be used by the library administration. This is where the major bulk of the "management" lies. For detailed directions and help on how to use the website, refer [WEB USAGE DOC](/web/WEB%20USAGE.md).
 
 The app can be used by any and all issuers of the library. It is an interface that eases interaction with the library for all users who are sanctioned to use the library.
-For detailed directions and help on how to use the website, refer [APP USAGE DOC](https://github.com/SYMMKA/sih2020/blob/master/app/APP%20USAGE.md).
+For detailed directions and help on how to use the website, refer [APP USAGE DOC](/app/APP%20USAGE.md).
 
 
 ## Contributing to AlphaByte
 We would love your input! 
-For detailed guidelines on how to contribute in this project, refer [CONTRIBUTION](https://github.com/SYMMKA/sih2020/edit/master/CONTRIBUTIONS.md) document
+For detailed guidelines on how to contribute in this project, refer [CONTRIBUTION](/CONTRIBUTIONS.md) document
 
 ## Credits
 
@@ -62,7 +62,7 @@ Our project has the following third party dependencies:
 For Web:
  - [jsPDF](https://github.com/MrRio/jsPDF/blob/master/LICENSE)
 
- - [jsPDF-AutoTable](https://github.com/simonbengtsson/jsPDF-AutoTable/blob/master/LICENSE.txt)
+ - [jsPDF-AutoTable](/LICENSE.txt)
 
  - [OCLC Classify](http://classify.oclc.org/classify2/)
 
