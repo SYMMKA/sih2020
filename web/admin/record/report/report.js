@@ -54,15 +54,11 @@ function generateReport() {
 	}
 	if (document.getElementById("startTime").value == "") {
 	} else {
-		startTime = new Date(JSON.stringify($("#startTime").val()));
-		
-		
+		startTime = new Date($("#startTime").val())/1000;
 	}
 	if (document.getElementById("endTime").value == "") {
 	} else {
-		endTime = new Date(JSON.stringify($("#endTime").val()));
-		
-		
+		endTime = new Date($("#endTime").val())/1000;
 	}
 	if (document.getElementById("bookID").value == "") {
 	} else {
@@ -78,17 +74,6 @@ function generateReport() {
 		adminID = JSON.stringify($("#adminID").val());
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	var formData = new FormData();
 	formData.append("add", add);
 	formData.append("issue", issue);
@@ -108,6 +93,7 @@ function generateReport() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			if (data) {
+                console.log(data);
 				html = `
 			<div class="table-responsive">
 				<table id="reportTable" class="table table-bordered table-hover">
@@ -123,7 +109,7 @@ function generateReport() {
 						</tr>
 					</thead>
 					<tbody>`;
-				if (data = -1) {
+				if (data == -1) {
 					alert("No operations selected!");
 				} else {
 					table = JSON.parse(data);
@@ -169,9 +155,7 @@ function generateReport() {
 			} else {
 				html = "";
 			}
-			document.getElementById("reportDIV").innerHTML = html;
-
-		},
+			document.getElementById("reportDIV").innerHTML = html;		},
 		//Other options
 	});
 }

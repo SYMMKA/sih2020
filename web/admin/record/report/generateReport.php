@@ -20,9 +20,7 @@ $userID = json_decode($userID, true);
 $adminID = $_POST['adminID'];
 $adminID = json_decode($adminID, true);
 $startTime = $_POST['startTime'];
-$startTime = json_decode($startTime, true);
 $endTime = $_POST['endTime'];
-$endTime = json_decode($endTime, true);
 
 //studentIDquery
 if ($userID == '')
@@ -101,6 +99,7 @@ if ($bookID != '') {
 	$bookIDquery = "";
 
 $query = "SELECT * FROM `history` WHERE " . $timequery . " AND " . $actionquery;
+
 if ($adminIDquery != '')
 	$query .= " AND " . $adminIDquery;
 if ($studentIDquery != '')
