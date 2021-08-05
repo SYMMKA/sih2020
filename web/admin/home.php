@@ -142,7 +142,7 @@ if (isset($_SESSION['AccessError'])) {
 		</div>
 	</nav>
 	<!-- change password -->
-	<div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
+	<div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="changePassword">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
