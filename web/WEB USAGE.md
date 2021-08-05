@@ -71,7 +71,7 @@ The voice assistant will help you further in accomplishing tasks vocally.
 ![buddy: voice assistant ss](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.008.png)
 
 
-<a name="#search"></a>
+<a name="search"></a>
 ## Search
 Searching any book or shelf or asset in your library can be done in the following three ways
 
@@ -326,7 +326,7 @@ You can create new branches and upload the books and materials in your library t
 3. Search the book you would like to add from the database.
 
 
-<a name="#settings"></a>
+<a name="settings"></a>
 ## Customize via settings.
 
 Click on ![](wudimages/Aspose.Words.1866fca9-b1ea-47ab-b7d2-ed8dafc92ee1.029.png) in the NavBar on the top right of your screen to open the settings page. Here you can easily customize AlphaByte according to your library needs.
@@ -347,7 +347,7 @@ You can change all the major customisable parameters like how long an user can i
 
 ### Managing User
 
-<a name="#addnewuser"></a>
+<a name="addnewuser"></a>
 #### New User 
 
 1. To register a new user, go to MANAGE USER tab placed in the right side of SETTINGS page
@@ -477,7 +477,7 @@ To Change the clearance assigned to an admin:
 3. Click on SAVE button to save changes
 
 
-<a name="#records"></a>
+<a name="records"></a>
 ## Records
 This page helps you keep track of bills, dues and activities in your library.
 To access this page click on 
