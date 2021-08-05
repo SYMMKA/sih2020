@@ -75,11 +75,11 @@ For Web:
  - [Html5-QRCode](https://github.com/mebjas/html5-qrcode/blob/master/LICENSE) (QR code reader for web)
  
 For App:
- - [Upi pay](https://pub.dev/packages/upi_pay)
+ - [Upi pay](https://pub.dev/packages/upi_pay/license)
  
- - [Qr scanner](https://pub.dev/packages/qr_code_scanner)
+ - [Qr scanner](https://pub.dev/packages/qr_code_scanner/license)
 
- - [Speech to text](https://pub.dev/packages/speech_to_text)
+ - [Speech to text](https://pub.dev/packages/speech_to_text/license)
 
  - [Tabular display widget](https://pub.dev/packages/json_table)
 
