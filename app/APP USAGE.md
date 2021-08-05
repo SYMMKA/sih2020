@@ -6,17 +6,18 @@ Here are some steps you can take to make sure you take advantage of your library
 
 1. If you&#39;re a student of the institute, you are probably already enrolled in the library. If not so, contact the library admin to ask for enrollment.
 2. To login for the first time, use your registration number as password and registered name as username. (or as directed by your admin)
-3. You can [change your password](#_3sdotfqobamw)once you login.
-4. You can search the library for the resources you need by clicking on ![](RackMultipart20210804-4-12nke5p_html_b8a488b2bd3cf332.png) at the bottom navigation bar. You can search for:
+3. You can [change your password](#change_password) once you login.
+4. You can search the library for the resources you need by clicking on ![the search icon](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.001.png) at the bottom navigation bar. You can search for:
   - Shelves : Scan QR code on shelf or enter shelf ID
   - Other Resources : Enter title/author/ISBN number or scan QR code on the material.
-5. You can also [use voice navigation](#_ioe4txi9efxo) by clicking on ![](RackMultipart20210804-4-12nke5p_html_d0b353038d44cbb4.png) at the top right corner of your screen, to navigate through the app.
+5. You can also [use voice navigation](#voicenav) by clicking on ![the mic](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.002.png) at the top right corner of your screen, to navigate through the app.
 
+<a name="#voicenav"></a>
 ## Voice Navigation
 
 How to use voice navigation?
 
-1. Click on the ![](RackMultipart20210804-4-12nke5p_html_9574b15565220d39.png)at the top right corner of your screen.
+1. Click on the ![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.002.png) at the top right corner of your screen.
 2. Frame your command and say it. It is wise to use keywords relevant to the site and your task to be done.
 3. You can use this feature to search for resources or navigate through the app.
 
@@ -24,64 +25,67 @@ How to use voice navigation?
 
 The leaderboard shows you how well you and other issuers have been performing in regards to interaction with your library.
 
-1. When on the Home page click on ![](RackMultipart20210804-4-12nke5p_html_b29f5667ba07ec77.png). This will take you to the leaderboard.
-2. Here you can check your Rank and points and compare them with other issuers&#39; ranks. Your score mainly depends on how frequently you issue books and whether you return them on time or not.
+1. When on the Home page click on ![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.004.png). This will take you to the leaderboard.
 
-![](RackMultipart20210804-4-12nke5p_html_ddefcea55d8a7d07.png)
+3. Here you can check your Rank and points and compare them with other issuers&#39; ranks. Your score mainly depends on how frequently you issue books and whether you return them on time or not.
+
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.005.png)
+
 
 ## Chatroom
 
 You can access the chat section by clicking on chat button
 
-![](RackMultipart20210804-4-12nke5p_html_114a9eca4878db97.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.006.png)
 
 This is an open chat room. Here you can chat with the librarians or other students regarding issues, events, books in your library.
 
-![abc](RackMultipart20210804-4-12nke5p_html_ff4e5689b26f819d.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.007.png)
 
 ## Discover and Reserve
 
-1. Click on the ![](RackMultipart20210804-4-12nke5p_html_2f5edb4e67ce9e0e.png)to go to the search books page
+1. Click on the *![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.008.png)* to go to the search books page
 2. Here you can find various books that are available in the library
 3. If you are not physically in the library you can reserve the book to issue it later. Reservation stays valid for 2 hours only (or as set by the admin).
 
 To reserve a book:
 
-1. Click on the reserve button next to the book you want
+1. Click on the reserve button next to the book you want 
 
-![](RackMultipart20210804-4-12nke5p_html_4a3970d847c6bd8b.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.009.png)
 
-1. A list of available copies will be shown. You can select a copy which you want to issue
+2. A list of available copies will be shown. You can select a copy which you want to issue 
 
-![](RackMultipart20210804-4-12nke5p_html_dbfd44fa9cdad450.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.010.png)
 
-1. Once you reserve a book a thankyou message will pop up indicating successful reservation.
+3. Once you reserve a book a thankyou message will pop up indicating successful reservation. 
 
-![](RackMultipart20210804-4-12nke5p_html_a8776ea095848dc7.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.011.png)
 
 ## Fine Payment
 
-You can pay a fine for damage of books or late return from the app itself using any UPI gateways.
+You can pay a fine for damage of books or late return from the app itself using any UPI gateways. 
 
-1. Go to activities tab from the navbar
+1. Go to activities tab from the navbar 
 
-![](RackMultipart20210804-4-12nke5p_html_9a9d91dbfb6ad09c.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.012.png)
 
-1. Click on Pay Fine button in &#39;your activities&#39; section
+2. Click on Pay Fine button in ‘your activities’ section 
 
-![](RackMultipart20210804-4-12nke5p_html_3d9b71120f3de84a.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.013.png)
 
-1. Select the copy you want to pay fine for
+3. Select the copy you want to pay fine for  
 
-![](RackMultipart20210804-4-12nke5p_html_9b49bdd03339dbc3.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.014.png)
 
-1. Enter your UPI address and fine amount. Select the payment option and proceed.
+4. Enter your UPI address and fine amount. Select the payment option and proceed. 
 
-![](RackMultipart20210804-4-12nke5p_html_16dddfce2092d02a.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.015.png)
+
 
 ## Your History
 
-![](RackMultipart20210804-4-12nke5p_html_9a9d91dbfb6ad09c.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.016.png)
 
 Here you can find all your activities i.e. books you have issued/reserved and at what time have you returned them along with when is due time and how much are you being fined if any.
 
@@ -96,7 +100,7 @@ You can download e books for offline use from the e books section of the search 
 3. Click on the book and select the application you wish to open it with.
 4. The pdf now can be downloaded and will be stored in the downloads section of your mobile.
 
-![](RackMultipart20210804-4-12nke5p_html_476478d2f79a88be.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.017.png)
 
 ## Notifications
 
@@ -108,28 +112,28 @@ You will receive email notifications for the following transactions at your regi
 
 ## Requests
 
-1. Click on ![](RackMultipart20210804-4-12nke5p_html_b436d61cd174d099.png)at the top left corner of your screen
-2. 2. Click request button ![](RackMultipart20210804-4-12nke5p_html_ece61d0801ffeece.png)
-3. 3. all the books that you have requested will appear here.
+1. Click on ![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.018.png) at the top left corner of your screen
+2. Click on the request button ![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.019.png)
+3. all the books that you have requested will appear here.
 4. You can request books to this list by searching and adding to the wishlist.
 
 ## Time Table
 
-This section your library timings as updated by the admin.
+In this section, you will find your library timings as updated by the admin.
 
-1. Click on the timetable icon from the bottom menu.
+. Click on the timetable icon from the bottom menu. 
 
-![](RackMultipart20210804-4-12nke5p_html_8d722df8f327b7d5.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.020.png)
 
-1. You can find the timetable here as shown
+2. You can find the timetable  here as shown 
 
-![](RackMultipart20210804-4-12nke5p_html_d67bf121999a1294.png)
+![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.021.png)
 
-## Settings
 
+<a name='#change_password'></a>
 ## Changing Password
 
-1. Click on ![](RackMultipart20210804-4-12nke5p_html_b436d61cd174d099.png)at the top left corner of your screen
+1. Click on ![](adimages/Aspose.Words.6f26d3f3-cbf7-4c73-b09b-ef99b2854e2c.022.png) at the top left corner of your screen
 2. To change your password click on the SETTINGS option at the bottom of the menu.
 3. Enter your new password.
 4. Confirm by re-entering the same and hit confirm to successfully change your password.
